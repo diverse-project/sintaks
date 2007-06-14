@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sintaks Edit Plug-In
+Bundle-SymbolicName: org.kermeta.sintaks.model.edit;singleton:=true
+Bundle-Version: 0.0.3
+Bundle-ClassPath: .
+Bundle-Activator: org.kermeta.sintaks.sts.provider.STSEditPlugin$Implementation
+Bundle-Vendor: IRISA/INRIA & MIPS
+Bundle-Localization: plugin
+Export-Package: org.kermeta.sintaks.sts.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.kermeta.sintaks.model
+Eclipse-LazyStart: true
