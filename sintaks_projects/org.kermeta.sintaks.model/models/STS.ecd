@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="STS" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#/" metadata="emf-1.0" initialized="true" tag="1000" key="32303036313030362066722E69726973612E747269736B656C6C2E73696E74616B732E6D6F64656C2F6D696368656C">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.20/@sourceConnections.1 //@children.15/@sourceConnections.1" name="EClass" location="818,50" size="158,205" id="http://www.eclipse.org/emf/2002/Ecore#//EClass">
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="abstract" id="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="interface" id="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="135,90">
+      <children xsi:type="editmodel:MethodEditModel" name="getEStructuralFeature" id="http://www.eclipse.org/emf/2002/Ecore#//EClass/getEStructuralFeature">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass/getEStructuralFeature"/>
+      </children>
+      <children xsi:type="editmodel:MethodEditModel" name="getEStructuralFeature" id="http://www.eclipse.org/emf/2002/Ecore#//EClass/getEStructuralFeature.1">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass/getEStructuralFeature.1"/>
+      </children>
+      <children xsi:type="editmodel:MethodEditModel" name="getFeatureCount" id="http://www.eclipse.org/emf/2002/Ecore#//EClass/getFeatureCount">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass/getFeatureCount"/>
+      </children>
+      <children xsi:type="editmodel:MethodEditModel" name="getFeatureID" id="http://www.eclipse.org/emf/2002/Ecore#//EClass/getFeatureID">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass/getFeatureID"/>
+      </children>
+      <children xsi:type="editmodel:MethodEditModel" name="isSuperTypeOf" id="http://www.eclipse.org/emf/2002/Ecore#//EClass/isSuperTypeOf">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass/isSuperTypeOf"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.19/@sourceConnections.1 //@children.13/@sourceConnections.2 //@children.14/@sourceConnections.1 //@children.6/@sourceConnections.1" name="EStructuralFeature" location="50,862" size="205,241" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature">
+    <children xsi:type="editmodel:CompartmentEditModel" size="149,126">
+      <children xsi:type="editmodel:AttributeEditModel" name="changeable" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/changeable">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/changeable"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="defaultValue" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/defaultValue">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/defaultValue"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="defaultValueLiteral" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/defaultValueLiteral">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/defaultValueLiteral"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="derived" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/derived">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/derived"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="transient" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/transient">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/transient"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="unsettable" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/unsettable">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/unsettable"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="volatile" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/volatile">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/volatile"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="118,36">
+      <children xsi:type="editmodel:MethodEditModel" name="getContainerClass" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/getContainerClass">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/getContainerClass"/>
+      </children>
+      <children xsi:type="editmodel:MethodEditModel" name="getFeatureID" id="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/getFeatureID">
+        <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature/getFeatureID"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Root" location="1153,1135" size="71,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Root">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.2" target="//@children.11" targetEnd="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="fragments" location="80,87" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Root/fragments" multiplicityLabel="//@children.2/@sourceConnections.0/@children.0/@children.0" roleLabel="//@children.2/@sourceConnections.0/@children.0/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1..*" location="1147,785" size="16,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="fragments" location="1084,785" size="49,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Root/fragments"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10" attachSource="true"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.2" target="//@children.11" targetEnd="//@children.2/@sourceConnections.1/@children.0" sourceEnd="//@children.2/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="start" location="80,77" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Root/start" multiplicityLabel="//@children.2/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.2/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="1147,785" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="start" location="1111,785" size="22,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Root/start"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,1" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Root"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.0" name="Terminal" location="1660,828" size="171,105" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Terminal">
+    <children xsi:type="editmodel:CompartmentEditModel" size="148,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="lexicalSeparator" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Terminal/lexicalSeparator">
+        <model href="STS.ecore#//Terminal/lexicalSeparator"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="terminal" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Terminal/terminal">
+        <model href="STS.ecore#//Terminal/terminal"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.3" target="//@children.14/@sourceConnections.0" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Terminal"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Once" location="1585,983" size="75,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Once">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.4" target="//@children.8/@sourceConnections.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="37,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.4" target="//@children.11" targetEnd="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="separator" location="90,77" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Once/separator" multiplicityLabel="//@children.4/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.4/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1157,775" size="18,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="separator" location="1157,747" size="47,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Once/separator"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Once"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Constant" location="848,983" size="135,87" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Constant">
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="value" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Constant/value">
+        <model href="STS.ecore#//Constant/value"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.5" target="//@children.17/@sourceConnections.0" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="67,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Constant"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ObjectReference" location="1266,983" size="148,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//ObjectReference">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.6" target="//@children.17/@sourceConnections.0" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="74,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.6" target="//@children.1" targetEnd="//@children.6/@sourceConnections.1/@children.0" sourceEnd="//@children.6/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="identifier" location="205,150" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//ObjectReference/identifier" multiplicityLabel="//@children.6/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.6/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="262,1019" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="identifier" location="262,991" size="41,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//ObjectReference/identifier"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,29" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//ObjectReference"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.0" name="Choice" location="1184,828" size="86,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Choice">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.7" target="//@children.14/@sourceConnections.0" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="43,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.7" target="//@children.18" targetEnd="//@children.7/@sourceConnections.1/@children.0" sourceEnd="//@children.7/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="conditions" location="108,77" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Choice/conditions" multiplicityLabel="//@children.7/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.7/@sourceConnections.1/@children.0/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1..*" location="449,360" size="16,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="conditions" location="449,332" size="49,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Choice/conditions"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Choice"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Alternative" location="1444,983" size="111,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Alternative">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.4/@sourceConnections.0" autoLocated="true" source="//@children.8" target="//@children.7" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="55,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="43,59" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Alternative"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Adornment" location="1690,983" size="112,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Adornment">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.9" target="//@children.3" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="55,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,105"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Adornment"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="RuleRef" location="1144,983" size="92,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//RuleRef">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.10" target="//@children.17/@sourceConnections.0" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="46,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.10" target="//@children.11" targetEnd="//@children.10/@sourceConnections.1/@children.0" sourceEnd="//@children.10/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ref" location="86,87" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//RuleRef/ref" multiplicityLabel="//@children.10/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.10/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="1133,785" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="ref" location="1153,785" size="14,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//RuleRef/ref"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="2,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//RuleRef"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.18/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.2/@sourceConnections.1 //@children.14/@sourceConnections.0 //@children.4/@sourceConnections.1 //@children.15/@sourceConnections.2 //@children.13/@sourceConnections.1 //@children.13/@sourceConnections.3 //@children.10/@sourceConnections.1 //@children.16/@sourceConnections.1" name="Rule" location="1060,691" size="90,87" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Rule">
+    <children xsi:type="editmodel:CompartmentEditModel" size="67,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Rule/id">
+        <model href="STS.ecore#//Rule/id"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <model href="STS.ecore#//Rule"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="URIValue" location="1013,983" size="101,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//URIValue">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.12" target="//@children.17/@sourceConnections.0" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="50,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="STS.ecore#//URIValue"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Iteration" location="923,828" size="95,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Iteration">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.13" target="//@children.14/@sourceConnections.0" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="47,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.13" target="//@children.11" targetEnd="//@children.13/@sourceConnections.1/@children.0" sourceEnd="//@children.13/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="subRule" location="10,77" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Iteration/subRule" multiplicityLabel="//@children.13/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.13/@sourceConnections.1/@children.0/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="1057,785" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="subRule" location="1077,785" size="39,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Iteration/subRule"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="95,1" attachSource="true"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.13" target="//@children.1" targetEnd="//@children.13/@sourceConnections.2/@children.0" sourceEnd="//@children.13/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="container" location="205,12" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Iteration/container" multiplicityLabel="//@children.13/@sourceConnections.2/@children.0/@children.0" roleLabel="//@children.13/@sourceConnections.2/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="262,881" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="container" location="262,853" size="45,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Iteration/container"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,46" attachSource="true"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.13" target="//@children.11" targetEnd="//@children.13/@sourceConnections.3/@children.0" sourceEnd="//@children.13/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="separator" location="0,77" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Iteration/separator" multiplicityLabel="//@children.13/@sourceConnections.3/@children.0/@children.0" roleLabel="//@children.13/@sourceConnections.3/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1035,775" size="18,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="separator" location="1006,747" size="47,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Iteration/separator"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Iteration"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.17/@sourceConnections.0" name="Value" location="814,828" size="79,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Value">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.7/@sourceConnections.0 //@children.3/@sourceConnections.0 //@children.15/@sourceConnections.0 //@children.13/@sourceConnections.0 //@children.16/@sourceConnections.0" autoLocated="true" source="//@children.14" target="//@children.11" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="39,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="45,87" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.14" target="//@children.1" targetEnd="//@children.14/@sourceConnections.1/@children.0" sourceEnd="//@children.14/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="features" location="205,12" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Value/features" multiplicityLabel="//@children.14/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.14/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="262,881" size="4,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="features" location="262,853" size="41,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Value/features"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,46" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Value"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Template" location="682,828" size="102,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Template">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.15" target="//@children.14/@sourceConnections.0" targetEnd="//@children.15/@sourceConnections.0/@children.1" sourceEnd="//@children.15/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="51,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.15" target="//@children.0" targetEnd="//@children.15/@sourceConnections.1/@children.0" sourceEnd="//@children.15/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="metaclass" location="10,205" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Template/metaclass" multiplicityLabel="//@children.15/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.15/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="815,262" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="metaclass" location="835,262" size="49,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Template/metaclass"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="102,10" attachSource="true"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.15" target="//@children.11" targetEnd="//@children.15/@sourceConnections.2/@children.0" sourceEnd="//@children.15/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="rule" location="0,77" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Template/rule" multiplicityLabel="//@children.15/@sourceConnections.2/@children.0/@children.0" roleLabel="//@children.15/@sourceConnections.2/@children.0/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1035,747" size="18,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="rule" location="1035,775" size="18,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Template/rule"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="92,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Template"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Sequence" location="1048,828" size="106,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Sequence">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.16" target="//@children.14/@sourceConnections.0" targetEnd="//@children.16/@sourceConnections.0/@children.1" sourceEnd="//@children.16/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="53,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.16" target="//@children.11" targetEnd="//@children.16/@sourceConnections.1/@children.0" sourceEnd="//@children.16/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="subRules" location="44,87" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Sequence/subRules" multiplicityLabel="//@children.16/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.16/@sourceConnections.1/@children.0/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1..*" location="1081,785" size="16,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="subRules" location="1111,785" size="45,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Sequence/subRules"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="56,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Sequence"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PrimitiveValue" location="682,983" size="136,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//PrimitiveValue">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.5/@sourceConnections.0 //@children.12/@sourceConnections.0 //@children.10/@sourceConnections.0 //@children.6/@sourceConnections.0" autoLocated="true" source="//@children.17" target="//@children.14" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="68,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="39,59" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="STS.ecore#//PrimitiveValue"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.19/@sourceConnections.0 //@children.7/@sourceConnections.1" name="Condition" location="334,276" size="108,87" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Condition">
+    <children xsi:type="editmodel:CompartmentEditModel" size="85,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="value" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Condition/value">
+        <model href="STS.ecore#//Condition/value"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.18" target="//@children.11" targetEnd="//@children.18/@sourceConnections.0/@children.0" sourceEnd="//@children.18/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="subRule" location="0,10" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//Condition/subRule" multiplicityLabel="//@children.18/@sourceConnections.0/@children.0/@children.0" roleLabel="//@children.18/@sourceConnections.0/@children.0/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1035,680" size="18,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="subRule" location="1014,708" size="39,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//Condition/subRule"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="98,87" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//Condition"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="CustomCond" location="243,413" size="122,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//CustomCond">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.20/@sourceConnections.0" autoLocated="true" source="//@children.19" target="//@children.18" targetEnd="//@children.19/@sourceConnections.0/@children.1" sourceEnd="//@children.19/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="61,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="54,87" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.19" target="//@children.1" targetEnd="//@children.19/@sourceConnections.1/@children.0" sourceEnd="//@children.19/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="feature" location="198,0" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//CustomCond/feature" multiplicityLabel="//@children.19/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.19/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="235,841" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="feature" location="255,841" size="35,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//CustomCond/feature"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="5,59" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//CustomCond"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PolymorphicCond" location="395,413" size="155,59" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//PolymorphicCond">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.20" target="//@children.19/@sourceConnections.0" targetEnd="//@children.20/@sourceConnections.0/@children.1" sourceEnd="//@children.20/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="77,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.20" target="//@children.0" targetEnd="//@children.20/@sourceConnections.1/@children.0" sourceEnd="//@children.20/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="metaclass" location="0,195" id="platform:/resource/fr.irisa.triskell.sintaks.model/models/STS.ecore#//PolymorphicCond/metaclass" multiplicityLabel="//@children.20/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.20/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="805,252" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="metaclass" location="762,224" size="49,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <model href="STS.ecore#//PolymorphicCond/metaclass"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="145,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="STS.ecore#//PolymorphicCond"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel"/>
+  </children>
+  <model href="STS.ecore#/"/>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=3"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="10,10" gridOrigin="0,0" rulerUnit="pixel">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:EMFClassDiagramPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Naturel" methodSorter="Naturel" showClassStereotype="true" showPackageStereotype="true"/>
+</editmodel:ClassDiagramEditModel>
