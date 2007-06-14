@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
-<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://sts" start="//@fragments.0">
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://www.kermeta.org/Sts" start="//@fragments.0">
   <fragments xsi:type="sts:Template" id="Root">
-    <metaclass href="http://sts#//Root"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Root"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" terminal="start"/>
       <subRules xsi:type="sts:ObjectReference">
-        <features xsi:type="ecore:EReference" href="http://sts#//Root/start"/>
-        <identifier xsi:type="ecore:EAttribute" href="http://sts#//Rule/id"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Root/start"/>
+        <identifier xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Rule/id"/>
       </subRules>
       <subRules xsi:type="sts:Adornment" terminal="eoln"/>
       <subRules xsi:type="sts:Iteration" id="">
@@ -15,92 +15,92 @@
           <subRules xsi:type="sts:Adornment" terminal="eoln"/>
           <subRules xsi:type="sts:Adornment" terminal="eoln"/>
         </subRule>
-        <container xsi:type="ecore:EReference" href="http://sts#//Root/fragments"/>
+        <container xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Root/fragments"/>
       </subRules>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Alternative" id="fragment">
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.3"/>
-      <metaclass href="http://sts#//Template"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Template"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.4"/>
-      <metaclass href="http://sts#//Sequence"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Sequence"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.5"/>
-      <metaclass href="http://sts#//Terminal"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Terminal"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.6"/>
-      <metaclass href="http://sts#//PrimitiveValue"/>
+      <metaclass href="http://www.kermeta.org/Sts#//PrimitiveValue"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.7"/>
-      <metaclass href="http://sts#//RuleRef"/>
+      <metaclass href="http://www.kermeta.org/Sts#//RuleRef"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.8"/>
-      <metaclass href="http://sts#//ObjectReference"/>
+      <metaclass href="http://www.kermeta.org/Sts#//ObjectReference"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.9"/>
-      <metaclass href="http://sts#//Iteration"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Iteration"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.10"/>
-      <metaclass href="http://sts#//Alternative"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Alternative"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.11"/>
-      <metaclass href="http://sts#//Once"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Once"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.14"/>
-      <metaclass href="http://sts#//Adornment"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Adornment"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.15"/>
-      <metaclass href="http://sts#//Constant"/>
+      <metaclass href="http://www.kermeta.org/Sts#//Constant"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.16"/>
-      <metaclass href="http://sts#//URIValue"/>
+      <metaclass href="http://www.kermeta.org/Sts#//URIValue"/>
     </conditions>
   </fragments>
   <fragments xsi:type="sts:Alternative" id="optional id">
     <conditions xsi:type="sts:CustomCond" value="filled">
       <subRule xsi:type="sts:Sequence">
         <subRules xsi:type="sts:PrimitiveValue">
-          <features xsi:type="ecore:EAttribute" href="http://sts#//Rule/id"/>
+          <features xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Rule/id"/>
         </subRules>
       </subRule>
-      <feature xsi:type="ecore:EAttribute" href="http://sts#//Rule/id"/>
+      <feature xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Rule/id"/>
     </conditions>
     <conditions xsi:type="sts:CustomCond" value="empty">
-      <feature xsi:type="ecore:EAttribute" href="http://sts#//Rule/id"/>
+      <feature xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Rule/id"/>
     </conditions>
   </fragments>
   <fragments xsi:type="sts:Template" id="Template">
-    <metaclass href="http://sts#//Template"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Template"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="template"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:URIValue" id="">
-        <features xsi:type="ecore:EReference" href="http://sts#//Template/metaclass"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Template/metaclass"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.1">
-        <features xsi:type="ecore:EReference" href="http://sts#//Template/rule"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Template/rule"/>
       </subRules>
       <subRules xsi:type="sts:Adornment" terminal="eoln"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="Sequence">
-    <metaclass href="http://sts#//Sequence"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Sequence"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="sequence"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
@@ -113,23 +113,23 @@
           <subRules xsi:type="sts:RuleRef" ref="//@fragments.1"/>
           <subRules xsi:type="sts:Adornment" terminal="eoln"/>
         </subRule>
-        <container xsi:type="ecore:EReference" href="http://sts#//Sequence/subRules"/>
+        <container xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Sequence/subRules"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" id="" terminal="}" lexicalSeparator="true"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="Terminal">
-    <metaclass href="http://sts#//Terminal"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Terminal"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" terminal="&lt;" lexicalSeparator="true"/>
       <subRules xsi:type="sts:PrimitiveValue" id="Terminal.terminal">
-        <features xsi:type="ecore:EAttribute" href="http://sts#//Terminal/terminal"/>
+        <features xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Terminal/terminal"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=">" lexicalSeparator="true"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="PrimitiveValue">
-    <metaclass href="http://sts#//PrimitiveValue"/>
+    <metaclass href="http://www.kermeta.org/Sts#//PrimitiveValue"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="value"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
@@ -139,42 +139,42 @@
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="RuleRef">
-    <metaclass href="http://sts#//RuleRef"/>
+    <metaclass href="http://www.kermeta.org/Sts#//RuleRef"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="call"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:ObjectReference">
-        <features xsi:type="ecore:EReference" href="http://sts#//RuleRef/ref"/>
-        <identifier xsi:type="ecore:EAttribute" href="http://sts#//Rule/id"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//RuleRef/ref"/>
+        <identifier xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Rule/id"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.19"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="ObjectReference">
-    <metaclass href="http://sts#//ObjectReference"/>
+    <metaclass href="http://www.kermeta.org/Sts#//ObjectReference"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="reference"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
       <subRules xsi:type="sts:URIValue" id="">
-        <features xsi:type="ecore:EReference" href="http://sts#//ObjectReference/identifier"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//ObjectReference/identifier"/>
       </subRules>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.19"/>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="Iteration">
-    <metaclass href="http://sts#//Iteration"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Iteration"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="iterate"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:URIValue" id="">
-        <features xsi:type="ecore:EReference" href="http://sts#//Iteration/container"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Iteration/container"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:Alternative">
@@ -183,24 +183,24 @@
             <subRules xsi:type="sts:Terminal" id="" terminal="separated"/>
             <subRules xsi:type="sts:Terminal" id="" terminal="by"/>
             <subRules xsi:type="sts:ObjectReference">
-              <features xsi:type="ecore:EReference" href="http://sts#//Iteration/separator"/>
-              <identifier xsi:type="ecore:EAttribute" href="http://sts#//Rule/id"/>
+              <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Iteration/separator"/>
+              <identifier xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Rule/id"/>
             </subRules>
           </subRule>
-          <feature xsi:type="ecore:EReference" href="http://sts#//Iteration/separator"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Iteration/separator"/>
         </conditions>
         <conditions xsi:type="sts:CustomCond" value="null">
-          <feature xsi:type="ecore:EReference" href="http://sts#//Iteration/separator"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Iteration/separator"/>
         </conditions>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.1">
-        <features xsi:type="ecore:EReference" href="http://sts#//Iteration/subRule"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Iteration/subRule"/>
       </subRules>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="Alternative">
-    <metaclass href="http://sts#//Alternative"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Alternative"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="choose"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
@@ -213,13 +213,13 @@
           <subRules xsi:type="sts:RuleRef" ref="//@fragments.18"/>
           <subRules xsi:type="sts:Adornment" terminal="eoln"/>
         </subRule>
-        <container xsi:type="ecore:EReference" href="http://sts#//Choice/conditions"/>
+        <container xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Choice/conditions"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="Once">
-    <metaclass href="http://sts#//Once"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Once"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="once"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
@@ -231,14 +231,14 @@
             <subRules xsi:type="sts:Terminal" id="" terminal="separated"/>
             <subRules xsi:type="sts:Terminal" id="" terminal="by"/>
             <subRules xsi:type="sts:ObjectReference">
-              <features xsi:type="ecore:EReference" href="http://sts#//Once/separator"/>
-              <identifier xsi:type="ecore:EAttribute" href="http://sts#//Rule/id"/>
+              <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Once/separator"/>
+              <identifier xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Rule/id"/>
             </subRules>
           </subRule>
-          <feature xsi:type="ecore:EReference" href="http://sts#//Once/separator"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Once/separator"/>
         </conditions>
         <conditions xsi:type="sts:CustomCond" value="null">
-          <feature xsi:type="ecore:EReference" href="http://sts#//Once/separator"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Once/separator"/>
         </conditions>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
@@ -249,111 +249,111 @@
           <subRules xsi:type="sts:RuleRef" ref="//@fragments.18"/>
           <subRules xsi:type="sts:Adornment" terminal="eoln"/>
         </subRule>
-        <container xsi:type="ecore:EReference" href="http://sts#//Choice/conditions"/>
+        <container xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Choice/conditions"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="CustomCond">
-    <metaclass href="http://sts#//CustomCond"/>
+    <metaclass href="http://www.kermeta.org/Sts#//CustomCond"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="feature" terminal="when"/>
       <subRules xsi:type="sts:Terminal" id="feature" terminal="feature"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:URIValue" id="CustomCond.feature">
-        <features xsi:type="ecore:EReference" href="http://sts#//CustomCond/feature"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//CustomCond/feature"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:Alternative">
         <conditions xsi:type="sts:CustomCond" value="null">
           <subRule xsi:type="sts:Terminal" terminal="null"/>
-          <feature xsi:type="ecore:EAttribute" href="http://sts#//Condition/value"/>
+          <feature xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Condition/value"/>
         </conditions>
         <conditions xsi:type="sts:CustomCond" value="any">
           <subRule xsi:type="sts:Sequence">
             <subRules xsi:type="sts:PrimitiveValue" id="CustomCond.value">
-              <features xsi:type="ecore:EAttribute" href="http://sts#//Condition/value"/>
+              <features xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Condition/value"/>
             </subRules>
           </subRule>
-          <feature xsi:type="ecore:EAttribute" href="http://sts#//Condition/value"/>
+          <feature xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Condition/value"/>
         </conditions>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
       <subRules xsi:type="sts:Alternative">
         <conditions xsi:type="sts:CustomCond" value="empty">
           <subRule xsi:type="sts:Terminal" terminal="nothing"/>
-          <feature xsi:type="ecore:EReference" href="http://sts#//Condition/subRule"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Condition/subRule"/>
         </conditions>
         <conditions xsi:type="sts:CustomCond" value="filled">
           <subRule xsi:type="sts:RuleRef" ref="//@fragments.1">
-            <features xsi:type="ecore:EReference" href="http://sts#//Condition/subRule"/>
+            <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Condition/subRule"/>
           </subRule>
-          <feature xsi:type="ecore:EReference" href="http://sts#//Condition/subRule"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Condition/subRule"/>
         </conditions>
       </subRules>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="PolymorphicCond">
-    <metaclass href="http://sts#//PolymorphicCond"/>
+    <metaclass href="http://www.kermeta.org/Sts#//PolymorphicCond"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="feature" terminal="when"/>
       <subRules xsi:type="sts:Terminal" id="metaclass" terminal="metaclass"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:URIValue" id="PolymorphicCond.metaclass">
-        <features xsi:type="ecore:EReference" href="http://sts#//PolymorphicCond/metaclass"/>
+        <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//PolymorphicCond/metaclass"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:Alternative">
         <conditions xsi:type="sts:CustomCond" value="null">
           <subRule xsi:type="sts:Terminal" terminal="null"/>
-          <feature xsi:type="ecore:EAttribute" href="http://sts#//Condition/value"/>
+          <feature xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Condition/value"/>
         </conditions>
         <conditions xsi:type="sts:CustomCond" value="any">
           <subRule xsi:type="sts:Sequence">
             <subRules xsi:type="sts:PrimitiveValue" id="PolymorphicCond.value">
-              <features xsi:type="ecore:EAttribute" href="http://sts#//Condition/value"/>
+              <features xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Condition/value"/>
             </subRules>
           </subRule>
-          <feature xsi:type="ecore:EAttribute" href="http://sts#//Condition/value"/>
+          <feature xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Condition/value"/>
         </conditions>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
       <subRules xsi:type="sts:Alternative">
         <conditions xsi:type="sts:CustomCond" value="empty">
           <subRule xsi:type="sts:Terminal" terminal="nothing"/>
-          <feature xsi:type="ecore:EReference" href="http://sts#//Condition/subRule"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Condition/subRule"/>
         </conditions>
         <conditions xsi:type="sts:CustomCond" value="filled">
           <subRule xsi:type="sts:RuleRef" ref="//@fragments.1">
-            <features xsi:type="ecore:EReference" href="http://sts#//Condition/subRule"/>
+            <features xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Condition/subRule"/>
           </subRule>
-          <feature xsi:type="ecore:EReference" href="http://sts#//Condition/subRule"/>
+          <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Condition/subRule"/>
         </conditions>
       </subRules>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="Adornment">
-    <metaclass href="http://sts#//Adornment"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Adornment"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="adornment"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:PrimitiveValue" id="Terminal.terminal">
-        <features xsi:type="ecore:EAttribute" href="http://sts#//Terminal/terminal"/>
+        <features xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Terminal/terminal"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="Constant">
-    <metaclass href="http://sts#//Constant"/>
+    <metaclass href="http://www.kermeta.org/Sts#//Constant"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="constant"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:PrimitiveValue">
-        <features xsi:type="ecore:EAttribute" href="http://sts#//Constant/value"/>
+        <features xsi:type="ecore:EAttribute" href="http://www.kermeta.org/Sts#//Constant/value"/>
       </subRules>
       <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
       <subRules xsi:type="sts:RuleRef" ref="//@fragments.19"/>
@@ -361,7 +361,7 @@
     </rule>
   </fragments>
   <fragments xsi:type="sts:Template" id="URI">
-    <metaclass href="http://sts#//URIValue"/>
+    <metaclass href="http://www.kermeta.org/Sts#//URIValue"/>
     <rule xsi:type="sts:Sequence">
       <subRules xsi:type="sts:Terminal" id="" terminal="URI"/>
       <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
@@ -375,11 +375,11 @@
   <fragments xsi:type="sts:Alternative" id="choice conditions">
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="@PolymorphicCond" ref="//@fragments.13"/>
-      <metaclass href="http://sts#//PolymorphicCond"/>
+      <metaclass href="http://www.kermeta.org/Sts#//PolymorphicCond"/>
     </conditions>
     <conditions xsi:type="sts:PolymorphicCond">
       <subRule xsi:type="sts:RuleRef" id="@CustomCond" ref="//@fragments.12"/>
-      <metaclass href="http://sts#//CustomCond"/>
+      <metaclass href="http://www.kermeta.org/Sts#//CustomCond"/>
     </conditions>
   </fragments>
   <fragments xsi:type="sts:Alternative" id="feature Values">
@@ -388,13 +388,13 @@
         <subRules xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
         <subRules xsi:type="sts:Iteration" id="" separator="//@fragments.17">
           <subRule xsi:type="sts:URIValue" id="RuleRef.features"/>
-          <container xsi:type="ecore:EReference" href="http://sts#//Value/features"/>
+          <container xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Value/features"/>
         </subRules>
       </subRule>
-      <feature xsi:type="ecore:EReference" href="http://sts#//Value/features"/>
+      <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Value/features"/>
     </conditions>
     <conditions xsi:type="sts:CustomCond" value="empty">
-      <feature xsi:type="ecore:EReference" href="http://sts#//Value/features"/>
+      <feature xsi:type="ecore:EReference" href="http://www.kermeta.org/Sts#//Value/features"/>
     </conditions>
   </fragments>
 </sts:Root>
