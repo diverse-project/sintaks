@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsEditor.java,v 1.1 2007-06-14 08:59:32 dtouzet Exp $
+ * $Id: StsEditor.java,v 1.2 2007-06-14 09:49:10 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.presentation;
 
@@ -601,7 +601,7 @@ public class StsEditor
 			BasicDiagnostic diagnostic =
 				new BasicDiagnostic
 					(Diagnostic.OK,
-					 "fr.irisa.triskell.sintaks.model.editor",
+					 "org.kermeta.sintaks.model.editor",
 					 0,
 					 null,
 					 new Object [] { editingDomain.getResourceSet() });
@@ -929,7 +929,7 @@ public class StsEditor
 			BasicDiagnostic basicDiagnostic =
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "fr.irisa.triskell.sintaks.model.editor",
+					 "org.kermeta.sintaks.model.editor",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),
 					 new Object [] { exception == null ? (Object)resource : exception });
@@ -940,7 +940,7 @@ public class StsEditor
 			return
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "fr.irisa.triskell.sintaks.model.editor",
+					 "org.kermeta.sintaks.model.editor",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),
 					 new Object[] { exception });

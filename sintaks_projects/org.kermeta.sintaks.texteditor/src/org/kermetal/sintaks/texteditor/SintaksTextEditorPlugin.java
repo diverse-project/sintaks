@@ -26,7 +26,7 @@ import fr.irisa.triskell.kermeta.util.LogConfigurationHelper;
 public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "fr.irisa.triskell.sintaks.textualeditor";
+	public static final String PLUGIN_ID = "org.kermeta.sintaks.textualeditor";
 
 	//static final public URL pluginURL = getDefault().getBundle().getEntry("/");
 	
@@ -58,7 +58,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		 * Getting all extensions of sintaks files registration.
 		 * 
 		 */
-		IExtensionPoint extensionPoint = registry.getExtensionPoint("fr.irisa.triskell.sintaks.stsFilesRegistration");
+		IExtensionPoint extensionPoint = registry.getExtensionPoint("org.kermeta.sintaks.stsFilesRegistration");
 		IExtension[] extensions = extensionPoint.getExtensions();
 		
 		/*

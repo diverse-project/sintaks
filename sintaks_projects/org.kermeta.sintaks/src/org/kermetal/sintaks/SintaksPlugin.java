@@ -26,7 +26,7 @@ public class SintaksPlugin extends AbstractUIPlugin {
 
 	//The shared instance.
 	private static SintaksPlugin plugin;
-	public static final String PLUGIN_ID = "fr.irisa.triskell.sintaks";
+	public static final String PLUGIN_ID = "org.kermeta.sintaks";
 	public static final String MESSAGES_BUNDLE = PLUGIN_ID+".messages";
 	public static final String PLUGIN_CONSOLE_NAME = PLUGIN_ID+".Console";
 	private ResourceBundle resourceBundle;

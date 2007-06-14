@@ -6,7 +6,7 @@
 		<copy todir="ziptemp/examples" failonerror="true" overwrite="true">
 			<fileset dir="examples" />
 		</copy>
-		<zip destfile="fr.irisa.triskell.sintaks.samples.zip" basedir="ziptemp" includes="**" filesonly="false" whenempty="skip" update="false"/>
+		<zip destfile="org.kermeta.sintaks.samples.zip" basedir="ziptemp" includes="**" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="ziptemp"/>
 	</target>
 

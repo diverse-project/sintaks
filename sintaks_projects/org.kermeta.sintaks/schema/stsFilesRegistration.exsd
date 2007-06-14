@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="fr.irisa.triskell.sintaks">
+<schema targetNamespace="org.kermeta.sintaks">
 <annotation>
       <appInfo>
-         <meta.schema plugin="fr.irisa.triskell.sintaks" id="stsFilesRegistration" name="Registration Of Sintaks File"/>
+         <meta.schema plugin="org.kermeta.sintaks" id="stsFilesRegistration" name="Registration Of Sintaks File"/>
       </appInfo>
       <documentation>
          This extension point allow the registering of sintaks files. This gives the ability to retrieve sintaks files stored in plugins at runtime (in the workbench) and to create automatically an textual editor for this sintaks file.

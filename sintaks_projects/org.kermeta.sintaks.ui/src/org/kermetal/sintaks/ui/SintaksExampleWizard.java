@@ -14,7 +14,7 @@ public class SintaksExampleWizard
 		// We need the statements example to be unzipped along with the
 		// EMF library example model, edit and editor examples
 		List projects = new ArrayList(1);
-		projects.add(new ProjectDescriptor("fr.irisa.triskell.sintaks.ui", "samples/fr.irisa.triskell.sintaks.samples.zip", "fr.irisa.triskell.sintaks.samples"));
+		projects.add(new ProjectDescriptor("org.kermeta.sintaks.ui", "samples/org.kermeta.sintaks.samples.zip", "org.kermeta.sintaks.samples"));
 		return projects;
 	}
 }
