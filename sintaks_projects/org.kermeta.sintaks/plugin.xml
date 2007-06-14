@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="stsFilesRegistration" name="Registration Of Sintaks File" schema="schema/stsFilesRegistration.exsd"/>
+
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.kermetal.sintaks.PreferenceInitializer"/>
+   </extension>
+</plugin>

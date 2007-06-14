@@ -1,0 +1,97 @@
+/*
+ * Created on 17 janv. 2006
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Generation - Code and Comments
+ */
+package org.kermetal.sintaks.parser.ll;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
+
+import org.kermeta.sintaks.lexer.ILexer;
+import org.kermeta.sintaks.sts.Rule;
+import org.kermeta.sintaks.sts.URIValue;
+import org.kermeta.sintaks.subject.operation.OperationBuilder;
+import org.kermetal.sintaks.SintaksPlugin;
+import org.kermetal.sintaks.parser.IParser;
+import org.kermetal.sintaks.parser.ParserSemanticException;
+import org.kermetal.sintaks.subject.ModelSubject;
+
+
+
+public class ParserURIValue implements IParser {
+
+	public ParserURIValue(Rule value, ModelSubject subject) {
+		super();
+		this.value = (URIValue) value;
+        this.subject = subject;
+	}
+
+	/* (non-Javadoc)
+	 * @see fr.irisa.triskell.kermeta.textloader.parser.IParser#parse(fr.irisa.triskell.kermeta.textloader.lexer.ILexer)
+	 */
+	public boolean parse(ILexer input) throws ParserSemanticException {
+		EList features = value.getFeatures();
+		if (input.atEnd()) return false;
+        String textRead = input.get();
+        EObject uri = getEObjectFromStringURI (textRead);
+        boolean ok;
+        if (uri != null) {
+        	OperationBuilder builder = new OperationBuilder();
+        	builder.buildPush(uri);
+        	if(! features.isEmpty()) {
+	        	builder.buildSetFeatures(features);
+	        }
+        	subject.process (builder.getOperation());
+        	ok = true;
+	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
+	        	SintaksPlugin.getDefault().debugln ("Accepted URI : "+uri);
+			input.next();
+        } else {
+        	ok = false;
+	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
+	        	SintaksPlugin.getDefault().debugln ("Refused null URI");
+        }
+        return ok;
+	}
+	
+
+	/**
+	 * Get an EObject (ie an element of an ecore resource) from its URI, null if the URI cannot
+	 * be resolved.
+	 * @param text
+	 * @return
+	 */
+	private EObject getEObjectFromStringURI(String text) {
+       	URI objURI = URI.createURI(text);
+       	String URIfrag = objURI.fragment();
+       	if(URIfrag == null) return null;
+       	
+       	URIfrag = URIfrag.substring(2);
+       	
+       	String str = text.replace(objURI.fragment(), "").replace("#", "");
+       	EPackage ePack = (EPackage) Registry.INSTANCE.get(str);
+       	
+       	EObject res = null;
+       	if(URIfrag.contains("/")) {
+       		String[] v = URIfrag.split("/");
+       		String className = v[0]; 
+       		String featName = v[1];
+       		res = ((EClass) ePack.getEClassifier(className)).getEStructuralFeature(featName);
+       	}
+       	else {
+       		res = ePack.getEClassifier( URIfrag );
+       	}
+       	
+       	return res;
+	}
+	
+
+	private URIValue value;
+    private ModelSubject subject;
+}
