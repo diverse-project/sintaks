@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sintaks Textualeditor Plug-In
+Bundle-SymbolicName: org.kermeta.sintaks.textualeditor;singleton:=true
+Bundle-Version: 0.0.3
+Bundle-Activator: org.kermetal.sintaks.texteditor.SintaksTextEditorPlugin
+Bundle-Vendor: INRIA
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor,
+ fr.irisa.triskell.kermeta,
+ org.eclipse.ui.ide,
+ fr.irisa.triskell.eclipse.util,
+ fr.irisa.triskell.kermeta.model,
+ org.kermeta.sintaks,
+ org.kermeta.sintaks.model
+Eclipse-LazyStart: true
+Export-Package: org.kermetal.sintaks.texteditor
+Bundle-ClassPath: .
