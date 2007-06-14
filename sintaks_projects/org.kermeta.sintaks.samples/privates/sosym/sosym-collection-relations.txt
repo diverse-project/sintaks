@@ -1,0 +1,18 @@
+M { tete }
+M { tyty }
+M { titi }
+M { tata }
+M { tutu }
+M { toto }
+.
+Y {
+ f2 = { tete, tyty }
+ f11 = { titi }
+ f12 = { tata, tutu }
+}
+Z {
+ f2 = { tete, tyty }
+ f13 = { toto }
+}
+
+.

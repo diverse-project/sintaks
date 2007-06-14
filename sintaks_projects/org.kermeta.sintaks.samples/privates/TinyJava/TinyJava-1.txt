@@ -1,0 +1,81 @@
+start  package  
+
+template  (  package  )  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJPackage  do  
+  sequence  begin  
+  package  
+  value  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJPackage/pname  
+  ;  
+  adornment  eoln  
+  iterate  over  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJPackage/classes  do  call  class  
+  end  
+end  
+  
+template  (  class  )  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass  do  
+  sequence  begin  
+  adornment  eoln  
+  once  
+  when  feature  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/final  =true  do  
+  or  
+  when  feature  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/abstract  =true  do  
+  or  
+  when  feature  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/caccess  "!= default"  do  
+  end  
+  class  
+  value  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/cname  
+  {  
+  adornment  eoln  
+  iterate  over  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/features  do  call  "data or method"  
+  }  
+  adornment  eoln  
+  end  
+end  
+  
+  template  (  data  )  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJData  do  
+  sequence  begin  
+  call  "Feature begin"  
+  call  "Feature end"  
+  end  
+  end  
+  
+  template  (  method  )  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJMethod  do  
+  sequence  begin  
+  call  "Feature begin"  
+  (  
+  iterate  over  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJMethod/parameters  separated  by  "Parameter Separator"  do  call  data  
+  )  
+  call  "Feature end"  
+  end  
+  end  
+  
+  choose  (  "data or method"  )  
+  when  metaclass  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJMethod  null  do  
+  or  
+  when  metaclass  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJData  null  do  
+  end  
+  
+  sequence  (  "Feature begin"  )  begin  
+  choose  
+  when  feature  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/member  =false  do  
+  or  
+  when  feature  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/member  =true  do  nothing  
+  end  
+  value  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/access  
+  value  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/ftype  
+  value  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/fname  
+  end  
+  
+  sequence  (  "Feature end"  )  begin  
+  ;  
+  adornment  eoln  
+  end  
+  
+  template  (  data  )  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJParameter  do  
+  sequence  begin  
+  value  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJParameter/type  
+  value  handles  http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJParameter/name  
+  end  
+  end  
+  
+  ,  
+  
+ 

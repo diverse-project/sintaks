@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="check"
+    nsURI="http://www.ensisa.uha.fr/hassen/check.ecore" nsPrefix="check">
+  <eClassifiers xsi:type="ecore:EClass" name="X">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a3" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b2" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c1" eType="#//Z"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c2" eType="#//Z"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c3" eType="#//Z"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="d1" upperBound="-1" eType="#//Z"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="d2" upperBound="-1" eType="#//Z"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="e" eType="#//Y" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f1" upperBound="-1" eType="#//Y"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f2" upperBound="-1" eType="#//Y"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="g" eType="#//Z"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="h" upperBound="-1" eType="#//Z"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Y">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yy" eType="#//hidden"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Z">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owned_X" upperBound="-1"
+        eType="#//X" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owned_Z" upperBound="-1"
+        eType="#//Y" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="hidden" instanceClassName="java.lang.Integer"/>
+</ecore:EPackage>

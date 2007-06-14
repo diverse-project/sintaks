@@ -1,0 +1,20 @@
+M { tete }
+M { tyty }
+M { titi }
+M { tata }
+M { tutu }
+M { toto }
+.
+Y {
+ e3 = tete
+ e21 = tutu
+ e22 = titi
+}
+
+Z {
+ e1 = tyty
+ e3 = toto
+ e23 = tata
+}
+
+.

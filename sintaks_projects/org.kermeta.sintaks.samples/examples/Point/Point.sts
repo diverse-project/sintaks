@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Template" id="Model">
+    <metaclass href="http://point#//Model"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Iteration" separator="//@fragments.2">
+        <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.1"/>
+        <container xsi:type="ecore:EReference" href="http://point#//Model/Points"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=".."/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Point">
+    <metaclass href="http://point#//Point"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="Point"/>
+      <subRules xsi:type="sts:Terminal" terminal="{"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Once">
+        <conditions xsi:type="sts:CustomCond" value="!= 0">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="w"/>
+            <subRules xsi:type="sts:Terminal" terminal="="/>
+            <subRules xsi:type="sts:PrimitiveValue" id="">
+              <features xsi:type="ecore:EAttribute" href="http://point#//Point/w"/>
+            </subRules>
+            <subRules xsi:type="sts:Terminal" terminal=";"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+          </subRule>
+          <feature xsi:type="ecore:EAttribute" href="http://point#//Point/w"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="!= 0">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="x"/>
+            <subRules xsi:type="sts:Terminal" terminal="="/>
+            <subRules xsi:type="sts:PrimitiveValue" id="">
+              <features xsi:type="ecore:EAttribute" href="http://point#//Point/x"/>
+            </subRules>
+            <subRules xsi:type="sts:Terminal" terminal=";"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+          </subRule>
+          <feature xsi:type="ecore:EAttribute" href="http://point#//Point/x"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="!= 0">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="y"/>
+            <subRules xsi:type="sts:Terminal" terminal="="/>
+            <subRules xsi:type="sts:PrimitiveValue" id="">
+              <features xsi:type="ecore:EAttribute" href="http://point#//Point/y"/>
+            </subRules>
+            <subRules xsi:type="sts:Terminal" terminal=";"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+          </subRule>
+          <feature xsi:type="ecore:EAttribute" href="http://point#//Point/y"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="!= 0">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="z"/>
+            <subRules xsi:type="sts:Terminal" terminal="="/>
+            <subRules xsi:type="sts:PrimitiveValue" id="">
+              <features xsi:type="ecore:EAttribute" href="http://point#//Point/z"/>
+            </subRules>
+            <subRules xsi:type="sts:Terminal" terminal=";"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+          </subRule>
+          <feature xsi:type="ecore:EAttribute" href="http://point#//Point/z"/>
+        </conditions>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="}"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Terminal" id="separator" terminal="."/>
+</sts:Root>

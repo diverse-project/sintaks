@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tinyjava:TJPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tinyjava="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore" pname="hassen">
+  <classes caccess="public" cname="Value">
+    <features xsi:type="tinyjava:TJData" access="private" ftype="String" fname="val"/>
+    <features xsi:type="tinyjava:TJMethod" access="public" ftype="String" fname="getValue"/>
+    <features xsi:type="tinyjava:TJMethod" access="public" fname="setValue">
+      <parameters name="value" type="String"/>
+    </features>
+  </classes>
+  <classes final="true" cname="Point">
+    <features xsi:type="tinyjava:TJData" access="private" ftype="Integer" fname="x"/>
+    <features xsi:type="tinyjava:TJData" access="private" ftype="Integer" fname="y"/>
+    <features xsi:type="tinyjava:TJMethod" access="public" fname="Point">
+      <parameters name="x" type="Integer"/>
+      <parameters name="y" type="Integer"/>
+    </features>
+    <features xsi:type="tinyjava:TJMethod" access="public" fname="setX">
+      <parameters name="x" type="Integer"/>
+    </features>
+    <features xsi:type="tinyjava:TJMethod" access="public" ftype="Integer" fname="getX"/>
+    <features xsi:type="tinyjava:TJMethod" access="public" fname="setY">
+      <parameters name="y" type="Integer"/>
+    </features>
+    <features xsi:type="tinyjava:TJMethod" access="public" ftype="Integer" fname="getY"/>
+    <features xsi:type="tinyjava:TJMethod" access="public" fname="move">
+      <parameters name="x" type="Integer"/>
+      <parameters name="y" type="Integer"/>
+    </features>
+  </classes>
+  <classes abstract="true" final="true" caccess="private" cname="AbstractValue">
+    <features xsi:type="tinyjava:TJMethod" member="false" access="public" ftype="String" fname="create">
+      <parameters name="value" type="String"/>
+    </features>
+  </classes>
+</tinyjava:TJPackage>

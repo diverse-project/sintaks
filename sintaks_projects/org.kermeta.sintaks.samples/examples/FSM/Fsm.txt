@@ -1,0 +1,41 @@
+start  FSM  
+
+template  (  FSM  )  handles  http://fsm#//FSM  do  
+  sequence  begin  
+  iterate  over  http://fsm#//FSM/ownedState  do  call  State  
+  initial  
+  reference  with  http://fsm#//State/name  handles  http://fsm#//FSM/initialState  
+  adornment  eoln  
+  final  
+  iterate  over  http://fsm#//FSM/finalState  separated  by  separator  do  reference  with  http://fsm#//State/name  
+  adornment  eoln  
+  end  
+  end  
+  
+  template  (  State  )  handles  http://fsm#//State  do  
+  sequence  begin  
+  state  
+  value  handles  http://fsm#//State/name  
+  {  
+  adornment  eoln  
+  iterate  over  http://fsm#//State/outgoingTransition  do  call  Transition  
+  }  
+  adornment  eoln  
+  end  
+  end  
+  
+  template  (  Transition  )  handles  http://fsm#//Transition  do  
+  sequence  begin  
+  transition  
+  reference  with  http://fsm#//State/name  handles  http://fsm#//Transition/target  
+  input  
+  value  handles  http://fsm#//Transition/input  
+  output  
+  value  handles  http://fsm#//Transition/output  
+  adornment  eoln  
+  end  
+  end  
+  
+  ,  
+  
+ 

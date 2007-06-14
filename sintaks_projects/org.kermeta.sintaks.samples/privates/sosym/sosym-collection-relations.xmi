@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sosym:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sosym="http://www.ensisa.uha.fr/hassen/sosym.ecore">
+  <owned_X xsi:type="sosym:Y" f2="//@owned_M.0 //@owned_M.1" f11="//@owned_M.2" f12="//@owned_M.3 //@owned_M.4"/>
+  <owned_X xsi:type="sosym:Z" f2="//@owned_M.0 //@owned_M.1" f13="//@owned_M.5"/>
+  <owned_M m="tete"/>
+  <owned_M m="tyty"/>
+  <owned_M m="titi"/>
+  <owned_M m="tata"/>
+  <owned_M m="tutu"/>
+  <owned_M m="toto"/>
+</sosym:Model>

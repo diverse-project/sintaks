@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://www.kermeta.org/sintaks" start="//@fragments.0">
+  <fragments xsi:type="sts:Template">
+    <metaclass href="../MetaModels/sosym.ecore#//Model"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Iteration">
+        <subRule xsi:type="sts:RuleRef" ref="//@fragments.4"/>
+        <container xsi:type="ecore:EReference" href="../MetaModels/sosym.ecore#//Model/owned_X"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="." lexicalSeparator="true"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="fragment to fill an unknown single attribute">
+    <subRules xsi:type="sts:PrimitiveValue"/>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="../MetaModels/sosym.ecore#//Y"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="Y"/>
+      <subRules xsi:type="sts:Terminal" terminal="{"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="fill b21">
+        <subRules xsi:type="sts:Terminal" id="" terminal="b21"/>
+        <subRules xsi:type="sts:Terminal" terminal="="/>
+        <subRules xsi:type="sts:Terminal" terminal="{"/>
+        <subRules xsi:type="sts:Iteration" separator="//@fragments.5">
+          <subRule xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+          <container xsi:type="ecore:EAttribute" href="../MetaModels/sosym.ecore#//Y/b21"/>
+        </subRules>
+        <subRules xsi:type="sts:Terminal" terminal="}"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="fill b22">
+        <subRules xsi:type="sts:Terminal" id="" terminal="b22"/>
+        <subRules xsi:type="sts:Terminal" terminal="="/>
+        <subRules xsi:type="sts:Terminal" terminal="{"/>
+        <subRules xsi:type="sts:Iteration" separator="//@fragments.5">
+          <subRule xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+          <container xsi:type="ecore:EAttribute" href="../MetaModels/sosym.ecore#//Y/b22"/>
+        </subRules>
+        <subRules xsi:type="sts:Terminal" terminal="}"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Terminal" terminal="}"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="../MetaModels/sosym.ecore#//Z"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="Z"/>
+      <subRules xsi:type="sts:Terminal" terminal="{"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="fill b1">
+        <subRules xsi:type="sts:Terminal" id="" terminal="b1"/>
+        <subRules xsi:type="sts:Terminal" terminal="="/>
+        <subRules xsi:type="sts:Terminal" terminal="{"/>
+        <subRules xsi:type="sts:Iteration" separator="//@fragments.5">
+          <subRule xsi:type="sts:PrimitiveValue"/>
+          <container xsi:type="ecore:EAttribute" href="../MetaModels/sosym.ecore#//Z/b1"/>
+        </subRules>
+        <subRules xsi:type="sts:Terminal" terminal="}"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="fill b23">
+        <subRules xsi:type="sts:Terminal" id="" terminal="b23"/>
+        <subRules xsi:type="sts:Terminal" terminal="="/>
+        <subRules xsi:type="sts:Terminal" terminal="{"/>
+        <subRules xsi:type="sts:Iteration" separator="//@fragments.5">
+          <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.1"/>
+          <container xsi:type="ecore:EAttribute" href="../MetaModels/sosym.ecore#//Z/b23"/>
+        </subRules>
+        <subRules xsi:type="sts:Terminal" terminal="}"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Terminal" terminal="}"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Alternative" id="X|Y|Z">
+    <conditions xsi:type="sts:PolymorphicCond" value="">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.2"/>
+      <metaclass href="../MetaModels/sosym.ecore#//Y"/>
+    </conditions>
+    <conditions xsi:type="sts:PolymorphicCond" value="">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.3"/>
+      <metaclass href="../MetaModels/sosym.ecore#//Z"/>
+    </conditions>
+  </fragments>
+  <fragments xsi:type="sts:Terminal" terminal="," lexicalSeparator="true"/>
+</sts:Root>

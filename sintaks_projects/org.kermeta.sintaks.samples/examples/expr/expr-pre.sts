@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Template" id="Model">
+    <metaclass href="http://exprmm#//Model"/>
+    <rule xsi:type="sts:RuleRef" ref="//@fragments.4">
+      <features xsi:type="ecore:EReference" href="http://exprmm#//Model/child"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Multiplicative Operator">
+    <metaclass href="http://exprmm#//MultiplicativeOp"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="operator"/>
+      <subRules xsi:type="sts:Terminal" terminal="*"/>
+      <subRules xsi:type="sts:Terminal" terminal="("/>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.4">
+        <features xsi:type="ecore:EReference" href="http://exprmm#//BinaryOperator/lhs"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=","/>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.4">
+        <features xsi:type="ecore:EReference" href="http://exprmm#//BinaryOperator/rhs"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=")"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Additive Operator">
+    <metaclass href="http://exprmm#//AdditiveOp"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="operator"/>
+      <subRules xsi:type="sts:Terminal" terminal="+"/>
+      <subRules xsi:type="sts:Terminal" terminal="("/>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.4">
+        <features xsi:type="ecore:EReference" href="http://exprmm#//BinaryOperator/lhs"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=","/>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.4">
+        <features xsi:type="ecore:EReference" href="http://exprmm#//BinaryOperator/rhs"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=")"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Integer">
+    <metaclass href="http://exprmm#//NumberInteger"/>
+    <rule xsi:type="sts:PrimitiveValue">
+      <features xsi:type="ecore:EAttribute" href="http://exprmm#//NumberInteger/value"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Alternative" id="expr">
+    <conditions xsi:type="sts:PolymorphicCond" value="">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+      <metaclass href="http://exprmm#//MultiplicativeOp"/>
+    </conditions>
+    <conditions xsi:type="sts:PolymorphicCond" value="">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.2"/>
+      <metaclass href="http://exprmm#//AdditiveOp"/>
+    </conditions>
+    <conditions xsi:type="sts:PolymorphicCond" value="">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.3"/>
+      <metaclass href="http://exprmm#//NumberInteger"/>
+    </conditions>
+  </fragments>
+</sts:Root>

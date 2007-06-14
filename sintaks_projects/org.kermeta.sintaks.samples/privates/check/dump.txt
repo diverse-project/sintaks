@@ -1,0 +1,276 @@
+Loading check.txt
+Writing check.xmi
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d522dd (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d522dd (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d522dd (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1854be (name: zz) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 11
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@163c17d (name: owned_Z) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d522dd (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@342b99 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@342b99 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@342b99 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1854be (name: zz) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 12
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@163c17d (name: owned_Z) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@342b99 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@11a542b (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@11a542b (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@11a542b (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1854be (name: zz) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 13
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@163c17d (name: owned_Z) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@11a542b (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@18c0b02 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@18c0b02 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@18c0b02 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1854be (name: zz) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 21
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@163c17d (name: owned_Z) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@18c0b02 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@126df42 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@126df42 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@126df42 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1854be (name: zz) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 22
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@163c17d (name: owned_Z) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@126df42 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@10b8a8c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@10b8a8c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@10b8a8c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1854be (name: zz) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 31
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@163c17d (name: owned_Z) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@10b8a8c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@123f9b8 (name: a1) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : toto
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@dfd702 (name: a2) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : tutu
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@19cefd6 (name: a3) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : titi
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@45e513 (name: b1) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : aaa
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@45e513 (name: b1) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : bbb
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@45e513 (name: b1) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : ccc
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@c24496 (name: b2) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : xxx
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@c24496 (name: b2) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : yyy
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@24d858 (name: c1) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d522dd (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@f77e9b (name: c2) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@342b99 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@993028 (name: c3) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@11a542b (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@128b33a (name: d1) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@18c0b02 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@128b33a (name: d1) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@126df42 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@10ea988 (name: d2) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@10b8a8c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@e40293 (name: Z) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@19c4844 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [3]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@19c4844 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@19c4844 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1498526 (name: yy) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 71
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@1c4a760 (name: e) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@19c4844 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8ce14 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [3]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8ce14 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8ce14 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1498526 (name: yy) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 81
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@51b326 (name: f1) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8ce14 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8997e (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [3]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8997e (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8997e (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1498526 (name: yy) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 82
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@51b326 (name: f1) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1c8997e (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d54d3f (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [3]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d54d3f (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d54d3f (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1498526 (name: yy) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 91
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@1c26386 (name: f2) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d54d3f (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1140cf6 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [3]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1140cf6 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1140cf6 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1498526 (name: yy) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 92
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@1c26386 (name: f2) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1140cf6 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15efa6a (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [3]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15efa6a (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15efa6a (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EAttributeImpl@1498526 (name: yy) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (iD: false)
+   Value     : 93
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+Stack [2]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@1c26386 (name: f2) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15efa6a (eClass: org.eclipse.emf.ecore.impl.EClassImpl@14c8f24 (name: Y) (instanceClassName: null) (abstract: false, interface: false))
+Stack [1]: org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+Target usable : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+SetAttribute : 
+   On        : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1652020 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@2023f3 (name: Model) (instanceClassName: null) (abstract: false, interface: false))
+   Attribute : org.eclipse.emf.ecore.impl.EReferenceImpl@8a750a (name: owned_X) (ordered: true, unique: true, lowerBound: 0, upperBound: -1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: true, resolveProxies: true)
+   Value     : org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b512cb (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1e4d80b (name: X) (instanceClassName: null) (abstract: false, interface: false))
+State	Parser=atend	Lexer=atend
+Acceptable : true

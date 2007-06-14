@@ -1,0 +1,8 @@
+100001:10000000:AccessoriesandSuppliesequipmentusedinthecareContainmentandfeedingoflive
+100002:10100000:Liveanimals
+100003:10101500:Livestock
+100004:10101501:Cats
+100005:10101502:Dogs
+100006:10101504:Mink
+100007:10101505:Rats
+100008:10101506:Horses

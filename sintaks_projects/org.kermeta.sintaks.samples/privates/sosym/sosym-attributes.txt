@@ -1,0 +1,13 @@
+Y {
+ a3 = false
+ a21 = tutu
+ a22 = titi
+}
+
+Z {
+ a1 = 10
+ a3 = true
+ a23 = tata
+}
+
+.

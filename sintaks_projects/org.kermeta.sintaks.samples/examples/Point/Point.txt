@@ -1,0 +1,54 @@
+ start  Model  
+  template  (  Model  )  handles  http://point#//Model  do  
+  sequence  begin  
+  iterate  over  http://point#//Model/Points  separated  by  separator  do  call  Point  
+  ..  
+  end  
+  end  
+  
+  template  (  Point  )  handles  http://point#//Point  do  
+  sequence  begin  
+  Point  
+  {  
+  adornment  eoln  
+  once  
+  when  feature  http://point#//Point/w  "!= 0"  do  sequence  begin  
+  w  
+  =  
+  value  handles  http://point#//Point/w  
+  ;  
+  adornment  eoln  
+  end  
+  or  
+  when  feature  http://point#//Point/x  "!= 0"  do  sequence  begin  
+  x  
+  =  
+  value  handles  http://point#//Point/x  
+  ;  
+  adornment  eoln  
+  end  
+  or  
+  when  feature  http://point#//Point/y  "!= 0"  do  sequence  begin  
+  y  
+  =  
+  value  handles  http://point#//Point/y  
+  ;  
+  adornment  eoln  
+  end  
+  or  
+  when  feature  http://point#//Point/z  "!= 0"  do  sequence  begin  
+  z  
+  =  
+  value  handles  http://point#//Point/z  
+  ;  
+  adornment  eoln  
+  end  
+  end  
+  }  
+  adornment  eoln  
+  end  
+  end  
+  
+  .  
+  
+ 

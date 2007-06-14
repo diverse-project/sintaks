@@ -1,0 +1,34 @@
+ start  Model  
+  template  (  Model  )  handles  http://mmm#//Model  do  
+  iterate  over  http://mmm#//Model/children  do  call  Type  
+  end  
+  
+  template  (  Type  )  handles  http://mmm#//Type  do  
+  sequence  begin  
+  Type  
+  value  handles  http://mmm#//Type/name  
+  choose  
+  when  feature  http://mmm#//Type/attributes  empty  do  ;  
+  or  
+  when  feature  http://mmm#//Type/attributes  filled  do  sequence  begin  
+  {  
+  adornment  eoln  
+  iterate  over  http://mmm#//Type/attributes  do  call  Attribute  
+  }  
+  end  
+  end  
+  adornment  eoln  
+  end  
+  end  
+  
+  template  (  Attribute  )  handles  http://mmm#//Attribut  do  
+  sequence  begin  
+  value  handles  http://mmm#//Attribut/name  
+  :  
+  reference  with  http://mmm#//Type/name  handles  http://mmm#//Attribut/type  
+  ;  
+  adornment  eoln  
+  end  
+  end  
+  
+ 

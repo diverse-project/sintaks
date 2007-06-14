@@ -1,0 +1,42 @@
+ start  Model  
+  template  (  Model  )  handles  http://exprmm#//Model  do  
+  call  expr  handles  http://exprmm#//Model/child  
+  end  
+  
+  template  (  "Multiplicative Operator"  )  handles  http://exprmm#//MultiplicativeOp  do  
+  sequence  begin  
+  operator  
+  *  
+  (  
+  call  expr  handles  http://exprmm#//BinaryOperator/lhs  
+  ,  
+  call  expr  handles  http://exprmm#//BinaryOperator/rhs  
+  )  
+  end  
+  end  
+  
+  template  (  "Additive Operator"  )  handles  http://exprmm#//AdditiveOp  do  
+  sequence  begin  
+  operator  
+  +  
+  (  
+  call  expr  handles  http://exprmm#//BinaryOperator/lhs  
+  ,  
+  call  expr  handles  http://exprmm#//BinaryOperator/rhs  
+  )  
+  end  
+  end  
+  
+  template  (  Integer  )  handles  http://exprmm#//NumberInteger  do  
+  value  handles  http://exprmm#//NumberInteger/value  
+  end  
+  
+  choose  (  expr  )  
+  when  metaclass  http://exprmm#//MultiplicativeOp  do  call  "Multiplicative Operator"  
+  or  
+  when  metaclass  http://exprmm#//AdditiveOp  do  call  "Additive Operator"  
+  or  
+  when  metaclass  http://exprmm#//NumberInteger  do  call  Integer  
+  end  
+  
+ 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="exprmm"
+    nsURI="http://exprmm" nsPrefix="exprmm">
+  <eClassifiers xsi:type="ecore:EClass" name="Expr" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryOperator" abstract="true" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" unique="false" lowerBound="1"
+        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" unique="false" lowerBound="1"
+        eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeOp" eSuperTypes="#//BinaryOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberInteger" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditiveOp" eSuperTypes="#//BinaryOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" unique="false"
+        upperBound="-1" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" unique="false" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

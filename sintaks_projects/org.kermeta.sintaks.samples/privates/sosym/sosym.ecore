@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sosym"
+    nsURI="http://www.ensisa.uha.fr/hassen/sosym.ecore" nsPrefix="sosym">
+  <eClassifiers xsi:type="ecore:EClass" name="X">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a3" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="#//K" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="d2" upperBound="-1" eType="#//K"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="e3" eType="#//M"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f2" upperBound="-1" eType="#//M"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Y" eSuperTypes="#//X">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a21" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a22" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b21" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b22" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="d11" upperBound="-1" eType="#//K"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="d12" upperBound="-1" eType="#//K"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="e21" eType="#//M"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="e22" eType="#//M"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f11" upperBound="-1" eType="#//M"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f12" upperBound="-1" eType="#//M"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Z" eSuperTypes="#//X">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a23" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b23" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="d13" upperBound="-1" eType="#//K"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="e1" eType="#//M"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="e23" eType="#//M"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f13" upperBound="-1" eType="#//M"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="K">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="k" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="M">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="m" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owned_X" upperBound="-1"
+        eType="#//X" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owned_M" upperBound="-1"
+        eType="#//M" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

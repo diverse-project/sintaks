@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<check:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:check="http://www.ensisa.uha.fr/hassen/check.ecore">
+  <owned_X a1="toto" a2="tutu" a3="titi" c1="//@owned_Z.0" c2="//@owned_Z.1" c3="//@owned_Z.2" d1="//@owned_Z.3 //@owned_Z.4" d2="//@owned_Z.5">
+    <b1>aaa</b1>
+    <b1>bbb</b1>
+    <b1>ccc</b1>
+    <b2>xxx</b2>
+    <b2>yyy</b2>
+    <e yy="71"/>
+    <f1 yy="81"/>
+    <f1 yy="82"/>
+    <f2 yy="91"/>
+    <f2 yy="92"/>
+    <f2 yy="93"/>
+  </owned_X>
+  <owned_Z xsi:type="check:Z" zz="11"/>
+  <owned_Z xsi:type="check:Z" zz="12"/>
+  <owned_Z xsi:type="check:Z" zz="13"/>
+  <owned_Z xsi:type="check:Z" zz="21"/>
+  <owned_Z xsi:type="check:Z" zz="22"/>
+  <owned_Z xsi:type="check:Z" zz="31"/>
+</check:Model>

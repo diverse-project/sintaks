@@ -1,0 +1,38 @@
+Z { 11 }
+Z { 12 }
+Z { 13 }
+Z { 21 }
+Z { 22 }
+Z { 31 }
+X {
+public
+attributes:
+ a = toto
+ a = tutu
+ a = titi
+ b = aaa
+ b = bbb
+ b = ccc
+ .
+ b = xxx
+ b = yyy
+ .
+objectreferences:
+ c = 11
+ c = 12
+ c = 13
+ d = 21
+ d = 22
+ .
+ d = 31
+ .
+ownedreferences:
+ Y 71
+ Y 81
+ Y 82
+ .
+ Y 91
+ Y 92
+ Y 93
+ .
+ }

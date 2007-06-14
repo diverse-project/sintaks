@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UNSPSC"
+    nsURI="platform:/resource/Classement/metamodeles/UNSPSC.ecore" nsPrefix="UNSPSC">
+  <eAnnotations source="kermeta.req">
+    <details key="platform:/plugin/fr.irisa.triskell.kermeta/lib/ecore.kmt" value="platform:/plugin/fr.irisa.triskell.kermeta/lib/ecore.kmt"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ClasseOrpheline">
+    <eOperations name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="kermeta">
+        <details key="body" value="do&#xA;&#x9;result := K1.mult(1000000).plus(K2.mult(10000)).plus(K3.mult(100)).plus(K4)&#xA;end"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="definirCode">
+      <eAnnotations source="kermeta">
+        <details key="body" value="do&#xA;&#x9;K1 := code.div(1000000)&#xA;&#x9;K2 := code.div(10000).minus(K1.mult(100))&#xA;&#x9;K3 := code.div(100).minus(K2.mult(100)).minus(K1.mult(10000))&#xA;&#x9;K4 := code.minus(K1.mult(1000000)).minus(K2.mult(10000)).minus(K3.mult(100))&#xA;end"/>
+      </eAnnotations>
+      <eParameters name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="estRacine" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="kermeta">
+        <details key="body" value="do&#xA;&#x9;result := code.isSameAs(0)&#xA;end"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="toString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="kermeta" references="../../../plugin/fr.irisa.triskell.kermeta/lib/framework.ecore#//reflection/Object/toString">
+        <details key="body" value="do&#xA;&#x9;result := Nom.plus(&quot; (&quot;).plus(code.toString).plus(&quot;)&quot;)&#xA;end"/>
+        <details key="superOperation" value="kermeta::reflection::Object"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nom" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="kermeta">
+        <details key="isComposite" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="K1" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="kermeta">
+        <details key="isComposite" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="K2" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="kermeta">
+        <details key="isComposite" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="K3" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="kermeta">
+        <details key="isComposite" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="K4" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="kermeta">
+        <details key="isComposite" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classe_liee" eType="#//ClasseLiee"
+        eOpposite="#//ClasseLiee/classe_orpheline"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClasseLiee" eSuperTypes="#//ClasseOrpheline">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="super_classe" lowerBound="1"
+        eType="#//ClasseLiee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classe_orpheline" lowerBound="1"
+        eType="#//ClasseOrpheline" eOpposite="#//ClasseOrpheline/classe_liee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Catalogue">
+    <eOperations name="classeCode" eType="#//ClasseOrpheline">
+      <eAnnotations source="kermeta">
+        <details key="body" value="do&#xA;&#x9;result := self.classes_orphelines.~select{co | co.code.isSameAs(c)}.one&#xA;end"/>
+      </eAnnotations>
+      <eParameters name="c" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="enregistrer">
+      <eAnnotations source="kermeta">
+        <details key="body" value="do&#xA;&#x9;var repository : kermeta::persistence::EMFRepository init kermeta::persistence::EMFRepository.new&#xA;&#x9;var resource : kermeta::persistence::Resource init repository.createResource(fichier, &quot;../metamodeles/UNSPSC.ecore&quot;)&#xA;&#x9;resource.instances.add(self)&#xA;&#x9;resource.save&#xA;end"/>
+      </eAnnotations>
+      <eParameters name="fichier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="imprimer" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="kermeta">
+        <details key="body" value="do&#xA;&#x9;stdio.writeln(&quot;Catalogue &quot;.plus(nom).plus(&quot; ----------------------&quot;))&#xA;&#x9;stdio.writeln(&quot;  Classes non li&#xe9;es:&quot;)&#xA;&#x9;classes_orphelines.each{co | stdio.writeln(co.toString)}&#xA;&#x9;stdio.writeln(&quot;  Classes li&#xe9;es:&quot;)&#xA;&#x9;classes_liees.each{cl | stdio.writeln(cl.toString.plus(&quot; -> &quot;).plus(cl.super_classe.toString))}&#xA;&#x9;stdio.writeln(&quot;Fin catalogue ----------------------&quot;)&#xA;end"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes_orphelines" lowerBound="1"
+        upperBound="-1" eType="#//ClasseOrpheline" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes_liees" upperBound="-1"
+        eType="#//ClasseLiee" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="kermeta">
+        <details key="isComposite" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

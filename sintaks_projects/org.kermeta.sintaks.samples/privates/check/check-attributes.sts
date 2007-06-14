@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Template">
+    <metaclass href="http://www.ensisa.uha.fr/hassen/check.ecore#//Model"/>
+    <rule xsi:type="sts:Iteration">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+      <container xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/check.ecore#//Model/owned_X"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="http://www.ensisa.uha.fr/hassen/check.ecore#//X"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="X"/>
+      <subRules xsi:type="sts:Terminal" terminal="{"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="direct fill of a known single attribute">
+        <subRules xsi:type="sts:Terminal" id="" terminal="a"/>
+        <subRules xsi:type="sts:Terminal" terminal="="/>
+        <subRules xsi:type="sts:PrimitiveValue">
+          <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/check.ecore#//X/a1"/>
+        </subRules>
+        <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      </subRules>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.3">
+        <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/check.ecore#//X/a3"/>
+      </subRules>
+      <subRules xsi:type="sts:Iteration" id="iteration to fill a collection ">
+        <subRule xsi:type="sts:Sequence">
+          <subRules xsi:type="sts:Terminal" id="" terminal="b"/>
+          <subRules xsi:type="sts:Terminal" terminal="="/>
+          <subRules xsi:type="sts:PrimitiveValue"/>
+          <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+        </subRule>
+        <container xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/check.ecore#//X/b1"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="."/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Iteration" id="iteration to fill a collection ">
+        <subRule xsi:type="sts:RuleRef" ref="//@fragments.4"/>
+        <container xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/check.ecore#//X/b2"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="."/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Terminal" terminal="}"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="fragment to fill a known single attribute">
+    <subRules xsi:type="sts:Terminal" id="" terminal="a"/>
+    <subRules xsi:type="sts:Terminal" terminal="="/>
+    <subRules xsi:type="sts:PrimitiveValue">
+      <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/check.ecore#//X/a2"/>
+    </subRules>
+    <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="fragment to fill an unknown single attribute">
+    <subRules xsi:type="sts:Terminal" id="" terminal="a"/>
+    <subRules xsi:type="sts:Terminal" terminal="="/>
+    <subRules xsi:type="sts:PrimitiveValue"/>
+    <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="fragment to fill an unknown attribute in a collection">
+    <subRules xsi:type="sts:Terminal" id="" terminal="b"/>
+    <subRules xsi:type="sts:Terminal" terminal="="/>
+    <subRules xsi:type="sts:PrimitiveValue"/>
+    <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+  </fragments>
+</sts:Root>

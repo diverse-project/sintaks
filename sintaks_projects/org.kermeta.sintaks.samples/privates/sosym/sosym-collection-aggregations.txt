@@ -1,0 +1,30 @@
+Y {
+ d2 = {
+   K { tete }
+   K { tyty }
+ }
+ d11 = {
+   K { titi }
+ }
+ d12 = {
+   K { tata }
+   K { tutu }
+ }
+}
+Z {
+ d2 = {
+   K { tete }
+   K { tyty }
+ }
+ d13 = {
+   K { toto }
+ }
+}
+W {
+ d14 = {
+   K { tata }
+   K { titi }
+ }
+}
+
+.

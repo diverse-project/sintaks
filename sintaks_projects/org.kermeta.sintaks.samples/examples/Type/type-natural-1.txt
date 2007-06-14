@@ -1,0 +1,9 @@
+Type public ;
+Type User {
+   name : public ;
+}  
+Type Mail {  
+   from : User ;  
+   to : User ;
+}
+ 

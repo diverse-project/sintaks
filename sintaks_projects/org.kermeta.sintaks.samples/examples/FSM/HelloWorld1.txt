@@ -1,0 +1,26 @@
+state s1 {
+   transition s2 input "h" output "w"
+}
+
+state s2 {
+   transition s2 input "e" output "o"
+}
+
+state s3 {
+   transition s2 input "l" output "r"
+}
+
+state s4 {
+   transition s2 input "l" output "l"
+}
+
+state s5 {
+   transition s2 input "o" output "d"
+}
+
+state s6 {
+   transition s2 input "!" output "!!"
+}
+
+initial s1
+final s6

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<point:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:point="http://point">
+  <Points w="4" x="1" y="2" z="3"/>
+  <Points w="40" x="10"/>
+  <Points w="400" z="300"/>
+  <Points w="400" z="300"/>
+  <Points x="400"/>
+  <Points/>
+</point:Model>

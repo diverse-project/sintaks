@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Sequence" id="racine">
+    <subRules xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+    <subRules xsi:type="sts:RuleRef" ref="//@fragments.2"/>
+    <subRules xsi:type="sts:RuleRef" ref="//@fragments.4"/>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="non partagé">
+    <metaclass href="TinyJava.ecore#//TJPackage"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:Terminal" terminal="package"/>
+      <subRules xsi:type="sts:PrimitiveValue" id="">
+        <features xsi:type="ecore:EAttribute" href="TinyJava.ecore#//TJPackage/pname"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="partagé résolu">
+    <metaclass href="TinyJava.ecore#//TJPackage"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.3"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="name resolu">
+    <subRules xsi:type="sts:Terminal" terminal="package"/>
+    <subRules xsi:type="sts:PrimitiveValue" id="">
+      <features xsi:type="ecore:EAttribute" href="TinyJava.ecore#//TJPackage/pname"/>
+    </subRules>
+    <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="partagé nonrésolu">
+    <metaclass href="TinyJava.ecore#//TJPackage"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.5">
+        <features xsi:type="ecore:EAttribute" href="TinyJava.ecore#//TJPackage/pname"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="name nonresolu">
+    <subRules xsi:type="sts:Terminal" terminal="package"/>
+    <subRules xsi:type="sts:PrimitiveValue" id=""/>
+    <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="guide.ecore#//Z"/>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="guide.ecore#//X"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//X/att_1"/>
+      </subRules>
+      <subRules xsi:type="sts:Constant" value="hello world">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//X/att_1"/>
+      </subRules>
+      <subRules xsi:type="sts:Iteration">
+        <subRule xsi:type="sts:PrimitiveValue"/>
+        <container xsi:type="ecore:EAttribute" href="guide.ecore#//X/att_2"/>
+      </subRules>
+      <subRules xsi:type="sts:Iteration">
+        <subRule xsi:type="sts:Constant" value="Goog bye"/>
+        <container xsi:type="ecore:EAttribute" href="guide.ecore#//X/att_2"/>
+      </subRules>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.8">
+        <features xsi:type="ecore:EReference" href="guide.ecore#//X/own_1"/>
+      </subRules>
+      <subRules xsi:type="sts:Iteration">
+        <subRule xsi:type="sts:Template" id="">
+          <metaclass href="guide.ecore#//Y"/>
+        </subRule>
+        <container xsi:type="ecore:EReference" href="guide.ecore#//Root/owner_2"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="template Y">
+    <metaclass href="guide.ecore#//Y"/>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="template X1">
+    <metaclass href="guide.ecore#//X1"/>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="template X2">
+    <metaclass href="guide.ecore#//X2"/>
+  </fragments>
+  <fragments xsi:type="sts:Alternative">
+    <conditions xsi:type="sts:PolymorphicCond">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.9"/>
+      <metaclass href="guide.ecore#//X1"/>
+    </conditions>
+    <conditions xsi:type="sts:PolymorphicCond">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.10"/>
+      <metaclass href="guide.ecore#//X2"/>
+    </conditions>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="guide.ecore#//R1"/>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="guide.ecore#//R2"/>
+  </fragments>
+  <fragments xsi:type="sts:Template">
+    <metaclass href="guide.ecore#//Root"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence"/>
+  <fragments xsi:type="sts:Template" id="">
+    <metaclass href="guide.ecore#//A"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété partagée et syntaxe partagée>>" ref="//@fragments.21"/>
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété indépendante et syntaxe partagée>>" ref="//@fragments.20">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//A/z4"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="">
+    <metaclass href="guide.ecore#//A1"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété partagée et syntaxe partagée>>" ref="//@fragments.21"/>
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété indépendante et syntaxe partagée>>" ref="//@fragments.20">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//A1/z1"/>
+      </subRules>
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété indépendante et syntaxe partagée>>" ref="//@fragments.20">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//A1/z2"/>
+      </subRules>
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété indépendante et syntaxe partagée>>" ref="//@fragments.20">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//A/z4"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="">
+    <metaclass href="guide.ecore#//A2"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété partagée et syntaxe partagée>>" ref="//@fragments.21"/>
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété indépendante et syntaxe partagée>>" ref="//@fragments.20">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//A2/z3"/>
+      </subRules>
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété indépendante et syntaxe partagée>>" ref="//@fragments.20">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//A/z4"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="">
+    <metaclass href="guide.ecore#//B"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:PrimitiveValue" id="&lt;&lt;propriété indépendante>>">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//B/x"/>
+      </subRules>
+      <subRules xsi:type="sts:RuleRef" id="&lt;&lt;propriété indépendante et syntaxe partagée>>" ref="//@fragments.20">
+        <features xsi:type="ecore:EAttribute" href="guide.ecore#//B/z5"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="&lt;&lt;Propriété inconnue et syntaxe partagée>>">
+    <subRules xsi:type="sts:PrimitiveValue" id=""/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="&lt;&lt;Propriété(s) connue(s) [y] et syntaxe partagée>>">
+    <subRules xsi:type="sts:PrimitiveValue" id="">
+      <features xsi:type="ecore:EAttribute" href="guide.ecore#//A/y"/>
+    </subRules>
+  </fragments>
+</sts:Root>
