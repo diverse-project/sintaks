@@ -9,16 +9,17 @@
             objectClass="org.eclipse.core.resources.IFile">
          <menu
                id="org.eclipse.ui.articles.action.contribution.navigator.subMenu"
-               label="KerMeta"
+               label="Kermeta"
                path="additions">
-            <separator name="kermetagroup1"/>
+            <separator name="sintaksgroup1"/>
          </menu>
          <action
                class="org.kermetal.sintaks.ui.Model2TextAction"
                enablesFor="1"
+               icon="icons/Sintaks.gif"
                id="fr.irisa.triskell.kermeta.textloader.ui.Text2Model"
                label="Model to Text"
-               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/kermetagroup1"/>
+               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/sintaksgroup1"/>
       </objectContribution>
       <objectContribution
             id="fr.irisa.triskell.kermeta.objectContribution2"
@@ -26,16 +27,17 @@
             objectClass="org.eclipse.core.resources.IFile">
          <menu
                id="org.eclipse.ui.articles.action.contribution.navigator.subMenu"
-               label="KerMeta"
+               label="Kermeta"
                path="additions">
-            <separator name="kermetagroup1"/>
+            <separator name="sintaksgroup1"/>
          </menu>
          <action
                class="org.kermetal.sintaks.ui.Text2ModelAction"
                enablesFor="1"
+               icon="icons/Sintaks.gif"
                id="fr.irisa.triskell.kermeta.textloader.ui.Text2Model"
                label="Text to Model"
-               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/kermetagroup1"/>
+               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/sintaksgroup1"/>
       </objectContribution>
    </extension>
    <extension
