@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sintaks Model Plug-In
 Bundle-SymbolicName: org.kermeta.sintaks.model;singleton:=true
-Bundle-Version: 0.0.3
+Bundle-Version: 0.0.3.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: IRISA/INRIA & MIPS
 Bundle-Localization: plugin

@@ -2,7 +2,7 @@
 <feature
       id="org.kermeta.sintaks.feature"
       label="Sintaks for models"
-      version="0.0.3"
+      version="0.0.3.qualifier"
       provider-name="IRISA/INRIA &amp; MIPS">
 
    <description url="http://www.kermeta.org">
