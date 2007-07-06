@@ -4,8 +4,8 @@ import java.io.PrintStream;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.kermetal.sintaks.SintaksPlugin;
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.SintaksPlugin;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 
 public class GetFeatureOperation extends R1W1Operation {

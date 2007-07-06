@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.ui.ide,
  org.eclipse.ui.console,
  org.kermeta.sintaks
-Bundle-Activator: org.kermetal.sintaks.ui.SintaksUIPlugin
+Bundle-Activator: org.kermeta.sintaks.ui.SintaksUIPlugin
 Bundle-Vendor: IRISA/INRIA & MIPS
 Eclipse-LazyStart: true

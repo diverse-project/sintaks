@@ -1,6 +1,6 @@
 package org.kermeta.sintaks.subject.operation;
 
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 
 public class PushOperation extends R0W0Operation {

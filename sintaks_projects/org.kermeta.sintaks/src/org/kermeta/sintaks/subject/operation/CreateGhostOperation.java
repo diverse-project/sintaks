@@ -2,8 +2,8 @@ package org.kermeta.sintaks.subject.operation;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.kermetal.sintaks.subject.Ghost;
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.Ghost;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 
 public class CreateGhostOperation extends R1W0Operation {

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.kermetal.sintaks.SintaksPlugin;
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.SintaksPlugin;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 
 public class FindTargetOperation extends R0W1Operation {

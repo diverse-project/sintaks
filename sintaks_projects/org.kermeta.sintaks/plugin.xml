@@ -5,6 +5,6 @@
 
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.kermetal.sintaks.PreferenceInitializer"/>
+      <initializer class="org.kermeta.sintaks.PreferenceInitializer"/>
    </extension>
 </plugin>

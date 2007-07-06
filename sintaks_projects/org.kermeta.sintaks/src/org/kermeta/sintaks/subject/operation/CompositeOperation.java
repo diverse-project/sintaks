@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.kermetal.sintaks.SintaksPlugin;
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.SintaksPlugin;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 
 public class CompositeOperation implements IOperation {

@@ -3,7 +3,7 @@ package org.kermeta.sintaks.subject.operation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 
 public class CreateClassOperation extends R0W1Operation {

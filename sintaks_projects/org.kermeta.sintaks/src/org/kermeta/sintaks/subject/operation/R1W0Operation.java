@@ -1,6 +1,6 @@
 package org.kermeta.sintaks.subject.operation;
 
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 public abstract class R1W0Operation implements IOperation {
 

@@ -84,7 +84,7 @@ the terms of the EPL licence.
          unpack="false"/>
 
    <plugin
-         id="org.kermeta.sintaks.textualeditor"
+         id="org.kermeta.sintaks.texteditor"
          download-size="0"
          install-size="0"
          version="0.0.0"

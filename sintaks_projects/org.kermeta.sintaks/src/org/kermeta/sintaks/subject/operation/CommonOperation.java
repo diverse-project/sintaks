@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.kermetal.sintaks.SintaksPlugin;
+import org.kermeta.sintaks.SintaksPlugin;
 
 
 public class CommonOperation {

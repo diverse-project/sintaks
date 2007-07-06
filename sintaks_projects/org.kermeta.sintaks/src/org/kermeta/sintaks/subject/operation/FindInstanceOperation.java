@@ -1,7 +1,7 @@
 package org.kermeta.sintaks.subject.operation;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.kermetal.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.ModelSubject;
 
 
 public class FindInstanceOperation extends R0W1Operation {
