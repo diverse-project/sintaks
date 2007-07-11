@@ -1,4 +1,4 @@
-/* $Id: DestFileWizardPage.java,v 1.1 2007-07-06 09:56:07 dtouzet Exp $
+/* $Id: DestFileWizardPage.java,v 1.2 2007-07-11 14:58:13 cfaucher Exp $
  * Project: Kermeta (First iteration)
  * File: KermetaNewFileWizardPage.java
  * License: EPL
@@ -303,9 +303,8 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * Creates the link target path if a link target has been specified.
 	 */
 	protected void createLinkTarget() {
-		String linkTarget = linkedResourceGroup.getLinkTarget();
-		if (linkTarget != null) {
-			linkTargetPath = new Path(linkTarget);
+		if (linkedResourceGroup.getLinkTargetURI() != null) {
+			linkTargetPath = new Path(linkedResourceGroup.getLinkTargetURI().getPath());
 		} else {
 			linkTargetPath = null;
 		}
