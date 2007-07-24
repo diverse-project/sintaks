@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: STSEditPlugin.java,v 1.1 2007-06-14 08:58:35 dtouzet Exp $
+ * $Id: STSEditPlugin.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -52,6 +52,7 @@ public final class STSEditPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ObjectReferenceImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: ObjectReferenceImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -39,7 +39,7 @@ public class ObjectReferenceImpl extends ValueImpl implements ObjectReference {
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature identifier = null;
+	protected EStructuralFeature identifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,6 +55,7 @@ public class ObjectReferenceImpl extends ValueImpl implements ObjectReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.OBJECT_REFERENCE;
 	}
@@ -102,6 +103,7 @@ public class ObjectReferenceImpl extends ValueImpl implements ObjectReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.OBJECT_REFERENCE__IDENTIFIER:
@@ -116,6 +118,7 @@ public class ObjectReferenceImpl extends ValueImpl implements ObjectReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.OBJECT_REFERENCE__IDENTIFIER:
@@ -130,6 +133,7 @@ public class ObjectReferenceImpl extends ValueImpl implements ObjectReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.OBJECT_REFERENCE__IDENTIFIER:
@@ -144,6 +148,7 @@ public class ObjectReferenceImpl extends ValueImpl implements ObjectReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.OBJECT_REFERENCE__IDENTIFIER:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RootImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: RootImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -49,7 +49,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList fragments = null;
+	protected EList<Rule> fragments;
 
 	/**
 	 * The cached value of the '{@link #getStart() <em>Start</em>}' reference.
@@ -59,7 +59,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * @generated
 	 * @ordered
 	 */
-	protected Rule start = null;
+	protected Rule start;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,6 +75,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.ROOT;
 	}
@@ -84,9 +85,9 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFragments() {
+	public EList<Rule> getFragments() {
 		if (fragments == null) {
-			fragments = new EObjectContainmentEList(Rule.class, this, StsPackage.ROOT__FRAGMENTS);
+			fragments = new EObjectContainmentEList.Resolving<Rule>(Rule.class, this, StsPackage.ROOT__FRAGMENTS);
 		}
 		return fragments;
 	}
@@ -134,10 +135,11 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StsPackage.ROOT__FRAGMENTS:
-				return ((InternalEList)getFragments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getFragments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -147,6 +149,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.ROOT__FRAGMENTS:
@@ -163,11 +166,13 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.ROOT__FRAGMENTS:
 				getFragments().clear();
-				getFragments().addAll((Collection)newValue);
+				getFragments().addAll((Collection<? extends Rule>)newValue);
 				return;
 			case StsPackage.ROOT__START:
 				setStart((Rule)newValue);
@@ -181,6 +186,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.ROOT__FRAGMENTS:
@@ -198,6 +204,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.ROOT__FRAGMENTS:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Choice.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: Choice.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -36,9 +36,9 @@ public interface Choice extends Rule {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Conditions</em>' containment reference list.
 	 * @see org.kermeta.sintaks.sts.StsPackage#getChoice_Conditions()
-	 * @model type="org.kermeta.sts.Condition" containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
-	EList getConditions();
+	EList<Condition> getConditions();
 
 } // Choice

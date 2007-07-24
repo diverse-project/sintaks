@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TemplateImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: TemplateImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -41,7 +41,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass metaclass = null;
+	protected EClass metaclass;
 
 	/**
 	 * The cached value of the '{@link #getRule() <em>Rule</em>}' containment reference.
@@ -51,7 +51,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * @generated
 	 * @ordered
 	 */
-	protected Rule rule = null;
+	protected Rule rule;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,6 +67,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.TEMPLATE;
 	}
@@ -115,6 +116,29 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * @generated
 	 */
 	public Rule getRule() {
+		if (rule != null && rule.eIsProxy()) {
+			InternalEObject oldRule = (InternalEObject)rule;
+			rule = (Rule)eResolveProxy(oldRule);
+			if (rule != oldRule) {
+				InternalEObject newRule = (InternalEObject)rule;
+				NotificationChain msgs = oldRule.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StsPackage.TEMPLATE__RULE, null, null);
+				if (newRule.eInternalContainer() == null) {
+					msgs = newRule.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StsPackage.TEMPLATE__RULE, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsPackage.TEMPLATE__RULE, oldRule, rule));
+			}
+		}
+		return rule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Rule basicGetRule() {
 		return rule;
 	}
 
@@ -157,6 +181,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StsPackage.TEMPLATE__RULE:
@@ -170,13 +195,15 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.TEMPLATE__METACLASS:
 				if (resolve) return getMetaclass();
 				return basicGetMetaclass();
 			case StsPackage.TEMPLATE__RULE:
-				return getRule();
+				if (resolve) return getRule();
+				return basicGetRule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,6 +213,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.TEMPLATE__METACLASS:
@@ -203,6 +231,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.TEMPLATE__METACLASS:
@@ -220,6 +249,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.TEMPLATE__METACLASS:

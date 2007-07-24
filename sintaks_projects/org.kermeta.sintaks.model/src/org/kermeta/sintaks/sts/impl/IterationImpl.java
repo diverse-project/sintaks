@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IterationImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: IterationImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -43,7 +43,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * @generated
 	 * @ordered
 	 */
-	protected Rule subRule = null;
+	protected Rule subRule;
 
 	/**
 	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
@@ -53,7 +53,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature container = null;
+	protected EStructuralFeature container;
 
 	/**
 	 * The cached value of the '{@link #getSeparator() <em>Separator</em>}' reference.
@@ -63,7 +63,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * @generated
 	 * @ordered
 	 */
-	protected Rule separator = null;
+	protected Rule separator;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,6 +79,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.ITERATION;
 	}
@@ -89,6 +90,29 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * @generated
 	 */
 	public Rule getSubRule() {
+		if (subRule != null && subRule.eIsProxy()) {
+			InternalEObject oldSubRule = (InternalEObject)subRule;
+			subRule = (Rule)eResolveProxy(oldSubRule);
+			if (subRule != oldSubRule) {
+				InternalEObject newSubRule = (InternalEObject)subRule;
+				NotificationChain msgs = oldSubRule.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StsPackage.ITERATION__SUB_RULE, null, null);
+				if (newSubRule.eInternalContainer() == null) {
+					msgs = newSubRule.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StsPackage.ITERATION__SUB_RULE, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsPackage.ITERATION__SUB_RULE, oldSubRule, subRule));
+			}
+		}
+		return subRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Rule basicGetSubRule() {
 		return subRule;
 	}
 
@@ -207,6 +231,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StsPackage.ITERATION__SUB_RULE:
@@ -220,10 +245,12 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.ITERATION__SUB_RULE:
-				return getSubRule();
+				if (resolve) return getSubRule();
+				return basicGetSubRule();
 			case StsPackage.ITERATION__CONTAINER:
 				if (resolve) return getContainer();
 				return basicGetContainer();
@@ -239,6 +266,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.ITERATION__SUB_RULE:
@@ -259,6 +287,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.ITERATION__SUB_RULE:
@@ -279,6 +308,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.ITERATION__SUB_RULE:

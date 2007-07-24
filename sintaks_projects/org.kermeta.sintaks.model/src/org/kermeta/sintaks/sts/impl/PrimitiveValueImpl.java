@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitiveValueImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: PrimitiveValueImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -35,6 +35,7 @@ public class PrimitiveValueImpl extends ValueImpl implements PrimitiveValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.PRIMITIVE_VALUE;
 	}

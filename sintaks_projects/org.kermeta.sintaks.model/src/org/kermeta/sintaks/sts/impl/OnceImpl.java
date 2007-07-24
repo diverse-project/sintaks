@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OnceImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: OnceImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -39,7 +39,7 @@ public class OnceImpl extends ChoiceImpl implements Once {
 	 * @generated
 	 * @ordered
 	 */
-	protected Rule separator = null;
+	protected Rule separator;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,6 +55,7 @@ public class OnceImpl extends ChoiceImpl implements Once {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.ONCE;
 	}
@@ -102,6 +103,7 @@ public class OnceImpl extends ChoiceImpl implements Once {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.ONCE__SEPARATOR:
@@ -116,6 +118,7 @@ public class OnceImpl extends ChoiceImpl implements Once {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.ONCE__SEPARATOR:
@@ -130,6 +133,7 @@ public class OnceImpl extends ChoiceImpl implements Once {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.ONCE__SEPARATOR:
@@ -144,6 +148,7 @@ public class OnceImpl extends ChoiceImpl implements Once {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.ONCE__SEPARATOR:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Iteration.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: Iteration.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -38,7 +38,7 @@ public interface Iteration extends Rule {
 	 * @return the value of the '<em>Sub Rule</em>' containment reference.
 	 * @see #setSubRule(Rule)
 	 * @see org.kermeta.sintaks.sts.StsPackage#getIteration_SubRule()
-	 * @model containment="true" required="true"
+	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
 	Rule getSubRule();

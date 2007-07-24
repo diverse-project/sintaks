@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: ValueImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -40,7 +40,7 @@ public abstract class ValueImpl extends RuleImpl implements Value {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList features = null;
+	protected EList<EStructuralFeature> features;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -56,6 +56,7 @@ public abstract class ValueImpl extends RuleImpl implements Value {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.VALUE;
 	}
@@ -65,9 +66,9 @@ public abstract class ValueImpl extends RuleImpl implements Value {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFeatures() {
+	public EList<EStructuralFeature> getFeatures() {
 		if (features == null) {
-			features = new EObjectResolvingEList(EStructuralFeature.class, this, StsPackage.VALUE__FEATURES);
+			features = new EObjectResolvingEList<EStructuralFeature>(EStructuralFeature.class, this, StsPackage.VALUE__FEATURES);
 		}
 		return features;
 	}
@@ -77,6 +78,7 @@ public abstract class ValueImpl extends RuleImpl implements Value {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.VALUE__FEATURES:
@@ -90,11 +92,13 @@ public abstract class ValueImpl extends RuleImpl implements Value {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.VALUE__FEATURES:
 				getFeatures().clear();
-				getFeatures().addAll((Collection)newValue);
+				getFeatures().addAll((Collection<? extends EStructuralFeature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -105,6 +109,7 @@ public abstract class ValueImpl extends RuleImpl implements Value {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.VALUE__FEATURES:
@@ -119,6 +124,7 @@ public abstract class ValueImpl extends RuleImpl implements Value {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.VALUE__FEATURES:

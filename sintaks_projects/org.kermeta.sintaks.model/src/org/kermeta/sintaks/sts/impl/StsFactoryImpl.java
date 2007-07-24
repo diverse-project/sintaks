@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsFactoryImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: StsFactoryImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -57,6 +57,7 @@ public class StsFactoryImpl extends EFactoryImpl implements StsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case StsPackage.ROOT: return createRoot();
@@ -244,6 +245,7 @@ public class StsFactoryImpl extends EFactoryImpl implements StsFactory {
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static StsPackage getPackage() {
 		return StsPackage.eINSTANCE;
 	}

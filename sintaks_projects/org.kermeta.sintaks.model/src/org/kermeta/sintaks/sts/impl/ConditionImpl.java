@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConditionImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: ConditionImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -42,7 +42,7 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * @generated
 	 * @ordered
 	 */
-	protected Rule subRule = null;
+	protected Rule subRule;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -78,6 +78,7 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.CONDITION;
 	}
@@ -88,6 +89,29 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * @generated
 	 */
 	public Rule getSubRule() {
+		if (subRule != null && subRule.eIsProxy()) {
+			InternalEObject oldSubRule = (InternalEObject)subRule;
+			subRule = (Rule)eResolveProxy(oldSubRule);
+			if (subRule != oldSubRule) {
+				InternalEObject newSubRule = (InternalEObject)subRule;
+				NotificationChain msgs = oldSubRule.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StsPackage.CONDITION__SUB_RULE, null, null);
+				if (newSubRule.eInternalContainer() == null) {
+					msgs = newSubRule.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StsPackage.CONDITION__SUB_RULE, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsPackage.CONDITION__SUB_RULE, oldSubRule, subRule));
+			}
+		}
+		return subRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Rule basicGetSubRule() {
 		return subRule;
 	}
 
@@ -151,6 +175,7 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StsPackage.CONDITION__SUB_RULE:
@@ -164,10 +189,12 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.CONDITION__SUB_RULE:
-				return getSubRule();
+				if (resolve) return getSubRule();
+				return basicGetSubRule();
 			case StsPackage.CONDITION__VALUE:
 				return getValue();
 		}
@@ -179,6 +206,7 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.CONDITION__SUB_RULE:
@@ -196,6 +224,7 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.CONDITION__SUB_RULE:
@@ -213,6 +242,7 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.CONDITION__SUB_RULE:
@@ -228,6 +258,7 @@ public abstract class ConditionImpl extends EObjectImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

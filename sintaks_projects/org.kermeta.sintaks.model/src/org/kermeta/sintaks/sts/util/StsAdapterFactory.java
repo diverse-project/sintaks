@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsAdapterFactory.java,v 1.1 2007-06-14 08:57:31 dtouzet Exp $
+ * $Id: StsAdapterFactory.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.util;
 
@@ -52,6 +52,7 @@ public class StsAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -68,66 +69,86 @@ public class StsAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StsSwitch modelSwitch =
-		new StsSwitch() {
-			public Object caseRoot(Root object) {
+	protected StsSwitch<Adapter> modelSwitch =
+		new StsSwitch<Adapter>() {
+			@Override
+			public Adapter caseRoot(Root object) {
 				return createRootAdapter();
 			}
-			public Object caseRule(Rule object) {
+			@Override
+			public Adapter caseRule(Rule object) {
 				return createRuleAdapter();
 			}
-			public Object caseSequence(Sequence object) {
+			@Override
+			public Adapter caseSequence(Sequence object) {
 				return createSequenceAdapter();
 			}
-			public Object caseIteration(Iteration object) {
+			@Override
+			public Adapter caseIteration(Iteration object) {
 				return createIterationAdapter();
 			}
-			public Object caseChoice(Choice object) {
+			@Override
+			public Adapter caseChoice(Choice object) {
 				return createChoiceAdapter();
 			}
-			public Object caseAlternative(Alternative object) {
+			@Override
+			public Adapter caseAlternative(Alternative object) {
 				return createAlternativeAdapter();
 			}
-			public Object caseOnce(Once object) {
+			@Override
+			public Adapter caseOnce(Once object) {
 				return createOnceAdapter();
 			}
-			public Object caseCondition(Condition object) {
+			@Override
+			public Adapter caseCondition(Condition object) {
 				return createConditionAdapter();
 			}
-			public Object casePolymorphicCond(PolymorphicCond object) {
+			@Override
+			public Adapter casePolymorphicCond(PolymorphicCond object) {
 				return createPolymorphicCondAdapter();
 			}
-			public Object caseCustomCond(CustomCond object) {
+			@Override
+			public Adapter caseCustomCond(CustomCond object) {
 				return createCustomCondAdapter();
 			}
-			public Object caseTerminal(Terminal object) {
+			@Override
+			public Adapter caseTerminal(Terminal object) {
 				return createTerminalAdapter();
 			}
-			public Object caseAdornment(Adornment object) {
+			@Override
+			public Adapter caseAdornment(Adornment object) {
 				return createAdornmentAdapter();
 			}
-			public Object caseTemplate(Template object) {
+			@Override
+			public Adapter caseTemplate(Template object) {
 				return createTemplateAdapter();
 			}
-			public Object caseValue(Value object) {
+			@Override
+			public Adapter caseValue(Value object) {
 				return createValueAdapter();
 			}
-			public Object casePrimitiveValue(PrimitiveValue object) {
+			@Override
+			public Adapter casePrimitiveValue(PrimitiveValue object) {
 				return createPrimitiveValueAdapter();
 			}
-			public Object caseObjectReference(ObjectReference object) {
+			@Override
+			public Adapter caseObjectReference(ObjectReference object) {
 				return createObjectReferenceAdapter();
 			}
-			public Object caseRuleRef(RuleRef object) {
+			@Override
+			public Adapter caseRuleRef(RuleRef object) {
 				return createRuleRefAdapter();
 			}
-			public Object caseConstant(Constant object) {
+			@Override
+			public Adapter caseConstant(Constant object) {
 				return createConstantAdapter();
 			}
-			public Object caseURIValue(URIValue object) {
+			@Override
+			public Adapter caseURIValue(URIValue object) {
 				return createURIValueAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -140,8 +161,9 @@ public class StsAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target) {
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 

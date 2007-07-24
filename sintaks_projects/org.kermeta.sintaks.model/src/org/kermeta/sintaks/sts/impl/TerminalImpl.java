@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TerminalImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: TerminalImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -84,6 +84,7 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.TERMINAL;
 	}
@@ -135,6 +136,7 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.TERMINAL__TERMINAL:
@@ -150,6 +152,7 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.TERMINAL__TERMINAL:
@@ -167,6 +170,7 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.TERMINAL__TERMINAL:
@@ -184,6 +188,7 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.TERMINAL__TERMINAL:
@@ -199,6 +204,7 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

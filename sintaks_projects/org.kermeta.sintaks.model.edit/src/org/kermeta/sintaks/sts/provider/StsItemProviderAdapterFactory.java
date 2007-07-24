@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsItemProviderAdapterFactory.java,v 1.1 2007-06-14 08:58:35 dtouzet Exp $
+ * $Id: StsItemProviderAdapterFactory.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -59,7 +59,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection supportedTypes = new ArrayList();
+	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
 	 * This constructs an instance.
@@ -72,11 +72,11 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);		
+		supportedTypes.add(IItemPropertySource.class);
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Iteration} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Iteration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,11 +84,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected IterationItemProvider iterationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Iteration}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Iteration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createIterationAdapter() {
 		if (iterationItemProvider == null) {
 			iterationItemProvider = new IterationItemProvider(this);
@@ -98,7 +99,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Alternative} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Alternative} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -106,11 +107,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected AlternativeItemProvider alternativeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Alternative}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Alternative}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createAlternativeAdapter() {
 		if (alternativeItemProvider == null) {
 			alternativeItemProvider = new AlternativeItemProvider(this);
@@ -120,7 +122,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Once} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Once} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,11 +130,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected OnceItemProvider onceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Once}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Once}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createOnceAdapter() {
 		if (onceItemProvider == null) {
 			onceItemProvider = new OnceItemProvider(this);
@@ -142,7 +145,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Sequence} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Sequence} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -150,11 +153,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected SequenceItemProvider sequenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Sequence}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Sequence}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createSequenceAdapter() {
 		if (sequenceItemProvider == null) {
 			sequenceItemProvider = new SequenceItemProvider(this);
@@ -164,7 +168,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Terminal} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Terminal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -172,11 +176,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected TerminalItemProvider terminalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Terminal}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Terminal}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createTerminalAdapter() {
 		if (terminalItemProvider == null) {
 			terminalItemProvider = new TerminalItemProvider(this);
@@ -186,7 +191,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.PrimitiveValue} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.PrimitiveValue} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -194,11 +199,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected PrimitiveValueItemProvider primitiveValueItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.PrimitiveValue}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.PrimitiveValue}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createPrimitiveValueAdapter() {
 		if (primitiveValueItemProvider == null) {
 			primitiveValueItemProvider = new PrimitiveValueItemProvider(this);
@@ -208,7 +214,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.ObjectReference} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.ObjectReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -216,11 +222,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected ObjectReferenceItemProvider objectReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.ObjectReference}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.ObjectReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createObjectReferenceAdapter() {
 		if (objectReferenceItemProvider == null) {
 			objectReferenceItemProvider = new ObjectReferenceItemProvider(this);
@@ -230,7 +237,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Template} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Template} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -238,11 +245,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected TemplateItemProvider templateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Template}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Template}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createTemplateAdapter() {
 		if (templateItemProvider == null) {
 			templateItemProvider = new TemplateItemProvider(this);
@@ -252,7 +260,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.PolymorphicCond} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.PolymorphicCond} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -260,11 +268,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected PolymorphicCondItemProvider polymorphicCondItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.PolymorphicCond}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.PolymorphicCond}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createPolymorphicCondAdapter() {
 		if (polymorphicCondItemProvider == null) {
 			polymorphicCondItemProvider = new PolymorphicCondItemProvider(this);
@@ -274,7 +283,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.CustomCond} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.CustomCond} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -282,11 +291,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected CustomCondItemProvider customCondItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.CustomCond}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.CustomCond}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createCustomCondAdapter() {
 		if (customCondItemProvider == null) {
 			customCondItemProvider = new CustomCondItemProvider(this);
@@ -296,7 +306,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Root} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Root} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -304,11 +314,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected RootItemProvider rootItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Root}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Root}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createRootAdapter() {
 		if (rootItemProvider == null) {
 			rootItemProvider = new RootItemProvider(this);
@@ -318,7 +329,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.RuleRef} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.RuleRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -326,11 +337,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected RuleRefItemProvider ruleRefItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.RuleRef}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.RuleRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createRuleRefAdapter() {
 		if (ruleRefItemProvider == null) {
 			ruleRefItemProvider = new RuleRefItemProvider(this);
@@ -340,7 +352,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Adornment} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Adornment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -348,11 +360,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected AdornmentItemProvider adornmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Adornment}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Adornment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdornmentAdapter() {
 		if (adornmentItemProvider == null) {
 			adornmentItemProvider = new AdornmentItemProvider(this);
@@ -362,7 +375,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.Constant} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.Constant} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -370,11 +383,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected ConstantItemProvider constantItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.Constant}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.Constant}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createConstantAdapter() {
 		if (constantItemProvider == null) {
 			constantItemProvider = new ConstantItemProvider(this);
@@ -384,7 +398,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sts.URIValue} instances.
+	 * This keeps track of the one adapter used for all {@link org.kermeta.sintaks.sts.URIValue} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -392,11 +406,12 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	protected URIValueItemProvider uriValueItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sts.URIValue}.
+	 * This creates an adapter for a {@link org.kermeta.sintaks.sts.URIValue}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createURIValueAdapter() {
 		if (uriValueItemProvider == null) {
 			uriValueItemProvider = new URIValueItemProvider(this);
@@ -430,6 +445,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -440,6 +456,7 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -449,10 +466,11 @@ public class StsItemProviderAdapterFactory extends StsAdapterFactory implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

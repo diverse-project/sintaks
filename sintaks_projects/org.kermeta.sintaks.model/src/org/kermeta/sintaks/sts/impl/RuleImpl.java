@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuleImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: RuleImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -64,6 +64,7 @@ public abstract class RuleImpl extends EObjectImpl implements Rule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.RULE;
 	}
@@ -94,6 +95,7 @@ public abstract class RuleImpl extends EObjectImpl implements Rule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.RULE__ID:
@@ -107,6 +109,7 @@ public abstract class RuleImpl extends EObjectImpl implements Rule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.RULE__ID:
@@ -121,6 +124,7 @@ public abstract class RuleImpl extends EObjectImpl implements Rule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.RULE__ID:
@@ -135,6 +139,7 @@ public abstract class RuleImpl extends EObjectImpl implements Rule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.RULE__ID:
@@ -148,6 +153,7 @@ public abstract class RuleImpl extends EObjectImpl implements Rule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ChoiceImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: ChoiceImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -44,7 +44,7 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList conditions = null;
+	protected EList<Condition> conditions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,6 +60,7 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.CHOICE;
 	}
@@ -69,9 +70,9 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConditions() {
+	public EList<Condition> getConditions() {
 		if (conditions == null) {
-			conditions = new EObjectContainmentEList(Condition.class, this, StsPackage.CHOICE__CONDITIONS);
+			conditions = new EObjectContainmentEList.Resolving<Condition>(Condition.class, this, StsPackage.CHOICE__CONDITIONS);
 		}
 		return conditions;
 	}
@@ -81,10 +82,11 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StsPackage.CHOICE__CONDITIONS:
-				return ((InternalEList)getConditions()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getConditions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -94,6 +96,7 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.CHOICE__CONDITIONS:
@@ -107,11 +110,13 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.CHOICE__CONDITIONS:
 				getConditions().clear();
-				getConditions().addAll((Collection)newValue);
+				getConditions().addAll((Collection<? extends Condition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,6 +127,7 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.CHOICE__CONDITIONS:
@@ -136,6 +142,7 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.CHOICE__CONDITIONS:

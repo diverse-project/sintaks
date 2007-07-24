@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: SequenceImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -44,7 +44,7 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList subRules = null;
+	protected EList<Rule> subRules;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,6 +60,7 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.SEQUENCE;
 	}
@@ -69,9 +70,9 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubRules() {
+	public EList<Rule> getSubRules() {
 		if (subRules == null) {
-			subRules = new EObjectContainmentEList(Rule.class, this, StsPackage.SEQUENCE__SUB_RULES);
+			subRules = new EObjectContainmentEList.Resolving<Rule>(Rule.class, this, StsPackage.SEQUENCE__SUB_RULES);
 		}
 		return subRules;
 	}
@@ -81,10 +82,11 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StsPackage.SEQUENCE__SUB_RULES:
-				return ((InternalEList)getSubRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getSubRules()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -94,6 +96,7 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.SEQUENCE__SUB_RULES:
@@ -107,11 +110,13 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.SEQUENCE__SUB_RULES:
 				getSubRules().clear();
-				getSubRules().addAll((Collection)newValue);
+				getSubRules().addAll((Collection<? extends Rule>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,6 +127,7 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.SEQUENCE__SUB_RULES:
@@ -136,6 +142,7 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.SEQUENCE__SUB_RULES:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: STSEditorPlugin.java,v 1.1 2007-06-14 08:59:32 dtouzet Exp $
+ * $Id: STSEditorPlugin.java,v 1.2 2007-07-24 12:12:15 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.presentation;
 
@@ -43,8 +43,8 @@ public final class STSEditorPlugin extends EMFPlugin {
 	 */
 	public STSEditorPlugin() {
 		super
-		  (new ResourceLocator [] {
-		   });
+			(new ResourceLocator [] {
+			});
 	}
 
 	/**
@@ -54,6 +54,7 @@ public final class STSEditorPlugin extends EMFPlugin {
 	 * @return the singleton instance.
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
@@ -84,7 +85,7 @@ public final class STSEditorPlugin extends EMFPlugin {
 		 */
 		public Implementation() {
 			super();
-
+	
 			// Remember the static instance.
 			//
 			plugin = this;

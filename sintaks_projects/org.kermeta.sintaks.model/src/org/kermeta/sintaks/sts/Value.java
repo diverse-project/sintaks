@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Value.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: Value.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,9 +37,9 @@ public interface Value extends Rule {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Features</em>' reference list.
 	 * @see org.kermeta.sintaks.sts.StsPackage#getValue_Features()
-	 * @model type="org.eclipse.emf.ecore.EStructuralFeature"
+	 * @model
 	 * @generated
 	 */
-	EList getFeatures();
+	EList<EStructuralFeature> getFeatures();
 
 } // Value

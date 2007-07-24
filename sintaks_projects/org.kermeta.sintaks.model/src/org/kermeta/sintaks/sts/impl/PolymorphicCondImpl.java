@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PolymorphicCondImpl.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: PolymorphicCondImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -38,7 +38,7 @@ public class PolymorphicCondImpl extends ConditionImpl implements PolymorphicCon
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass metaclass = null;
+	protected EClass metaclass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -54,6 +54,7 @@ public class PolymorphicCondImpl extends ConditionImpl implements PolymorphicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return StsPackage.Literals.POLYMORPHIC_COND;
 	}
@@ -101,6 +102,7 @@ public class PolymorphicCondImpl extends ConditionImpl implements PolymorphicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.POLYMORPHIC_COND__METACLASS:
@@ -115,6 +117,7 @@ public class PolymorphicCondImpl extends ConditionImpl implements PolymorphicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StsPackage.POLYMORPHIC_COND__METACLASS:
@@ -129,6 +132,7 @@ public class PolymorphicCondImpl extends ConditionImpl implements PolymorphicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StsPackage.POLYMORPHIC_COND__METACLASS:
@@ -143,6 +147,7 @@ public class PolymorphicCondImpl extends ConditionImpl implements PolymorphicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StsPackage.POLYMORPHIC_COND__METACLASS:

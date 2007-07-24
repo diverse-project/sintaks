@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueItemProvider.java,v 1.1 2007-06-14 08:58:35 dtouzet Exp $
+ * $Id: ValueItemProvider.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
@@ -31,7 +32,7 @@ import org.kermeta.sintaks.sts.StsPackage;
 import org.kermeta.sintaks.sts.Value;
 
 /**
- * This is the item provider adapter for a {@link sts.Value} object.
+ * This is the item provider adapter for a {@link org.kermeta.sintaks.sts.Value} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -60,7 +61,8 @@ public class ValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -97,6 +99,7 @@ public class ValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getText(Object object) {
 		String label = ((Value)object).getId();
 		return label == null || label.length() == 0 ?
@@ -111,6 +114,7 @@ public class ValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
@@ -123,13 +127,14 @@ public class ValueItemProvider
 	}
 
 	/**
-	 * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing all of the children that can be created under this object.
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -139,6 +144,7 @@ public class ValueItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator() {
 		return STSEditPlugin.INSTANCE;
 	}
