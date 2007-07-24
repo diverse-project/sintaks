@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -20,7 +21,7 @@ import org.kermeta.sintaks.subject.PrettyPrinterSubject;
 
 public class MetaModel implements IMetaModel {
 	
-    private Object root;
+    private EObject root;
     private ResourceSet resSet;
 	
     
@@ -51,11 +52,11 @@ public class MetaModel implements IMetaModel {
 		}
 	}
 
-	public Object getRoot() {
+	public EObject getRoot() {
 		return root;
 	}
 
-	public void setRoot(Object root) {
+	public void setRoot(EObject root) {
 		this.root = root;
 	}
 

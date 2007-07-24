@@ -9,6 +9,7 @@ package org.kermeta.sintaks.main;
 import java.io.PrintStream;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 
 
 public interface IMetaModel {
@@ -19,9 +20,9 @@ public interface IMetaModel {
 
 	public void store (URI uri);
 
-	public Object getRoot ();
+	public EObject getRoot ();
 
-	public void setRoot (Object root);
+	public void setRoot (EObject root);
 
     public IPrettyPrinter getPrettyPrinter (PrintStream output);
 }
