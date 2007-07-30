@@ -26,12 +26,13 @@ public class PrinterAlternative implements IPrinter {
 	}
 
 	public void print(PrintWriter output) throws PrinterSemanticException {
-		EList list = alternative.getConditions();
+		EList<Condition> list = alternative.getConditions();
 		if (list == null)
 			throw new PrinterSemanticException ("Alternative : alternatives "+alternative.getConditions()+" unacceptable");
 
-		Iterator i = list.iterator();
+		Iterator<Condition> i = list.iterator();
 		while (i.hasNext()) {
+			/*
 			Object o = i.next();
 			
 			if (!(o instanceof Condition))
@@ -39,6 +40,13 @@ public class PrinterAlternative implements IPrinter {
 			
 			if (o != null) {
 				IPrinter printer = new PrinterCondition ((Condition) o, subject);
+				printer.print(output);
+			}
+			*/
+			Condition c = i.next();
+			
+			if (c != null) {
+				IPrinter printer = new PrinterCondition (c, subject);
 				printer.print(output);
 			}
 		}

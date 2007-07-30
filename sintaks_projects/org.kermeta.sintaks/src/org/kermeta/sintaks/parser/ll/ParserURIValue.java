@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EPackage.Registry;
 
 import org.kermeta.sintaks.SintaksPlugin;
@@ -36,7 +37,7 @@ public class ParserURIValue implements IParser {
 	 * @see fr.irisa.triskell.kermeta.textloader.parser.IParser#parse(fr.irisa.triskell.kermeta.textloader.lexer.ILexer)
 	 */
 	public boolean parse(ILexer input) throws ParserSemanticException {
-		EList features = value.getFeatures();
+		EList<EStructuralFeature> features = value.getFeatures();
 		if (input.atEnd()) return false;
         String textRead = input.get();
         EObject uri = getEObjectFromStringURI (textRead);

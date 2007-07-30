@@ -62,25 +62,22 @@ public class CommonOperation {
 	}
 
 	static public EObject findInstance (EObject model, EStructuralFeature feature, String text) {
-		TreeIterator i = model.eAllContents();
+		TreeIterator<EObject> i = model.eAllContents();
         while (i.hasNext()) {
-			Object o = i.next();
-			if (o instanceof EObject) {
-                EObject eo = (EObject) o;
-                EClass ec = (EClass) eo.eClass();
-                //TODO a verifier si c'est dans le bon ordre ...
-                // feature.getEContainingClass().isSuperTypeOf (ec)
-                if (ec.isSuperTypeOf(feature.getEContainingClass())) {
-    				EStructuralFeature sf = ec.getEStructuralFeature(feature.getName());
-    				if (eo.eIsSet(sf)) {
-    					Object value = eo.eGet(sf);
-    					Object converted = CommonOperation.convertFromType(sf, value);
-    					if (converted.equals(text)) {
-    					    return eo;
-                        }
-                    }
+        	EObject eo = (EObject) i.next();
+            EClass ec = (EClass) eo.eClass();
+            //TODO a verifier si c'est dans le bon ordre ...
+            // feature.getEContainingClass().isSuperTypeOf (ec)
+            if (ec.isSuperTypeOf(feature.getEContainingClass())) {
+            	EStructuralFeature sf = ec.getEStructuralFeature(feature.getName());
+    			if (eo.eIsSet(sf)) {
+    				Object value = eo.eGet(sf);
+    				Object converted = CommonOperation.convertFromType(sf, value);
+    				if (converted.equals(text)) {
+    				    return eo;
+                       }
                 }
-			}
+            }
         }
         return null;
 	}

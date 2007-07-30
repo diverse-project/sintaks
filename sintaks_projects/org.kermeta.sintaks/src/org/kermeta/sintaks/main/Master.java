@@ -200,11 +200,11 @@ public class Master {
     	
     	// Step2:
     	Resource ruleRes = resSet.getResource(ruleURI, true);
-    	TreeIterator i = ruleRes.getAllContents();
+    	TreeIterator<EObject> i = ruleRes.getAllContents();
     	boolean loop = true;
     	EClass c = null;
     	while(i.hasNext() && loop) {
-    		EObject obj = (EObject) i.next();
+    		EObject obj = i.next();
     		if(obj instanceof Template) {
     			c = ((Template) obj).getMetaclass();
     			loop = false;

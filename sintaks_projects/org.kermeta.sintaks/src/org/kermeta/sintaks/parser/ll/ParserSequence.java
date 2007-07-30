@@ -30,8 +30,8 @@ public class ParserSequence implements IParser {
 	}
 
 	public boolean parse(ILexer input) throws ParserSemanticException {
-		EList list = sequence.getSubRules();
-		Iterator i = list.iterator();
+		EList<Rule> list = sequence.getSubRules();
+		Iterator<Rule> i = list.iterator();
 		boolean loop = true;
 		boolean ok = true;
 

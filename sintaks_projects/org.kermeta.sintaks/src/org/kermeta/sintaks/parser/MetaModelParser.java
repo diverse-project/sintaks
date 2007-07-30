@@ -34,10 +34,10 @@ public class MetaModelParser extends MetaModel {
 		Root root = (Root) getRoot();
 		Rule start = root.getStart();
 		if (start != null) return start;
-		EList fragments = root.getFragments();
+		EList<Rule> fragments = root.getFragments();
 		if (fragments == null) return null;
 		if (fragments.size() == 0) return null;
-		return (Rule) fragments.get(0);
+		return fragments.get(0);
 	}
 
 	public IPrettyPrinter getPrettyPrinter(PrintStream output) {

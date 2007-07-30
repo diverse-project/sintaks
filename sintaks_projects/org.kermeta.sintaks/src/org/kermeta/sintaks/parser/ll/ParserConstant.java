@@ -7,6 +7,7 @@
 package org.kermeta.sintaks.parser.ll;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
@@ -27,7 +28,7 @@ public class ParserConstant implements IParser {
 	}
 
 	public boolean parse(ILexer input) throws ParserSemanticException {
-		EList features = value.getFeatures();
+		EList<EStructuralFeature> features = value.getFeatures();
         boolean ok;
         if (value.getValue() != null) {
         	OperationBuilder builder = new OperationBuilder();

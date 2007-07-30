@@ -38,18 +38,18 @@ public class PrettyPrinterSubject extends PrettyPrinterAbstract {
                 increase();
                 
                 // Attributes
-                List l = itsClass.getEAllAttributes();
-                Iterator i = l.iterator();
-                while(i.hasNext()) {
-                	EAttribute a = (EAttribute) i.next();
+                List<EAttribute> attributes = itsClass.getEAllAttributes();
+                Iterator<EAttribute> ia = attributes.iterator();
+                while(ia.hasNext()) {
+                	EAttribute a = ia.next();
                 	println(a.getName() + " = " + eObject.eGet(a));
                 }
                 
                 // References
-                l = itsClass.getEAllReferences();
-                i = l.iterator();
-                while(i.hasNext()) {
-                	EReference r = (EReference) i.next();
+                List<EReference> references = itsClass.getEAllReferences();
+                Iterator<EReference> ir = references.iterator();
+                while(ir.hasNext()) {
+                	EReference r = ir.next();
                 	println(r.getName() + " = ");
                 	print(eObject.eGet(r));
                 }

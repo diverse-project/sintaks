@@ -25,11 +25,12 @@ public class PrinterSequence implements IPrinter {
 	}
 
 	public void print (PrintWriter output) throws PrinterSemanticException {
-		EList list = sequence.getSubRules();
-		Iterator i = list.iterator();
+		EList<Rule> list = sequence.getSubRules();
+		Iterator<Rule> i = list.iterator();
 		while (i.hasNext()) {
-			Rule rule = (Rule) i.next();
-            IPrinter printer = PrinterRule.findPrinter (rule, subject);
+			//Rule rule = (Rule) i.next();
+            //IPrinter printer = PrinterRule.findPrinter (rule, subject);
+            IPrinter printer = PrinterRule.findPrinter (i.next(), subject);
 			printer.print(output);
 		}
 	}

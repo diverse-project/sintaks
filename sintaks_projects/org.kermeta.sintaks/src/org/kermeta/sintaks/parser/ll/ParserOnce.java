@@ -32,17 +32,26 @@ public class ParserOnce implements IParser {
 
 	private boolean parseOne (ILexer lexer) throws ParserSemanticException {
 
-		EList list = once.getConditions();
-		Iterator i = list.iterator();
+		EList<Condition> list = once.getConditions();
+		Iterator<Condition> i = list.iterator();
 		long position = lexer.getPosition();
 		boolean ok = false;
 		boolean loop = true;
 		while (loop) {
 			if (i.hasNext()) {
+				/*
 				Object o = i.next();
 				if (!(o instanceof Condition))
 					throw new ParserSemanticException ("Once : condition "+o+" unacceptable");
 				IParser parser = new ParserCondition ((Condition) o, subject);
+				if (parser.parse(lexer)) {
+					loop = false;
+					ok = true;
+				} else {
+					lexer.back(position);
+				}
+				*/
+				IParser parser = new ParserCondition (i.next(), subject);
 				if (parser.parse(lexer)) {
 					loop = false;
 					ok = true;
@@ -89,7 +98,7 @@ public class ParserOnce implements IParser {
 	}
 	
 	public boolean parse(ILexer lexer) throws ParserSemanticException {
-		EList list = once.getConditions();
+		EList<Condition> list = once.getConditions();
 		if (list == null)
 			throw new ParserSemanticException ("Once : conditions empty");
 

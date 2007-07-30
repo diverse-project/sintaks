@@ -29,7 +29,7 @@ public class ParserReferenceValue implements IParser {
 	}
 
 	public boolean parse(ILexer input) throws ParserSemanticException {
-		EList features = value.getFeatures();
+		EList<EStructuralFeature> features = value.getFeatures();
         EStructuralFeature id = value.getIdentifier();
         if (id == null) 
             throw new ParserSemanticException ("ReferenceValue : id      "+((EClass) id.eContainer()).getName()+"."+id.getName()+" unacceptable");

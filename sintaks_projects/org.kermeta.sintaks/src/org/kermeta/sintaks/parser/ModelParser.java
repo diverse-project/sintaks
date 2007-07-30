@@ -1,5 +1,5 @@
 /*
- * Created on 4 févr. 2006
+ * Created on 04/02/2006
  *
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Generation - Code and Comments
@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -57,7 +58,7 @@ public class ModelParser {
 
 		List<String> terminals = new ArrayList<String>();
 		List<String> separators = new ArrayList<String>();
-		TreeIterator i = res.getAllContents();
+		TreeIterator<EObject> i = res.getAllContents();
 		while (i.hasNext()) {
 			Object o = i.next();
 			if (o instanceof Terminal) {

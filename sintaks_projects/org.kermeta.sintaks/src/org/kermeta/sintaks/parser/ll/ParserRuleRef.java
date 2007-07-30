@@ -7,6 +7,7 @@
 package org.kermeta.sintaks.parser.ll;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
@@ -32,7 +33,7 @@ public class ParserRuleRef implements IParser {
 		boolean ok = parser.parse(input);
 
 		if(ok) {
-			EList features = rule.getFeatures();
+			EList<EStructuralFeature> features = rule.getFeatures();
         	OperationBuilder builder = new OperationBuilder();
         	if(! features.isEmpty()) {
 	        	builder.buildSetFeatures(features);
