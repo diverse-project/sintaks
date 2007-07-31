@@ -57,7 +57,7 @@ public abstract class PrettyPrinterAbstract implements IPrettyPrinter {
 	public void print (Object o) {
 		if (recurse(o))						{ printRecursion(o); }
 		else if (cycle(o))					{ printCycle(o); }
-		else if (o instanceof List) 		{ enterObject (o); print ((List) o); leaveObject(); }
+		else if (o instanceof List) 		{ enterObject (o); print ((List<Object>) o); leaveObject(); }
         else if (o == null)					{ println ("(null)"); }
         else println ("***** Unknown Object *****");
 	}
@@ -65,14 +65,14 @@ public abstract class PrettyPrinterAbstract implements IPrettyPrinter {
 	/* (non-Javadoc)
 	 * @see subject.IPrettyPrinter#print(java.util.List)
 	 */
-	public void print (List l) {
+	public void print (List<Object> l) {
 		if (!nl) println ();
 		if (l == null) {
 			println ("null");
 		} else if (l.isEmpty()){
 			println ("empty");
 		} else {
-			Iterator i = l.iterator();
+			Iterator<Object> i = l.iterator();
 			int j=0;
 			while (i.hasNext()) {
 				Object o = i.next();

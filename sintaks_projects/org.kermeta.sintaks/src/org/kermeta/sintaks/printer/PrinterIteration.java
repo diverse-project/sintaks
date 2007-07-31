@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
@@ -38,7 +39,7 @@ public class PrinterIteration implements IPrinter {
 		subject.process (builder2.getOperation());
 	}
 
-	private Iterator iterator () {
+	private Iterator<EObject> iterator () {
         EStructuralFeature container = iteration.getContainer();
         OperationBuilder builder = new OperationBuilder();
         builder.buildGetFeature(container);
@@ -47,7 +48,7 @@ public class PrinterIteration implements IPrinter {
 
         if (object == null) return null;
         if (object instanceof EList) {
-	        EList list = (EList) object;
+	        EList<EObject> list = (EList<EObject>) object;
 	        if (list != null)
 	            return list.iterator();
         }
@@ -65,7 +66,7 @@ public class PrinterIteration implements IPrinter {
             
         IPrinter separatorPrinter = PrinterRule.findPrinter (iteration.getSeparator(), subject);
 
-        Iterator i = iterator();
+        Iterator<EObject> i = iterator();
         if (i != null) {
         	if(i.hasNext()) {
         		printOne (output, rulePrinter, i.next());
@@ -86,7 +87,7 @@ public class PrinterIteration implements IPrinter {
         if (rulePrinter == null)
             throw new PrinterSemanticException ("Iteration : rulePrinter "+iteration.getSubRule()+" unacceptable");
 
-        Iterator i = iterator();
+        Iterator<EObject> i = iterator();
         if (i != null) {
             while (i.hasNext()) {
             	printOne (output, rulePrinter, i.next());

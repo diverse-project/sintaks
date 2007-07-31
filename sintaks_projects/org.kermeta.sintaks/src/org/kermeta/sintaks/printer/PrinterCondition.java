@@ -90,7 +90,7 @@ public class PrinterCondition implements IPrinter {
                 return false;
             }
 			if (o instanceof List) {
-				List list = (List) o;
+				List<EObject> list = (List<EObject>) o;
 				if (list.size()==0) return true;
 				return false;
 			}
@@ -103,7 +103,7 @@ public class PrinterCondition implements IPrinter {
                 return true;
             }
 			if (o instanceof List) {
-				List list = (List) o;
+				List<EObject> list = (List<EObject>) o;
 				if (list.size()==0) return false;
 				return true;
 			}

@@ -1,6 +1,4 @@
-
-
-/*$Id: SintaksTextEditorConfiguration.java,v 1.1 2007-07-06 09:56:12 dtouzet Exp $
+/*$Id: SintaksTextEditorConfiguration.java,v 1.2 2007-07-31 12:04:29 dtouzet Exp $
 * Project : fr.irisa.triskell.kermeta.sintaks.editor
 * File : 	SintaksTextualEditorConfiguration.java
 * License : EPL
@@ -46,7 +44,6 @@ import org.kermeta.sintaks.sts.util.StsSwitch;
 public class SintaksTextEditorConfiguration extends
 		SourceViewerConfiguration {
 
-	//private String ruleFile = null;
 	private URI ruleURI = null;
 	
 	private IFile sourceFile = null;
@@ -55,7 +52,6 @@ public class SintaksTextEditorConfiguration extends
 	
 	private Set<String> keywords = new HashSet<String> ();
 	
-	//public SintaksTextEditorConfiguration(String ruleFile, IFile sourceFile) {
 	public SintaksTextEditorConfiguration(URI ruleURI, IFile sourceFile) {
 		this.ruleURI = ruleURI;
 		this.sourceFile = sourceFile;
@@ -64,14 +60,11 @@ public class SintaksTextEditorConfiguration extends
 	
 	private void initializeKeywords() {
 
-		//URI uri = URI.createURI( ruleFile );
-		//URI uri = URI.createFileURI( ruleFile.getAbsolutePath() );
 		ResourceSet resSet = new ResourceSetImpl();
-		//Resource resource = resSet.getResource(uri, true);
 		Resource resource = resSet.getResource(ruleURI, true);
 		syntax = (Root) resource.getContents().get(0);
 		
-		StsSwitch visitor = new StsSwitch() {
+		StsSwitch<Object> visitor = new StsSwitch<Object>() {
 			
 			@Override
 			public Object caseTerminal(Terminal object) {
@@ -81,7 +74,7 @@ public class SintaksTextEditorConfiguration extends
 			
 		};
 		
-		for ( Iterator i = EcoreUtil.getAllContents( Collections.singleton(syntax) ); i.hasNext(); ) {
+		for ( Iterator<Object> i = EcoreUtil.getAllContents( Collections.singleton(syntax) ); i.hasNext(); ) {
 			EObject current = (EObject) i.next();
 			visitor.doSwitch( current );
 		}
@@ -117,5 +110,3 @@ public class SintaksTextEditorConfiguration extends
 	}
 	
 }
-
-

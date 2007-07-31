@@ -36,7 +36,7 @@ public class PrinterOnce implements IPrinter {
             throw new PrinterSemanticException ("Once : null subRules");
 
 		IPrinter separatorPrinter = PrinterRule.findPrinter (once.getSeparator(), subject);
-		Iterator i = once.getConditions().iterator();
+		Iterator<Condition> i = once.getConditions().iterator();
     	if(i.hasNext()) {
     		printOne (output, i.next());
     	}
@@ -50,7 +50,7 @@ public class PrinterOnce implements IPrinter {
 		if (once.getConditions() == null)
             throw new PrinterSemanticException ("Once : null subRules");
 
-        Iterator i = once.getConditions().iterator();
+        Iterator<Condition> i = once.getConditions().iterator();
     	while (i.hasNext()) {
     		printOne (output, i.next());
 	    }
