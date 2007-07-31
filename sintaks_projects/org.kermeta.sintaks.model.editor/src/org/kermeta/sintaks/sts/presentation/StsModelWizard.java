@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsModelWizard.java,v 1.2 2007-07-24 12:12:15 cfaucher Exp $
+ * $Id: StsModelWizard.java,v 1.3 2007-07-31 12:42:33 dtouzet Exp $
  */
 package org.kermeta.sintaks.sts.presentation;
 
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;

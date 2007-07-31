@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AlternativeItemProvider.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
+ * $Id: AlternativeItemProvider.java,v 1.3 2007-07-31 12:42:28 dtouzet Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.kermeta.sintaks.sts.Alternative;
 import org.kermeta.sintaks.sts.Rule;
 
 /**

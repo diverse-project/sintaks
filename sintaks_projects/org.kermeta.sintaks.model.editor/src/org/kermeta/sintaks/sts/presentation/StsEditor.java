@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsEditor.java,v 1.3 2007-07-24 12:12:15 cfaucher Exp $
+ * $Id: StsEditor.java,v 1.4 2007-07-31 12:42:34 dtouzet Exp $
  */
 package org.kermeta.sintaks.sts.presentation;
 
@@ -83,7 +83,6 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
