@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sintaks Plug-in
 Bundle-SymbolicName: org.kermeta.sintaks;singleton:=true
-Bundle-Version: 0.1.0
+Bundle-Version: 0.1.1
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi,
@@ -13,8 +13,14 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.ui.console,
  org.kermeta.sintaks.model
 Export-Package: org.kermeta.sintaks,
+ org.kermeta.sintaks.lexer,
  org.kermeta.sintaks.main,
- org.kermeta.sintaks.registering
+ org.kermeta.sintaks.parser,
+ org.kermeta.sintaks.parser.ll,
+ org.kermeta.sintaks.printer,
+ org.kermeta.sintaks.registering,
+ org.kermeta.sintaks.subject,
+ org.kermeta.sintaks.subject.operation
 Bundle-Activator: org.kermeta.sintaks.SintaksPlugin
 Bundle-Vendor: IRISA/INRIA & MIPS
 Eclipse-LazyStart: true
