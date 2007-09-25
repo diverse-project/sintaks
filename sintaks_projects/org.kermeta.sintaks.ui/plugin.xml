@@ -8,8 +8,8 @@
             id="org.kermeta.sintaks.ui.objectContribution1"
             objectClass="org.eclipse.core.resources.IFile">
          <menu
-               id="org.eclipse.ui.articles.action.contribution.navigator.subMenu"
-               label="Kermeta"
+               id="org.kermeta.sintaks.subMenu"
+               label="Sintaks"
                path="additions">
             <separator name="sintaksgroup1"/>
          </menu>
@@ -19,15 +19,15 @@
                icon="icons/Sintaks.gif"
                id="org.kermeta.sintaks.ui.textloader.Text2Model"
                label="Model to Text"
-               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/sintaksgroup1"/>
+               menubarPath="org.kermeta.sintaks.subMenu/sintaksgroup1"/>
       </objectContribution>
       <objectContribution
             id="org.kermeta.sintaks.ui.objectContribution2"
             nameFilter="*.txt"
             objectClass="org.eclipse.core.resources.IFile">
          <menu
-               id="org.eclipse.ui.articles.action.contribution.navigator.subMenu"
-               label="Kermeta"
+               id="org.kermeta.sintaks.subMenu"
+               label="Sintaks"
                path="additions">
             <separator name="sintaksgroup1"/>
          </menu>
@@ -37,7 +37,7 @@
                icon="icons/Sintaks.gif"
                id="org.kermeta.sintaks.ui.textloader.Text2Model"
                label="Text to Model"
-               menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/sintaksgroup1"/>
+               menubarPath="org.kermeta.sintaks.subMenu/sintaksgroup1"/>
       </objectContribution>
    </extension>
    <extension
