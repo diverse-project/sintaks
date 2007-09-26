@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ $Id: plugin.xml,v 1.2 2007-09-26 15:44:12 cfaucher Exp $
 -->
 
 <plugin>
@@ -14,7 +14,7 @@
     <package 
        uri = "http://www.kermeta.org/Sts" 
        class = "org.kermeta.sintaks.sts.StsPackage"
-       genModel = "" /> 
+       genModel = "models/STS.genmodel" /> 
   </extension>
 
 </plugin>
