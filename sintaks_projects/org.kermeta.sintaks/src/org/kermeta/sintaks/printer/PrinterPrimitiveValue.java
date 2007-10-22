@@ -36,19 +36,26 @@ public class PrinterPrimitiveValue implements IPrinter {
 		builder.buildSetAccumulator();
 		Object object = subject.process (builder.getOperation());
 
-		String text = object.toString();
-        if (text != null && text.length()!=0) {
-        	output.print(IPrinter.separator);
-        	if (text.indexOf(' ') != -1) {
-        		output.print('"');
-        		output.print(text);
-        		output.print('"');
-        	} else {
-        		output.print(text);
-        	}
-    		output.print(IPrinter.separator);
-        }
-    }
+		/*
+		 * 
+		 * Taking care about the null pointer exception that can happen if the value of an attribute has not been set.
+		 * 
+		 */
+		if ( object != null ) {
+			String text = object.toString();
+	        if (text != null && text.length()!=0) {
+	        	output.print(IPrinter.separator);
+	        	if (text.indexOf(' ') != -1) {
+	        		output.print('"');
+	        		output.print(text);
+	        		output.print('"');
+	        	} else {
+	        		output.print(text);
+	        	}
+	    		output.print(IPrinter.separator);
+	        }
+		}
+	}
 	
 	private PrimitiveValue value;
     private ModelSubject subject;
