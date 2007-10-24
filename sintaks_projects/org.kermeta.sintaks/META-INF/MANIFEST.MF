@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sintaks Plug-in
 Bundle-SymbolicName: org.kermeta.sintaks;singleton:=true
-Bundle-Version: 0.1.1
+Bundle-Version: 0.1.1.qualifier
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi,
@@ -13,6 +13,7 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.ui.console,
  org.kermeta.sintaks.model
 Export-Package: org.kermeta.sintaks,
+ org.kermeta.sintaks.errors,
  org.kermeta.sintaks.lexer,
  org.kermeta.sintaks.main,
  org.kermeta.sintaks.parser,
