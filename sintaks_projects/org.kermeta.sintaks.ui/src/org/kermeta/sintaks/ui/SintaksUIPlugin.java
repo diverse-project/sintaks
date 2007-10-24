@@ -1,3 +1,14 @@
+/* $Id: SintaksUIPlugin.java,v 1.2 2007-10-24 07:22:22 dvojtise Exp $
+ * Project    : Sintaks.ui
+ * File       : SintaksUIPlugin.java
+ * License    : EPL
+ * Copyright  : IRISA / INRIA / Universite de Haute Alsace
+ * -------------------------------------------------------------------
+ * Creation date : 21 juil. 2006
+ * Authors : 
+ * 			Michel Hassenforder <michel.hassenforder@uha.fr>
+ * 			David Touzet <dtouzet@irisa.fr>
+ */
 package org.kermeta.sintaks.ui;
 
 import java.util.MissingResourceException;
