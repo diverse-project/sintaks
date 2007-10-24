@@ -1,3 +1,15 @@
+/* $Id: Master.java,v 1.3 2007-10-24 07:13:54 dvojtise Exp $
+ * Project    : Sintaks
+ * File       : Master.java
+ * License    : EPL
+ * Copyright  : IRISA / INRIA / Universite de Haute Alsace
+ * -------------------------------------------------------------------
+ * Creation date : 21 juil. 2005
+ * Authors : 
+ * 			Michel Hassenforder <michel.hassenforder@uha.fr>
+ * 			David Touzet <dtouzet@irisa.fr>
+ *        	dvojtise <dvojtise@irisa.fr>
+ */
 package org.kermeta.sintaks.main;
 
 import org.eclipse.emf.common.util.TreeIterator;
@@ -8,10 +20,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Shell;
-
+import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.kermeta.sintaks.SintaksPlugin;
+import org.kermeta.sintaks.errors.UserError;
 import org.kermeta.sintaks.parser.MetaModelParser;
 import org.kermeta.sintaks.parser.ModelParser;
 import org.kermeta.sintaks.parser.ModelPrinter;
@@ -30,6 +41,8 @@ public class Master {
 	private ModelSubject subject;
 	private ModelPrinter printer;
 	private ResourceSet resSet;
+	
+	
     
 	/**
 	 * @param mmFile
@@ -122,6 +135,10 @@ public class Master {
 				this.store(outputURI);
 			}
 		}
+		catch(UserError ue){
+			SintaksPlugin.getDefault().reportErrorToUser(ue.getMessage());
+			SintaksPlugin.logErrorMessage(ue.getMessage(), ue);
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 			SintaksPlugin.log(e);
@@ -143,6 +160,10 @@ public class Master {
  
             return subject.getModel();
  		}
+		catch(UserError ue){
+			//SintaksPlugin.getDefault().reportErrorToUser(ue);
+			SintaksPlugin.logErrorMessage(ue.getMessage(), ue);
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 			SintaksPlugin.log(e);
@@ -167,17 +188,23 @@ public class Master {
     			this.load (inputURI);
                 this.print(ruleURI, outputURI);
     		} else {
-    		    MessageDialog.openWarning(
-    		    	new Shell(),
-    				"Error",
-    				"Source and syntactic models point to different instances of target metamodel.\n"
-    			);
+    			SintaksPlugin.getDefault().reportErrorToUser("Source and syntactic models point to different instances of target metamodel.\n");
     			
     		}
  		}
+		catch(UserError ue){
+			SintaksPlugin.getDefault().reportErrorToUser(ue.getMessage());
+			SintaksPlugin.logErrorMessage(ue.getMessage(), ue);
+		}
 		catch (Exception e) {
-			e.printStackTrace();
-			SintaksPlugin.log(e);
+			if(e.getCause() instanceof PackageNotFoundException){
+				SintaksPlugin.getDefault().reportErrorToUser("Cannot load model because the metamodel is not correctly registered.\n"+e.getMessage());
+				SintaksPlugin.logErrorMessage("Cannot load model because the metamodel is not correctly registered.\n"+e.getMessage(), e);
+			}
+			else{
+				e.printStackTrace();
+				SintaksPlugin.log(e);
+			}
 		}
     }
     

@@ -1,3 +1,15 @@
+/* $Id: SintaksPlugin.java,v 1.2 2007-10-24 07:13:54 dvojtise Exp $
+ * Project    : Sintaks
+ * File       : SintaksPlugin.java
+ * License    : EPL
+ * Copyright  : IRISA / INRIA / Universite de Haute Alsace
+ * -------------------------------------------------------------------
+ * Creation date : 21 juil. 2005
+ * Authors : 
+ * 			Michel Hassenforder <michel.hassenforder@uha.fr>
+ * 			David Touzet <dtouzet@irisa.fr>
+ *        	dvojtise <dvojtise@irisa.fr>
+ */
 package org.kermeta.sintaks;
 
 import java.io.BufferedOutputStream;
@@ -15,6 +27,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.osgi.framework.BundleContext;
@@ -132,7 +146,17 @@ public class SintaksPlugin extends AbstractUIPlugin {
 	public static void logErrorMessage(String message) {
 		if (message == null)
 			message= "";
-		log(new Status(IStatus.ERROR, PLUGIN_ID, INTERNAL_ERROR, message, null));
+		log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, message, null));
+	}
+	/**
+	 * This method logs an error message and an associated exception (as a trace)
+	 * 
+	 * @param message String
+	 */
+	public static void logErrorMessage(String message, Throwable e) {
+		if (message == null)
+			message= "";
+		log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.ERROR, message, e));
 	}
 	
 	/**
@@ -191,6 +215,19 @@ public class SintaksPlugin extends AbstractUIPlugin {
 			debugStream.close ();
 		}
 		debugStream= null;
+	}
+	
+
+	/**
+	 * Send a message to the user via the GUI
+	 * @param err
+	 */	
+	public void reportErrorToUser(String message){
+		org.eclipse.swt.widgets.MessageBox d = (new org.eclipse.swt.widgets.MessageBox(new Shell(),
+			    SWT.OK|
+			    SWT.ICON_ERROR));
+    	d.setMessage(message);
+    	d.open();
 	}
 
 }
