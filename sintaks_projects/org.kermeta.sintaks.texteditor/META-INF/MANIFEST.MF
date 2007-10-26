@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sintaks Textualeditor Plug-In
 Bundle-SymbolicName: org.kermeta.sintaks.texteditor;singleton:=true
-Bundle-Version: 0.1.1
+Bundle-Version: 0.1.1.qualifier
 Bundle-Activator: org.kermeta.sintaks.texteditor.SintaksTextEditorPlugin
 Bundle-Vendor: IRISA/INRIA & MIPS
 Require-Bundle: org.eclipse.ui,
