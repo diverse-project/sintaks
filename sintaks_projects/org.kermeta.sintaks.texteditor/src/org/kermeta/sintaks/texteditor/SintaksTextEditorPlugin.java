@@ -1,3 +1,13 @@
+/* $Id: SintaksTextEditorPlugin.java,v 1.2 2007-10-26 07:04:19 dvojtise Exp $
+ * Project : org.kermeta.sintaks.texteditor
+ * File : SintaksTexteditorPlugin.java
+ * License : EPL
+ * Copyright : IRISA / INRIA
+ * ----------------------------------------------------------------------------
+ * Authors : 
+ * 		dtouzet <dtouzet@irisa.fr
+ *     	dvojtise <dvojtise@irisa.fr>
+ */
 package org.kermeta.sintaks.texteditor;
 
 import java.io.ByteArrayInputStream;
@@ -27,6 +37,8 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.kermeta.sintaks.textualeditor";
+	
+	public static final String stsFilesRegistration_ExtensionPoint_NAME ="org.kermeta.sintaks.stsFilesRegistration";
 
 	//static final public URL pluginURL = getDefault().getBundle().getEntry("/");
 	
@@ -58,7 +70,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		 * Getting all extensions of sintaks files registration.
 		 * 
 		 */
-		IExtensionPoint extensionPoint = registry.getExtensionPoint("org.kermeta.sintaks.stsFilesRegistration");
+		IExtensionPoint extensionPoint = registry.getExtensionPoint(stsFilesRegistration_ExtensionPoint_NAME);
 		IExtension[] extensions = extensionPoint.getExtensions();
 		
 		/*
@@ -98,7 +110,12 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		info("Sintaks Editor have been set up.");
 		
 	}
-		
+	
+	/**
+	 * operation used to dynamically declare an editor extension in eclipse
+	 * @param element
+	 * @return
+	 */
 	private String createExtension(IConfigurationElement element) {
 		
 		StringBuffer sb = new StringBuffer();
@@ -107,12 +124,12 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("<plugin>");
 		sb.append("<extension point=\"org.eclipse.ui.editors\"");
 		sb.append("    id=\"" + getEditorId(element) + "\">");
-		sb.append("		<editor class=\"fr.irisa.triskell.sintaks.texteditor.SintaksTextEditor\"");
+		sb.append("		<editor class=\"org.kermeta.sintaks.texteditor.SintaksTextEditor\"");
 		sb.append("			default=\"false\"");
 		sb.append("			extensions=\"" + element.getAttribute("Extension") + "\"");
 		sb.append("			icon=\"icons/kermeta_logo_32.gif\"");
-		sb.append("			id=\"fr.irisa.triskell.kermeta.sintaks.texteditor." + element.getAttribute("Extension") + "\"");
-		sb.append("			name=\"Sintaks Text Editor\"/>");
+		sb.append("			id=\"org.kermeta.sintaks.texteditor." + element.getAttribute("Extension") + "\"");
+		sb.append("			name=\"Sintaks Text Editor for "+ element.getAttribute("Extension") +"\"/>");
 		sb.append("</extension>");
 		sb.append("</plugin>");
 		return sb.toString();
@@ -138,7 +155,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		 * Getting all extensions of sintaks files registration.
 		 * 
 		 */
-		IExtensionPoint extensionPoint = registry.getExtensionPoint("fr.irisa.triskell.sintaks.stsFilesRegistration");
+		IExtensionPoint extensionPoint = registry.getExtensionPoint(stsFilesRegistration_ExtensionPoint_NAME);
 		IExtension[] extensions = extensionPoint.getExtensions();
 		
 		/*
@@ -167,7 +184,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 	}
 	
 	private String getEditorId(IConfigurationElement element) {
-		return "fr.irisa.triskell.kermeta.sintaks.texteditor." + element.getAttribute("Extension");
+		return "org.kermeta.sintaks.texteditor." + element.getAttribute("Extension");
 	}
 	
 	/**
