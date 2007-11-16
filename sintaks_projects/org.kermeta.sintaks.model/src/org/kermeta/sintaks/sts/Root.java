@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Root.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: Root.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -20,6 +20,11 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.kermeta.sintaks.sts.Root#getFragments <em>Fragments</em>}</li>
  *   <li>{@link org.kermeta.sintaks.sts.Root#getStart <em>Start</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.Root#getStringDelimliter <em>String Delimliter</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.Root#getEscapeCharacter <em>Escape Character</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.Root#getEolComment <em>Eol Comment</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.Root#getBlockCommentStart <em>Block Comment Start</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.Root#getBlockCommentEnd <em>Block Comment End</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,7 +44,7 @@ public interface Root extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fragments</em>' containment reference list.
 	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_Fragments()
-	 * @model containment="true" resolveProxies="true" required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Rule> getFragments();
@@ -55,7 +60,7 @@ public interface Root extends EObject {
 	 * @return the value of the '<em>Start</em>' reference.
 	 * @see #setStart(Rule)
 	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_Start()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Rule getStart();
@@ -69,5 +74,140 @@ public interface Root extends EObject {
 	 * @generated
 	 */
 	void setStart(Rule value);
+
+	/**
+	 * Returns the value of the '<em><b>String Delimliter</b></em>' attribute.
+	 * The default value is <code>"\""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>String Delimliter</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>String Delimliter</em>' attribute.
+	 * @see #setStringDelimliter(char)
+	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_StringDelimliter()
+	 * @model default="\""
+	 * @generated
+	 */
+	char getStringDelimliter();
+
+	/**
+	 * Sets the value of the '{@link org.kermeta.sintaks.sts.Root#getStringDelimliter <em>String Delimliter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>String Delimliter</em>' attribute.
+	 * @see #getStringDelimliter()
+	 * @generated
+	 */
+	void setStringDelimliter(char value);
+
+	/**
+	 * Returns the value of the '<em><b>Escape Character</b></em>' attribute.
+	 * The default value is <code>"\\"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Escape Character</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Escape Character</em>' attribute.
+	 * @see #setEscapeCharacter(char)
+	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_EscapeCharacter()
+	 * @model default="\\"
+	 * @generated
+	 */
+	char getEscapeCharacter();
+
+	/**
+	 * Sets the value of the '{@link org.kermeta.sintaks.sts.Root#getEscapeCharacter <em>Escape Character</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Escape Character</em>' attribute.
+	 * @see #getEscapeCharacter()
+	 * @generated
+	 */
+	void setEscapeCharacter(char value);
+
+	/**
+	 * Returns the value of the '<em><b>Eol Comment</b></em>' attribute.
+	 * The default value is <code>"--"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Eol Comment</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Eol Comment</em>' attribute.
+	 * @see #setEolComment(String)
+	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_EolComment()
+	 * @model default="--"
+	 * @generated
+	 */
+	String getEolComment();
+
+	/**
+	 * Sets the value of the '{@link org.kermeta.sintaks.sts.Root#getEolComment <em>Eol Comment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Eol Comment</em>' attribute.
+	 * @see #getEolComment()
+	 * @generated
+	 */
+	void setEolComment(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Block Comment Start</b></em>' attribute.
+	 * The default value is <code>"\\/*"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Block Comment Start</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Block Comment Start</em>' attribute.
+	 * @see #setBlockCommentStart(String)
+	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_BlockCommentStart()
+	 * @model default="\\/*"
+	 * @generated
+	 */
+	String getBlockCommentStart();
+
+	/**
+	 * Sets the value of the '{@link org.kermeta.sintaks.sts.Root#getBlockCommentStart <em>Block Comment Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Block Comment Start</em>' attribute.
+	 * @see #getBlockCommentStart()
+	 * @generated
+	 */
+	void setBlockCommentStart(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Block Comment End</b></em>' attribute.
+	 * The default value is <code>"\\/*"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Block Comment End</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Block Comment End</em>' attribute.
+	 * @see #setBlockCommentEnd(String)
+	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_BlockCommentEnd()
+	 * @model default="\\/*"
+	 * @generated
+	 */
+	String getBlockCommentEnd();
+
+	/**
+	 * Sets the value of the '{@link org.kermeta.sintaks.sts.Root#getBlockCommentEnd <em>Block Comment End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Block Comment End</em>' attribute.
+	 * @see #getBlockCommentEnd()
+	 * @generated
+	 */
+	void setBlockCommentEnd(String value);
 
 } // Root

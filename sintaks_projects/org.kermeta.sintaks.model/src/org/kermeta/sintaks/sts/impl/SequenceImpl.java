@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: SequenceImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -72,7 +72,7 @@ public class SequenceImpl extends RuleImpl implements Sequence {
 	 */
 	public EList<Rule> getSubRules() {
 		if (subRules == null) {
-			subRules = new EObjectContainmentEList.Resolving<Rule>(Rule.class, this, StsPackage.SEQUENCE__SUB_RULES);
+			subRules = new EObjectContainmentEList<Rule>(Rule.class, this, StsPackage.SEQUENCE__SUB_RULES);
 		}
 		return subRules;
 	}

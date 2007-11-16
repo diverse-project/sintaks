@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TerminalImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: TerminalImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -24,6 +24,7 @@ import org.kermeta.sintaks.sts.Terminal;
  * <ul>
  *   <li>{@link org.kermeta.sintaks.sts.impl.TerminalImpl#getTerminal <em>Terminal</em>}</li>
  *   <li>{@link org.kermeta.sintaks.sts.impl.TerminalImpl#isLexicalSeparator <em>Lexical Separator</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.impl.TerminalImpl#isCaseSensitive <em>Case Sensitive</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,6 +70,26 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * @ordered
 	 */
 	protected boolean lexicalSeparator = LEXICAL_SEPARATOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCaseSensitive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CASE_SENSITIVE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCaseSensitive()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean caseSensitive = CASE_SENSITIVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,6 +157,27 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCaseSensitive() {
+		return caseSensitive;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCaseSensitive(boolean newCaseSensitive) {
+		boolean oldCaseSensitive = caseSensitive;
+		caseSensitive = newCaseSensitive;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsPackage.TERMINAL__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -143,6 +185,8 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 				return getTerminal();
 			case StsPackage.TERMINAL__LEXICAL_SEPARATOR:
 				return isLexicalSeparator() ? Boolean.TRUE : Boolean.FALSE;
+			case StsPackage.TERMINAL__CASE_SENSITIVE:
+				return isCaseSensitive() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,6 +204,9 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 				return;
 			case StsPackage.TERMINAL__LEXICAL_SEPARATOR:
 				setLexicalSeparator(((Boolean)newValue).booleanValue());
+				return;
+			case StsPackage.TERMINAL__CASE_SENSITIVE:
+				setCaseSensitive(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,6 +226,9 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 			case StsPackage.TERMINAL__LEXICAL_SEPARATOR:
 				setLexicalSeparator(LEXICAL_SEPARATOR_EDEFAULT);
 				return;
+			case StsPackage.TERMINAL__CASE_SENSITIVE:
+				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -195,6 +245,8 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 				return TERMINAL_EDEFAULT == null ? terminal != null : !TERMINAL_EDEFAULT.equals(terminal);
 			case StsPackage.TERMINAL__LEXICAL_SEPARATOR:
 				return lexicalSeparator != LEXICAL_SEPARATOR_EDEFAULT;
+			case StsPackage.TERMINAL__CASE_SENSITIVE:
+				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -213,6 +265,8 @@ public class TerminalImpl extends RuleImpl implements Terminal {
 		result.append(terminal);
 		result.append(", lexicalSeparator: ");
 		result.append(lexicalSeparator);
+		result.append(", caseSensitive: ");
+		result.append(caseSensitive);
 		result.append(')');
 		return result.toString();
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Sequence.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: Sequence.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -36,7 +36,7 @@ public interface Sequence extends Rule {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Rules</em>' containment reference list.
 	 * @see org.kermeta.sintaks.sts.StsPackage#getSequence_SubRules()
-	 * @model containment="true" resolveProxies="true" required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Rule> getSubRules();

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Condition.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: Condition.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -37,7 +37,7 @@ public interface Condition extends EObject {
 	 * @return the value of the '<em>Sub Rule</em>' containment reference.
 	 * @see #setSubRule(Rule)
 	 * @see org.kermeta.sintaks.sts.StsPackage#getCondition_SubRule()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Rule getSubRule();

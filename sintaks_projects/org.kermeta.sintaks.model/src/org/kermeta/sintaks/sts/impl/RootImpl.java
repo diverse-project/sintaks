@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RootImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: RootImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -35,6 +35,11 @@ import org.kermeta.sintaks.sts.StsPackage;
  * <ul>
  *   <li>{@link org.kermeta.sintaks.sts.impl.RootImpl#getFragments <em>Fragments</em>}</li>
  *   <li>{@link org.kermeta.sintaks.sts.impl.RootImpl#getStart <em>Start</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.impl.RootImpl#getStringDelimliter <em>String Delimliter</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.impl.RootImpl#getEscapeCharacter <em>Escape Character</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.impl.RootImpl#getEolComment <em>Eol Comment</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.impl.RootImpl#getBlockCommentStart <em>Block Comment Start</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.impl.RootImpl#getBlockCommentEnd <em>Block Comment End</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +67,106 @@ public class RootImpl extends EObjectImpl implements Root {
 	protected Rule start;
 
 	/**
+	 * The default value of the '{@link #getStringDelimliter() <em>String Delimliter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStringDelimliter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final char STRING_DELIMLITER_EDEFAULT = '\"';
+
+	/**
+	 * The cached value of the '{@link #getStringDelimliter() <em>String Delimliter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStringDelimliter()
+	 * @generated
+	 * @ordered
+	 */
+	protected char stringDelimliter = STRING_DELIMLITER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEscapeCharacter() <em>Escape Character</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEscapeCharacter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final char ESCAPE_CHARACTER_EDEFAULT = '\\';
+
+	/**
+	 * The cached value of the '{@link #getEscapeCharacter() <em>Escape Character</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEscapeCharacter()
+	 * @generated
+	 * @ordered
+	 */
+	protected char escapeCharacter = ESCAPE_CHARACTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEolComment() <em>Eol Comment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEolComment()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EOL_COMMENT_EDEFAULT = "--";
+
+	/**
+	 * The cached value of the '{@link #getEolComment() <em>Eol Comment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEolComment()
+	 * @generated
+	 * @ordered
+	 */
+	protected String eolComment = EOL_COMMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getBlockCommentStart() <em>Block Comment Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlockCommentStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String BLOCK_COMMENT_START_EDEFAULT = "\\/*";
+
+	/**
+	 * The cached value of the '{@link #getBlockCommentStart() <em>Block Comment Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlockCommentStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected String blockCommentStart = BLOCK_COMMENT_START_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getBlockCommentEnd() <em>Block Comment End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlockCommentEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String BLOCK_COMMENT_END_EDEFAULT = "\\/*";
+
+	/**
+	 * The cached value of the '{@link #getBlockCommentEnd() <em>Block Comment End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlockCommentEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected String blockCommentEnd = BLOCK_COMMENT_END_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,7 +192,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 */
 	public EList<Rule> getFragments() {
 		if (fragments == null) {
-			fragments = new EObjectContainmentEList.Resolving<Rule>(Rule.class, this, StsPackage.ROOT__FRAGMENTS);
+			fragments = new EObjectContainmentEList<Rule>(Rule.class, this, StsPackage.ROOT__FRAGMENTS);
 		}
 		return fragments;
 	}
@@ -135,6 +240,111 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public char getStringDelimliter() {
+		return stringDelimliter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStringDelimliter(char newStringDelimliter) {
+		char oldStringDelimliter = stringDelimliter;
+		stringDelimliter = newStringDelimliter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsPackage.ROOT__STRING_DELIMLITER, oldStringDelimliter, stringDelimliter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public char getEscapeCharacter() {
+		return escapeCharacter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEscapeCharacter(char newEscapeCharacter) {
+		char oldEscapeCharacter = escapeCharacter;
+		escapeCharacter = newEscapeCharacter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsPackage.ROOT__ESCAPE_CHARACTER, oldEscapeCharacter, escapeCharacter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getEolComment() {
+		return eolComment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEolComment(String newEolComment) {
+		String oldEolComment = eolComment;
+		eolComment = newEolComment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsPackage.ROOT__EOL_COMMENT, oldEolComment, eolComment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getBlockCommentStart() {
+		return blockCommentStart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBlockCommentStart(String newBlockCommentStart) {
+		String oldBlockCommentStart = blockCommentStart;
+		blockCommentStart = newBlockCommentStart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsPackage.ROOT__BLOCK_COMMENT_START, oldBlockCommentStart, blockCommentStart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getBlockCommentEnd() {
+		return blockCommentEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBlockCommentEnd(String newBlockCommentEnd) {
+		String oldBlockCommentEnd = blockCommentEnd;
+		blockCommentEnd = newBlockCommentEnd;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsPackage.ROOT__BLOCK_COMMENT_END, oldBlockCommentEnd, blockCommentEnd));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -157,6 +367,16 @@ public class RootImpl extends EObjectImpl implements Root {
 			case StsPackage.ROOT__START:
 				if (resolve) return getStart();
 				return basicGetStart();
+			case StsPackage.ROOT__STRING_DELIMLITER:
+				return new Character(getStringDelimliter());
+			case StsPackage.ROOT__ESCAPE_CHARACTER:
+				return new Character(getEscapeCharacter());
+			case StsPackage.ROOT__EOL_COMMENT:
+				return getEolComment();
+			case StsPackage.ROOT__BLOCK_COMMENT_START:
+				return getBlockCommentStart();
+			case StsPackage.ROOT__BLOCK_COMMENT_END:
+				return getBlockCommentEnd();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,6 +397,21 @@ public class RootImpl extends EObjectImpl implements Root {
 			case StsPackage.ROOT__START:
 				setStart((Rule)newValue);
 				return;
+			case StsPackage.ROOT__STRING_DELIMLITER:
+				setStringDelimliter(((Character)newValue).charValue());
+				return;
+			case StsPackage.ROOT__ESCAPE_CHARACTER:
+				setEscapeCharacter(((Character)newValue).charValue());
+				return;
+			case StsPackage.ROOT__EOL_COMMENT:
+				setEolComment((String)newValue);
+				return;
+			case StsPackage.ROOT__BLOCK_COMMENT_START:
+				setBlockCommentStart((String)newValue);
+				return;
+			case StsPackage.ROOT__BLOCK_COMMENT_END:
+				setBlockCommentEnd((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -195,6 +430,21 @@ public class RootImpl extends EObjectImpl implements Root {
 			case StsPackage.ROOT__START:
 				setStart((Rule)null);
 				return;
+			case StsPackage.ROOT__STRING_DELIMLITER:
+				setStringDelimliter(STRING_DELIMLITER_EDEFAULT);
+				return;
+			case StsPackage.ROOT__ESCAPE_CHARACTER:
+				setEscapeCharacter(ESCAPE_CHARACTER_EDEFAULT);
+				return;
+			case StsPackage.ROOT__EOL_COMMENT:
+				setEolComment(EOL_COMMENT_EDEFAULT);
+				return;
+			case StsPackage.ROOT__BLOCK_COMMENT_START:
+				setBlockCommentStart(BLOCK_COMMENT_START_EDEFAULT);
+				return;
+			case StsPackage.ROOT__BLOCK_COMMENT_END:
+				setBlockCommentEnd(BLOCK_COMMENT_END_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -211,8 +461,42 @@ public class RootImpl extends EObjectImpl implements Root {
 				return fragments != null && !fragments.isEmpty();
 			case StsPackage.ROOT__START:
 				return start != null;
+			case StsPackage.ROOT__STRING_DELIMLITER:
+				return stringDelimliter != STRING_DELIMLITER_EDEFAULT;
+			case StsPackage.ROOT__ESCAPE_CHARACTER:
+				return escapeCharacter != ESCAPE_CHARACTER_EDEFAULT;
+			case StsPackage.ROOT__EOL_COMMENT:
+				return EOL_COMMENT_EDEFAULT == null ? eolComment != null : !EOL_COMMENT_EDEFAULT.equals(eolComment);
+			case StsPackage.ROOT__BLOCK_COMMENT_START:
+				return BLOCK_COMMENT_START_EDEFAULT == null ? blockCommentStart != null : !BLOCK_COMMENT_START_EDEFAULT.equals(blockCommentStart);
+			case StsPackage.ROOT__BLOCK_COMMENT_END:
+				return BLOCK_COMMENT_END_EDEFAULT == null ? blockCommentEnd != null : !BLOCK_COMMENT_END_EDEFAULT.equals(blockCommentEnd);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (stringDelimliter: ");
+		result.append(stringDelimliter);
+		result.append(", escapeCharacter: ");
+		result.append(escapeCharacter);
+		result.append(", eolComment: ");
+		result.append(eolComment);
+		result.append(", blockCommentStart: ");
+		result.append(blockCommentStart);
+		result.append(", blockCommentEnd: ");
+		result.append(blockCommentEnd);
+		result.append(')');
+		return result.toString();
 	}
 
 } //RootImpl

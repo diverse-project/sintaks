@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CustomCond.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: CustomCond.java,v 1.2 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -36,7 +36,7 @@ public interface CustomCond extends Condition {
 	 * @return the value of the '<em>Feature</em>' reference.
 	 * @see #setFeature(EStructuralFeature)
 	 * @see org.kermeta.sintaks.sts.StsPackage#getCustomCond_Feature()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	EStructuralFeature getFeature();

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IterationImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: IterationImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -90,29 +90,6 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * @generated
 	 */
 	public Rule getSubRule() {
-		if (subRule != null && subRule.eIsProxy()) {
-			InternalEObject oldSubRule = (InternalEObject)subRule;
-			subRule = (Rule)eResolveProxy(oldSubRule);
-			if (subRule != oldSubRule) {
-				InternalEObject newSubRule = (InternalEObject)subRule;
-				NotificationChain msgs = oldSubRule.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StsPackage.ITERATION__SUB_RULE, null, null);
-				if (newSubRule.eInternalContainer() == null) {
-					msgs = newSubRule.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StsPackage.ITERATION__SUB_RULE, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsPackage.ITERATION__SUB_RULE, oldSubRule, subRule));
-			}
-		}
-		return subRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Rule basicGetSubRule() {
 		return subRule;
 	}
 
@@ -249,8 +226,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StsPackage.ITERATION__SUB_RULE:
-				if (resolve) return getSubRule();
-				return basicGetSubRule();
+				return getSubRule();
 			case StsPackage.ITERATION__CONTAINER:
 				if (resolve) return getContainer();
 				return basicGetContainer();

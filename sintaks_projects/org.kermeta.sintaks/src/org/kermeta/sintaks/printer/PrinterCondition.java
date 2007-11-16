@@ -36,8 +36,6 @@ public class PrinterCondition implements IPrinter {
        	builder.buildSetAccumulator();
        	Object object = subject.process (builder.getOperation());
 		
-       	if (object == null) return false;
-       	
 		EObject top = (EObject) object;
 		
 		String value = c.getValue();

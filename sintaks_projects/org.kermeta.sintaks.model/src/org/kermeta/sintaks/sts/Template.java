@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Template.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: Template.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -63,7 +63,7 @@ public interface Template extends Rule {
 	 * @return the value of the '<em>Rule</em>' containment reference.
 	 * @see #setRule(Rule)
 	 * @see org.kermeta.sintaks.sts.StsPackage#getTemplate_Rule()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Rule getRule();

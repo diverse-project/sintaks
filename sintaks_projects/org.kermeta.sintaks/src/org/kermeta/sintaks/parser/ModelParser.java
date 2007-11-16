@@ -12,22 +12,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.File;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-
 import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.lexer.Lexer;
+import org.kermeta.sintaks.sts.Root;
 import org.kermeta.sintaks.sts.Rule;
-import org.kermeta.sintaks.sts.Terminal;
 import org.kermeta.sintaks.subject.ModelSubject;
 
 
@@ -55,20 +50,9 @@ public class ModelParser {
     private ILexer getLexer(Reader reader, URI ruleURI) {
 		ResourceSet rs = new ResourceSetImpl();
 		Resource res = rs.getResource(ruleURI, true);
-
-		List<String> terminals = new ArrayList<String>();
-		List<String> separators = new ArrayList<String>();
-		TreeIterator<EObject> i = res.getAllContents();
-		while (i.hasNext()) {
-			Object o = i.next();
-			if (o instanceof Terminal) {
-				Terminal terminal = (Terminal) o;
-				terminals.add(terminal.getTerminal());
-				if (terminal.isLexicalSeparator())
-					separators.add(terminal.getTerminal());
-			}
-		}
-		ILexer lexer = new Lexer(reader, terminals, separators);
+		
+		Root stsRoot = (Root) res.getContents().get(0);
+		ILexer lexer = new Lexer(reader, stsRoot);
 
 		return lexer;
 	}

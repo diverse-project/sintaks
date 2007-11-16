@@ -26,16 +26,27 @@ public class ParserTerminal implements IParser {
 		String textReference = terminal.getTerminal();
         if (input.atEnd()) return false;
 		String textRead = input.get();
-		if (textReference.equals(textRead)) {
+
+		boolean success;
+
+		if(terminal.isCaseSensitive()) {
+			success = textReference.equals(textRead);
+		}
+		else {
+			success = textReference.toUpperCase().equals(textRead.toUpperCase());
+		}
+		
+		if(success) {
             if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
             	SintaksPlugin.getDefault().debugln ("Accepted Terminal : "+textRead);
 			input.next();
-			return true;
-		} else {
+		}
+		else {
             if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
             	SintaksPlugin.getDefault().debugln ("Refused Terminal : "+textRead);
-			return false;
 		}
+		
+		return success;
 	}
 
 	private Terminal terminal;

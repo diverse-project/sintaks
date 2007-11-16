@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ChoiceImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: ChoiceImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -72,7 +72,7 @@ public abstract class ChoiceImpl extends RuleImpl implements Choice {
 	 */
 	public EList<Condition> getConditions() {
 		if (conditions == null) {
-			conditions = new EObjectContainmentEList.Resolving<Condition>(Condition.class, this, StsPackage.CHOICE__CONDITIONS);
+			conditions = new EObjectContainmentEList<Condition>(Condition.class, this, StsPackage.CHOICE__CONDITIONS);
 		}
 		return conditions;
 	}

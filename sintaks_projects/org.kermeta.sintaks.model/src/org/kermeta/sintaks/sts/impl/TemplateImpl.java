@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TemplateImpl.java,v 1.2 2007-07-24 12:12:18 cfaucher Exp $
+ * $Id: TemplateImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -116,29 +116,6 @@ public class TemplateImpl extends RuleImpl implements Template {
 	 * @generated
 	 */
 	public Rule getRule() {
-		if (rule != null && rule.eIsProxy()) {
-			InternalEObject oldRule = (InternalEObject)rule;
-			rule = (Rule)eResolveProxy(oldRule);
-			if (rule != oldRule) {
-				InternalEObject newRule = (InternalEObject)rule;
-				NotificationChain msgs = oldRule.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StsPackage.TEMPLATE__RULE, null, null);
-				if (newRule.eInternalContainer() == null) {
-					msgs = newRule.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StsPackage.TEMPLATE__RULE, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsPackage.TEMPLATE__RULE, oldRule, rule));
-			}
-		}
-		return rule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Rule basicGetRule() {
 		return rule;
 	}
 
@@ -202,8 +179,7 @@ public class TemplateImpl extends RuleImpl implements Template {
 				if (resolve) return getMetaclass();
 				return basicGetMetaclass();
 			case StsPackage.TEMPLATE__RULE:
-				if (resolve) return getRule();
-				return basicGetRule();
+				return getRule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

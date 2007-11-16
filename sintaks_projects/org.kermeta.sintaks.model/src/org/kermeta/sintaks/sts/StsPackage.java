@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsPackage.java,v 1.1 2007-06-14 08:57:30 dtouzet Exp $
+ * $Id: StsPackage.java,v 1.2 2007-11-16 14:22:32 dvojtise Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -88,13 +88,58 @@ public interface StsPackage extends EPackage {
 	int ROOT__START = 1;
 
 	/**
+	 * The feature id for the '<em><b>String Delimliter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT__STRING_DELIMLITER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Escape Character</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT__ESCAPE_CHARACTER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Eol Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT__EOL_COMMENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Block Comment Start</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT__BLOCK_COMMENT_START = 5;
+
+	/**
+	 * The feature id for the '<em><b>Block Comment End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT__BLOCK_COMMENT_END = 6;
+
+	/**
 	 * The number of structural features of the '<em>Root</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_FEATURE_COUNT = 2;
+	int ROOT_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.kermeta.sintaks.sts.impl.RuleImpl <em>Rule</em>}' class.
@@ -503,13 +548,22 @@ public interface StsPackage extends EPackage {
 	int TERMINAL__LEXICAL_SEPARATOR = RULE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERMINAL__CASE_SENSITIVE = RULE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Terminal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TERMINAL_FEATURE_COUNT = RULE_FEATURE_COUNT + 2;
+	int TERMINAL_FEATURE_COUNT = RULE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.kermeta.sintaks.sts.impl.AdornmentImpl <em>Adornment</em>}' class.
@@ -547,6 +601,15 @@ public interface StsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ADORNMENT__LEXICAL_SEPARATOR = TERMINAL__LEXICAL_SEPARATOR;
+
+	/**
+	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADORNMENT__CASE_SENSITIVE = TERMINAL__CASE_SENSITIVE;
 
 	/**
 	 * The number of structural features of the '<em>Adornment</em>' class.
@@ -886,6 +949,61 @@ public interface StsPackage extends EPackage {
 	EReference getRoot_Start();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Root#getStringDelimliter <em>String Delimliter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>String Delimliter</em>'.
+	 * @see org.kermeta.sintaks.sts.Root#getStringDelimliter()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EAttribute getRoot_StringDelimliter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Root#getEscapeCharacter <em>Escape Character</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Escape Character</em>'.
+	 * @see org.kermeta.sintaks.sts.Root#getEscapeCharacter()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EAttribute getRoot_EscapeCharacter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Root#getEolComment <em>Eol Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Eol Comment</em>'.
+	 * @see org.kermeta.sintaks.sts.Root#getEolComment()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EAttribute getRoot_EolComment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Root#getBlockCommentStart <em>Block Comment Start</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Block Comment Start</em>'.
+	 * @see org.kermeta.sintaks.sts.Root#getBlockCommentStart()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EAttribute getRoot_BlockCommentStart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Root#getBlockCommentEnd <em>Block Comment End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Block Comment End</em>'.
+	 * @see org.kermeta.sintaks.sts.Root#getBlockCommentEnd()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EAttribute getRoot_BlockCommentEnd();
+
+	/**
 	 * Returns the meta object for class '{@link org.kermeta.sintaks.sts.Rule <em>Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1129,6 +1247,17 @@ public interface StsPackage extends EPackage {
 	EAttribute getTerminal_LexicalSeparator();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Terminal#isCaseSensitive <em>Case Sensitive</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Case Sensitive</em>'.
+	 * @see org.kermeta.sintaks.sts.Terminal#isCaseSensitive()
+	 * @see #getTerminal()
+	 * @generated
+	 */
+	EAttribute getTerminal_CaseSensitive();
+
+	/**
 	 * Returns the meta object for class '{@link org.kermeta.sintaks.sts.Adornment <em>Adornment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1321,6 +1450,46 @@ public interface StsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ROOT__START = eINSTANCE.getRoot_Start();
+
+		/**
+		 * The meta object literal for the '<em><b>String Delimliter</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOT__STRING_DELIMLITER = eINSTANCE.getRoot_StringDelimliter();
+
+		/**
+		 * The meta object literal for the '<em><b>Escape Character</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOT__ESCAPE_CHARACTER = eINSTANCE.getRoot_EscapeCharacter();
+
+		/**
+		 * The meta object literal for the '<em><b>Eol Comment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOT__EOL_COMMENT = eINSTANCE.getRoot_EolComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Block Comment Start</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOT__BLOCK_COMMENT_START = eINSTANCE.getRoot_BlockCommentStart();
+
+		/**
+		 * The meta object literal for the '<em><b>Block Comment End</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOT__BLOCK_COMMENT_END = eINSTANCE.getRoot_BlockCommentEnd();
 
 		/**
 		 * The meta object literal for the '{@link org.kermeta.sintaks.sts.impl.RuleImpl <em>Rule</em>}' class.
@@ -1525,6 +1694,14 @@ public interface StsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TERMINAL__LEXICAL_SEPARATOR = eINSTANCE.getTerminal_LexicalSeparator();
+
+		/**
+		 * The meta object literal for the '<em><b>Case Sensitive</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TERMINAL__CASE_SENSITIVE = eINSTANCE.getTerminal_CaseSensitive();
 
 		/**
 		 * The meta object literal for the '{@link org.kermeta.sintaks.sts.impl.AdornmentImpl <em>Adornment</em>}' class.
