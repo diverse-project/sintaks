@@ -33,10 +33,15 @@ public class Ecore2TextWizard extends SintaksWizard {
 		Master m = new Master();
 		
 		String workspacePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+		URI smURI;
+		if(outputPage.getSMdlText().startsWith("platform:/plugin")){
+			smURI = URI.createPlatformPluginURI(outputPage.getSMdlText().replace("platform:/plugin", ""),false);
+		}
+		else smURI = URI.createFileURI(workspacePath + outputPage.getSMdlFile().getFullPath().toString());
 		m.getTextFromModel(
 			URI.createFileURI(workspacePath + inputFile.getFullPath().toString()),
 			URI.createFileURI(workspacePath + targetFile.getFullPath().toString()),
-			URI.createFileURI(workspacePath + outputPage.getSMdlFile().getFullPath().toString())
+			smURI
 		);
 	}
 	
