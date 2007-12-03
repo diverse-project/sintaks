@@ -1,4 +1,4 @@
-/* $Id: SintaksTextEditorPlugin.java,v 1.2 2007-10-26 07:04:19 dvojtise Exp $
+/* $Id: SintaksTextEditorPlugin.java,v 1.3 2007-12-03 21:25:59 dvojtise Exp $
  * Project : org.kermeta.sintaks.texteditor
  * File : SintaksTexteditorPlugin.java
  * License : EPL
@@ -85,6 +85,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 			for ( int j = 0; j < elements.length; j++ ) {
 				
 				String extensionAsString = createExtension( elements[j] );
+			
 				ByteArrayInputStream is = new ByteArrayInputStream( extensionAsString.getBytes() );
 				
 				try {
@@ -101,7 +102,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 					try {
 						is.close();
 					} catch (IOException e) {}
-				}
+				}				
 				
 			}
 			
@@ -112,7 +113,8 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 	}
 	
 	/**
-	 * operation used to dynamically declare an editor extension in eclipse
+	 * operation used to dynamically declare a plugin extension in eclipse.
+	 * Used to add editor, and popups for extensions associated with the STS
 	 * @param element
 	 * @return
 	 */
@@ -122,6 +124,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		sb.append("<?eclipse version=\"3.2\"?>");
 		sb.append("<plugin>");
+		// part for the editor
 		sb.append("<extension point=\"org.eclipse.ui.editors\"");
 		sb.append("    id=\"" + getEditorId(element) + "\">");
 		sb.append("		<editor class=\"org.kermeta.sintaks.texteditor.SintaksTextEditor\"");
@@ -131,6 +134,48 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("			id=\"org.kermeta.sintaks.texteditor." + element.getAttribute("Extension") + "\"");
 		sb.append("			name=\"Sintaks Text Editor for "+ element.getAttribute("Extension") +"\"/>");
 		sb.append("</extension>");
+		// part that adds the Text2Model popup for this file extension
+		sb.append("<extension point=\"org.eclipse.ui.popupMenus\">");
+		sb.append("    <objectContribution");
+		sb.append("           adaptable=\"false\"");
+		sb.append("           id=\"org.kermeta.sintaks.ui.objectContribution2\"");
+		sb.append("           nameFilter=\"*." + element.getAttribute("Extension") + "\"");
+		sb.append("           objectClass=\"org.eclipse.core.resources.IFile\">");
+		sb.append("        <menu");
+		sb.append("              id=\"org.kermeta.sintaks.subMenu\"");
+		sb.append("              label=\"Sintaks\"");
+		sb.append("              path=\"additions\">");
+		sb.append("           <separator name=\"sintaksgroup1\"/>");
+		sb.append("        </menu>");
+		sb.append("        <action class=\"org.kermeta.sintaks.ui.Text2ModelAction\"");
+		sb.append("              enablesFor=\"1\"");
+		sb.append("              icon=\"icons/Sintaks.gif\"");
+		sb.append("              id=\"org.kermeta.sintaks.ui.textloader.Text2Model\"");
+		sb.append("              label=\"Text to model\"");
+		sb.append("              menubarPath=\"org.kermeta.sintaks.subMenu/sintaksgroup1\"/>");
+		sb.append("     </objectContribution>");
+		sb.append("     </extension>");
+		// part that adds the Model2Text popup for this file extension
+		sb.append("<extension point=\"org.eclipse.ui.popupMenus\">");
+		sb.append("    <objectContribution");
+		sb.append("           adaptable=\"false\"");
+		sb.append("           id=\"org.kermeta.sintaks.ui.objectContribution1\"");
+		sb.append("           nameFilter=\"*." + element.getAttribute("ModelExtension") + "\"");
+		sb.append("           objectClass=\"org.eclipse.core.resources.IFile\">");
+		sb.append("        <menu");
+		sb.append("              id=\"org.kermeta.sintaks.subMenu\"");
+		sb.append("              label=\"Sintaks\"");
+		sb.append("              path=\"additions\">");
+		sb.append("           <separator name=\"sintaksgroup1\"/>");
+		sb.append("        </menu>");
+		sb.append("        <action class=\"org.kermeta.sintaks.ui.Model2TextAction\"");
+		sb.append("              enablesFor=\"1\"");
+		sb.append("              icon=\"icons/Sintaks.gif\"");
+		sb.append("              id=\"org.kermeta.sintaks.ui.textloader.Model2Text\"");
+		sb.append("              label=\"Model to Text\"");
+		sb.append("              menubarPath=\"org.kermeta.sintaks.subMenu/sintaksgroup1\"/>");
+		sb.append("     </objectContribution>");
+		sb.append("     </extension>");
 		sb.append("</plugin>");
 		return sb.toString();
 		

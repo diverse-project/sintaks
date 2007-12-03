@@ -4,9 +4,10 @@
    <extension
          point="org.eclipse.ui.popupMenus">
      <objectContribution
-            adaptable="false"
-            id="org.kermeta.sintaks.ui.objectContribution1"
-            objectClass="org.eclipse.core.resources.IFile">
+           adaptable="false"
+           id="org.kermeta.sintaks.ui.objectContribution1"
+           nameFilter="*.xmi"
+           objectClass="org.eclipse.core.resources.IFile">
          <menu
                id="org.kermeta.sintaks.subMenu"
                label="Sintaks"
@@ -17,7 +18,7 @@
                class="org.kermeta.sintaks.ui.Model2TextAction"
                enablesFor="1"
                icon="icons/Sintaks.gif"
-               id="org.kermeta.sintaks.ui.textloader.Text2Model"
+               id="org.kermeta.sintaks.ui.textloader.Model2Text"
                label="Model to Text"
                menubarPath="org.kermeta.sintaks.subMenu/sintaksgroup1"/>
       </objectContribution>
@@ -37,7 +38,8 @@
                icon="icons/Sintaks.gif"
                id="org.kermeta.sintaks.ui.textloader.Text2Model"
                label="Text to Model"
-               menubarPath="org.kermeta.sintaks.subMenu/sintaksgroup1"/>
+               menubarPath="org.kermeta.sintaks.subMenu/sintaksgroup1">
+         </action>
       </objectContribution>
    </extension>
    <extension
