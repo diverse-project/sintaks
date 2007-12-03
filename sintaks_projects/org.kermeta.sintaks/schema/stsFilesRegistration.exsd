@@ -64,7 +64,14 @@
          <attribute name="Extension" type="string" use="required">
             <annotation>
                <documentation>
-                  A file extension allowing the association between the sintaks text editor and files with the given extension.
+                  The file extension of the textual version of your model. (allows the association between the sintaks text editor and files with the given extension. It also adds a &quot;model 2 text&quot; popup to those files.)
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="ModelExtension" type="string" use="default" value="xmi">
+            <annotation>
+               <documentation>
+                  The file extension of the xmi version of your model. (allows to add a &quot;model 2 text&quot; popup to files with the given extension.)
                </documentation>
             </annotation>
          </attribute>
