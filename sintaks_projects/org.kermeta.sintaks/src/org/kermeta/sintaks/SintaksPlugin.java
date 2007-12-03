@@ -1,4 +1,4 @@
-/* $Id: SintaksPlugin.java,v 1.2 2007-10-24 07:13:54 dvojtise Exp $
+/* $Id: SintaksPlugin.java,v 1.3 2007-12-03 21:22:12 dvojtise Exp $
  * Project    : Sintaks
  * File       : SintaksPlugin.java
  * License    : EPL
@@ -43,12 +43,15 @@ public class SintaksPlugin extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "org.kermeta.sintaks";
 	public static final String MESSAGES_BUNDLE = PLUGIN_ID+".messages";
 	public static final String PLUGIN_CONSOLE_NAME = PLUGIN_ID+".Console";
+	public static final String EXTENSION_POINT_REGISTRATION = "org.kermeta.sintaks.stsFilesRegistration";
+
 	private ResourceBundle resourceBundle;
     private ScopedPreferenceStore preferenceStore;
 	private OptionManager optionManager;
 	private static final int INTERNAL_ERROR = 10001;
 	private PrintStream debugStream = null;
-
+	
+	
 	/**
 	 * The constructor.
 	 */
