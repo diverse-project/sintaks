@@ -1,4 +1,4 @@
-/*$Id: Text2EcoreWizard.java,v 1.2 2007-11-30 22:24:57 dvojtise Exp $
+/*$Id: Text2EcoreWizard.java,v 1.3 2007-12-05 17:55:36 dvojtise Exp $
 * Project : org.kermeta.sintaks
 * File : 	Text2EcoreWizard.java
 * License : EPL
@@ -6,6 +6,8 @@
 * ----------------------------------------------------------------------------
 * Creation date : 29 juin 07
 * Authors : 
+*   David Touzet
+*   Didier Vojtisek
 */
 /**
  * 
@@ -17,6 +19,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.kermeta.sintaks.main.Master;
+import org.kermeta.sintaks.registering.RegisteringHelper;
 
 /**
  * @author dtouzet
@@ -65,6 +68,14 @@ public class Text2EcoreWizard extends SintaksWizard {
 		outputPage.setTitle("Import to Ecore:");
 		outputPage.setDescription("This wizard imports your file into an Ecore model.\nPlease specify the output file name.");
 		
+		if(inputFile.getFileExtension() != null){
+			String OutputExtension = RegisteringHelper.getModelExtensionForTextExtension(inputFile.getFileExtension());
+			String outputFileName = inputFile.getFullPath().removeFileExtension().addFileExtension(OutputExtension).lastSegment();
+			outputPage.setFileName(outputFileName);
+			URI stsURI = RegisteringHelper.getSTSforTextExtension(inputFile.getFileExtension());
+			if(stsURI != null)
+				outputPage.setSMdlText(stsURI.toString());
+		}
 		// Eventually add new pages here
 	}
 

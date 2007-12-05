@@ -1,3 +1,13 @@
+/* $Id: Text2ModelAction.java,v 1.2 2007-12-05 17:55:36 dvojtise Exp $
+ * Project : sintaks.ui
+ * File : Text2ModelAction.java
+ * License : EPL
+ * Copyright : IRISA / INRIA/ Universite de Rennes 1
+ * ----------------------------------------------------------------------------
+ * Authors : 
+ * 		David Touzet 
+ *      Didier Vojtisek
+ */
 /**
  * 
  */
@@ -18,7 +28,6 @@ import org.eclipse.ui.PlatformUI;
 
 
 /**
- * @author dtouzet
  *
  */
 public class Text2ModelAction implements IObjectActionDelegate {
@@ -50,6 +59,7 @@ public class Text2ModelAction implements IObjectActionDelegate {
 */
     	Text2EcoreWizard wizard =  new Text2EcoreWizard();
     	wizard.init(PlatformUI.getWorkbench(), currentSelection);
+    	//wizard.defaultOutputExtension = 
     	WizardDialog wizDialog =  new org.eclipse.jface.wizard.WizardDialog(shell, wizard);
     	wizDialog.setTitle("Import this textual file into an Ecore model");
     	wizDialog.open();
