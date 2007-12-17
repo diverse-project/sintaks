@@ -1,4 +1,4 @@
-/* $Id: Master.java,v 1.3 2007-10-24 07:13:54 dvojtise Exp $
+/* $Id: Master.java,v 1.4 2007-12-17 10:24:45 dvojtise Exp $
  * Project    : Sintaks
  * File       : Master.java
  * License    : EPL
@@ -238,6 +238,9 @@ public class Master {
     		}
     	}
     	p = (EPackage) c.eContainer();
+    	if(p == null){
+			throw new UserError("Not able to retreive the container EPackage of the user metamodel from the sts file. \nPlease check that your registered URI conforms to the one used in the STS file.");
+    	}
     	rulePack = getRootPackage(p);
     	
     	return (inputPack == rulePack);

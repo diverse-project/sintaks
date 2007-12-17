@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
+import org.kermeta.sintaks.SintaksPlugin;
+import org.kermeta.sintaks.errors.UserError;
 import org.kermeta.sintaks.sts.Condition;
 import org.kermeta.sintaks.sts.CustomCond;
 import org.kermeta.sintaks.sts.PolymorphicCond;
@@ -37,6 +39,9 @@ public class PrinterCondition implements IPrinter {
        	Object object = subject.process (builder.getOperation());
 		
 		EObject top = (EObject) object;
+		if(top == null){
+			throw new UserError("Not able to process the subject while validating a PolymorphicCond");
+		}
 		
 		String value = c.getValue();
 		String name = top.eClass().getName();
