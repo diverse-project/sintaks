@@ -38,9 +38,11 @@ public class PrinterCondition implements IPrinter {
        	builder.buildSetAccumulator();
        	Object object = subject.process (builder.getOperation());
 		
+       	
 		EObject top = (EObject) object;
 		if(top == null){
-			throw new UserError("Not able to process the subject while validating a PolymorphicCond");
+			throw new UserError("Not able to process the subject while validating a PolymorphicCond on " + c.getMetaclass().getName() +
+					"\nmaybe your model is invalid (ex: missing a mandatory element (ie. multiplicity 1 in the metamodel))");
 		}
 		
 		String value = c.getValue();
