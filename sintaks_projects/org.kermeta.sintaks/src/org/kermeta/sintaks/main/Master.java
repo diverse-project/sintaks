@@ -1,4 +1,4 @@
-/* $Id: Master.java,v 1.4 2007-12-17 10:24:45 dvojtise Exp $
+/* $Id: Master.java,v 1.5 2008-01-14 09:57:25 dvojtise Exp $
  * Project    : Sintaks
  * File       : Master.java
  * License    : EPL
@@ -132,7 +132,16 @@ public class Master {
 		try {
 			this.parse(ruleURI, inputURI);
 			if (subject.isReady()) {
-				this.store(outputURI);
+				if(subject.getModel() != null) {
+					this.store(outputURI);
+				}
+				else {
+					SintaksPlugin.getDefault().reportErrorToUser("Cannot produce output, there is nothing recognized to put in the model");
+					
+				}
+			}
+			else{
+				SintaksPlugin.getDefault().reportErrorToUser("Cannot produce output, there are still some \"ghosts\" which haven't been correctly recognized");
 			}
 		}
 		catch(UserError ue){
