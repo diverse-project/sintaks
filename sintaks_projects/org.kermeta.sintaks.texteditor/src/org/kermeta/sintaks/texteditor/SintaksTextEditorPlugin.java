@@ -1,4 +1,4 @@
-/* $Id: SintaksTextEditorPlugin.java,v 1.3 2007-12-03 21:25:59 dvojtise Exp $
+/* $Id: SintaksTextEditorPlugin.java,v 1.4 2008-01-15 10:37:24 dvojtise Exp $
  * Project : org.kermeta.sintaks.texteditor
  * File : SintaksTexteditorPlugin.java
  * License : EPL
@@ -151,7 +151,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("              enablesFor=\"1\"");
 		sb.append("              icon=\"icons/Sintaks.gif\"");
 		sb.append("              id=\"org.kermeta.sintaks.ui.textloader.Text2Model\"");
-		sb.append("              label=\"Text to model\"");
+		sb.append("              label=\""+ element.getAttribute("text2model_popup_label") +"\"");
 		sb.append("              menubarPath=\"org.kermeta.sintaks.subMenu/sintaksgroup1\"/>");
 		sb.append("     </objectContribution>");
 		sb.append("     </extension>");
@@ -172,7 +172,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("              enablesFor=\"1\"");
 		sb.append("              icon=\"icons/Sintaks.gif\"");
 		sb.append("              id=\"org.kermeta.sintaks.ui.textloader.Model2Text\"");
-		sb.append("              label=\"Model to Text\"");
+		sb.append("              label=\""+ element.getAttribute("model2text_popup_label") +"\"");
 		sb.append("              menubarPath=\"org.kermeta.sintaks.subMenu/sintaksgroup1\"/>");
 		sb.append("     </objectContribution>");
 		sb.append("     </extension>");

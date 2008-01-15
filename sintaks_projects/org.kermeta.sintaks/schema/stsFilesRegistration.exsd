@@ -75,6 +75,20 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="text2model_popup_label" type="string" use="default" value="Text 2 model">
+            <annotation>
+               <documentation>
+                  This allows you to customize the label displayed in the user workbench
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="model2text_popup_label" type="string" use="default" value="Model 2 text">
+            <annotation>
+               <documentation>
+                  This allows you to customize the label displayed in the user workbench
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
