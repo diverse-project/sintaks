@@ -1,4 +1,4 @@
-/* $Id: SintaksTextEditorPlugin.java,v 1.4 2008-01-15 10:37:24 dvojtise Exp $
+/* $Id: SintaksTextEditorPlugin.java,v 1.5 2008-01-24 15:09:01 dvojtise Exp $
  * Project : org.kermeta.sintaks.texteditor
  * File : SintaksTexteditorPlugin.java
  * License : EPL
@@ -119,7 +119,10 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 	 * @return
 	 */
 	private String createExtension(IConfigurationElement element) {
-		
+		String t2m_label = element.getAttribute("text2model_popup_label") == null ? "Text 2 model" : element.getAttribute("text2model_popup_label");
+		String m2t_label = element.getAttribute("model2text_popup_label") == null ? "Model 2 text" : element.getAttribute("model2text_popup_label");
+		String modelExtension = element.getAttribute("ModelExtension") == null ? "xmi" : element.getAttribute("ModelExtension");
+ 		
 		StringBuffer sb = new StringBuffer();
 		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		sb.append("<?eclipse version=\"3.2\"?>");
@@ -151,7 +154,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("              enablesFor=\"1\"");
 		sb.append("              icon=\"icons/Sintaks.gif\"");
 		sb.append("              id=\"org.kermeta.sintaks.ui.textloader.Text2Model\"");
-		sb.append("              label=\""+ element.getAttribute("text2model_popup_label") +"\"");
+		sb.append("              label=\""+ t2m_label +"\"");
 		sb.append("              menubarPath=\"org.kermeta.sintaks.subMenu/sintaksgroup1\"/>");
 		sb.append("     </objectContribution>");
 		sb.append("     </extension>");
@@ -160,7 +163,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("    <objectContribution");
 		sb.append("           adaptable=\"false\"");
 		sb.append("           id=\"org.kermeta.sintaks.ui.objectContribution1\"");
-		sb.append("           nameFilter=\"*." + element.getAttribute("ModelExtension") + "\"");
+		sb.append("           nameFilter=\"*." + modelExtension + "\"");
 		sb.append("           objectClass=\"org.eclipse.core.resources.IFile\">");
 		sb.append("        <menu");
 		sb.append("              id=\"org.kermeta.sintaks.subMenu\"");
@@ -172,7 +175,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 		sb.append("              enablesFor=\"1\"");
 		sb.append("              icon=\"icons/Sintaks.gif\"");
 		sb.append("              id=\"org.kermeta.sintaks.ui.textloader.Model2Text\"");
-		sb.append("              label=\""+ element.getAttribute("model2text_popup_label") +"\"");
+		sb.append("              label=\""+ m2t_label +"\"");
 		sb.append("              menubarPath=\"org.kermeta.sintaks.subMenu/sintaksgroup1\"/>");
 		sb.append("     </objectContribution>");
 		sb.append("     </extension>");
