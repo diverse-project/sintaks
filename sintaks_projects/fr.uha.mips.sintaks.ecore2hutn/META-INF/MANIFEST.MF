@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ecore2hutn Plug-in
+Bundle-SymbolicName: fr.uha.mips.sintaks.ecore2hutn;singleton:=true
+Bundle-Version: 0.0.1.qualified
+Bundle-Activator: fr.uha.mips.sintaks.ecore2hutn.Ecore2HUTNPlugin
+Bundle-Vendor: michel.hassenforder@uha.fr
+Require-Bundle: org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.core.runtime,
+ org.kermeta.sintaks.model,
+ org.eclipse.help
+Eclipse-LazyStart: true
