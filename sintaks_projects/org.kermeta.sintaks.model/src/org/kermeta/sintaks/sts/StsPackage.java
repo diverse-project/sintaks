@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsPackage.java,v 1.2 2007-11-16 14:22:32 dvojtise Exp $
+ * $Id: StsPackage.java,v 1.3 2008-02-04 09:17:59 hassen Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -557,13 +557,22 @@ public interface StsPackage extends EPackage {
 	int TERMINAL__CASE_SENSITIVE = RULE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERMINAL__SURROUNDING_SPACES = RULE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Terminal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TERMINAL_FEATURE_COUNT = RULE_FEATURE_COUNT + 3;
+	int TERMINAL_FEATURE_COUNT = RULE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.kermeta.sintaks.sts.impl.AdornmentImpl <em>Adornment</em>}' class.
@@ -610,6 +619,15 @@ public interface StsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ADORNMENT__CASE_SENSITIVE = TERMINAL__CASE_SENSITIVE;
+
+	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADORNMENT__SURROUNDING_SPACES = TERMINAL__SURROUNDING_SPACES;
 
 	/**
 	 * The number of structural features of the '<em>Adornment</em>' class.
@@ -695,13 +713,22 @@ public interface StsPackage extends EPackage {
 	int VALUE__FEATURES = RULE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE__SURROUNDING_SPACES = RULE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
+	int VALUE_FEATURE_COUNT = RULE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.kermeta.sintaks.sts.impl.PrimitiveValueImpl <em>Primitive Value</em>}' class.
@@ -730,6 +757,15 @@ public interface StsPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRIMITIVE_VALUE__FEATURES = VALUE__FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_VALUE__SURROUNDING_SPACES = VALUE__SURROUNDING_SPACES;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Value</em>' class.
@@ -767,6 +803,15 @@ public interface StsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_REFERENCE__FEATURES = VALUE__FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_REFERENCE__SURROUNDING_SPACES = VALUE__SURROUNDING_SPACES;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' reference.
@@ -815,6 +860,15 @@ public interface StsPackage extends EPackage {
 	int RULE_REF__FEATURES = VALUE__FEATURES;
 
 	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_REF__SURROUNDING_SPACES = VALUE__SURROUNDING_SPACES;
+
+	/**
 	 * The feature id for the '<em><b>Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -861,6 +915,15 @@ public interface StsPackage extends EPackage {
 	int CONSTANT__FEATURES = VALUE__FEATURES;
 
 	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__SURROUNDING_SPACES = VALUE__SURROUNDING_SPACES;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -905,6 +968,15 @@ public interface StsPackage extends EPackage {
 	 * @ordered
 	 */
 	int URI_VALUE__FEATURES = VALUE__FEATURES;
+
+	/**
+	 * The feature id for the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int URI_VALUE__SURROUNDING_SPACES = VALUE__SURROUNDING_SPACES;
 
 	/**
 	 * The number of structural features of the '<em>URI Value</em>' class.
@@ -1258,6 +1330,17 @@ public interface StsPackage extends EPackage {
 	EAttribute getTerminal_CaseSensitive();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Terminal#isSurroundingSpaces <em>Surrounding Spaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Surrounding Spaces</em>'.
+	 * @see org.kermeta.sintaks.sts.Terminal#isSurroundingSpaces()
+	 * @see #getTerminal()
+	 * @generated
+	 */
+	EAttribute getTerminal_SurroundingSpaces();
+
+	/**
 	 * Returns the meta object for class '{@link org.kermeta.sintaks.sts.Adornment <em>Adornment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1319,6 +1402,17 @@ public interface StsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getValue_Features();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.kermeta.sintaks.sts.Value#isSurroundingSpaces <em>Surrounding Spaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Surrounding Spaces</em>'.
+	 * @see org.kermeta.sintaks.sts.Value#isSurroundingSpaces()
+	 * @see #getValue()
+	 * @generated
+	 */
+	EAttribute getValue_SurroundingSpaces();
 
 	/**
 	 * Returns the meta object for class '{@link org.kermeta.sintaks.sts.PrimitiveValue <em>Primitive Value</em>}'.
@@ -1704,6 +1798,14 @@ public interface StsPackage extends EPackage {
 		EAttribute TERMINAL__CASE_SENSITIVE = eINSTANCE.getTerminal_CaseSensitive();
 
 		/**
+		 * The meta object literal for the '<em><b>Surrounding Spaces</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TERMINAL__SURROUNDING_SPACES = eINSTANCE.getTerminal_SurroundingSpaces();
+
+		/**
 		 * The meta object literal for the '{@link org.kermeta.sintaks.sts.impl.AdornmentImpl <em>Adornment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1756,6 +1858,14 @@ public interface StsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VALUE__FEATURES = eINSTANCE.getValue_Features();
+
+		/**
+		 * The meta object literal for the '<em><b>Surrounding Spaces</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE__SURROUNDING_SPACES = eINSTANCE.getValue_SurroundingSpaces();
 
 		/**
 		 * The meta object literal for the '{@link org.kermeta.sintaks.sts.impl.PrimitiveValueImpl <em>Primitive Value</em>}' class.
