@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Terminal.java,v 1.2 2007-11-16 14:22:32 dvojtise Exp $
+ * $Id: Terminal.java,v 1.3 2008-02-04 09:24:09 hassen Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -18,6 +18,7 @@ package org.kermeta.sintaks.sts;
  *   <li>{@link org.kermeta.sintaks.sts.Terminal#getTerminal <em>Terminal</em>}</li>
  *   <li>{@link org.kermeta.sintaks.sts.Terminal#isLexicalSeparator <em>Lexical Separator</em>}</li>
  *   <li>{@link org.kermeta.sintaks.sts.Terminal#isCaseSensitive <em>Case Sensitive</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.Terminal#isSurroundingSpaces <em>Surrounding Spaces</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,5 +106,33 @@ public interface Terminal extends Rule {
 	 * @generated
 	 */
 	void setCaseSensitive(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Surrounding Spaces</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Surrounding Spaces</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Surrounding Spaces</em>' attribute.
+	 * @see #setSurroundingSpaces(boolean)
+	 * @see org.kermeta.sintaks.sts.StsPackage#getTerminal_SurroundingSpaces()
+	 * @model default="true"
+	 * @generated
+	 */
+	boolean isSurroundingSpaces();
+
+	/**
+	 * Sets the value of the '{@link org.kermeta.sintaks.sts.Terminal#isSurroundingSpaces <em>Surrounding Spaces</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Surrounding Spaces</em>' attribute.
+	 * @see #isSurroundingSpaces()
+	 * @generated
+	 */
+	void setSurroundingSpaces(boolean value);
+
 
 } // Terminal
