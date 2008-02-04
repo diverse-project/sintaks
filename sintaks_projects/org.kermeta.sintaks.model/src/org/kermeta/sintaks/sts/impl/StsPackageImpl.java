@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsPackageImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
+ * $Id: StsPackageImpl.java,v 1.4 2008-02-04 09:41:25 hassen Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -536,6 +536,15 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTerminal_SurroundingSpaces() {
+		return (EAttribute)terminalEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAdornment() {
 		return adornmentEClass;
 	}
@@ -583,6 +592,15 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 	 */
 	public EReference getValue_Features() {
 		return (EReference)valueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValue_SurroundingSpaces() {
+		return (EAttribute)valueEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -727,6 +745,7 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 		createEAttribute(terminalEClass, TERMINAL__TERMINAL);
 		createEAttribute(terminalEClass, TERMINAL__LEXICAL_SEPARATOR);
 		createEAttribute(terminalEClass, TERMINAL__CASE_SENSITIVE);
+		createEAttribute(terminalEClass, TERMINAL__SURROUNDING_SPACES);
 
 		adornmentEClass = createEClass(ADORNMENT);
 
@@ -736,6 +755,7 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 
 		valueEClass = createEClass(VALUE);
 		createEReference(valueEClass, VALUE__FEATURES);
+		createEAttribute(valueEClass, VALUE__SURROUNDING_SPACES);
 
 		primitiveValueEClass = createEClass(PRIMITIVE_VALUE);
 
@@ -839,6 +859,7 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 		initEAttribute(getTerminal_Terminal(), ecorePackage.getEString(), "terminal", null, 1, 1, Terminal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTerminal_LexicalSeparator(), ecorePackage.getEBoolean(), "lexicalSeparator", "false", 0, 1, Terminal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTerminal_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 0, 1, Terminal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTerminal_SurroundingSpaces(), ecorePackage.getEBoolean(), "surroundingSpaces", "true", 0, 1, Terminal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(adornmentEClass, Adornment.class, "Adornment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -848,6 +869,7 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 
 		initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getValue_Features(), ecorePackage.getEStructuralFeature(), null, "features", null, 0, -1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValue_SurroundingSpaces(), ecorePackage.getEBoolean(), "surroundingSpaces", "true", 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(primitiveValueEClass, PrimitiveValue.class, "PrimitiveValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
