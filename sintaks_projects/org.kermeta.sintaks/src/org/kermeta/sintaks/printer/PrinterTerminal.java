@@ -21,9 +21,9 @@ public class PrinterTerminal implements IPrinter {
 	}
 
     public void print (PrintWriter output) throws PrinterSemanticException {
-        output.print(IPrinter.separator);
+        if (! terminal.isLexicalSeparator() && terminal.isSurroundingSpaces()) output.print(IPrinter.separator);
         output.print(terminal.getTerminal());
-        output.print(IPrinter.separator);
+        if (! terminal.isLexicalSeparator() && terminal.isSurroundingSpaces()) output.print(IPrinter.separator);
     }
     
 	private Terminal terminal;

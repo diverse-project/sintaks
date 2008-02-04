@@ -37,7 +37,7 @@ public class PrinterURIValue implements IPrinter {
 
         String text = getURIStringFromEObject((EObject) object);
         if (text != null && text.length()!=0) {
-        	output.print(IPrinter.separator);
+        	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         	if (text.indexOf(' ') != -1) {
         		output.print('"');
         		output.print(text);
@@ -45,7 +45,7 @@ public class PrinterURIValue implements IPrinter {
         	} else {
         		output.print(text);
         	}
-    		output.print(IPrinter.separator);
+        	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         }
 	}
 	
