@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TerminalItemProvider.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
+ * $Id: TerminalItemProvider.java,v 1.3 2008-02-04 08:23:27 hassen Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -66,6 +66,7 @@ public class TerminalItemProvider
 
 			addTerminalPropertyDescriptor(object);
 			addLexicalSeparatorPropertyDescriptor(object);
+			addSurroundingSpacesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -106,6 +107,28 @@ public class TerminalItemProvider
 				 getString("_UI_Terminal_lexicalSeparator_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Terminal_lexicalSeparator_feature", "_UI_Terminal_type"),
 				 StsPackage.Literals.TERMINAL__LEXICAL_SEPARATOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Surrounding Spaces feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSurroundingSpacesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Terminal_surroundingSpaces_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Terminal_surroundingSpaces_feature", "_UI_Terminal_type"),
+				 StsPackage.Literals.TERMINAL__SURROUNDING_SPACES,
 				 true,
 				 false,
 				 false,
@@ -162,6 +185,7 @@ public class TerminalItemProvider
 		switch (notification.getFeatureID(Terminal.class)) {
 			case StsPackage.TERMINAL__TERMINAL:
 			case StsPackage.TERMINAL__LEXICAL_SEPARATOR:
+			case StsPackage.TERMINAL__SURROUNDING_SPACES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

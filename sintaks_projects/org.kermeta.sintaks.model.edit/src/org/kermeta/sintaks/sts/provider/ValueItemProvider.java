@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueItemProvider.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
+ * $Id: ValueItemProvider.java,v 1.3 2008-02-04 08:23:35 hassen Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.kermeta.sintaks.sts.StsPackage;
@@ -67,6 +68,7 @@ public class ValueItemProvider
 			super.getPropertyDescriptors(object);
 
 			addFeaturesPropertyDescriptor(object);
+			addSurroundingSpacesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,6 +91,28 @@ public class ValueItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Surrounding Spaces feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSurroundingSpacesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Value_surroundingSpaces_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Value_surroundingSpaces_feature", "_UI_Value_type"),
+				 StsPackage.Literals.VALUE__SURROUNDING_SPACES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -120,6 +144,7 @@ public class ValueItemProvider
 
 		switch (notification.getFeatureID(Value.class)) {
 			case StsPackage.VALUE__FEATURES:
+			case StsPackage.VALUE__SURROUNDING_SPACES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
