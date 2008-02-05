@@ -101,6 +101,7 @@ public class PrinterCondition implements IPrinter {
 				if (list.size()==0) return true;
 				return false;
 			}
+			return false;
 		}
 		if ("filled".equals(value)) {
 			if (o == null) return false;
@@ -114,6 +115,7 @@ public class PrinterCondition implements IPrinter {
 				if (list.size()==0) return false;
 				return true;
 			}
+			return true;
 		}
 		if (value.length() > 1 && value.charAt(0) == '=') {
 			if (o == null) return false;
