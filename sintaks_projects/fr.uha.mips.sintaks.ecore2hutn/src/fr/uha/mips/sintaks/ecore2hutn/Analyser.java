@@ -5,6 +5,7 @@
  * Copyright: MIPS / Universite de Haute Alsace
  * ----------------------------------------------------------------------------
  * Creation date: Dec 24, 2007
+ * Major update : Feb  5, 2008
  * Authors: 
  * 			Michel Hassenforder
  */
@@ -17,6 +18,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -26,6 +29,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.kermeta.sintaks.sts.Alternative;
 import org.kermeta.sintaks.sts.CustomCond;
 import org.kermeta.sintaks.sts.Iteration;
@@ -35,15 +41,18 @@ import org.kermeta.sintaks.sts.Root;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.RuleRef;
 import org.kermeta.sintaks.sts.Sequence;
+import org.kermeta.sintaks.sts.StsFactory;
 import org.kermeta.sintaks.sts.Template;
+import org.kermeta.sintaks.sts.Terminal;
+import org.kermeta.sintaks.sts.Value;
 
 public class Analyser {
 
-	private SintaksFactory factory;
+	private Root pattern;
 	private Root currentModel;
 	private EPackage rootPackage;
 	private int uniqId;
-	private String separatorName;
+	private String prefix;
 	private ModelObserver observer;
 	private List<Todo> todoList;
 	private boolean allowAdjectives;
@@ -54,7 +63,11 @@ public class Analyser {
 		this.startClassName = startClassName;
 		this.allowAdjectives = allowAdjectives;
 		this.uniqId=0;
-		this.separatorName="separator";
+		this.prefix="separator";
+
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource inputResource = resSet.getResource(URI.createPlatformPluginURI("/fr.uha.mips.sintaks.ecore2hutn/Templates.sts", false), true);
+		pattern = (Root) inputResource.getContents().get(0);
 	}
 
     /**
@@ -66,10 +79,9 @@ public class Analyser {
      */
 	public Root analyses(EObject inputRoot) {
 		if ( ! (inputRoot instanceof EPackage)) return null;
-		factory = new SintaksFactory ();
 		rootPackage = (EPackage) inputRoot;
 		todoList = new ArrayList<Todo> (5);
-		currentModel = factory.createRoot();
+		currentModel = StsFactory.eINSTANCE.createRoot();
 		observer = new ModelObserver ();
     	observer.setTarget(currentModel);
     	currentModel.eAdapters().add(observer);
@@ -171,25 +183,9 @@ public class Analyser {
      */
 	private String createUniqName () {
 		StringBuffer tmp = new StringBuffer ();
-		tmp.append(separatorName);
+		tmp.append(prefix);
 		tmp.append(++uniqId);
 		return tmp.toString();
-	}
-
-    /**
-     * Internal method to create a RuleRef to a fragment identified by its id
-     * Due to the fact that the target fragment could not be created yet, the
-     * attachment is delayed in a todoList. Usually, an observer of the model
-     * try to attached all RuleRef as soon as the target is append in the fragment List
-     * 
-     * @param feature EStructuralFeature
-     * @param id String
-     * @return Rule
-     */
-	private Rule createRuleRef (EStructuralFeature feature, String id) {
-		RuleRef ruleRef = factory.createRuleRef (feature);
-		todoList.add (new Todo (ruleRef, id));
-		return ruleRef;
 	}
 
     /**
@@ -207,197 +203,100 @@ public class Analyser {
 		return null;
 	}
 
-    /**
-     * InternalMethod used to create the sintaks pattern associated to an attribute used as an adjective 
-     * it is just a PrimitiveValue
-     * 
-     * @param attribute EAttribute
-     * @return Rule
-     */
-	private Rule adjectiveAttributePattern (EAttribute attribute) {
-		return factory.createPrimitiveValue(attribute);
+	private EObject findPattern (String name) {
+		for (Rule r : pattern.getFragments()) {
+			if (name.equals(r.getId()))
+				return r;
+		}
+		return null;
+	}
+
+	private void patchRules (EObject sequence, EStructuralFeature feature) {
+		TreeIterator<EObject> i = sequence.eAllContents();
+		while (i.hasNext()) {
+			EObject object = i.next();
+			if (object instanceof Rule) {
+				Rule r = (Rule) object;
+				if ("#".equals(r.getId())) r.setId(createUniqName());
+				if ("R".equals(r.getId())) r.setId(createRuleId (feature.getEContainingClass().getName(), feature.getName()));
+				if ("N".equals(r.getId())) {
+					r.setId(null);
+					if (r instanceof Terminal) ((Terminal) r).setTerminal(feature.getName());
+				}
+				if ("F".equals(r.getId())) {
+					r.setId(null);
+					if (r instanceof Iteration) ((Iteration) r).setContainer(feature);
+					if (r instanceof Value) ((Value) r).getFeatures().add(feature);
+					if (r instanceof ObjectReference) ((ObjectReference) r).setIdentifier(findIdFeature (((EReference)feature).getEReferenceType()));
+					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, ((EReference)feature).getEReferenceType().getName()));
+				}
+				if ("I".equals(r.getId())) {
+					r.setId(null);
+					if (r instanceof ObjectReference) ((ObjectReference) r).setIdentifier(findIdFeature (((EReference)feature).getEReferenceType()));
+					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, ((EReference)feature).getEReferenceType().getName()));
+				}
+				if ("S".equals(r.getId())) {
+					r.setId(null);
+					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, createRuleId (feature.getEContainingClass().getName(), feature.getName())));
+				}
+			}
+			if (object instanceof CustomCond) ((CustomCond) object).setFeature(feature);
+		}
+	}
+
+	private void patchRules (EObject sequence, EClass aClass) {
+		TreeIterator<EObject> i = sequence.eAllContents();
+		while (i.hasNext()) {
+			EObject object = i.next();
+			if (object instanceof Rule) {
+				Rule r = (Rule) object;
+				if ("R".equals(r.getId())) r.setId(aClass.getName());
+				if ("N".equals(r.getId())) {
+					r.setId(null);
+					if (r instanceof Terminal) ((Terminal) r).setTerminal(aClass.getName());
+				}
+				if ("F".equals(r.getId())) {
+					r.setId(null);
+					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, aClass.getName()));
+				}
+			}
+			if (object instanceof PolymorphicCond) ((PolymorphicCond) object).setMetaclass(aClass);
+			if (object instanceof Template) ((Template) object).setMetaclass(aClass);
+		}
+	}
+
+	private Rule dispatchRules (EObject rules) {
+		Sequence sequence = (Sequence) rules;
+		for (int j=1; j < sequence.getSubRules().size();++j) {
+			currentModel.getFragments().add(sequence.getSubRules().get(j));
+		}
+		if (sequence.getSubRules().size() >= 1) return sequence.getSubRules().get(0);
+		return null;
 	}
 	
-    /**
-     * InternalMethod used to create the sintaks pattern associated to a shared attribute used as an adjective 
-     * In this case, shared attribute means that the pattern (the whole sequence) will be a fragment
-     * In the sequence there is only a PrimitiveValue
-     * 
-     * @param attribute EAttribute
-     * @return Rule
-     */
-	private Rule fragmentAttributePattern (EAttribute attribute) {
-		Sequence sequence = factory.createSequence();
-		sequence.setId(createRuleId (attribute.getEContainingClass().getName(), attribute.getName()));
-		sequence.getSubRules().add(factory.createPrimitiveValue(attribute));
-		return sequence;
+	private Rule processPattern (String patternName) {
+		if (patternName == null) return null;
+		EObject localPattern = findPattern (patternName);
+		EObject localCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(localPattern);
+		return dispatchRules (localCopy);
 	}
 	
-    /**
-     * InternalMethod used to create the sintaks pattern associated to a single value attribute 
-     * The pattern is a sequence of : attribute.name '=' value ';'
-     * 
-     * @param attribute EAttribute
-     * @return Rule
-     */
-	private Rule singleAttributePattern (EAttribute attribute) {
-		Sequence sequence = factory.createSequence();
-		sequence.setId(createRuleId (attribute.getEContainingClass().getName(), attribute.getName()));
-		sequence.getSubRules().add(factory.createTerminal(attribute.getName()));
-		sequence.getSubRules().add(factory.createSeparator("="));
-
-		sequence.getSubRules().add(factory.createPrimitiveValue(attribute));
-
-		sequence.getSubRules().add(factory.createSeparator(";"));
-		return sequence;
-	}
-
-    /**
-     * InternalMethod used to create the sintaks pattern associated to a multiple value attribute 
-     * The pattern is a sequence of : attribute.name '=' '[' ( value ( ',' value) * )? '];'
-     * 
-     * @param attribute EAttribute
-     * @return Rule
-     */
-	private Rule multipleAttributePattern (EAttribute attribute) {
-		Sequence sequence = factory.createSequence();
-		sequence.setId(createRuleId (attribute.getEContainingClass().getName(), attribute.getName()));
-		sequence.getSubRules().add(factory.createTerminal(attribute.getName()));
-		sequence.getSubRules().add(factory.createSeparator("="));
-
-		sequence.getSubRules().add(factory.createSeparator("["));
-		Rule separator = factory.createSeparator(",");
-		separator.setId(createUniqName());
-		currentModel.getFragments().add(separator);
-
-		Iteration iteration = factory.createIteration (attribute);
-		iteration.setSeparator(separator);
-		iteration.setSubRule(factory.createPrimitiveValue(null));
-		sequence.getSubRules().add(iteration);
-
-		sequence.getSubRules().add(factory.createSeparator("]"));
-		sequence.getSubRules().add(factory.createSeparator(";"));
-		return sequence;
+	private Rule processPattern (String patternName, EStructuralFeature feature) {
+		if (patternName == null) return null;
+		EObject localPattern = findPattern (patternName);
+		EObject localCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(localPattern);
+		patchRules (localCopy, feature);
+		return dispatchRules (localCopy);
 	}
 	
-    /**
-     * InternalMethod used to create the sintaks pattern associated to a single value reference 
-     * The pattern is an alternative composed by two CustomConditions
-     * (1) : reference is filled 
-     * (2) : reference is empty
-     * 
-     * In case of a filled reference, the sequence  is : reference.name '=' key ';'
-     * Here key represents the key attribute of the target object
-     * In case of an empty reference, nothing is done
-     * 
-     * @param reference EReference
-     * @return Rule
-     */
-	private Rule singleReferencePattern (EReference reference) {
-		Alternative alternative = factory.createAlternative ();
-		alternative.setId(createRuleId (reference.getEContainingClass().getName(), reference.getName()));
-		CustomCond filledCondition = factory.createCustomCondition(reference, "filled");
-		alternative.getConditions().add(filledCondition);
-		CustomCond emptyCondition = factory.createCustomCondition(reference, "empty");
-		alternative.getConditions().add(emptyCondition);
-
-		Sequence sequence = factory.createSequence();
-		sequence.getSubRules().add(factory.createTerminal(reference.getName()));
-		sequence.getSubRules().add(factory.createSeparator("="));
-
-		ObjectReference or = factory.createObjectReference (reference);
-		or.setIdentifier(findIdFeature (reference.getEReferenceType()));
-		sequence.getSubRules().add(or);
-
-		sequence.getSubRules().add(factory.createSeparator(";"));
-		filledCondition.setSubRule(sequence);
-		return alternative;
+	private Rule processPattern (String patternName, EClass aClass) {
+		if (patternName == null) return null;
+		EObject localPattern = findPattern (patternName);
+		EObject localCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(localPattern);
+		patchRules (localCopy, aClass);
+		return dispatchRules (localCopy);
 	}
-
-    /**
-     * InternalMethod used to create the sintaks pattern associated to a multi value reference 
-     * The pattern is a sequence of : reference.name '=' '[' ( key ( ',' key) * )? '];'
-     * Here key represents the key attribute of the target object
-     * 
-     * @param reference EReference
-     * @return Rule
-     */
-	private Rule multipleReferencePattern (EReference reference) {
-		Sequence sequence = factory.createSequence();
-		sequence.setId(createRuleId (reference.getEContainingClass().getName(), reference.getName()));
-		sequence.getSubRules().add(factory.createTerminal(reference.getName()));
-		sequence.getSubRules().add(factory.createSeparator("="));
-
-		Rule separator = factory.createSeparator(",");
-		separator.setId(createUniqName());
-		currentModel.getFragments().add(separator);
-
-		ObjectReference or = factory.createObjectReference (reference);
-		or.setIdentifier(findIdFeature (reference.getEReferenceType()));
-
-		Iteration iteration = factory.createIteration (reference);
-		iteration.setSeparator(separator);
-		iteration.setSubRule(or);
-		sequence.getSubRules().add(iteration);
-
-		sequence.getSubRules().add(factory.createSeparator(";"));
-		return sequence;
-	}
-
-    /**
-     * InternalMethod used to create the sintaks pattern associated to a single value containment 
-     * The pattern is a sequence of : reference.name ':' <RuleRef to the fragment>
-     * 
-     * @param reference EReference
-     * @return Rule
-     */
-	private Rule singleContainmentPattern (EReference reference) {
-		Sequence sequence = factory.createSequence();
-		sequence.setId(createRuleId (reference.getEContainingClass().getName(), reference.getName()));
-		sequence.getSubRules().add(factory.createTerminal(reference.getName()));
-		sequence.getSubRules().add(factory.createSeparator(":"));
-
-		sequence.getSubRules().add(createRuleRef (reference, reference.getEReferenceType().getName()));
-		return sequence;
-	}
-
-    /**
-     * InternalMethod used to create the sintaks pattern associated to a multi value containment 
-     * The pattern is an alternative composed by two CustomConditions
-     * (1) : reference is filled 
-     * (2) : reference is empty
-     * 
-     * In case of a filled reference, the sequence  is : reference.name '[' ( <RuleRef to the fragment> ( ',' <RuleRef to the fragment>) * )? 'eoln' ']'
-     * In case of an empty reference, nothing is done
-     * 
-     * @param reference EReference
-     * @return Rule
-     */
-	private Rule multipleContainmentPattern (EReference reference) {
-		Alternative alternative = factory.createAlternative ();
-		alternative.setId(createRuleId (reference.getEContainingClass().getName(), reference.getName()));
-		CustomCond filledCondition = factory.createCustomCondition(reference, "filled");
-		alternative.getConditions().add(filledCondition);
-		CustomCond emptyCondition = factory.createCustomCondition(reference, "empty");
-		alternative.getConditions().add(emptyCondition);
-		
-		Sequence sequence = factory.createSequence();
-		sequence.getSubRules().add(factory.createTerminal(reference.getName()));
-		sequence.getSubRules().add(factory.createSeparator("["));
-		sequence.getSubRules().add(factory.createNewLine());
-
-		Iteration iteration = factory.createIteration (reference);
-		iteration.setSubRule(createRuleRef(null, reference.getEReferenceType().getName()));
-		Sequence subSequence = factory.createSequence();
-		subSequence.getSubRules().add(iteration);
-		subSequence.getSubRules().add(factory.createNewLine());
-		sequence.getSubRules().add(subSequence);
-
-		sequence.getSubRules().add(factory.createSeparator("]"));
-		filledCondition.setSubRule(sequence);
-		return alternative;
-	}
-
+	
     /**
      * InternalMethod used to choose the best way to represent an attribute
      * If the attribute belong to the current class we use the adjectiveAttributePattern
@@ -410,9 +309,9 @@ public class Analyser {
 	private Rule adjectiveAttributeAnalyses (EAttribute attribute, EClass mother) {
 		EClass container = attribute.getEContainingClass();
 		if (container == mother) {
-			return adjectiveAttributePattern(attribute);
+			return processPattern ("adjectiveAttribute", attribute);
 		} else {
-			return createRuleRef (null, createRuleId (container.getName(), attribute.getName()));
+			return processPattern ("sharedFeature", attribute);
 		}
 	}
 	
@@ -428,9 +327,9 @@ public class Analyser {
 	private Rule fragmentAttributeAnalyses (EAttribute attribute, EClass mother) {
 		EClass container = attribute.getEContainingClass();
 		if (container == mother) {
-			return fragmentAttributePattern (attribute);
+			return processPattern ("fragmentAttribute", attribute);
 		} else {
-			return createRuleRef (null, createRuleId (container.getName(), attribute.getName()));
+			return processPattern ("sharedFeature", attribute);
 		}
 	}
 	
@@ -455,26 +354,26 @@ public class Analyser {
 	private Rule contentFeatureAnalyses (EStructuralFeature feature, EClass mother) {
 		EClass container = feature.getEContainingClass();
 		if (container == mother) {
+			String patternName = null;
 			if (feature instanceof EAttribute) {
-				EAttribute attribute = (EAttribute) feature;
-				if (feature.isMany()) return multipleAttributePattern (attribute);
-				else if (! allowAdjectives) return  singleAttributePattern (attribute);
-				else return null;
+				if (feature.isMany()) patternName = "multipleAttribute";
+				else if (! allowAdjectives) patternName="singleAttribute";
 			}
 			if (feature instanceof EReference) {
 				EReference reference = (EReference) feature;
 				if (reference.isContainment()) {
-					if (reference.isMany()) return multipleContainmentPattern (reference);
-					else return singleContainmentPattern (reference);
+					if (reference.isMany()) patternName = "multipleContainment";
+					else patternName = "singleContainment";
 				} else {
-					if (reference.isContainer()) return null;
-					if (reference.isMany()) return multipleReferencePattern (reference);
-					else return singleReferencePattern (reference);
+					if (! reference.isContainer()) {
+						if (reference.isMany()) patternName = "multipleReference";
+						else patternName = "singleReference";
+					}
 				}
 			}
-			return null;
+			return processPattern (patternName, feature);
 		} else {
-			return createRuleRef (null, createRuleId (container.getName(), feature.getName()));
+			return processPattern ("sharedFeature", feature);
 		}
 	}
 	
@@ -539,42 +438,56 @@ public class Analyser {
      * @return List<EAttribute>
      */
 	private Rule createConcreteClass (EClass aClass) {
-		Template template = factory.createTemplate(aClass);
-		Sequence sequence = factory.createSequence();
-		template.setRule(sequence);
-		sequence.getSubRules().add(factory.createTerminal (aClass.getName()));
+		Template template = (Template) processPattern ("concretClass", aClass);
+		Sequence sequence = (Sequence) template.getRule();
+		Rule beginClassRule = processPattern ("beginClass", aClass);
+		if (beginClassRule != null) sequence.getSubRules().add(beginClassRule);
 		EStructuralFeature featureId = findIdFeature (aClass);
-		if (featureId != null)
-			sequence.getSubRules().add(factory.createPrimitiveValue(featureId));
+		if (featureId != null) {
+			Rule rule = processPattern ("classID", featureId);
+			if (rule != null) sequence.getSubRules().add(rule);
+		}
 		if (allowAdjectives) {
 			List<EAttribute> adjectives = extractAdjectives (aClass);
 			if ( ! adjectives.isEmpty()) {
-				sequence.getSubRules().add(factory.createSeparator ("("));
+				Rule beginRule = processPattern ("beginAdjectives");
+				if (beginRule != null) sequence.getSubRules().add(beginRule);
+				Rule beforeRule = processPattern ("beforeAdjective");
+				Rule afterRule = processPattern ("afterAdjective");
 				for (EAttribute attribute : adjectives) {
 					Rule rule = adjectiveAttributeAnalyses (attribute, aClass);
 					if (rule != null) {
+						if (beforeRule != null) sequence.getSubRules().add(beforeRule);
 						sequence.getSubRules().add(rule);
+						if (afterRule != null) sequence.getSubRules().add(afterRule);
 					}
 				}
-				sequence.getSubRules().add(factory.createSeparator (")"));
+				Rule endRule = processPattern ("endAdjectives");
+				if (endRule != null) sequence.getSubRules().add(endRule);
 			}
 		}
 		List<EStructuralFeature> content = extractContent (aClass);
 		if (! content.isEmpty()) {
-			sequence.getSubRules().add(factory.createSeparator ("{"));
-			sequence.getSubRules().add(factory.createNewLine());
+			Rule beginRule = processPattern ("beginContent");
+			if (beginRule != null) sequence.getSubRules().add(beginRule);
+			Rule beforeRule = processPattern ("beforeContent");
+			Rule afterRule = processPattern ("afterContent");
 			for (EStructuralFeature feature : content) { 
 				Rule rule = contentFeatureAnalyses (feature, aClass);
 				if (rule != null) {
+					if (beforeRule != null) sequence.getSubRules().add(beforeRule);
 					sequence.getSubRules().add(rule);
-					sequence.getSubRules().add(factory.createNewLine());
+					if (afterRule != null) sequence.getSubRules().add(afterRule);
 				}
 			}
-			sequence.getSubRules().add(factory.createSeparator ("}"));
+			Rule endRule = processPattern ("endContent");
+			if (endRule != null) sequence.getSubRules().add(endRule);
 		} else {
-			sequence.getSubRules().add(factory.createSeparator (";"));
-			sequence.getSubRules().add(factory.createNewLine());
+			Rule rule = processPattern ("emptyContent");
+			if (rule != null) sequence.getSubRules().add(rule);
 		}
+		Rule endClassRule = processPattern ("endClass", aClass);
+		if (endClassRule != null) sequence.getSubRules().add(endClassRule);
 		return template;
 	}
 
@@ -601,15 +514,11 @@ public class Analyser {
 			Rule fragment = contentFeatureAnalyses (feature, aClass);
 			if (fragment != null) currentModel.getFragments().add (fragment);
 		}
-		Alternative alternative = factory.createAlternative ();
-		alternative.setId(aClass.getName());
+		Alternative alternative = (Alternative) processPattern ("abstractClass", aClass);
 		List<EClass> concreteClasses = getDescendantConcreteClasses (rootPackage, aClass);
 		for (EClass concreteClass : concreteClasses) {
-			PolymorphicCond condition = factory.createPolymorphicCondition (concreteClass);
-			RuleRef ruleRef = factory.createRuleRef (null);
-			todoList.add (new Todo (ruleRef, concreteClass.getName()));
-			condition.setSubRule(ruleRef);
-			alternative.getConditions().add(condition);
+			Rule rule = processPattern ("inheritance", concreteClass);
+			if (rule != null) alternative.getConditions().add(((Alternative) rule).getConditions().get(0));
 		}
 		return alternative;
 	}
