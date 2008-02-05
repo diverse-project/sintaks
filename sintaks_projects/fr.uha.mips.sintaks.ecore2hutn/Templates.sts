@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sts="http://www.kermeta.org/Sts">
+  <fragments xsi:type="sts:Sequence" id="sharedFeature">
+    <subRules xsi:type="sts:RuleRef" id="S"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="adjectiveAttribute">
+    <subRules xsi:type="sts:PrimitiveValue" id="F"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="fragmentAttribute">
+    <subRules xsi:type="sts:Sequence" id="R">
+      <subRules xsi:type="sts:PrimitiveValue" id="F"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="singleAttribute">
+    <subRules xsi:type="sts:Sequence" id="R">
+      <subRules xsi:type="sts:Terminal" id="N"/>
+      <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:PrimitiveValue" id="F"/>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="multipleAttribute">
+    <subRules xsi:type="sts:Sequence" id="R">
+      <subRules xsi:type="sts:Terminal" id="N"/>
+      <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Terminal" terminal="[" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Iteration" id="F" separator="//@fragments.4/@subRules.1">
+        <subRule xsi:type="sts:PrimitiveValue" id=""/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="]" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+    </subRules>
+    <subRules xsi:type="sts:Terminal" id="#" terminal="," lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="singleReference">
+    <subRules xsi:type="sts:Alternative" id="R">
+      <conditions xsi:type="sts:CustomCond" value="filled">
+        <subRule xsi:type="sts:Sequence" id="">
+          <subRules xsi:type="sts:Terminal" id="N"/>
+          <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+          <subRules xsi:type="sts:ObjectReference" id="F"/>
+          <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+        </subRule>
+      </conditions>
+      <conditions xsi:type="sts:CustomCond" value="empty"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="multipleReference">
+    <subRules xsi:type="sts:Sequence" id="R">
+      <subRules xsi:type="sts:Terminal" id="N"/>
+      <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Iteration" id="F" separator="//@fragments.6/@subRules.1">
+        <subRule xsi:type="sts:ObjectReference" id="I"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+    </subRules>
+    <subRules xsi:type="sts:Terminal" id="#" terminal="," lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="singleContainment">
+    <subRules xsi:type="sts:Sequence" id="R">
+      <subRules xsi:type="sts:Terminal" id="N" terminal=""/>
+      <subRules xsi:type="sts:Terminal" terminal=":" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:RuleRef" id="F"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="multipleContainment">
+    <subRules xsi:type="sts:Alternative" id="R">
+      <conditions xsi:type="sts:CustomCond" value="filled">
+        <subRule xsi:type="sts:Sequence" id="">
+          <subRules xsi:type="sts:Terminal" id="N"/>
+          <subRules xsi:type="sts:Terminal" terminal="[" lexicalSeparator="true"/>
+          <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+          <subRules xsi:type="sts:Iteration" id="F">
+            <subRule xsi:type="sts:RuleRef" id="I"/>
+          </subRules>
+          <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+          <subRules xsi:type="sts:Terminal" terminal="]" lexicalSeparator="true"/>
+        </subRule>
+      </conditions>
+      <conditions xsi:type="sts:CustomCond" value="empty"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="classID">
+    <subRules xsi:type="sts:PrimitiveValue" id="F"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="beginAdjectives">
+    <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="endAdjectives">
+    <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="beginContent">
+    <subRules xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="{" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="endContent">
+    <subRules xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="emptyContent">
+    <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="beforeContent"/>
+  <fragments xsi:type="sts:Sequence" id="afterContent">
+    <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="beforeAdjective"/>
+  <fragments xsi:type="sts:Sequence" id="afterAdjective"/>
+  <fragments xsi:type="sts:Sequence" id="beginClass">
+    <subRules xsi:type="sts:Terminal" id="N"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="endClass"/>
+  <fragments xsi:type="sts:Sequence" id="concretClass">
+    <subRules xsi:type="sts:Template" id="R">
+      <rule xsi:type="sts:Sequence"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="abstractClass">
+    <subRules xsi:type="sts:Alternative" id="R"/>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="inheritance">
+    <subRules xsi:type="sts:Alternative" id="">
+      <conditions xsi:type="sts:PolymorphicCond" value="equals">
+        <subRule xsi:type="sts:RuleRef" id="F"/>
+      </conditions>
+    </subRules>
+  </fragments>
+</sts:Root>
