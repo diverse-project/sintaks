@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RootItemProvider.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
+ * $Id: RootItemProvider.java,v 1.3 2008-04-15 14:23:46 hassen Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -66,6 +67,11 @@ public class RootItemProvider
 			super.getPropertyDescriptors(object);
 
 			addStartPropertyDescriptor(object);
+			addStringDelimliterPropertyDescriptor(object);
+			addEscapeCharacterPropertyDescriptor(object);
+			addEolCommentPropertyDescriptor(object);
+			addBlockCommentStartPropertyDescriptor(object);
+			addBlockCommentEndPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -88,6 +94,116 @@ public class RootItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the String Delimliter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStringDelimliterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Root_stringDelimliter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Root_stringDelimliter_feature", "_UI_Root_type"),
+				 StsPackage.Literals.ROOT__STRING_DELIMLITER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.TEXT_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Escape Character feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEscapeCharacterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Root_escapeCharacter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Root_escapeCharacter_feature", "_UI_Root_type"),
+				 StsPackage.Literals.ROOT__ESCAPE_CHARACTER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.TEXT_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Eol Comment feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEolCommentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Root_eolComment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Root_eolComment_feature", "_UI_Root_type"),
+				 StsPackage.Literals.ROOT__EOL_COMMENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Block Comment Start feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBlockCommentStartPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Root_blockCommentStart_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Root_blockCommentStart_feature", "_UI_Root_type"),
+				 StsPackage.Literals.ROOT__BLOCK_COMMENT_START,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Block Comment End feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBlockCommentEndPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Root_blockCommentEnd_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Root_blockCommentEnd_feature", "_UI_Root_type"),
+				 StsPackage.Literals.ROOT__BLOCK_COMMENT_END,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -141,7 +257,8 @@ public class RootItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Root_type");
+		Root root = (Root)object;
+		return getString("_UI_Root_type") + " " + root.getStringDelimliter();
 	}
 
 	/**
@@ -156,7 +273,11 @@ public class RootItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Root.class)) {
-			case StsPackage.ROOT__START:
+			case StsPackage.ROOT__STRING_DELIMLITER:
+			case StsPackage.ROOT__ESCAPE_CHARACTER:
+			case StsPackage.ROOT__EOL_COMMENT:
+			case StsPackage.ROOT__BLOCK_COMMENT_START:
+			case StsPackage.ROOT__BLOCK_COMMENT_END:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case StsPackage.ROOT__FRAGMENTS:
