@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RootImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
+ * $Id: RootImpl.java,v 1.4 2008-04-15 14:22:07 hassen Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -154,7 +154,7 @@ public class RootImpl extends EObjectImpl implements Root {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BLOCK_COMMENT_END_EDEFAULT = "\\/*";
+	protected static final String BLOCK_COMMENT_END_EDEFAULT = "*\\/";
 
 	/**
 	 * The cached value of the '{@link #getBlockCommentEnd() <em>Block Comment End</em>}' attribute.

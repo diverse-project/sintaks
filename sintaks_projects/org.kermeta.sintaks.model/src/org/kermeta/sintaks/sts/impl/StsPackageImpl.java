@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsPackageImpl.java,v 1.4 2008-02-04 09:41:25 hassen Exp $
+ * $Id: StsPackageImpl.java,v 1.5 2008-04-15 14:22:07 hassen Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -824,7 +824,7 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 		initEAttribute(getRoot_EscapeCharacter(), ecorePackage.getEChar(), "escapeCharacter", "\\", 0, 1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRoot_EolComment(), ecorePackage.getEString(), "eolComment", "--", 0, 1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRoot_BlockCommentStart(), ecorePackage.getEString(), "blockCommentStart", "\\/*", 0, 1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRoot_BlockCommentEnd(), ecorePackage.getEString(), "blockCommentEnd", "\\/*", 0, 1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRoot_BlockCommentEnd(), ecorePackage.getEString(), "blockCommentEnd", "*\\/", 0, 1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ruleEClass, Rule.class, "Rule", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRule_Id(), ecorePackage.getEString(), "id", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

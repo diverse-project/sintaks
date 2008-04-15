@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Root.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
+ * $Id: Root.java,v 1.4 2008-04-15 14:22:07 hassen Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -185,7 +185,7 @@ public interface Root extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Block Comment End</b></em>' attribute.
-	 * The default value is <code>"\\/*"</code>.
+	 * The default value is <code>"*\\/"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Block Comment End</em>' attribute isn't clear,
@@ -195,7 +195,7 @@ public interface Root extends EObject {
 	 * @return the value of the '<em>Block Comment End</em>' attribute.
 	 * @see #setBlockCommentEnd(String)
 	 * @see org.kermeta.sintaks.sts.StsPackage#getRoot_BlockCommentEnd()
-	 * @model default="\\/*"
+	 * @model default="*\\/"
 	 * @generated
 	 */
 	String getBlockCommentEnd();

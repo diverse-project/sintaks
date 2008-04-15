@@ -16,7 +16,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="blockCommentStart" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="\/*"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="blockCommentEnd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="\/*"/>
+        defaultValueLiteral="*\/"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rule" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -59,8 +59,9 @@
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
-	<eStructuralFeatures xsi:type="ecore:EAttribute" name="surroundingSpaces" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-        defaultValueLiteral="true"/>  </eClassifiers>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="surroundingSpaces" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Adornment" eSuperTypes="#//Terminal"/>
   <eClassifiers xsi:type="ecore:EClass" name="Template" eSuperTypes="#//Rule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaclass" lowerBound="1"
@@ -71,7 +72,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Value" abstract="true" eSuperTypes="#//Rule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
-	<eStructuralFeatures xsi:type="ecore:EAttribute" name="surroundingSpaces" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="surroundingSpaces" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveValue" eSuperTypes="#//Value"/>
