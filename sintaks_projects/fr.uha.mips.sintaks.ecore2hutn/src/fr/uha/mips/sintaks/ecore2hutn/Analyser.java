@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -189,7 +190,24 @@ public class Analyser {
 	}
 
     /**
-     * Lookup a class inthe inputModel to locate an Id attribute
+     * Internal method to get the name of an EObject
+     * 
+     * @return String
+     */
+	private String getSubjectName (EObject subject) {
+		String name = "unnamed";
+		if (subject instanceof ENamedElement) {
+			name = ((ENamedElement) subject).getName();
+		}
+		if (subject instanceof EStructuralFeature) {
+			String containerName = ((EStructuralFeature) subject).getEContainingClass().getName();
+			name = createRuleId (containerName, name);
+		}
+		return name;
+	}
+
+    /**
+     * Lookup a class in the inputModel to locate an Id attribute
      * If ecore locate one it is fine else I choose the first attribute if it exists
      * 
      * @param aClass EClass
@@ -203,6 +221,12 @@ public class Analyser {
 		return null;
 	}
 
+    /**
+     * Lookup the template file to locate a pattern by its name
+     * 
+     * @param name String
+     * @return EObject
+     */
 	private EObject findPattern (String name) {
 		for (Rule r : pattern.getFragments()) {
 			if (name.equals(r.getId()))
@@ -211,130 +235,302 @@ public class Analyser {
 		return null;
 	}
 
-	private void patchRules (EObject sequence, EStructuralFeature feature) {
+    /**
+     * Internal class to model an EObject to remove in a container
+     * 
+     */
+	private class ToRemove {
+		private EObject source;
+
+		public ToRemove (EObject source) {
+			this.source = source;
+		}
+
+		public EObject getSource() {
+			return source;
+		}
+
+	}
+
+    /**
+     * Internal class to model an EObject to move in a container at a given position
+     * 
+     */
+	class ToMove {
+		private EObject before;
+		private EObject source;
+
+		public ToMove (EObject before, EObject source) {
+			this.before = before;
+			this.source = source;
+		}
+
+		public EObject getSource() {
+			return source;
+		}
+
+		public EObject getBefore() {
+			return before;
+		}
+		
+	}
+
+    /**
+     * Terrific method witch patches an EObject according to some confusing homemade rules
+     * The idea is the following : given a template in a sts file, the id property of the Rules can carry semantics
+	 *
+	 * #  : means the id should be replaced by an uniq id
+	 * R  : means the id should be replace by something related to the concept processed
+	 * N  : means the Terminal value should be replace by the name of the feature or the class
+	 * F  : means the feature referenced by the value or the iteration should be associated to the current feature/class
+	 * I  : same as F but stranger
+	 * S  : special for share RuleRef referencing
+	 * T* : special entry to be processed heavily. It is an alternative with two conditions. We evaluate something and
+	 *      if true we process only the first condition, if false it is the else. Later the processed condition replace
+	 *      the current alternative. This part is here to express design time conditional part of the template
+	 * TI : the condition is about an attribute id of a class
+	 * TA : the condition is about the existence of the adjective section
+	 * TC : the condition is about the existence of the content section
+	 * A  : place holder for class adjectives
+	 * C  : place holder for class content
+	 * 
+	 * I guess it is my greatest idea to confused my template engine ;)
+	 * 
+	 * @param sequence EObject
+     * @param feature EStructuralFeature 
+     * @param aClass EClass 
+     * @return void
+     */
+	
+	private void Parameter_Sharp (Rule rule, EObject subject) {
+		rule.setId(createUniqName());
+	}
+
+	private void Parameter_R (Rule rule, EObject subject) {
+		if (subject == null) return;
+		rule.setId(getSubjectName(subject));
+	}
+
+	private void Parameter_N (Rule rule, EObject subject) {
+		if (subject == null) return;
+		rule.setId(null);
+		if (subject instanceof ENamedElement && rule instanceof Terminal) {
+			ENamedElement anElement = (ENamedElement) subject;
+			((Terminal) rule).setTerminal(anElement.getName());
+		}
+	}
+
+	private void Parameter_F (Rule rule, EObject subject) {
+		if (subject == null) return;
+		rule.setId(null);
+		if (subject instanceof EClass && rule instanceof RuleRef) {
+			EClass aClass = (EClass) subject;
+			todoList.add (new Todo ((RuleRef) rule, aClass.getName()));
+		}
+		if (subject instanceof EStructuralFeature) {
+			EStructuralFeature feature = (EStructuralFeature) subject;
+			if (rule instanceof Iteration) ((Iteration) rule).setContainer(feature);
+			if (rule instanceof Value) ((Value) rule).getFeatures().add(feature);
+			if (rule instanceof ObjectReference) ((ObjectReference) rule).setIdentifier(findIdFeature (((EReference)feature).getEReferenceType()));
+			if (rule instanceof RuleRef) todoList.add (new Todo ((RuleRef) rule, ((EReference)feature).getEReferenceType().getName()));
+		}
+	}
+
+	private void Parameter_I (Rule rule, EObject subject) {
+		if (subject == null) return;
+		rule.setId(null);
+		if (subject instanceof EStructuralFeature) {
+			EStructuralFeature feature = (EStructuralFeature) subject;
+			if (rule instanceof ObjectReference) ((ObjectReference) rule).setIdentifier(findIdFeature (((EReference)feature).getEReferenceType()));
+			if (rule instanceof RuleRef) todoList.add (new Todo ((RuleRef) rule, ((EReference)feature).getEReferenceType().getName()));
+		}
+	}
+
+	private void Parameter_S (Rule rule, EObject subject) {
+		if (subject == null) return;
+		rule.setId(null);
+		if (rule instanceof RuleRef) todoList.add (new Todo ((RuleRef) rule, getSubjectName(subject)));
+	}
+
+	private void patchRules (EObject sequence, EObject subject) {
+/*
+		System.out.print(" Patch :");
+		System.out.print(" Class = "+((aClass  != null) ? aClass.getName() : "null"));
+		System.out.print(" Feature = "+((feature != null) ? feature.getName() : "null"));
+		if (sequence != null) {
+			if (sequence instanceof Rule) {
+				System.out.print(" Sequence = "+((Rule) sequence).getId());
+			} else if (sequence instanceof Condition) {
+				System.out.print(" Sequence = "+((Condition) sequence).getValue());
+			} else {
+				System.out.print(" Sequence = "+sequence.toString());
+			}
+		} else {
+			System.out.print(" Sequence = null");
+		}
+		System.out.println ();
+*/
+		if  (sequence == null) return;
+		List<ToRemove> toRemove = new ArrayList<ToRemove> ();
+		List<ToMove>   toMove = new ArrayList<ToMove> ();
 		TreeIterator<EObject> i = sequence.eAllContents();
 		while (i.hasNext()) {
 			EObject object = i.next();
 			if (object instanceof Rule) {
 				Rule r = (Rule) object;
-				if ("#".equals(r.getId())) r.setId(createUniqName());
-				if ("R".equals(r.getId())) r.setId(createRuleId (feature.getEContainingClass().getName(), feature.getName()));
-				if ("N".equals(r.getId())) {
-					r.setId(null);
-					if (r instanceof Terminal) ((Terminal) r).setTerminal(feature.getName());
+				String id = r.getId(); if (id == null) id = "";
+				if ("#".equals(id)) Parameter_Sharp (r, subject);
+				if ("R".equals(id)) Parameter_R (r, subject);
+				if ("N".equals(id)) Parameter_N (r, subject);
+				if ("F".equals(id)) Parameter_F (r, subject);
+				if ("I".equals(id)) Parameter_I (r, subject);
+				if ("S".equals(id)) Parameter_S (r, subject);
+				if ("ID".equals(id)) {
+					if (subject instanceof EClass) {
+						EStructuralFeature idFeature = findIdFeature (((EClass) subject));
+						Parameter_F (r, idFeature);
+					}
 				}
-				if ("F".equals(r.getId())) {
-					r.setId(null);
-					if (r instanceof Iteration) ((Iteration) r).setContainer(feature);
-					if (r instanceof Value) ((Value) r).getFeatures().add(feature);
-					if (r instanceof ObjectReference) ((ObjectReference) r).setIdentifier(findIdFeature (((EReference)feature).getEReferenceType()));
-					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, ((EReference)feature).getEReferenceType().getName()));
+				if ("A".equals(id)) {
+					if (subject instanceof EClass) {
+						for (EAttribute attribute : extractAdjectives ((EClass) subject)) {
+							toMove.add(new ToMove(object, adjectiveAttributeAnalyses (attribute, (EClass) subject)));
+						}
+					}
+					toRemove.add(new ToRemove(object));
 				}
-				if ("I".equals(r.getId())) {
-					r.setId(null);
-					if (r instanceof ObjectReference) ((ObjectReference) r).setIdentifier(findIdFeature (((EReference)feature).getEReferenceType()));
-					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, ((EReference)feature).getEReferenceType().getName()));
+				if ("C".equals(id)) {
+					if (subject instanceof EClass) {
+						List<EStructuralFeature> content = extractContent ((EClass) subject);
+						switch (content.size()) {
+						case  0 : break;
+						case  1 :
+							toMove.add(new ToMove(object, contentFeatureAnalyses (content.get(0), (EClass) subject, true)));
+							break;
+						default : 
+							for (EStructuralFeature localFeature : content) {
+								toMove.add(new ToMove(object, contentFeatureAnalyses (localFeature, (EClass) subject, false)));
+							}
+							break;
+						}
+					}
+					toRemove.add(new ToRemove(object));
 				}
-				if ("S".equals(r.getId())) {
-					r.setId(null);
-					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, createRuleId (feature.getEContainingClass().getName(), feature.getName())));
+				if (id.startsWith("T") && subject instanceof EClass) {
+					int validCondition = -1;
+					if ("TI".equals(id)) {
+						validCondition = (findIdFeature (((EClass) subject)) != null) ? 0 : 1;
+					}
+					if ("TA".equals(id)) {
+						if (allowAdjectives) {
+							validCondition = (extractAdjectives (((EClass) subject)).isEmpty() == false) ? 0 : 1;
+						}
+					}
+					if ("TC".equals(id)) {
+						validCondition = (extractContent (((EClass) subject)).isEmpty() == false) ? 0 : 1;
+					}
+					if (validCondition != -1) {
+						Rule targetCondition = ((Alternative) object).getConditions().get(validCondition).getSubRule();
+						if (targetCondition != null) {
+//							System.out.print("directive:");
+							patchRules (targetCondition, subject);
+							toMove.add(new ToMove(object, targetCondition));
+						}
+					}
+					toRemove.add(new ToRemove(object));
+					i.prune();
 				}
 			}
-			if (object instanceof CustomCond) ((CustomCond) object).setFeature(feature);
+			if (object instanceof CustomCond && subject instanceof EStructuralFeature) ((CustomCond) object).setFeature((EStructuralFeature) subject);
+			if (object instanceof PolymorphicCond && subject instanceof EClass) ((PolymorphicCond) object).setMetaclass((EClass) subject);
+			if (object instanceof Template && subject instanceof EClass) ((Template) object).setMetaclass((EClass) subject);
+		}
+		for (ToMove crt : toMove) {
+			if (crt == null) continue;
+			if (crt.getBefore() == null) continue;
+			if (crt.getSource() == null) continue;
+			EObject c = crt.getBefore().eContainer();
+			if (c instanceof Sequence) {
+				Sequence container = (Sequence) crt.getBefore().eContainer();
+				int position = container.getSubRules().indexOf(crt.getBefore());
+				container.getSubRules().add(position, (Rule) crt.getSource());
+			}
+		}
+		for (ToRemove crt : toRemove) {
+			if (crt == null) continue;
+			if (crt.getSource() == null) continue;
+			Sequence container = (Sequence) crt.getSource().eContainer();
+			int position = container.getSubRules().indexOf(crt.getSource());
+			container.getSubRules().remove(position);
 		}
 	}
 
-	private void patchRules (EObject sequence, EClass aClass) {
-		TreeIterator<EObject> i = sequence.eAllContents();
-		while (i.hasNext()) {
-			EObject object = i.next();
-			if (object instanceof Rule) {
-				Rule r = (Rule) object;
-				if ("R".equals(r.getId())) r.setId(aClass.getName());
-				if ("N".equals(r.getId())) {
-					r.setId(null);
-					if (r instanceof Terminal) ((Terminal) r).setTerminal(aClass.getName());
-				}
-				if ("F".equals(r.getId())) {
-					r.setId(null);
-					if (r instanceof RuleRef) todoList.add (new Todo ((RuleRef) r, aClass.getName()));
-				}
-			}
-			if (object instanceof PolymorphicCond) ((PolymorphicCond) object).setMetaclass(aClass);
-			if (object instanceof Template) ((Template) object).setMetaclass(aClass);
-		}
-	}
-
+    /**
+     * Dispatch a Sequence of rules :
+     *    the first one is returned to be inserted by the caller
+     *    all others are inserted in as individual fragments
+     * 
+     * @param rules EObject
+     * @return Rule
+     */
 	private Rule dispatchRules (EObject rules) {
 		Sequence sequence = (Sequence) rules;
-		for (int j=1; j < sequence.getSubRules().size();++j) {
-			currentModel.getFragments().add(sequence.getSubRules().get(j));
+		Rule toReturn = null;
+		if (sequence.getSubRules().size() >= 1) {
+			toReturn = sequence.getSubRules().remove(0);
+			currentModel.getFragments().addAll (sequence.getSubRules());
 		}
-		if (sequence.getSubRules().size() >= 1) return sequence.getSubRules().get(0);
-		return null;
+		return toReturn;
 	}
-	
-	private Rule processPattern (String patternName) {
+
+    /**
+     * Main entry to process a pattern
+     * 
+     * @param patternName String
+     * @param subject EObject
+     * @return Rule
+     */
+	private Rule processPattern (String patternName, EObject subject) {
+//		System.out.println ("Pattern : "+patternName);
 		if (patternName == null) return null;
 		EObject localPattern = findPattern (patternName);
 		EObject localCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(localPattern);
+		patchRules (localCopy, subject);
 		return dispatchRules (localCopy);
 	}
-	
-	private Rule processPattern (String patternName, EStructuralFeature feature) {
-		if (patternName == null) return null;
-		EObject localPattern = findPattern (patternName);
-		EObject localCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(localPattern);
-		patchRules (localCopy, feature);
-		return dispatchRules (localCopy);
-	}
-	
-	private Rule processPattern (String patternName, EClass aClass) {
-		if (patternName == null) return null;
-		EObject localPattern = findPattern (patternName);
-		EObject localCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(localPattern);
-		patchRules (localCopy, aClass);
-		return dispatchRules (localCopy);
-	}
-	
+
     /**
      * InternalMethod used to choose the best way to represent an attribute
      * If the attribute belong to the current class we use the adjectiveAttributePattern
      * else we create a RuleRef to the fragment created by the mother class
      * 
      * @param attribute EAttribute
-     * @param mother EClass 
+     * @param current EClass 
      * @return Rule
      */
-	private Rule adjectiveAttributeAnalyses (EAttribute attribute, EClass mother) {
+	private Rule adjectiveAttributeAnalyses (EAttribute attribute, EClass current) {
 		EClass container = attribute.getEContainingClass();
-		if (container == mother) {
-			return processPattern ("adjectiveAttribute", attribute);
+		if (container == current) {
+			if (current.isAbstract()) {
+				if ("EBoolean".equals(attribute.getEType().getName()) || "EBooleanObject".equals(attribute.getEType().getName())) {
+					return processPattern ("booleanFragmentAttribute", attribute);
+				} else {
+					return processPattern ("fragmentAttribute", attribute);
+				}
+			} else {
+				if ("EBoolean".equals(attribute.getEType().getName()) || "EBooleanObject".equals(attribute.getEType().getName())) {
+					return processPattern ("booleanFragmentAttribute", attribute);
+				} else {
+					return processPattern ("adjectiveAttribute", attribute);
+				}
+			}
 		} else {
 			return processPattern ("sharedFeature", attribute);
 		}
 	}
 	
     /**
-     * InternalMethod used to choose the best way to represent an attribute
-     * If the attribute belong to the current class we use the fragmentAttributePattern
-     * else we create a RuleRef to the fragment created by the mother class
-     * 
-     * @param attribute EAttribute
-     * @param mother EClass 
-     * @return Rule
-     */
-	private Rule fragmentAttributeAnalyses (EAttribute attribute, EClass mother) {
-		EClass container = attribute.getEContainingClass();
-		if (container == mother) {
-			return processPattern ("fragmentAttribute", attribute);
-		} else {
-			return processPattern ("sharedFeature", attribute);
-		}
-	}
-	
-    /**
-     * InternalMethod used to choose the best way to represent a structuralFeature
+     * InternalMethod used to choose the best way to represent a structuralFeature 
      * If the feature belong to the current class
      *    if it is a single value attribute and adjectives allowed use the singleAttributePattern
      *    if it is a single value attribute and adjectives not allowed do nothing
@@ -349,29 +545,31 @@ public class Analyser {
      *  
      * @param attribute EAttribute
      * @param mother EClass 
+     * @param alone boolean
      * @return Rule
      */
-	private Rule contentFeatureAnalyses (EStructuralFeature feature, EClass mother) {
+	private Rule contentFeatureAnalyses (EStructuralFeature feature, EClass mother, boolean alone) {
 		EClass container = feature.getEContainingClass();
 		if (container == mother) {
 			String patternName = null;
 			if (feature instanceof EAttribute) {
-				if (feature.isMany()) patternName = "multipleAttribute";
-				else if (! allowAdjectives) patternName="singleAttribute";
+				if (feature.isMany()) patternName = "MultipleAttribute";
+				else if (! allowAdjectives) patternName="SingleAttribute";
 			}
 			if (feature instanceof EReference) {
 				EReference reference = (EReference) feature;
 				if (reference.isContainment()) {
-					if (reference.isMany()) patternName = "multipleContainment";
-					else patternName = "singleContainment";
+					if (reference.isMany()) patternName = "MultipleContainment";
+					else patternName = "SingleContainment";
 				} else {
 					if (! reference.isContainer()) {
-						if (reference.isMany()) patternName = "multipleReference";
-						else patternName = "singleReference";
+						if (reference.isMany()) patternName = "MultipleReference";
+						else patternName = "SingleReference";
 					}
 				}
 			}
-			return processPattern (patternName, feature);
+			if (alone) return processPattern ("short"+patternName, feature);
+			else return processPattern ("long"+patternName, feature);
 		} else {
 			return processPattern ("sharedFeature", feature);
 		}
@@ -429,66 +627,12 @@ public class Analyser {
 
     /**
      * InternalMethod used to create the template associated to a concrete Class
-     * The Template is the following :
-     *    class.name idAttribute '(' <rulesforAdjective_if_allowed> ')' contentRule 'eoln'
-     * contentRule is ';' is there is no content
-     * contentRule is '{' rulesforContent 'eoln' '}' is there is content
      * 
      * @param aClass EClass
-     * @return List<EAttribute>
+     * @return Rule
      */
 	private Rule createConcreteClass (EClass aClass) {
-		Template template = (Template) processPattern ("concretClass", aClass);
-		Sequence sequence = (Sequence) template.getRule();
-		Rule beginClassRule = processPattern ("beginClass", aClass);
-		if (beginClassRule != null) sequence.getSubRules().add(beginClassRule);
-		EStructuralFeature featureId = findIdFeature (aClass);
-		if (featureId != null) {
-			Rule rule = processPattern ("classID", featureId);
-			if (rule != null) sequence.getSubRules().add(rule);
-		}
-		if (allowAdjectives) {
-			List<EAttribute> adjectives = extractAdjectives (aClass);
-			if ( ! adjectives.isEmpty()) {
-				Rule beginRule = processPattern ("beginAdjectives");
-				if (beginRule != null) sequence.getSubRules().add(beginRule);
-				Rule beforeRule = processPattern ("beforeAdjective");
-				Rule afterRule = processPattern ("afterAdjective");
-				for (EAttribute attribute : adjectives) {
-					Rule rule = adjectiveAttributeAnalyses (attribute, aClass);
-					if (rule != null) {
-						if (beforeRule != null) sequence.getSubRules().add(beforeRule);
-						sequence.getSubRules().add(rule);
-						if (afterRule != null) sequence.getSubRules().add(afterRule);
-					}
-				}
-				Rule endRule = processPattern ("endAdjectives");
-				if (endRule != null) sequence.getSubRules().add(endRule);
-			}
-		}
-		List<EStructuralFeature> content = extractContent (aClass);
-		if (! content.isEmpty()) {
-			Rule beginRule = processPattern ("beginContent");
-			if (beginRule != null) sequence.getSubRules().add(beginRule);
-			Rule beforeRule = processPattern ("beforeContent");
-			Rule afterRule = processPattern ("afterContent");
-			for (EStructuralFeature feature : content) { 
-				Rule rule = contentFeatureAnalyses (feature, aClass);
-				if (rule != null) {
-					if (beforeRule != null) sequence.getSubRules().add(beforeRule);
-					sequence.getSubRules().add(rule);
-					if (afterRule != null) sequence.getSubRules().add(afterRule);
-				}
-			}
-			Rule endRule = processPattern ("endContent");
-			if (endRule != null) sequence.getSubRules().add(endRule);
-		} else {
-			Rule rule = processPattern ("emptyContent");
-			if (rule != null) sequence.getSubRules().add(rule);
-		}
-		Rule endClassRule = processPattern ("endClass", aClass);
-		if (endClassRule != null) sequence.getSubRules().add(endClassRule);
-		return template;
+		return processPattern ("concretClass", aClass);
 	}
 
     /**
@@ -500,20 +644,6 @@ public class Analyser {
      * @return Rule
      */
 	private Rule createAbstractClass (EClass aClass) {
-		if (allowAdjectives) {
-			List<EAttribute> adjectives = extractAdjectives (aClass);
-			for (EAttribute attribute : adjectives) {
-				Rule fragment = fragmentAttributeAnalyses (attribute, aClass);
-				if (fragment != null) {
-					if (fragment != null) currentModel.getFragments().add (fragment);
-				}
-			}
-		}
-		List<EStructuralFeature> content = extractContent (aClass);
-		for (EStructuralFeature feature : content) { 
-			Rule fragment = contentFeatureAnalyses (feature, aClass);
-			if (fragment != null) currentModel.getFragments().add (fragment);
-		}
 		Alternative alternative = (Alternative) processPattern ("abstractClass", aClass);
 		List<EClass> concreteClasses = getDescendantConcreteClasses (rootPackage, aClass);
 		for (EClass concreteClass : concreteClasses) {
