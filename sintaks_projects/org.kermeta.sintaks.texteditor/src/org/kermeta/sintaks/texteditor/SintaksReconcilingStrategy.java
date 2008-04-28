@@ -1,6 +1,6 @@
 
 
-/*$Id: SintaksReconcilingStrategy.java,v 1.1 2007-07-06 09:56:12 dtouzet Exp $
+/*$Id: SintaksReconcilingStrategy.java,v 1.2 2008-04-28 11:53:45 ftanguy Exp $
 * Project : fr.irisa.triskell.sintaks.texteditor
 * File : 	SintaksReconcilingStrategy.java
 * License : EPL
@@ -13,6 +13,7 @@
 package org.kermeta.sintaks.texteditor;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.BadLocationException;
@@ -45,10 +46,12 @@ public class SintaksReconcilingStrategy implements IReconcilingStrategy {
 			Master m = new Master();
 			EObject result = m.getModelFromText(text, ruleURI);
 			if ( result == null )
-				KermetaMarkersHelper.createError(textFile, "Error when parsing this file with the sintaks file " + ruleURI.toString());
+				KermetaMarkersHelper.markError(textFile, "Error when parsing this file with the sintaks file " + ruleURI.toString());
 			else
 				KermetaMarkersHelper.clearMarkers(textFile);
 		} catch (BadLocationException e) {
+			e.printStackTrace();
+		} catch (CoreException e) {
 			e.printStackTrace();
 		}
 	}
