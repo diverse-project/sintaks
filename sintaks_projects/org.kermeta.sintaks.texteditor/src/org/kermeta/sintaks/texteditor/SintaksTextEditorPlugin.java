@@ -1,4 +1,4 @@
-/* $Id: SintaksTextEditorPlugin.java,v 1.5 2008-01-24 15:09:01 dvojtise Exp $
+/* $Id: SintaksTextEditorPlugin.java,v 1.6 2008-05-28 14:05:29 dvojtise Exp $
  * Project : org.kermeta.sintaks.texteditor
  * File : SintaksTexteditorPlugin.java
  * License : EPL
@@ -14,7 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
 import org.eclipse.core.internal.registry.ExtensionRegistry;
 import org.eclipse.core.runtime.ContributorFactoryOSGi;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import fr.irisa.triskell.kermeta.util.LogConfigurationHelper;
+import org.kermeta.log4j.util.LogConfigurationHelper;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -45,7 +45,7 @@ public class SintaksTextEditorPlugin extends AbstractUIPlugin {
 	// The shared instance
 	private static SintaksTextEditorPlugin plugin;
 	
-	final static private Logger internalLog = LogConfigurationHelper.getLogger("SintakstextEditor");
+	final static private Log internalLog = LogConfigurationHelper.getLogger("SintakstextEditor");
 	
 	/**
 	 * The constructor
