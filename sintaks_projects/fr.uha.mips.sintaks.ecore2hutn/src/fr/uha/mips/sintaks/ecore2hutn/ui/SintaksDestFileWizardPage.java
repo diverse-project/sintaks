@@ -8,11 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -127,13 +126,13 @@ public class SintaksDestFileWizardPage extends DestFileWizardPage {
 		Resource inputResource = resSet.getResource(URI.createFileURI(workspacePath + '/' + inputFileName), true);
 		EObject inputRoot = inputResource.getContents().get(0);
 		concreteClasses = new ArrayList<String> ();
-		if (inputRoot instanceof EPackage) {
-			for (EClassifier classifier : ((EPackage) inputRoot).getEClassifiers()) { 
-				if (classifier instanceof EClass) {
-					EClass aClass = ((EClass) classifier);
-					if (! aClass.isInterface() && ! aClass.isAbstract()) {
-						concreteClasses.add(aClass.getName());
-					}
+		TreeIterator<EObject> i = inputRoot.eAllContents();
+		while (i.hasNext()) {
+			EObject object = i.next();
+			if (object instanceof EClass) {
+				EClass aClass = ((EClass) object);
+				if (! aClass.isInterface() && ! aClass.isAbstract()) {
+					concreteClasses.add(aClass.getName());
 				}
 			}
 		}
