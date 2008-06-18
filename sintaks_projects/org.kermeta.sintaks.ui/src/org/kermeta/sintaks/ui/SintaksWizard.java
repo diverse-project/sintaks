@@ -49,9 +49,8 @@ public abstract class SintaksWizard extends Wizard {
 			SintaksPlugin.getDefault().debugln("Loading " + inputFile.getName()  );
 			SintaksPlugin.getDefault().debugln("Writing " + outputFile.getName()  );
 			writeUnit(outputFile);
-			outputFile.refreshLocal(1, null);
-			outputFile.getParent().refreshLocal(1, null);
 			SintaksPlugin.getDefault().closeDebugStream ();
+			outputFile.getParent().refreshLocal(1, null);
 		}
 		catch (Throwable e)	{
 				Shell theShell = this.getContainer().getShell();
