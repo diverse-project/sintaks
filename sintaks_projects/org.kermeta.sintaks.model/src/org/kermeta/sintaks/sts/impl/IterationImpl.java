@@ -2,19 +2,22 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IterationImpl.java,v 1.3 2007-11-16 14:22:32 dvojtise Exp $
+ * $Id: IterationImpl.java,v 1.4 2008-07-11 09:31:37 hassen Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.kermeta.sintaks.sts.Iteration;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.StsPackage;
@@ -29,6 +32,7 @@ import org.kermeta.sintaks.sts.StsPackage;
  *   <li>{@link org.kermeta.sintaks.sts.impl.IterationImpl#getSubRule <em>Sub Rule</em>}</li>
  *   <li>{@link org.kermeta.sintaks.sts.impl.IterationImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.kermeta.sintaks.sts.impl.IterationImpl#getSeparator <em>Separator</em>}</li>
+ *   <li>{@link org.kermeta.sintaks.sts.impl.IterationImpl#getContainers <em>Containers</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,16 +50,6 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	protected Rule subRule;
 
 	/**
-	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainer()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature container;
-
-	/**
 	 * The cached value of the '{@link #getSeparator() <em>Separator</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,6 +58,16 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * @ordered
 	 */
 	protected Rule separator;
+
+	/**
+	 * The cached value of the '{@link #getContainers() <em>Containers</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EStructuralFeature> containers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,36 +137,27 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * @generated
 	 */
 	public EStructuralFeature getContainer() {
-		if (container != null && container.eIsProxy()) {
-			InternalEObject oldContainer = (InternalEObject)container;
-			container = (EStructuralFeature)eResolveProxy(oldContainer);
-			if (container != oldContainer) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsPackage.ITERATION__CONTAINER, oldContainer, container));
-			}
-		}
-		return container;
+		EStructuralFeature container = basicGetContainer();
+		return container != null && container.eIsProxy() ? (EStructuralFeature)eResolveProxy((InternalEObject)container) : container;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EStructuralFeature basicGetContainer() {
-		return container;
+		if (getContainers().size() > 0) return getContainers().get(0);
+		else return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setContainer(EStructuralFeature newContainer) {
-		EStructuralFeature oldContainer = container;
-		container = newContainer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StsPackage.ITERATION__CONTAINER, oldContainer, container));
+		getContainers().add(0, newContainer);
 	}
 
 	/**
@@ -208,6 +203,18 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<EStructuralFeature> getContainers() {
+		if (containers == null) {
+			containers = new EObjectResolvingEList<EStructuralFeature>(EStructuralFeature.class, this, StsPackage.ITERATION__CONTAINERS);
+		}
+		return containers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -233,6 +240,8 @@ public class IterationImpl extends RuleImpl implements Iteration {
 			case StsPackage.ITERATION__SEPARATOR:
 				if (resolve) return getSeparator();
 				return basicGetSeparator();
+			case StsPackage.ITERATION__CONTAINERS:
+				return getContainers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -242,6 +251,7 @@ public class IterationImpl extends RuleImpl implements Iteration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -253,6 +263,10 @@ public class IterationImpl extends RuleImpl implements Iteration {
 				return;
 			case StsPackage.ITERATION__SEPARATOR:
 				setSeparator((Rule)newValue);
+				return;
+			case StsPackage.ITERATION__CONTAINERS:
+				getContainers().clear();
+				getContainers().addAll((Collection<? extends EStructuralFeature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -275,6 +289,9 @@ public class IterationImpl extends RuleImpl implements Iteration {
 			case StsPackage.ITERATION__SEPARATOR:
 				setSeparator((Rule)null);
 				return;
+			case StsPackage.ITERATION__CONTAINERS:
+				getContainers().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -290,9 +307,11 @@ public class IterationImpl extends RuleImpl implements Iteration {
 			case StsPackage.ITERATION__SUB_RULE:
 				return subRule != null;
 			case StsPackage.ITERATION__CONTAINER:
-				return container != null;
+				return basicGetContainer() != null;
 			case StsPackage.ITERATION__SEPARATOR:
 				return separator != null;
+			case StsPackage.ITERATION__CONTAINERS:
+				return containers != null && !containers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

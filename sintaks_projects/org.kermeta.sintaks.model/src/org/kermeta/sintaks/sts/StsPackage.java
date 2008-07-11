@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsPackage.java,v 1.3 2008-02-04 09:17:59 hassen Exp $
+ * $Id: StsPackage.java,v 1.4 2008-07-11 09:31:37 hassen Exp $
  */
 package org.kermeta.sintaks.sts;
 
@@ -253,13 +253,22 @@ public interface StsPackage extends EPackage {
 	int ITERATION__SEPARATOR = RULE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Containers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__CONTAINERS = RULE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Iteration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_FEATURE_COUNT = RULE_FEATURE_COUNT + 3;
+	int ITERATION_FEATURE_COUNT = RULE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.kermeta.sintaks.sts.impl.ChoiceImpl <em>Choice</em>}' class.
@@ -1161,6 +1170,17 @@ public interface StsPackage extends EPackage {
 	EReference getIteration_Separator();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.kermeta.sintaks.sts.Iteration#getContainers <em>Containers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Containers</em>'.
+	 * @see org.kermeta.sintaks.sts.Iteration#getContainers()
+	 * @see #getIteration()
+	 * @generated
+	 */
+	EReference getIteration_Containers();
+
+	/**
 	 * Returns the meta object for class '{@link org.kermeta.sintaks.sts.Choice <em>Choice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1654,6 +1674,14 @@ public interface StsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ITERATION__SEPARATOR = eINSTANCE.getIteration_Separator();
+
+		/**
+		 * The meta object literal for the '<em><b>Containers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATION__CONTAINERS = eINSTANCE.getIteration_Containers();
 
 		/**
 		 * The meta object literal for the '{@link org.kermeta.sintaks.sts.impl.ChoiceImpl <em>Choice</em>}' class.

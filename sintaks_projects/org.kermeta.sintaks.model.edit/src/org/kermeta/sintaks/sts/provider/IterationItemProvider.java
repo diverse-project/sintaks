@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IterationItemProvider.java,v 1.2 2007-07-24 12:12:12 cfaucher Exp $
+ * $Id: IterationItemProvider.java,v 1.3 2008-07-11 09:32:13 hassen Exp $
  */
 package org.kermeta.sintaks.sts.provider;
 
@@ -65,32 +65,10 @@ public class IterationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainerPropertyDescriptor(object);
 			addSeparatorPropertyDescriptor(object);
+			addContainersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Container feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContainerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Iteration_container_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Iteration_container_feature", "_UI_Iteration_type"),
-				 StsPackage.Literals.ITERATION__CONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -107,6 +85,28 @@ public class IterationItemProvider
 				 getString("_UI_Iteration_separator_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Iteration_separator_feature", "_UI_Iteration_type"),
 				 StsPackage.Literals.ITERATION__SEPARATOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Containers feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContainersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Iteration_containers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Iteration_containers_feature", "_UI_Iteration_type"),
+				 StsPackage.Literals.ITERATION__CONTAINERS,
 				 true,
 				 false,
 				 true,
@@ -193,10 +193,6 @@ public class IterationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Iteration.class)) {
-			case StsPackage.ITERATION__CONTAINER:
-			case StsPackage.ITERATION__SEPARATOR:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case StsPackage.ITERATION__SUB_RULE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

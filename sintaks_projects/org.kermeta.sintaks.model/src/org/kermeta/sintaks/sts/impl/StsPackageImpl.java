@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsPackageImpl.java,v 1.5 2008-04-15 14:22:07 hassen Exp $
+ * $Id: StsPackageImpl.java,v 1.6 2008-07-11 09:31:37 hassen Exp $
  */
 package org.kermeta.sintaks.sts.impl;
 
@@ -392,6 +392,15 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIteration_Containers() {
+		return (EReference)iterationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getChoice() {
 		return choiceEClass;
 	}
@@ -722,6 +731,7 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 		createEReference(iterationEClass, ITERATION__SUB_RULE);
 		createEReference(iterationEClass, ITERATION__CONTAINER);
 		createEReference(iterationEClass, ITERATION__SEPARATOR);
+		createEReference(iterationEClass, ITERATION__CONTAINERS);
 
 		choiceEClass = createEClass(CHOICE);
 		createEReference(choiceEClass, CHOICE__CONDITIONS);
@@ -834,8 +844,9 @@ public class StsPackageImpl extends EPackageImpl implements StsPackage {
 
 		initEClass(iterationEClass, Iteration.class, "Iteration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIteration_SubRule(), this.getRule(), null, "subRule", null, 1, 1, Iteration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIteration_Container(), ecorePackage.getEStructuralFeature(), null, "container", null, 1, 1, Iteration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIteration_Container(), ecorePackage.getEStructuralFeature(), null, "container", null, 1, 1, Iteration.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getIteration_Separator(), this.getRule(), null, "separator", null, 0, 1, Iteration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIteration_Containers(), ecorePackage.getEStructuralFeature(), null, "containers", null, 1, -1, Iteration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(choiceEClass, Choice.class, "Choice", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChoice_Conditions(), this.getCondition(), null, "conditions", null, 1, -1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

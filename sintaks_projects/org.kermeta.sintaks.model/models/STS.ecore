@@ -29,8 +29,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subRule" lowerBound="1"
         eType="#//Rule" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"
+        volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="separator" eType="#//Rule"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Choice" abstract="true" eSuperTypes="#//Rule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" lowerBound="1"
