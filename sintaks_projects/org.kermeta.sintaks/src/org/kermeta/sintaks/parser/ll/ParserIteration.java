@@ -6,6 +6,7 @@
  */
 package org.kermeta.sintaks.parser.ll;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
@@ -16,6 +17,7 @@ import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Iteration;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class ParserIteration implements IParser {
@@ -27,13 +29,15 @@ public class ParserIteration implements IParser {
 	}
 
 	private void accept () {
-		EStructuralFeature container = iteration.getContainer();
+        EList<EStructuralFeature> containers = iteration.getContainers();
         if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-        	SintaksPlugin.getDefault().debugln ("Iteration : addFeature "+container);
+        	SintaksPlugin.getDefault().debugln ("Iteration : addFeature "+containers);
 
-    	OperationBuilder builder = new OperationBuilder();
-       	builder.buildSetFeature (container);
-    	subject.process (builder.getOperation());
+		OperationExecutor.setFeatures (subject, containers);
+// HM slowly remove OperationBuilder
+//    	OperationBuilder builder = new OperationBuilder();
+//    	builder.buildSetFeatures(containers);
+//    	subject.process (builder.getOperation());
 	}
 
 	private void reject (ILexer lexer, long position) {
@@ -100,8 +104,8 @@ public class ParserIteration implements IParser {
 	}
 
 	public boolean parse(ILexer lexer) throws ParserSemanticException {
-		EStructuralFeature container = iteration.getContainer();
-		if (container == null)
+        EList<EStructuralFeature> containers = iteration.getContainers();
+		if (containers.isEmpty())
             throw new ParserSemanticException ("ParserIteration : null container ");
 
 		boolean ok;

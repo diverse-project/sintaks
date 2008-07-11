@@ -112,6 +112,10 @@ public class ModelSubject {
 		return o;
 	}
 
+	public Object top () {
+		return getStack().get(getStack().size()-1);
+	}
+
 	public int size () {
 		return getStack().size();
 	}

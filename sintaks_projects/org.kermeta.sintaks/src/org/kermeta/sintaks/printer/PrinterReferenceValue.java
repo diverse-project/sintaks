@@ -9,12 +9,14 @@ package org.kermeta.sintaks.printer;
 import java.io.PrintWriter;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
 import org.kermeta.sintaks.sts.ObjectReference;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class PrinterReferenceValue implements IPrinter {
@@ -30,18 +32,28 @@ public class PrinterReferenceValue implements IPrinter {
         if (id == null) 
             throw new PrinterSemanticException ("ReferenceValue : id      "+((EClass) id.eContainer()).getName()+"."+id.getName()+" unacceptable");
 
-    	OperationBuilder builder = new OperationBuilder();
-		if(! value.getFeatures().isEmpty()) {
-			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
-        	builder.buildGetFeature(feature);
+// HM slowly remove OperationBuilder
+//    	OperationBuilder builder = new OperationBuilder();
+        Object target;
+        if(! value.getFeatures().isEmpty()) {
+//			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
+//        	builder.buildGetFeature(feature);
+        	target = OperationExecutor.getFeatures(subject, value.getFeatures());
 		} else {
-	    	builder.buildDupp();
+//	    	builder.buildDupp();
+			target = OperationExecutor.pop(subject);
         }
-    	builder.buildGetFeature(id);
-		builder.buildSetAccumulator();
-       	builder.buildPop();
-		Object object = subject.process (builder.getOperation());
+		OperationExecutor.push(subject, target);
+		Object object = OperationExecutor.getFeature (subject, id);
+//    	builder.buildGetFeature(id);
+//		builder.buildSetAccumulator();
+//       	builder.buildPop();
+//		Object object = subject.process (builder.getOperation());
+		OperationExecutor.pop(subject);
 
+		PrinterRule.printText(output, object.toString(), value.isSurroundingSpaces());
+
+/*
         String text = object.toString();
         if (text != null && text.length()!=0) {
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
@@ -54,6 +66,7 @@ public class PrinterReferenceValue implements IPrinter {
         	}
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         }
+*/
 	}
 	
 	private ObjectReference value;

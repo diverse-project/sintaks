@@ -15,6 +15,7 @@ import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.Template;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
@@ -29,19 +30,21 @@ public class ParserTemplate implements IParser {
 		EClass metaClass = template.getMetaclass();
 		if (metaClass == null)
 			throw new ParserSemanticException ("Template : metaClass (null) unacceptable");
-
-    	OperationBuilder builder1 = new OperationBuilder();
-       	builder1.buildCreateClass(metaClass);
-    	subject.process (builder1.getOperation());
+// HM slowly remove OperationBuilder
+//    	OperationBuilder builder1 = new OperationBuilder();
+//       	builder1.buildCreateClass(metaClass);
+//    	subject.process (builder1.getOperation());
+		OperationExecutor.createClass (subject, metaClass);
 
     	if (template.getRule() == null) return true;
         boolean ok = true;
         IParser parser = ParserRule.findParser(template.getRule(), subject);
         ok = parser.parse(input);
 		if (ok == false) {
-	    	OperationBuilder builder2 = new OperationBuilder();
-	       	builder2.buildPop();
-	    	subject.process (builder2.getOperation());
+//	    	OperationBuilder builder2 = new OperationBuilder();
+//	       	builder2.buildPop();
+//	    	subject.process (builder2.getOperation());
+			OperationExecutor.pop (subject);
 		}
         return ok;
 	}

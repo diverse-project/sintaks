@@ -19,6 +19,7 @@ import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.Sequence;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class ParserSequence implements IParser {
@@ -35,10 +36,13 @@ public class ParserSequence implements IParser {
 		boolean loop = true;
 		boolean ok = true;
 
-    	OperationBuilder builder1 = new OperationBuilder();
-       	builder1.buildMark();
-       	builder1.buildSetAccumulator();
-       	Object mark = subject.process (builder1.getOperation());
+// HM slowly remove OperationBuilder
+//    	OperationBuilder builder1 = new OperationBuilder();
+//       	builder1.buildMark();
+//       	builder1.buildSetAccumulator();
+//       	Object mark = subject.process (builder1.getOperation());
+
+		int mark = OperationExecutor.mark(subject);
 
 		while (loop) {
 			if (i.hasNext()) {
@@ -53,10 +57,11 @@ public class ParserSequence implements IParser {
 			}
 		}
 		if (! ok) {
-	    	OperationBuilder builder2 = new OperationBuilder();
-        	builder2.buildPush(mark);
-	       	builder2.buildGotoMark();
-	    	subject.process (builder2.getOperation());
+//	    	OperationBuilder builder2 = new OperationBuilder();
+//        	builder2.buildPush(mark);
+//	       	builder2.buildGotoMark();
+//	    	subject.process (builder2.getOperation());
+			OperationExecutor.gotoMark(subject, mark);
 		}
 		return ok;
 	}

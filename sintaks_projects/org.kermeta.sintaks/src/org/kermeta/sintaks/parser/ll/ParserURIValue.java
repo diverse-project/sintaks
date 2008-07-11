@@ -21,6 +21,7 @@ import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.URIValue;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
@@ -43,12 +44,16 @@ public class ParserURIValue implements IParser {
         EObject uri = getEObjectFromStringURI (textRead);
         boolean ok;
         if (uri != null) {
-        	OperationBuilder builder = new OperationBuilder();
-        	builder.buildPush(uri);
+// HM slowly remove OperationBuilder
+//        	OperationBuilder builder = new OperationBuilder();
+//        	builder.buildPush(uri);
         	if(! features.isEmpty()) {
-	        	builder.buildSetFeatures(features);
+//	        	builder.buildSetFeatures(features);
+        		OperationExecutor.setFeatures(subject, features, uri);
+	        } else {
+    			OperationExecutor.push(subject, uri);
 	        }
-        	subject.process (builder.getOperation());
+//        	subject.process (builder.getOperation());
         	ok = true;
 	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
 	        	SintaksPlugin.getDefault().debugln ("Accepted URI : "+uri);

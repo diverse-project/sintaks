@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.kermeta.sintaks.sts.PrimitiveValue;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class PrinterPrimitiveValue implements IPrinter {
@@ -25,17 +26,22 @@ public class PrinterPrimitiveValue implements IPrinter {
 	}
 
 	public void print (PrintWriter output) throws PrinterSemanticException {
-
-    	OperationBuilder builder = new OperationBuilder();
+// HM slowly remove OperationBuilder
+//    	OperationBuilder builder = new OperationBuilder();
+		Object object;
 		if(! value.getFeatures().isEmpty()) {
-			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
-        	builder.buildGetFeature(feature);
-        } else {
-        	builder.buildDupp();
+//			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
+//        	builder.buildGetFeature(feature);
+			object = OperationExecutor.getFeatures(subject, value.getFeatures());
+		} else {
+//        	builder.buildDupp();
+			object = OperationExecutor.pop(subject);
         }
-		builder.buildSetAccumulator();
-		Object object = subject.process (builder.getOperation());
+//		builder.buildSetAccumulator();
+//		Object object = subject.process (builder.getOperation());
 
+		PrinterRule.printText(output, object.toString(), value.isSurroundingSpaces());
+/*
 		String text = object.toString();
         if (text != null && text.length()!=0) {
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
@@ -48,7 +54,8 @@ public class PrinterPrimitiveValue implements IPrinter {
         	}
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         }
-    }
+*/
+	}
 	
 	private PrimitiveValue value;
     private ModelSubject subject;

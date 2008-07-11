@@ -16,6 +16,7 @@ import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.PrimitiveValue;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
@@ -36,12 +37,16 @@ public class ParserPrimitiveValue implements IParser {
         
         boolean ok;
         if (textRead != null) {
-        	OperationBuilder builder = new OperationBuilder();
-        	builder.buildPush(textRead);
+// HM slowly remove OperationBuilder
+//        	OperationBuilder builder = new OperationBuilder();
+//        	builder.buildPush(textRead);
         	if(! features.isEmpty()) {
-	        	builder.buildSetFeatures(features);
+//	        	builder.buildSetFeatures(features);
+    			OperationExecutor.setFeatures(subject, features, textRead);
+	        } else {
+	        	OperationExecutor.push(subject, textRead);	        	
 	        }
-        	subject.process (builder.getOperation());
+//        	subject.process (builder.getOperation());
         	ok = true;
 	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
 	        	SintaksPlugin.getDefault().debugln ("Accepted Primitive Value : "+textRead);

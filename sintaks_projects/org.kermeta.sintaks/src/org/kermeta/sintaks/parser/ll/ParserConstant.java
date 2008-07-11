@@ -16,6 +16,7 @@ import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Constant;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
@@ -31,12 +32,16 @@ public class ParserConstant implements IParser {
 		EList<EStructuralFeature> features = value.getFeatures();
         boolean ok;
         if (value.getValue() != null) {
-        	OperationBuilder builder = new OperationBuilder();
-        	builder.buildPush(value.getValue());
+// HM slowly remove OperationBuilder
+//        	OperationBuilder builder = new OperationBuilder();
+//        	builder.buildPush(value.getValue());
         	if(! features.isEmpty()) {
-	        	builder.buildSetFeatures(features);
+    			OperationExecutor.setFeatures(subject, features, value.getValue());
+//	        	builder.buildSetFeatures(features);
+	        } else {
+	        	OperationExecutor.push(subject, value.getValue());	        	
 	        }
-        	subject.process (builder.getOperation());
+//        	subject.process (builder.getOperation());
         	ok = true;
         	if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
 	        	SintaksPlugin.getDefault().debugln ("Accepted Constant : "+value);

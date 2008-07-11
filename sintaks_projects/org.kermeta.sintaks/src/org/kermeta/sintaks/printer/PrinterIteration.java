@@ -14,9 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
+import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Iteration;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class PrinterIteration implements IPrinter {
@@ -28,24 +30,29 @@ public class PrinterIteration implements IPrinter {
 	}
 
 	private void printOne (PrintWriter output, IPrinter rulePrinter, Object object) throws PrinterSemanticException {
-    	OperationBuilder builder1 = new OperationBuilder();
-       	builder1.buildPush(object);
-		subject.process (builder1.getOperation());
+//    	OperationBuilder builder1 = new OperationBuilder();
+//       	builder1.buildPush(object);
+//		subject.process (builder1.getOperation());
+
+		OperationExecutor.push(subject, object);
 
 		rulePrinter.print(output);
 
-		OperationBuilder builder2 = new OperationBuilder();
-       	builder2.buildPop();
-		subject.process (builder2.getOperation());
+		OperationExecutor.pop(subject);
+//		OperationBuilder builder2 = new OperationBuilder();
+//       	builder2.buildPop();
+//		subject.process (builder2.getOperation());
 	}
 
+	@SuppressWarnings("unchecked")
 	private Iterator<EObject> iterator () {
-        EStructuralFeature container = iteration.getContainer();
-        OperationBuilder builder = new OperationBuilder();
-        builder.buildGetFeature(container);
-		builder.buildSetAccumulator();
-		Object object = subject.process (builder.getOperation());
+//        EList<EStructuralFeature> containers = iteration.getContainers();
+//        OperationBuilder builder = new OperationBuilder();
+//        builder.buildGetFeature(containers.get(0));
+//		builder.buildSetAccumulator();
+//		Object object = subject.process (builder.getOperation());
 
+		Object object = OperationExecutor.getFeatures (subject, iteration.getContainers());
         if (object == null) return null;
         if (object instanceof EList) {
 	        EList<EObject> list = (EList<EObject>) object;
@@ -56,8 +63,8 @@ public class PrinterIteration implements IPrinter {
 	}
 
 	private void printWithSeparator (PrintWriter output) throws PrinterSemanticException {
-        EStructuralFeature container = iteration.getContainer();
-        if (container == null)
+        EList<EStructuralFeature> containers = iteration.getContainers();
+        if (containers.isEmpty())
             throw new PrinterSemanticException ("Iteration : null container");
 
 		IPrinter rulePrinter = PrinterRule.findPrinter (iteration.getSubRule(), subject);
@@ -79,8 +86,8 @@ public class PrinterIteration implements IPrinter {
     }
 
     private void printWithoutSeparator (PrintWriter output) throws PrinterSemanticException {
-        EStructuralFeature container = iteration.getContainer();
-        if (container == null)
+        EList<EStructuralFeature> containers = iteration.getContainers();
+        if (containers.isEmpty())
             throw new PrinterSemanticException ("Iteration : null container");
 
         IPrinter rulePrinter = PrinterRule.findPrinter (iteration.getSubRule(), subject);

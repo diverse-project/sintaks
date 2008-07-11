@@ -57,6 +57,20 @@ public class PrinterRule implements IPrinter {
 		return printer;
 	}
 	
+	static void printText (PrintWriter output, String text, boolean surroundingSpaces) {
+        if (text != null && text.length()!=0) {
+        	if (surroundingSpaces) output.print(IPrinter.separator);
+        	if (text.indexOf(' ') != -1) {
+        		output.print('"');
+        		output.print(text);
+        		output.print('"');
+        	} else {
+        		output.print(text);
+        	}
+        	if (surroundingSpaces) output.print(IPrinter.separator);
+        }
+	}
+
 	private Rule rule;
     private ModelSubject subject;
 }

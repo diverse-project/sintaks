@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.URIValue;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
@@ -25,17 +26,23 @@ public class PrinterURIValue implements IPrinter {
 
 	public void print(PrintWriter output) throws PrinterSemanticException {
 
-    	OperationBuilder builder = new OperationBuilder();
+// HM slowly remove OperationBuilder
+//    	OperationBuilder builder = new OperationBuilder();
+		Object object;
 		if(! value.getFeatures().isEmpty()) {
-			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
-        	builder.buildGetFeature(feature);
+//			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
+//        	builder.buildGetFeature(feature);
+			object = OperationExecutor.getFeatures(subject, value.getFeatures());
         } else {
-        	builder.buildDupp();
+//        	builder.buildDupp();
+			object = OperationExecutor.pop(subject);
         }
-		builder.buildSetAccumulator();
-		Object object = subject.process (builder.getOperation());
+//		builder.buildSetAccumulator();
+//		Object object = subject.process (builder.getOperation());
 
         String text = getURIStringFromEObject((EObject) object);
+		PrinterRule.printText(output, text, value.isSurroundingSpaces());
+/*
         if (text != null && text.length()!=0) {
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         	if (text.indexOf(' ') != -1) {
@@ -47,6 +54,7 @@ public class PrinterURIValue implements IPrinter {
         	}
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         }
+*/
 	}
 	
 	

@@ -16,6 +16,7 @@ import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.RuleRef;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
@@ -34,11 +35,13 @@ public class ParserRuleRef implements IParser {
 
 		if(ok) {
 			EList<EStructuralFeature> features = rule.getFeatures();
-        	OperationBuilder builder = new OperationBuilder();
+// HM slowly remove OperationBuilder
+//        	OperationBuilder builder = new OperationBuilder();
         	if(! features.isEmpty()) {
-	        	builder.buildSetFeatures(features);
+//	        	builder.buildSetFeatures(features);
+        		OperationExecutor.setFeatures(subject, features);
 	        }
-        	subject.process (builder.getOperation());
+//        	subject.process (builder.getOperation());
         	ok = true;
             if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
             	SintaksPlugin.getDefault().debugln ("Accepted RuleRef : "+referedRule);

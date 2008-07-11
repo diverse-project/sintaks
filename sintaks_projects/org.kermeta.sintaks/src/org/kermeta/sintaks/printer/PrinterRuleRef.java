@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.RuleRef;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.subject.OperationExecutor;
 import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class PrinterRuleRef implements IPrinter {
@@ -29,16 +30,21 @@ public class PrinterRuleRef implements IPrinter {
 		IPrinter printer = PrinterRule.findPrinter(referedRule, subject);
 		
 		if(! rule.getFeatures().isEmpty()) {
-			EStructuralFeature feature = (EStructuralFeature) rule.getFeatures().get(0);
-	    	OperationBuilder builder1 = new OperationBuilder();
-        	builder1.buildGetFeature(feature);
-    		subject.process (builder1.getOperation());
-
+// HM slowly remove OperationBuilder
+//			EStructuralFeature feature = (EStructuralFeature) rule.getFeatures().get(0);
+//	    	OperationBuilder builder1 = new OperationBuilder();
+//        	builder1.buildGetFeature(feature);
+//    		subject.process (builder1.getOperation());
+			
+			Object object = OperationExecutor.getFeatures (subject, rule.getFeatures());
+			OperationExecutor.push(subject, object);
+			
     		printer.print(output);
     		
-    		OperationBuilder builder2 = new OperationBuilder();
-           	builder2.buildPop();
-    		subject.process (builder2.getOperation());
+			OperationExecutor.pop(subject);
+//    		OperationBuilder builder2 = new OperationBuilder();
+//           	builder2.buildPop();
+//    		subject.process (builder2.getOperation());
         } else {
     		printer.print(output);
         }
