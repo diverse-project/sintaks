@@ -6,6 +6,9 @@ package org.kermeta.sintaks.ui;
 import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -43,22 +46,17 @@ public abstract class SintaksWizard extends Wizard {
 	public boolean performFinish() {
 		
 		SintaksPlugin.getDefault().getOptionManager().setSyntacticModel(outputPage.getSMdlText());
+		IFile outputFile = outputPage.createNewFile();
 		try {
-			IFile outputFile = outputPage.createNewFile();				
-			SintaksPlugin.getDefault().createDebugStream (outputPage.getContainerFullPath());
-			SintaksPlugin.getDefault().debugln("Loading " + inputFile.getName()  );
-			SintaksPlugin.getDefault().debugln("Writing " + outputFile.getName()  );
 			writeUnit(outputFile);
-			SintaksPlugin.getDefault().closeDebugStream ();
-			outputFile.getParent().refreshLocal(1, null);
 		}
 		catch (Throwable e)	{
-				Shell theShell = this.getContainer().getShell();
-	        	MessageDialog.openError(theShell,"Error writing file", "errors: "+ e.getMessage());
-				e.printStackTrace();
-				SintaksUIPlugin.log(e);
+			Shell theShell = this.getContainer().getShell();
+        	MessageDialog.openError(theShell,"Error writing file", "errors: "+ e.getMessage());
+			e.printStackTrace();
+			SintaksUIPlugin.log(e);
 		}
-
+		try { outputFile.getParent().refreshLocal(1, null); } catch (CoreException e) { }
 		return true;
 	}
 
@@ -102,7 +100,15 @@ public abstract class SintaksWizard extends Wizard {
 		addPage(newfilepage);
 	}
 	
-	
+	protected URI getSyntaxModelURI () {
+		URI smURI;
+		String workspacePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+		if(outputPage.getSMdlText().startsWith("platform:/plugin")){
+			smURI = URI.createPlatformPluginURI(outputPage.getSMdlText().replace("platform:/plugin", ""),false);
+		}
+		else smURI = URI.createFileURI(workspacePath + outputPage.getSMdlFile().getFullPath().toString());
+		return smURI;
+	}
 
 	/**
 	 * @param ifile

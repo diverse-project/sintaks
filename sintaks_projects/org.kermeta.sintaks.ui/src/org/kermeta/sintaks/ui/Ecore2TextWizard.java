@@ -1,4 +1,4 @@
-/* $Id: Ecore2TextWizard.java,v 1.3 2007-12-05 17:55:36 dvojtise Exp $
+/* $Id: Ecore2TextWizard.java,v 1.4 2008-07-18 13:33:15 hassen Exp $
  * Project : sintaks.ui
  * File : Ecore2TextWizard.java
  * License : EPL
@@ -43,17 +43,11 @@ public class Ecore2TextWizard extends SintaksWizard {
 	@Override
 	public void writeUnit(IFile targetFile) throws Exception {
 		Master m = new Master();
-		
 		String workspacePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		URI smURI;
-		if(outputPage.getSMdlText().startsWith("platform:/plugin")){
-			smURI = URI.createPlatformPluginURI(outputPage.getSMdlText().replace("platform:/plugin", ""),false);
-		}
-		else smURI = URI.createFileURI(workspacePath + outputPage.getSMdlFile().getFullPath().toString());
 		m.getTextFromModel(
 			URI.createFileURI(workspacePath + inputFile.getFullPath().toString()),
 			URI.createFileURI(workspacePath + targetFile.getFullPath().toString()),
-			smURI
+			getSyntaxModelURI ()
 		);
 	}
 	

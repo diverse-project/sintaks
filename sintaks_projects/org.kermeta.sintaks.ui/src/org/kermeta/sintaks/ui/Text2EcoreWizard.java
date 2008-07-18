@@ -1,4 +1,4 @@
-/*$Id: Text2EcoreWizard.java,v 1.3 2007-12-05 17:55:36 dvojtise Exp $
+/*$Id: Text2EcoreWizard.java,v 1.4 2008-07-18 13:33:15 hassen Exp $
 * Project : org.kermeta.sintaks
 * File : 	Text2EcoreWizard.java
 * License : EPL
@@ -35,24 +35,17 @@ public class Text2EcoreWizard extends SintaksWizard {
 		defaultOutputExtension = "xmi";
 	}
 
-	
 	/* (non-Javadoc)
 	 * @see fr.irisa.triskell.kermeta.tools.wizards.DavidWizard#writeUnit(org.eclipse.core.resources.IFile)
 	 */
 	@Override
 	public void writeUnit(IFile targetFile) throws Exception {
 		Master m = new Master();
-
 		String workspacePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-		URI smURI;
-		if(outputPage.getSMdlText().startsWith("platform:/plugin")){
-			smURI = URI.createPlatformPluginURI(outputPage.getSMdlText().replace("platform:/plugin", ""),false);
-		}
-		else smURI = URI.createFileURI(workspacePath + outputPage.getSMdlFile().getFullPath().toString());
 		m.getModelFromText(
 			URI.createFileURI(workspacePath + inputFile.getFullPath().toString()),
 			URI.createFileURI(workspacePath + targetFile.getFullPath().toString()),
-			smURI
+			getSyntaxModelURI ()
 		);
 	}
 	
