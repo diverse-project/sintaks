@@ -1,0 +1,26 @@
+ state  s1  { 
+ transition  s2  input  h  output  w 
+ transition  s2  input  H  output  W 
+ } 
+ state  s2  { 
+ transition  s3  input  e  output  o 
+ } 
+ state  s3  { 
+ transition  s4  input  l  output  r 
+ } 
+ state  s4  { 
+ transition  s5  input  l  output  l 
+ } 
+ state  s5  { 
+ transition  s6  input  o  output  d 
+ } 
+ state  s6  { 
+ transition  s7  input  !  output  !! 
+ transition  s8  input  ?  output  ?? 
+ } 
+ state  s7  { 
+ } 
+ state  s8  { 
+ } 
+ initial  s1 
+ final  s7  ,  s8 ;

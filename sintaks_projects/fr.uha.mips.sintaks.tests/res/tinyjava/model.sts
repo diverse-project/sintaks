@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://www.kermeta.org/Sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Template" id="package">
+    <metaclass href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJPackage"/>
+    <rule xsi:type="sts:Sequence" id="">
+      <subRules xsi:type="sts:Terminal" terminal="package"/>
+      <subRules xsi:type="sts:PrimitiveValue" id="">
+        <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJPackage/pname"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Iteration">
+        <subRule xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+        <container xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJPackage/classes"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="class">
+    <metaclass href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Once">
+        <conditions xsi:type="sts:CustomCond" value="=true">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="final"/>
+            <subRules xsi:type="sts:Constant" value="true">
+              <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/final"/>
+            </subRules>
+          </subRule>
+          <feature xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/final"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="=true">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="abstract"/>
+            <subRules xsi:type="sts:Constant" value="true">
+              <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/abstract"/>
+            </subRules>
+          </subRule>
+          <feature xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/abstract"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="!= default">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:PrimitiveValue">
+              <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/caccess"/>
+            </subRules>
+          </subRule>
+          <feature xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/caccess"/>
+        </conditions>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="class"/>
+      <subRules xsi:type="sts:PrimitiveValue" id="">
+        <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/cname"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="{" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Iteration">
+        <subRule xsi:type="sts:RuleRef" ref="//@fragments.4"/>
+        <container xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJClass/features"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="data">
+    <metaclass href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJData"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.5"/>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.6"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="method">
+    <metaclass href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJMethod"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.5"/>
+      <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Iteration" separator="//@fragments.8">
+        <subRule xsi:type="sts:RuleRef" ref="//@fragments.7"/>
+        <container xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJMethod/parameters"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:RuleRef" ref="//@fragments.6"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Alternative" id="data or method">
+    <conditions xsi:type="sts:PolymorphicCond">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.3"/>
+      <metaclass href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJMethod"/>
+    </conditions>
+    <conditions xsi:type="sts:PolymorphicCond">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.2"/>
+      <metaclass href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJData"/>
+    </conditions>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="Feature begin">
+    <subRules xsi:type="sts:Alternative">
+      <conditions xsi:type="sts:CustomCond" value="=false">
+        <subRule xsi:type="sts:Sequence">
+          <subRules xsi:type="sts:Terminal" terminal="static"/>
+          <subRules xsi:type="sts:Constant" value="false">
+            <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/member"/>
+          </subRules>
+        </subRule>
+        <feature xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/member"/>
+      </conditions>
+      <conditions xsi:type="sts:CustomCond" value="=true">
+        <feature xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/member"/>
+      </conditions>
+    </subRules>
+    <subRules xsi:type="sts:PrimitiveValue">
+      <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/access"/>
+    </subRules>
+    <subRules xsi:type="sts:PrimitiveValue">
+      <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/ftype"/>
+    </subRules>
+    <subRules xsi:type="sts:PrimitiveValue">
+      <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJFeature/fname"/>
+    </subRules>
+  </fragments>
+  <fragments xsi:type="sts:Sequence" id="Feature end">
+    <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+    <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="data">
+    <metaclass href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJParameter"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJParameter/type"/>
+      </subRules>
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassenforder/tinyjava.ecore#//TJParameter/name"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Terminal" id="Parameter Separator" terminal="," lexicalSeparator="true"/>
+</sts:Root>

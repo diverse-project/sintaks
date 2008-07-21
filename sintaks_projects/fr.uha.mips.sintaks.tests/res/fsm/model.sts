@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://www.kermeta.org/Sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Template" id="FSM">
+    <metaclass href="http://fsm#//FSM"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Iteration" id="">
+        <subRule xsi:type="sts:RuleRef" id="" ref="//@fragments.1"/>
+        <container xsi:type="ecore:EReference" href="http://fsm#//FSM/ownedState"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="initial"/>
+      <subRules xsi:type="sts:ObjectReference">
+        <features xsi:type="ecore:EReference" href="http://fsm#//FSM/initialState"/>
+        <identifier xsi:type="ecore:EAttribute" href="http://fsm#//State/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Terminal" terminal="final"/>
+      <subRules xsi:type="sts:Iteration" separator="//@fragments.3">
+        <subRule xsi:type="sts:ObjectReference">
+          <identifier xsi:type="ecore:EAttribute" href="http://fsm#//State/name"/>
+        </subRule>
+        <container xsi:type="ecore:EReference" href="http://fsm#//FSM/finalState"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="State">
+    <metaclass href="http://fsm#//State"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" id="" terminal="state"/>
+      <subRules xsi:type="sts:PrimitiveValue" id="">
+        <features xsi:type="ecore:EAttribute" href="http://fsm#//State/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="{"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Iteration">
+        <subRule xsi:type="sts:RuleRef" ref="//@fragments.2"/>
+        <container xsi:type="ecore:EReference" href="http://fsm#//State/outgoingTransition"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="}"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Transition">
+    <metaclass href="http://fsm#//Transition"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" id="" terminal="transition"/>
+      <subRules xsi:type="sts:ObjectReference" id="">
+        <features xsi:type="ecore:EReference" href="http://fsm#//Transition/target"/>
+        <identifier xsi:type="ecore:EAttribute" href="http://fsm#//State/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" id="" terminal="input"/>
+      <subRules xsi:type="sts:PrimitiveValue" id="">
+        <features xsi:type="ecore:EAttribute" href="http://fsm#//Transition/input"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" id="" terminal="output"/>
+      <subRules xsi:type="sts:PrimitiveValue" id="">
+        <features xsi:type="ecore:EAttribute" href="http://fsm#//Transition/output"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Terminal" id="separator" terminal=","/>
+</sts:Root>

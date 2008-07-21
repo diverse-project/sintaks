@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mmm:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mmm="http://mmm">
+  <children name="String"/>
+  <children name="User">
+    <attributes name="name" type="//@children.0"/>
+  </children>
+  <children name="Mail">
+    <attributes name="from" type="//@children.1"/>
+    <attributes name="to" type="//@children.1"/>
+  </children>
+</mmm:Model>

@@ -1,0 +1,9 @@
+ Root  ROOTNAME {
+ mothers [
+ A  a1 ( AAAAA ){
+ bs = B  b1 ( BB1 );
+, B  b2 ( BB2 );
+;
+}
+]
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="containers"
+    nsURI="http://con" nsPrefix="con">
+  <eClassifiers xsi:type="ecore:EClass" name="Root">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rootName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mother" eType="#//Mother"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mothers" upperBound="-1"
+        eType="#//Mother" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bRoot" eType="#//B" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bsRoot" upperBound="-1"
+        eType="#//B" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mother" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A" eSuperTypes="#//Mother">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aa" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bsA" upperBound="-1" eType="#//B"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bA" eType="#//B"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="B" eSuperTypes="#//Mother">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

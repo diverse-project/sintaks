@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://www.kermeta.org/Sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Template" id="Root">
+    <metaclass href="http://con#//Root"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="Root"/>
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://con#//Root/rootName"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="{" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Alternative" id="Root_mothers">
+        <conditions xsi:type="sts:CustomCond" value="filled">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="mothers"/>
+            <subRules xsi:type="sts:Terminal" terminal="[" lexicalSeparator="true"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+            <subRules xsi:type="sts:Sequence">
+              <subRules xsi:type="sts:Iteration">
+                <subRule xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+                <container xsi:type="ecore:EReference" href="http://con#//Root/mothers"/>
+              </subRules>
+              <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+            </subRules>
+            <subRules xsi:type="sts:Terminal" terminal="]" lexicalSeparator="true"/>
+          </subRule>
+          <feature xsi:type="ecore:EReference" href="http://con#//Root/mothers"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="empty">
+          <feature xsi:type="ecore:EReference" href="http://con#//Root/mothers"/>
+        </conditions>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Alternative" id="Mother">
+    <conditions xsi:type="sts:PolymorphicCond" value="equals">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.3"/>
+      <metaclass href="http://con#//A"/>
+    </conditions>
+  </fragments>
+  <fragments xsi:type="sts:Terminal" id="separator1" terminal="," lexicalSeparator="true"/>
+  <fragments xsi:type="sts:Template" id="A">
+    <metaclass href="http://con#//A"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="A"/>
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://con#//Mother/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://con#//A/aa"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Terminal" terminal="{" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="A_bs">
+        <subRules xsi:type="sts:Terminal" terminal="bs"/>
+        <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+        <subRules xsi:type="sts:Iteration" separator="//@fragments.2">
+          <subRule xsi:type="sts:RuleRef" ref="//@fragments.4"/>
+          <containers xsi:type="ecore:EReference" href="http://con#//A/bsA"/>
+          <containers xsi:type="ecore:EReference" href="http://con#//Root/mothers"/>
+        </subRules>
+        <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="B">
+    <metaclass href="http://con#//B"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="B"/>
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://con#//Mother/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal="(" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://con#//B/bb"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=")" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+</sts:Root>

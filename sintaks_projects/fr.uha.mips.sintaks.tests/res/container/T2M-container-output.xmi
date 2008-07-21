@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<con:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://con" rootName="ROOTNAME">
+  <mothers xsi:type="con:B" name="b1" bb="BB1"/>
+  <mothers xsi:type="con:B" name="b2" bb="BB2"/>
+  <mothers xsi:type="con:A" name="a1" aa="AAAAA" bsA="b1 b2"/>
+</con:Root>

@@ -1,0 +1,8 @@
+ Type  Mail  { 
+ from : User ;
+ to : User ;
+ } 
+ Type  User  { 
+ name : String ;
+ } 
+ Type  String  ; 

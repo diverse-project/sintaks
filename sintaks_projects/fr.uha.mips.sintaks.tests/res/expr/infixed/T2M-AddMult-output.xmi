@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<exprmm:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:exprmm="http://exprmm">
+  <child xsi:type="exprmm:AdditiveOp">
+    <lhs xsi:type="exprmm:NumberInteger" value="1"/>
+    <rhs xsi:type="exprmm:MultiplicativeOp">
+      <lhs xsi:type="exprmm:NumberInteger" value="2"/>
+      <rhs xsi:type="exprmm:NumberInteger" value="3"/>
+    </rhs>
+  </child>
+</exprmm:Model>

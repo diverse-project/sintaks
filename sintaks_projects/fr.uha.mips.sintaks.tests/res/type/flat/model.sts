@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://www.kermeta.org/Sts" start="//@fragments.0">
+  <fragments xsi:type="sts:Template" id="Model">
+    <metaclass href="http://mmm#//Model"/>
+    <rule xsi:type="sts:Iteration" id="">
+      <subRule xsi:type="sts:RuleRef" ref="//@fragments.1"/>
+      <container xsi:type="ecore:EReference" href="http://mmm#//Model/children"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Type">
+    <metaclass href="http://mmm#//Type"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="Type"/>
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://mmm#//Type/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Alternative">
+        <conditions xsi:type="sts:CustomCond" value="empty">
+          <subRule xsi:type="sts:Terminal" terminal=";"/>
+          <feature xsi:type="ecore:EReference" href="http://mmm#//Type/attributes"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="filled">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="{"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+            <subRules xsi:type="sts:Iteration">
+              <subRule xsi:type="sts:RuleRef" ref="//@fragments.2"/>
+              <container xsi:type="ecore:EReference" href="http://mmm#//Type/attributes"/>
+            </subRules>
+            <subRules xsi:type="sts:Terminal" terminal="}"/>
+          </subRule>
+          <feature xsi:type="ecore:EReference" href="http://mmm#//Type/attributes"/>
+        </conditions>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Attribute">
+    <metaclass href="http://mmm#//Attribut"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:PrimitiveValue" id="">
+        <features xsi:type="ecore:EAttribute" href="http://mmm#//Attribut/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=":" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:ObjectReference">
+        <features xsi:type="ecore:EReference" href="http://mmm#//Attribut/type"/>
+        <identifier xsi:type="ecore:EAttribute" href="http://mmm#//Type/name"/>
+      </subRules>
+      <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+    </rule>
+  </fragments>
+</sts:Root>

@@ -1,0 +1,7 @@
+operator + (
+   1 ,
+   operator * (
+      2 ,
+      3
+   )
+) 

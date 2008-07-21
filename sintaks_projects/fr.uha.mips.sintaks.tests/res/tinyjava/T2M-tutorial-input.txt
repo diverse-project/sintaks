@@ -1,0 +1,22 @@
+package hassen;
+
+public class Value {
+   private String val;
+   public  String getValue ();
+   public  void   setValue (String value);
+}
+
+final class Point {
+   private Integer x ;
+   private Integer y ;
+   public void Point (Integer x, Integer y);
+   public void setX (Integer x);
+   public Integer getX ();
+   public void setY (Integer y);
+   public Integer getY ();
+   public void move (Integer x, Integer y);
+}
+
+final abstract private class AbstractValue {
+   static public String create (String value);
+}
