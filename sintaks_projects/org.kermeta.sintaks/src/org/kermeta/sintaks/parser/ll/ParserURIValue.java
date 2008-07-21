@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EPackage.Registry;
-
-import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -22,8 +20,6 @@ import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.URIValue;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
-
 
 
 public class ParserURIValue implements IParser {
@@ -41,6 +37,9 @@ public class ParserURIValue implements IParser {
 		EList<EStructuralFeature> features = value.getFeatures();
 		if (input.atEnd()) return false;
         String textRead = input.get();
+
+    	ParserRule.pushTrace (value, textRead, null);
+
         EObject uri = getEObjectFromStringURI (textRead);
         boolean ok;
         if (uri != null) {
@@ -55,14 +54,12 @@ public class ParserURIValue implements IParser {
 	        }
 //        	subject.process (builder.getOperation());
         	ok = true;
-	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-	        	SintaksPlugin.getDefault().debugln ("Accepted URI : "+uri);
 			input.next();
         } else {
         	ok = false;
-	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-	        	SintaksPlugin.getDefault().debugln ("Refused null URI");
         }
+        ParserRule.setStateValidOrFailed (ok);
+		ParserRule.popTrace();
         return ok;
 	}
 	

@@ -22,7 +22,7 @@ public class SetFeatureOperation extends R2W0Operation {
 	public void execWithParam (ModelSubject model, Object param1, Object param2) {
 		Object value   = param1;
 		EObject target = (EObject) param2;
-
+/*
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
 			PrintStream debugStream = SintaksPlugin.getDefault().getDebugStream();
 			debugStream.println("SetAttribute : ");
@@ -30,7 +30,8 @@ public class SetFeatureOperation extends R2W0Operation {
 			debugStream.println("   Attribute : "+feature);
 			debugStream.println("   Value     : "+value);
         }
-    	if (feature.isMany()) {
+*/
+		if (feature.isMany()) {
 	   		((EList) target.eGet(feature)).add(value);
 		} else {
 			target.eSet(feature, value);

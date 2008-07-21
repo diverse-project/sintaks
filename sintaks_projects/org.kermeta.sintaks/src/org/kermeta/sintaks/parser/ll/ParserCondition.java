@@ -8,7 +8,6 @@ package org.kermeta.sintaks.parser.ll;
 
 
 
-import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -25,22 +24,15 @@ public class ParserCondition implements IParser {
 	}
 
 	public boolean parse(ILexer input) throws ParserSemanticException {
+    	ParserRule.pushTrace (condition, null, null);
+		boolean ok=true;
 		if (condition.getSubRule() != null) {
 			IParser parser = ParserRule.findParser (condition.getSubRule(), subject);
-			if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-				SintaksPlugin.getDefault().debugln ("   Trying              "+condition);
-			boolean ok = parser.parse(input);
-	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser()) {
-	    		if (ok) {
-	    			SintaksPlugin.getDefault().debugln ("   Tried successfully "+condition);
-	    		} else {
-	    			SintaksPlugin.getDefault().debugln ("   Tried and failed "+condition);
-	    		}
-	        }
-			return ok;
-		} else {
-			return true;
+			ok = parser.parse(input);
 		}
+        ParserRule.setStateValidOrCanceled(ok);
+		ParserRule.popTrace();
+		return ok;
 	}
 	
 	private Condition condition;

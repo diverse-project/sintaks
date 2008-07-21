@@ -6,14 +6,13 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
-
 import org.eclipse.emf.ecore.EObject;
-
-
+import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.StsPackage;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.trace.State;
+import org.kermeta.sintaks.trace.Trace;
 
 public class PrinterRule implements IPrinter {
 
@@ -25,7 +24,7 @@ public class PrinterRule implements IPrinter {
 	/* (non-Javadoc)
 	 * @see compiler.IParser#parse(java.io.Reader)
 	 */
-	public void print (PrintWriter output) throws PrinterSemanticException {
+	public void print (ISmartPrinter output) throws PrinterSemanticException {
         IPrinter printer = findPrinter (rule, subject);
         EObject o = subject.getModel();
         subject.setModel(o);
@@ -57,8 +56,11 @@ public class PrinterRule implements IPrinter {
 		return printer;
 	}
 	
-	static void printText (PrintWriter output, String text, boolean surroundingSpaces) {
+	static public void printText (ISmartPrinter output, String text, boolean surroundingSpaces) {
         if (text != null && text.length()!=0) {
+    		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+    			SintaksPlugin.getDefault().getTracer().add("printText " + text);
+    		}
         	if (surroundingSpaces) output.print(IPrinter.separator);
         	if (text.indexOf(' ') != -1) {
         		output.print('"');
@@ -68,7 +70,42 @@ public class PrinterRule implements IPrinter {
         		output.print(text);
         	}
         	if (surroundingSpaces) output.print(IPrinter.separator);
+        } else {
+    		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+    			SintaksPlugin.getDefault().getTracer().add("printText (null) or empty");
+    		}
         }
+	}
+
+	static protected void pushTrace (EObject rule, EObject source, String comment) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugPrinter()) {
+        	Trace trace = SintaksPlugin.getDefault().getTracer().newModel2TextTrace(rule, source, comment);
+        	SintaksPlugin.getDefault().getTracer().push(trace);
+    	}
+	}
+	
+	static protected void popTrace () {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugPrinter()) {
+	    	SintaksPlugin.getDefault().getTracer().pop();
+		}
+	}
+	
+	protected static void setStateValidOrFailed (boolean ok) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugPrinter()) {
+			Trace trace = SintaksPlugin.getDefault().getTracer().top();
+			if (trace != null) {
+				trace.setState(ok ? State.OK : State.FAILURE);
+			}
+		}
+	}
+
+	protected static void setStateValidOrCanceled (boolean ok) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugPrinter()) {
+			Trace trace = SintaksPlugin.getDefault().getTracer().top();
+			if (trace != null) {
+				trace.setState(ok ? State.OK : State.CANCELED);
+			}
+		}
 	}
 
 	private Rule rule;

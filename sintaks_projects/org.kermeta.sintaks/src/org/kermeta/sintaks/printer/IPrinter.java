@@ -6,12 +6,11 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 
 
 public interface IPrinter {
 
-    public void print (PrintWriter output) throws PrinterSemanticException;
+    public void print (ISmartPrinter output) throws PrinterSemanticException;
 
     public final static char separator = ' ';
 }

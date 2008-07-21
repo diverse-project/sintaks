@@ -30,7 +30,8 @@ public class CommonOperation {
 				EFactory factory = type.getEPackage().getEFactoryInstance();
 				return factory.convertToString(dataType, value);
 			} else {
-				SintaksPlugin.getDefault().debugln("    created  : noserialisable");
+//HM what todo
+//				SintaksPlugin.getDefault().debugln("    created  : noserialisable");
 				return null;
 			}
 		}
@@ -54,7 +55,8 @@ public class CommonOperation {
 				EFactory factory = type.getEPackage().getEFactoryInstance();
 				return factory.createFromString(dataType, (value == null) ? null : value.toString());
 			} else {
-				SintaksPlugin.getDefault().debugln("    created  : noserialisable");
+//HM what todo
+//				SintaksPlugin.getDefault().debugln("    created  : noserialisable");
 				return null;
 			}
 		}

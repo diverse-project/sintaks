@@ -6,7 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
@@ -25,31 +24,23 @@ public class PrinterAlternative implements IPrinter {
         this.subject = subject;
 	}
 
-	public void print(PrintWriter output) throws PrinterSemanticException {
+	public void print(ISmartPrinter output) throws PrinterSemanticException {
 		EList<Condition> list = alternative.getConditions();
 		if (list == null)
 			throw new PrinterSemanticException ("Alternative : alternatives "+alternative.getConditions()+" unacceptable");
 
-		Iterator<Condition> i = list.iterator();
+    	PrinterRule.pushTrace (alternative, null, null);
+
+    	Iterator<Condition> i = list.iterator();
 		while (i.hasNext()) {
-			/*
-			Object o = i.next();
-			
-			if (!(o instanceof Condition))
-				throw new PrinterSemanticException ("Alternative : condition "+o+" unacceptable");
-			
-			if (o != null) {
-				IPrinter printer = new PrinterCondition ((Condition) o, subject);
-				printer.print(output);
-			}
-			*/
 			Condition c = i.next();
-			
 			if (c != null) {
 				IPrinter printer = new PrinterCondition (c, subject);
 				printer.print(output);
 			}
 		}
+    	PrinterRule.setStateValidOrCanceled (true);
+    	PrinterRule.popTrace();
 	}
 
 	private Alternative alternative;

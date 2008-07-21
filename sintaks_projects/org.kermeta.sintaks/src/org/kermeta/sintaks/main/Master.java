@@ -1,4 +1,4 @@
-/* $Id: Master.java,v 1.5 2008-01-14 09:57:25 dvojtise Exp $
+/* $Id: Master.java,v 1.6 2008-07-21 15:14:22 hassen Exp $
  * Project    : Sintaks
  * File       : Master.java
  * License    : EPL
@@ -25,9 +25,12 @@ import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.errors.UserError;
 import org.kermeta.sintaks.parser.MetaModelParser;
 import org.kermeta.sintaks.parser.ModelParser;
-import org.kermeta.sintaks.parser.ModelPrinter;
+import org.kermeta.sintaks.printer.ModelPrinter;
 import org.kermeta.sintaks.sts.Template;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.trace.State;
+import org.kermeta.sintaks.trace.Trace;
+import org.kermeta.sintaks.trace.util.Tracer;
 
 
 
@@ -61,11 +64,7 @@ public class Master {
 	 * @return
 	 */
 	private boolean parse (URI ruleURI, URI inputURI) {
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-        	SintaksPlugin.getDefault().debugln("Parsing file: " + inputURI.lastSegment());
         boolean ok = parser.parse(ruleURI, inputURI);
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-        	SintaksPlugin.getDefault().debugln("Parse finished");
         return ok;
 	}
 
@@ -87,12 +86,7 @@ public class Master {
 	 */
 	private void print (URI ruleURI, URI inputURI) {
         String realName = inputURI.toFileString();
-        
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-			SintaksPlugin.getDefault().debugln("Printing file: " + realName);
         printer.print(ruleURI, realName);
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-        	SintaksPlugin.getDefault().debugln("Print finished");
 	}
 
 	
@@ -100,11 +94,7 @@ public class Master {
 	 * @param inputURI
 	 */
 	private void load (URI inputURI) {
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-        	SintaksPlugin.getDefault().debugln("Loading file: " + inputURI.lastSegment());
         subject.load(inputURI);
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-        	SintaksPlugin.getDefault().debugln("Load finished");
 	}
 
 	
@@ -112,11 +102,7 @@ public class Master {
 	 * @param outputURI
 	 */
 	private void store (URI outputURI) {
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-        	SintaksPlugin.getDefault().debugln("Storing file: " + outputURI.lastSegment());
         subject.store(outputURI);
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess())
-        	SintaksPlugin.getDefault().debugln("Store finished");
 	}
 
     
@@ -129,29 +115,46 @@ public class Master {
     	this.subject = new ModelSubject (new MetaModel(resSet));
 		this.parser  = new ModelParser (new MetaModelParser(resSet), subject);
 
+		SintaksPlugin.getDefault().setTracer(new Tracer (resSet));
+		Trace trace = SintaksPlugin.getDefault().getTracer().newRootTrace(
+				ruleURI.toString(),
+				inputURI.toString(),
+				outputURI.toString(),
+				"Files used");
+		SintaksPlugin.getDefault().getTracer().push(trace);
+
 		try {
-			this.parse(ruleURI, inputURI);
-			if (subject.isReady()) {
-				if(subject.getModel() != null) {
-					this.store(outputURI);
+			if (this.parse(ruleURI, inputURI)) {
+				if (subject.isReady()) {
+					if(subject.getModel() != null) {
+						this.store(outputURI);
+						trace.setState(State.OK);
+					} else {
+						SintaksPlugin.getDefault().reportErrorToUser("Cannot produce output, there is nothing recognized to put in the model");
+						trace.setState(State.FAILURE);
+					}
+				} else {
+					SintaksPlugin.getDefault().reportErrorToUser("Cannot produce output, there are still some \"ghosts\" which haven't been correctly recognized");
+					trace.setState(State.FAILURE);
 				}
-				else {
-					SintaksPlugin.getDefault().reportErrorToUser("Cannot produce output, there is nothing recognized to put in the model");
-					
-				}
-			}
-			else{
-				SintaksPlugin.getDefault().reportErrorToUser("Cannot produce output, there are still some \"ghosts\" which haven't been correctly recognized");
+			} else {
+				SintaksPlugin.getDefault().reportErrorToUser("Cannot produce output, the parser failed to read the file");
+				trace.setState(State.CANCELED);
 			}
 		}
 		catch(UserError ue){
+			trace.setState(State.CANCELED);
 			SintaksPlugin.getDefault().reportErrorToUser(ue.getMessage());
 			SintaksPlugin.logErrorMessage(ue.getMessage(), ue);
 		}
 		catch (Exception e) {
+			trace.setState(State.CANCELED);
 			e.printStackTrace();
 			SintaksPlugin.log(e);
 		}
+    	URI traceURI = outputURI.appendSegments(new String [] { "..", SintaksPlugin.getDefault().getOptionManager().getDebugOutputFile() } );
+		SintaksPlugin.getDefault().getTracer().save(traceURI);
+		SintaksPlugin.getDefault().setTracer(null);
     }
 
     
@@ -190,31 +193,42 @@ public class Master {
     	this.subject = new ModelSubject (new MetaModel(resSet));
         this.printer = new ModelPrinter (new MetaModelParser(resSet), subject);
 
-    	try {
+		SintaksPlugin.getDefault().setTracer(new Tracer (resSet));
+		Trace trace = SintaksPlugin.getDefault().getTracer().newRootTrace(
+				ruleURI.toString(),
+				inputURI.toString(),
+				outputURI.toString(),
+				"Files used");
+		SintaksPlugin.getDefault().getTracer().push(trace);
+
+		try {
     		boolean ok = checkMetamodelUnicity(inputURI, ruleURI);
-    		
     		if(ok) {
     			this.load (inputURI);
                 this.print(ruleURI, outputURI);
+				trace.setState(State.OK);
     		} else {
     			SintaksPlugin.getDefault().reportErrorToUser("Source and syntactic models point to different instances of target metamodel.\n");
-    			
     		}
  		}
 		catch(UserError ue){
 			SintaksPlugin.getDefault().reportErrorToUser(ue.getMessage());
 			SintaksPlugin.logErrorMessage(ue.getMessage(), ue);
+			trace.setState(State.FAILURE);
 		}
 		catch (Exception e) {
 			if(e.getCause() instanceof PackageNotFoundException){
 				SintaksPlugin.getDefault().reportErrorToUser("Cannot load model because the metamodel is not correctly registered.\n"+e.getMessage());
 				SintaksPlugin.logErrorMessage("Cannot load model because the metamodel is not correctly registered.\n"+e.getMessage(), e);
-			}
-			else{
+			} else{
 				e.printStackTrace();
 				SintaksPlugin.log(e);
 			}
+			trace.setState(State.FAILURE);
 		}
+    	URI traceURI = outputURI.appendSegments(new String [] { "..", SintaksPlugin.getDefault().getOptionManager().getDebugOutputFile() } );
+		SintaksPlugin.getDefault().getTracer().save(traceURI);
+		SintaksPlugin.getDefault().setTracer(null);
     }
     
     

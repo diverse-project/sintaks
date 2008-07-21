@@ -8,11 +8,7 @@ package org.kermeta.sintaks.parser.ll;
 
 import java.util.Iterator;
 
-
 import org.eclipse.emf.common.util.EList;
-
-
-
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -20,7 +16,6 @@ import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.Sequence;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class ParserSequence implements IParser {
 
@@ -33,6 +28,9 @@ public class ParserSequence implements IParser {
 	public boolean parse(ILexer input) throws ParserSemanticException {
 		EList<Rule> list = sequence.getSubRules();
 		Iterator<Rule> i = list.iterator();
+
+    	ParserRule.pushTrace (sequence, null, null);
+		
 		boolean loop = true;
 		boolean ok = true;
 
@@ -63,6 +61,8 @@ public class ParserSequence implements IParser {
 //	    	subject.process (builder2.getOperation());
 			OperationExecutor.gotoMark(subject, mark);
 		}
+        ParserRule.setStateValidOrCanceled(ok);
+		ParserRule.popTrace();
 		return ok;
 	}
 

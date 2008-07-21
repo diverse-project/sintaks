@@ -8,8 +8,6 @@ package org.kermeta.sintaks.parser.ll;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -17,7 +15,6 @@ import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.RuleRef;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
 public class ParserRuleRef implements IParser {
@@ -30,6 +27,9 @@ public class ParserRuleRef implements IParser {
 
 	public boolean parse(ILexer input) throws ParserSemanticException {
 		Rule referedRule = rule.getRef();
+
+    	ParserRule.pushTrace (rule, null, null);
+
 		IParser parser = ParserRule.findParser(referedRule, subject);
 		boolean ok = parser.parse(input);
 
@@ -42,13 +42,10 @@ public class ParserRuleRef implements IParser {
         		OperationExecutor.setFeatures(subject, features);
 	        }
 //        	subject.process (builder.getOperation());
-        	ok = true;
-            if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-            	SintaksPlugin.getDefault().debugln ("Accepted RuleRef : "+referedRule);
-		} else {
-            if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-            	SintaksPlugin.getDefault().debugln ("Refused RuleRef : "+referedRule);
+//        	ok = true;
 		}
+        ParserRule.setStateValidOrCanceled(ok);
+		ParserRule.popTrace();
 		return ok;
 	}
 

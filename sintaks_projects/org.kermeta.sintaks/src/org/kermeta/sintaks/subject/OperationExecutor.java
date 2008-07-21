@@ -1,4 +1,4 @@
-/* $Id: OperationExecutor.java,v 1.1 2008-07-11 07:33:27 hassen Exp $
+/* $Id: OperationExecutor.java,v 1.2 2008-07-21 15:14:21 hassen Exp $
  * Project    : Sintaks
  * File       : OperationExecutor.java
  * License    : EPL
@@ -10,22 +10,127 @@
  */
 package org.kermeta.sintaks.subject;
 
-import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.errors.UserError;
 import org.kermeta.sintaks.subject.operation.CommonOperation;
 
 public class OperationExecutor {
 
+	/**
+	 * Internal Method to friendly print an EClassifier
+	 *
+	 * @param aClassifier EClassifier the EClassifier to print 
+	 *
+	 */
+	static private String classifierToString (EClassifier aClassifier) {
+		if (aClassifier == null) return "(null)";
+		StringBuffer tmp = new StringBuffer ();
+		EPackage p = aClassifier.getEPackage();
+		while (p != null) {
+			tmp.append(p.getName());
+			tmp.append(".");
+			p = p.getESuperPackage();
+		}
+		tmp.append(aClassifier.getName());
+		return tmp.toString();
+	}
+	
+	/**
+	 * Internal Method to friendly print anEObject
+	 *
+	 * @param object EObject the EObject to print 
+	 *
+	 */
+	static private String eObjectToString (EObject object) {
+		if (object == null) return "(null)";
+		StringBuffer tmp = new StringBuffer ();
+		tmp.append(classifierToString(object.eClass()));
+		tmp.append("@");
+		tmp.append(Integer.toHexString(object.hashCode()));
+		return tmp.toString();
+	}
+	
+	/**
+	 * Internal Method to friendly print an Object
+	 *
+	 * @param object Object the Object to print 
+	 *
+	 */
+	static private String objectToString (Object object) {
+		if (object == null) return "(null)";
+		if (object instanceof EObject) return eObjectToString ((EObject) object);
+		StringBuffer tmp = new StringBuffer ();
+		tmp.append(object.getClass().toString());
+		tmp.append("@");
+		tmp.append(Integer.toHexString(object.hashCode()));
+		if (	   object instanceof Boolean
+				|| object instanceof Byte
+				|| object instanceof Character
+				|| object instanceof Double
+				|| object instanceof Float
+				|| object instanceof Integer
+				|| object instanceof Long
+				|| object instanceof Short
+				|| object instanceof String) {
+			tmp.append("=");
+			tmp.append(object.toString());
+		}
+		return tmp.toString();
+	}
+	
+	/**
+	 * Internal Method to friendly print a Feature
+	 *
+	 * @param feature EStructuralFeature the EStructuralFeature to print 
+	 *
+	 */
+	static private String featureToString (EStructuralFeature feature) {
+		if (feature == null) return "(null)";
+		StringBuffer tmp = new StringBuffer ();
+		tmp.append(classifierToString(feature.getEContainingClass()));
+		tmp.append('.');
+		tmp.append(feature.getName());
+		tmp.append('[');
+		tmp.append(feature.getLowerBound());
+		tmp.append("..");
+		tmp.append(feature.getUpperBound());
+		tmp.append(']');
+		tmp.append(':');
+		tmp.append(classifierToString (feature.getEType()));
+		return tmp.toString();
+	}
+	
+	/**
+	 * Internal Method to friendly print a Ghost
+	 *
+	 * @param ghost Ghost the Ghost to print 
+	 *
+	 */
+	static private String ghostToString (Ghost ghost) {
+		if (ghost == null) return "(null)";
+		StringBuffer tmp = new StringBuffer ();
+		tmp.append("target ");
+		tmp.append(eObjectToString(ghost.getFromObject()));
+		tmp.append("from ");
+		tmp.append(featureToString(ghost.getFrom()));
+		tmp.append("to ");
+		tmp.append(featureToString(ghost.getTo()));
+		tmp.append("value ");
+		tmp.append(ghost.getValue());
+		return tmp.toString();
+	}
+	
 	/**
 	 * Creates a class using the metaClass and pushes it on the stack maintained by the given model
 	 *
@@ -41,6 +146,9 @@ public class OperationExecutor {
 			throw new UserError("Cannot build model because the metamodel is not correctly registered.");
 		}
 		EFactory fact = metaClassPackage.getEFactoryInstance();
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("createClass " + classifierToString (metaClass));
+		}
 		model.push (fact.create(metaClass));
 	}
 
@@ -64,20 +172,16 @@ public class OperationExecutor {
 				EObject target = (EObject) crt;
 				if (target.eClass().getFeatureID(feature) != -1) {
 					if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-						SintaksPlugin.getDefault().debugln("Target usable : "+target);
+						SintaksPlugin.getDefault().getTracer().add("findTarget founded " + eObjectToString(target));
 					}
 					return target;
-				} else {
-					if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-						SintaksPlugin.getDefault().debugln("Target unusable : "+crt);
-					}
 				}
 			}
 			catch (Exception e) {
-				if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-					SintaksPlugin.getDefault().debugln("Target unusable : "+crt);
-				}
 			}
+		}
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("findTarget founded nothing");
 		}
 		return null;
 	}
@@ -94,7 +198,11 @@ public class OperationExecutor {
 	 */
 	static private void createGhost(ModelSubject model, EStructuralFeature from, EStructuralFeature to, String value) {
     	EObject target = findTarget (model, from, 0);
-    	model.getGhosts().add(new Ghost (from, to, value, target));
+    	Ghost ghost = new Ghost (from, to, value, target);
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("createGhost " + ghostToString(ghost));
+		}
+		model.getGhosts().add(ghost);
 	}
 
 	/**
@@ -108,6 +216,9 @@ public class OperationExecutor {
 	 * @state look like the buildCreateGhosts in the OperationBuilder
 	 */
 	static public void createGhosts (ModelSubject model, EList<EStructuralFeature> from, EStructuralFeature to, String value) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("createGhosts #" + from.size());
+		}
 		switch (from.size()) {
 		case 0 : break;
 		case 1 : createGhost (model, (EStructuralFeature) from.get(0), to, value);
@@ -195,7 +306,11 @@ public class OperationExecutor {
 	 * @state look like the FindInstanceOperation
 	 */
 	static public EObject findInstance (ModelSubject model, EStructuralFeature feature, String value) {
-		return CommonOperation.findInstance(model.getModel (), feature, value);
+		EObject o = CommonOperation.findInstance(model.getModel (), feature, value);
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("findInstance " + eObjectToString (o));
+		}
+		return o;
 	}
 
 	/**
@@ -210,11 +325,9 @@ public class OperationExecutor {
 	@SuppressWarnings("unchecked")
 	static private void setFeature (EStructuralFeature feature, Object value, EObject target) {
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-			PrintStream debugStream = SintaksPlugin.getDefault().getDebugStream();
-			debugStream.println("SetAttribute : ");
-			debugStream.println("   On        : "+target);
-			debugStream.println("   Attribute : "+feature);
-			debugStream.println("   Value     : "+value);
+	        SintaksPlugin.getDefault().getTracer().add("setFeature  : " + featureToString(feature));
+	        SintaksPlugin.getDefault().getTracer().add(" on target  : " + eObjectToString (target));
+	        SintaksPlugin.getDefault().getTracer().add(" with value : " + objectToString (value));
         }
     	if (feature.isMany()) {
 	   		EList<Object> list = (EList<Object>) target.eGet(feature);
@@ -223,6 +336,42 @@ public class OperationExecutor {
 			target.eSet(feature, value);
 		}
 	}
+	
+	/**
+	 * Replace a feature to a new value on an object
+	 * 
+	 * @param feature EStructuralFeature the feature to set
+	 * @param value EObject the new value of the feature 
+	 * @param target EObject the object to set
+	 *
+	 */
+	@SuppressWarnings("unchecked")
+	static private void replaceFeature (EStructuralFeature feature, EObject value, EObject target) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+	        SintaksPlugin.getDefault().getTracer().add("replaceFeature  : " + featureToString(feature));
+	        SintaksPlugin.getDefault().getTracer().add("     on target  : " + eObjectToString (target));
+	        SintaksPlugin.getDefault().getTracer().add("     with value : " + objectToString (value));
+        }
+        EcoreUtil.replace(target, feature, null, value);
+	}
+	
+	/**
+	 * Try to relink a Ghost
+	 * 
+	 * @param model ModelSubject the model to search for 
+	 * @param ghost Ghost the ghost to relink
+	 * @return the success of the operation
+	 *
+	 */
+	static public boolean relinkGhost (ModelSubject model, Ghost ghost) {
+        EObject instance = findInstance (model, ghost.getTo(), ghost.getValue());
+        if (instance == null) return false;
+        EStructuralFeature feature = ghost.getFrom();
+        if (feature == null) return false;
+        EObject target = ghost.getFromObject();
+        replaceFeature (feature, instance, target);
+        return true;
+    }
 	
 	/**
 	 * Gets the value of a feature on an object
@@ -234,13 +383,13 @@ public class OperationExecutor {
 	 * @state look like the GetFeatureOperation
 	 */
 	static private Object getFeature (EStructuralFeature feature, EObject target) {
+    	Object value = target.eGet(feature);
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-			PrintStream debugStream = SintaksPlugin.getDefault().getDebugStream();
-			debugStream.println("GetAttribute : ");
-			debugStream.println("   On        : "+target);
-			debugStream.println("   Attribute : "+feature);
+	        SintaksPlugin.getDefault().getTracer().add("getFeature : " + featureToString(feature));
+	        SintaksPlugin.getDefault().getTracer().add(" on target : " + eObjectToString (target));
+	        SintaksPlugin.getDefault().getTracer().add(" has value : " + objectToString (value));
         }
-    	return target.eGet(feature);
+    	return value;
 	}
 	
 	/**
@@ -253,6 +402,10 @@ public class OperationExecutor {
 	 * @state look like the ConvertToFeatureOperation
 	 */
 	static protected Object convertToFeature (EStructuralFeature feature, Object value) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+	        SintaksPlugin.getDefault().getTracer().add("convertToFeature : "+featureToString(feature));
+	        SintaksPlugin.getDefault().getTracer().add("      with value : " + objectToString (value));
+        }
 		return CommonOperation.convertToType(feature, value);
 	}
 
@@ -308,6 +461,9 @@ public class OperationExecutor {
 	 * @state look like the buildSetFeatures in the OperationBuilder
 	 */
 	static public void setFeatures (ModelSubject model, EList<EStructuralFeature> features, Object value) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("setFeatures #" + features.size());
+		}
 		switch (features.size()) {
 		case 0 :
 			break;
@@ -346,6 +502,9 @@ public class OperationExecutor {
 	 *
 	 */
 	static public Object getFeatures (ModelSubject model, EList<EStructuralFeature> features) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("getFeatures #" + features.size());
+		}
 		switch (features.size()) {
 		case 0 :
 			return null;

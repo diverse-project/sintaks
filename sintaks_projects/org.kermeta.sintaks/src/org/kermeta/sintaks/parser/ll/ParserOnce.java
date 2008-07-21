@@ -37,27 +37,21 @@ public class ParserOnce implements IParser {
 		long position = lexer.getPosition();
 		boolean ok = false;
 		boolean loop = true;
+		int count = 0;
 		while (loop) {
 			if (i.hasNext()) {
-				/*
-				Object o = i.next();
-				if (!(o instanceof Condition))
-					throw new ParserSemanticException ("Once : condition "+o+" unacceptable");
-				IParser parser = new ParserCondition ((Condition) o, subject);
-				if (parser.parse(lexer)) {
-					loop = false;
-					ok = true;
-				} else {
-					lexer.back(position);
-				}
-				*/
+		    	ParserRule.pushTrace (once, null, "once "+count);
 				IParser parser = new ParserCondition (i.next(), subject);
 				if (parser.parse(lexer)) {
 					loop = false;
 					ok = true;
+			        ParserRule.setStateValidOrCanceled(true);
 				} else {
 					lexer.back(position);
+			        ParserRule.setStateValidOrCanceled(false);
 				}
+				++count;
+				ParserRule.popTrace();
 			} else {
 				loop = false;
 			}
@@ -102,12 +96,15 @@ public class ParserOnce implements IParser {
 		if (list == null)
 			throw new ParserSemanticException ("Once : conditions empty");
 
+    	ParserRule.pushTrace (once, null, null);
 		boolean ok;
 		if (once.getSeparator() == null) {
 			ok = parseWithoutSeparator (lexer);
 		} else {
 			ok = parseWithSeparator (lexer);
 		}
+        ParserRule.setStateValidOrCanceled(ok);
+		ParserRule.popTrace();
 		return ok;
 	}
 }

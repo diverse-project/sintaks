@@ -6,16 +6,11 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.RuleRef;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class PrinterRuleRef implements IPrinter {
 
@@ -25,10 +20,11 @@ public class PrinterRuleRef implements IPrinter {
         this.subject = subject;
 	}
 
-	public void print(PrintWriter output) throws PrinterSemanticException {
+	public void print(ISmartPrinter output) throws PrinterSemanticException {
 		Rule referedRule = rule.getRef();
 		IPrinter printer = PrinterRule.findPrinter(referedRule, subject);
 		
+    	PrinterRule.pushTrace (rule, null, null);
 		if(! rule.getFeatures().isEmpty()) {
 // HM slowly remove OperationBuilder
 //			EStructuralFeature feature = (EStructuralFeature) rule.getFeatures().get(0);
@@ -48,7 +44,8 @@ public class PrinterRuleRef implements IPrinter {
         } else {
     		printer.print(output);
         }
-
+    	PrinterRule.setStateValidOrCanceled (true);
+    	PrinterRule.popTrace();
 	}
 
 	private RuleRef rule;

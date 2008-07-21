@@ -6,9 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
-
-
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.Terminal;
 import org.kermeta.sintaks.subject.ModelSubject;
@@ -20,10 +17,15 @@ public class PrinterTerminal implements IPrinter {
 		this.terminal = (Terminal) terminal;
 	}
 
-    public void print (PrintWriter output) throws PrinterSemanticException {
-        if (! terminal.isLexicalSeparator() && terminal.isSurroundingSpaces()) output.print(IPrinter.separator);
-        output.print(terminal.getTerminal());
-        if (! terminal.isLexicalSeparator() && terminal.isSurroundingSpaces()) output.print(IPrinter.separator);
+    public void print (ISmartPrinter output) throws PrinterSemanticException {
+    	PrinterRule.pushTrace (terminal, null, null);
+    	PrinterRule.printText(
+    			output,
+    			terminal.getTerminal(),
+    			! terminal.isLexicalSeparator() && terminal.isSurroundingSpaces()
+    		);
+    	PrinterRule.setStateValidOrFailed(true);
+        PrinterRule.popTrace();
     }
     
 	private Terminal terminal;

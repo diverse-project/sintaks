@@ -8,8 +8,6 @@ package org.kermeta.sintaks.parser.ll;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -17,7 +15,6 @@ import org.kermeta.sintaks.sts.Constant;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
 public class ParserConstant implements IParser {
@@ -30,6 +27,7 @@ public class ParserConstant implements IParser {
 
 	public boolean parse(ILexer input) throws ParserSemanticException {
 		EList<EStructuralFeature> features = value.getFeatures();
+    	ParserRule.pushTrace (value, null, null);
         boolean ok;
         if (value.getValue() != null) {
 // HM slowly remove OperationBuilder
@@ -43,13 +41,11 @@ public class ParserConstant implements IParser {
 	        }
 //        	subject.process (builder.getOperation());
         	ok = true;
-        	if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-	        	SintaksPlugin.getDefault().debugln ("Accepted Constant : "+value);
         } else {
         	ok = false;
-	        if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-	        	SintaksPlugin.getDefault().debugln ("Refused Constant : "+value);
         }
+        ParserRule.setStateValidOrFailed(ok);
+		ParserRule.popTrace();
 		return ok;
 	}
 

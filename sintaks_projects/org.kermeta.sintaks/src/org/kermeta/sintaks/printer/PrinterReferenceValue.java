@@ -6,18 +6,13 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-
 import org.kermeta.sintaks.sts.ObjectReference;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class PrinterReferenceValue implements IPrinter {
 
@@ -27,11 +22,12 @@ public class PrinterReferenceValue implements IPrinter {
         this.subject = subject;
 	}
 
-	public void print (PrintWriter output) throws PrinterSemanticException {
+	public void print (ISmartPrinter output) throws PrinterSemanticException {
         EStructuralFeature id = value.getIdentifier();
         if (id == null) 
             throw new PrinterSemanticException ("ReferenceValue : id      "+((EClass) id.eContainer()).getName()+"."+id.getName()+" unacceptable");
 
+    	PrinterRule.pushTrace (value, null, null);
 // HM slowly remove OperationBuilder
 //    	OperationBuilder builder = new OperationBuilder();
         Object target;
@@ -41,7 +37,7 @@ public class PrinterReferenceValue implements IPrinter {
         	target = OperationExecutor.getFeatures(subject, value.getFeatures());
 		} else {
 //	    	builder.buildDupp();
-			target = OperationExecutor.pop(subject);
+			target = OperationExecutor.top(subject);
         }
 		OperationExecutor.push(subject, target);
 		Object object = OperationExecutor.getFeature (subject, id);
@@ -67,6 +63,8 @@ public class PrinterReferenceValue implements IPrinter {
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         }
 */
+    	PrinterRule.setStateValidOrFailed (true);
+    	PrinterRule.popTrace();
 	}
 	
 	private ObjectReference value;

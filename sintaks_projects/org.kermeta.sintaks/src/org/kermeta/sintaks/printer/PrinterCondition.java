@@ -6,22 +6,16 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
-
-import org.kermeta.sintaks.SintaksPlugin;
+import org.eclipse.emf.ecore.EObject;
 import org.kermeta.sintaks.errors.UserError;
 import org.kermeta.sintaks.sts.Condition;
 import org.kermeta.sintaks.sts.CustomCond;
 import org.kermeta.sintaks.sts.PolymorphicCond;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 //TODO understand the purpose of the hack with the pop
 public class PrinterCondition implements IPrinter {
@@ -136,18 +130,21 @@ public class PrinterCondition implements IPrinter {
 		return false;
 	}
 
-	public void print(PrintWriter output) throws PrinterSemanticException {
+	public void print(ISmartPrinter output) throws PrinterSemanticException {
+    	PrinterRule.pushTrace (condition, null, null);
+		boolean ok = false;
 		if (condition.getSubRule() != null) {
 			IPrinter printer = PrinterRule.findPrinter (condition.getSubRule(), subject);
 			if (condition instanceof PolymorphicCond) {
-				if (valid ((PolymorphicCond) condition))  
-					printer.print(output);
+				ok = valid ((PolymorphicCond) condition);
 			}
 			if (condition instanceof CustomCond) {
-				if (valid ((CustomCond) condition))  
-					printer.print(output);
+				ok = valid ((CustomCond) condition);
 			}
+			if (ok) printer.print(output);
 		}
+		PrinterRule.setStateValidOrCanceled (ok);
+    	PrinterRule.popTrace();
 	}
 
 	private Condition condition;

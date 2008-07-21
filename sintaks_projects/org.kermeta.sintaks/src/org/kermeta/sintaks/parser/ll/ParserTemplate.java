@@ -8,7 +8,6 @@ package org.kermeta.sintaks.parser.ll;
 
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -16,7 +15,6 @@ import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.Template;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
 public class ParserTemplate implements IParser {
@@ -34,6 +32,8 @@ public class ParserTemplate implements IParser {
 //    	OperationBuilder builder1 = new OperationBuilder();
 //       	builder1.buildCreateClass(metaClass);
 //    	subject.process (builder1.getOperation());
+    	ParserRule.pushTrace (template, null, null);
+
 		OperationExecutor.createClass (subject, metaClass);
 
     	if (template.getRule() == null) return true;
@@ -46,7 +46,9 @@ public class ParserTemplate implements IParser {
 //	    	subject.process (builder2.getOperation());
 			OperationExecutor.pop (subject);
 		}
-        return ok;
+        ParserRule.setStateValidOrCanceled(ok);
+		ParserRule.popTrace();
+		return ok;
 	}
 
 	private Template template;

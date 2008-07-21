@@ -16,15 +16,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.main.IMetaModel;
 import org.kermeta.sintaks.main.IPrettyPrinter;
-import org.kermeta.sintaks.subject.operation.CommonOperation;
 import org.kermeta.sintaks.subject.operation.IOperation;
-
-
 
 public class ModelSubject {
 
@@ -132,14 +127,18 @@ public class ModelSubject {
     	while (i.hasNext()) {
     		Object o = i.next();
     		++j;
-    		if (o != null) SintaksPlugin.getDefault().debugln("Stack ["+j+"]: "+o.toString());
-    		else SintaksPlugin.getDefault().debugln("Stack ["+j+"]: (null)");
+//Hm trace
+//    		if (o != null) SintaksPlugin.getDefault().debugln("Stack ["+j+"]: "+o.toString());
+//    		else SintaksPlugin.getDefault().debugln("Stack ["+j+"]: (null)");
     	}
     }
     
 	private void relink () {
 		if (getGhosts().isEmpty()) return;
 
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+	        SintaksPlugin.getDefault().getTracer().add("relinking required");
+        }
 		List<Ghost> fakes = getGhosts();
         ghosts = null;
         
@@ -147,28 +146,17 @@ public class ModelSubject {
         
         while (i.hasNext()) {
             Ghost fake = i.next();
-            if (! relink (fake)) {
+            if (! OperationExecutor.relinkGhost(this, fake)) {
             	getGhosts().add(fake);
             }
         }
-    }
-
-	private boolean relink (Ghost ghost) {
-        EObject instance = CommonOperation.findInstance (getModel(), ghost.getTo(), ghost.getValue());
-        if (instance == null) return false;
-        
-        EStructuralFeature feature = ghost.getFrom();
-        if (feature == null) return false;
-
-        EObject target = ghost.getFromObject();
-        EcoreUtil.replace(target, feature, null, instance);
-        if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-            SintaksPlugin.getDefault().debugln ("Replace      : ");
-            SintaksPlugin.getDefault().debugln ("   On        : "+target);
-            SintaksPlugin.getDefault().debugln ("   Attribute : "+feature);
-            SintaksPlugin.getDefault().debugln ("   Object    : "+instance);
-        }
-        return true;
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			if (getGhosts().isEmpty()) {
+				SintaksPlugin.getDefault().getTracer().add("Ghosts now empty");
+			} else {
+				SintaksPlugin.getDefault().getTracer().add("Ghosts allways not empty");
+			}
+		}
     }
 
     public void load (URI uri) {

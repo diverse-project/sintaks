@@ -6,7 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 import java.util.Iterator;
 
 import org.kermeta.sintaks.sts.Condition;
@@ -23,46 +22,60 @@ public class PrinterOnce implements IPrinter {
         this.subject = subject;
 	}
 
-	private void printOne (PrintWriter output, Object o) throws PrinterSemanticException {
+	private void printOne (ISmartPrinter output, Object o) throws PrinterSemanticException {
 		if (!(o instanceof Condition))
 			throw new PrinterSemanticException ("Once : condition "+o+" unacceptable");
 		IPrinter rulePrinter = new PrinterCondition ((Condition) o, subject);
         rulePrinter.print(output);
 	}
 	
-	private void printWithSeparator (PrintWriter output) throws PrinterSemanticException {
+	private void printWithSeparator (ISmartPrinter output) throws PrinterSemanticException {
 
 		if (once.getConditions() == null)
             throw new PrinterSemanticException ("Once : null subRules");
 
 		IPrinter separatorPrinter = PrinterRule.findPrinter (once.getSeparator(), subject);
 		Iterator<Condition> i = once.getConditions().iterator();
-    	if(i.hasNext()) {
+		int count=0;
+		if(i.hasNext()) {
+	    	PrinterRule.pushTrace (once, null, "once "+count);
     		printOne (output, i.next());
-    	}
+        	PrinterRule.setStateValidOrFailed (true);
+        	PrinterRule.popTrace();
+		}
     	while (i.hasNext()) {
     		separatorPrinter.print(output);
+	    	PrinterRule.pushTrace (once, null, "once "+count);
     		printOne (output, i.next());
+        	PrinterRule.setStateValidOrFailed (true);
+        	PrinterRule.popTrace();
 	    }
     }
 
-    private void printWithoutSeparator (PrintWriter output) throws PrinterSemanticException {
+    private void printWithoutSeparator (ISmartPrinter output) throws PrinterSemanticException {
 		if (once.getConditions() == null)
             throw new PrinterSemanticException ("Once : null subRules");
 
         Iterator<Condition> i = once.getConditions().iterator();
-    	while (i.hasNext()) {
+        int count=0;
+        while (i.hasNext()) {
+	    	PrinterRule.pushTrace (once, null, "once "+count);
     		printOne (output, i.next());
+        	PrinterRule.setStateValidOrFailed (true);
+        	PrinterRule.popTrace();
 	    }
     }
 
-    public void print (PrintWriter output) throws PrinterSemanticException {
+    public void print (ISmartPrinter output) throws PrinterSemanticException {
 
+    	PrinterRule.pushTrace (once, null, null);
         if (once.getSeparator() == null) {
             printWithoutSeparator (output);
         } else {
             printWithSeparator (output);
         }
+    	PrinterRule.setStateValidOrFailed (true);
+    	PrinterRule.popTrace();
     }
 
 	private Once once;

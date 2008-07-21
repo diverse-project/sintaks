@@ -1,4 +1,4 @@
-/* $Id: SintaksPlugin.java,v 1.3 2007-12-03 21:22:12 dvojtise Exp $
+/* $Id: SintaksPlugin.java,v 1.4 2008-07-21 15:14:23 hassen Exp $
  * Project    : Sintaks
  * File       : SintaksPlugin.java
  * License    : EPL
@@ -12,15 +12,9 @@
  */
 package org.kermeta.sintaks;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
@@ -31,6 +25,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
+import org.kermeta.sintaks.trace.util.Tracer;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -49,7 +44,7 @@ public class SintaksPlugin extends AbstractUIPlugin {
     private ScopedPreferenceStore preferenceStore;
 	private OptionManager optionManager;
 	private static final int INTERNAL_ERROR = 10001;
-	private PrintStream debugStream = null;
+	private Tracer tracer = null;
 	
 	
 	/**
@@ -187,39 +182,21 @@ public class SintaksPlugin extends AbstractUIPlugin {
 		log(new Status(IStatus.ERROR, PLUGIN_ID, INTERNAL_ERROR, "Sintaks Internal Error", e));
 	}
 	
-	public PrintStream getDebugStream () {
-		return debugStream;
+	/**
+	 * This method gets a trace manager
+	 * 
+	 */
+	public Tracer getTracer() {
+		return tracer;
 	}
 
-	public void debug (String text) {
-		if (debugStream != null ) 
-			debugStream.print(text);
+	/**
+	 * This method sets a trace manager
+	 * 
+	 */
+	public void setTracer(Tracer tracer) {
+		this.tracer = tracer;
 	}
-
-	public void debugln (String text) {
-		if (debugStream != null ) 
-			debugStream.println(text);		
-	}
-
-	public void createDebugStream (IPath container) {
-		if (debugStream != null) 
-			debugStream.close();
-		try {
-			IPath debugFile = container.append(getOptionManager().getDebugOutputFile());
-			String realName = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + debugFile.toString();
-			debugStream = new PrintStream (new BufferedOutputStream (new FileOutputStream(realName)));
-		} catch (FileNotFoundException e) {
-			debugStream = null;
-		}
-	}
-	
-	public void closeDebugStream () {
-		if (debugStream != null) {
-			debugStream.close ();
-		}
-		debugStream= null;
-	}
-	
 
 	/**
 	 * Send a message to the user via the GUI

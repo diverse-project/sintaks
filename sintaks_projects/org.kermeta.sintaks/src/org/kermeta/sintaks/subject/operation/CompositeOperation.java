@@ -16,9 +16,9 @@ public class CompositeOperation implements IOperation {
 		Iterator<IOperation> i = getList().iterator();
 		while (i.hasNext()) {
 			IOperation op = i.next();
-			SintaksPlugin.getDefault().debugln("Execution of : "+op.toString());
-	    	model.dumpStack ();
-			SintaksPlugin.getDefault().debugln("");
+//			SintaksPlugin.getDefault().debugln("Execution of : "+op.toString());
+//	    	model.dumpStack ();
+//			SintaksPlugin.getDefault().debugln("");
 			op.execute(model);
 		}
 	}

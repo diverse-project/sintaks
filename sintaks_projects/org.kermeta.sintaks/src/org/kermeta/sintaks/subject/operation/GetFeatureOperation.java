@@ -19,14 +19,15 @@ public class GetFeatureOperation extends R1W1Operation {
 
 	public Object execWithParam (ModelSubject model, Object param1) {
 		EObject target = (EObject) param1;
-
+/*
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
 			PrintStream debugStream = SintaksPlugin.getDefault().getDebugStream();
 			debugStream.println("GetAttribute : ");
 			debugStream.println("   On        : "+target);
 			debugStream.println("   Attribute : "+feature);
         }
-    	return target.eGet(feature);
+*/
+		return target.eGet(feature);
 	}
 
 

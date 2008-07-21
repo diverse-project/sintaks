@@ -1,18 +1,14 @@
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-
-
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.URIValue;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
 public class PrinterURIValue implements IPrinter {
@@ -24,8 +20,9 @@ public class PrinterURIValue implements IPrinter {
         this.subject = subject;
 	}
 
-	public void print(PrintWriter output) throws PrinterSemanticException {
+	public void print(ISmartPrinter output) throws PrinterSemanticException {
 
+    	PrinterRule.pushTrace (value, null, null);
 // HM slowly remove OperationBuilder
 //    	OperationBuilder builder = new OperationBuilder();
 		Object object;
@@ -55,6 +52,8 @@ public class PrinterURIValue implements IPrinter {
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         }
 */
+    	PrinterRule.setStateValidOrFailed(true);
+        PrinterRule.popTrace();
 	}
 	
 	

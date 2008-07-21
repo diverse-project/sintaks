@@ -6,16 +6,11 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 
 import org.kermeta.sintaks.sts.PrimitiveValue;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 public class PrinterPrimitiveValue implements IPrinter {
 
@@ -25,9 +20,10 @@ public class PrinterPrimitiveValue implements IPrinter {
         this.subject = subject;
 	}
 
-	public void print (PrintWriter output) throws PrinterSemanticException {
+	public void print (ISmartPrinter output) throws PrinterSemanticException {
 // HM slowly remove OperationBuilder
 //    	OperationBuilder builder = new OperationBuilder();
+    	PrinterRule.pushTrace (value, null, null);
 		Object object;
 		if(! value.getFeatures().isEmpty()) {
 //			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
@@ -55,6 +51,8 @@ public class PrinterPrimitiveValue implements IPrinter {
         	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
         }
 */
+    	PrinterRule.setStateValidOrFailed (true);
+    	PrinterRule.popTrace();
 	}
 	
 	private PrimitiveValue value;

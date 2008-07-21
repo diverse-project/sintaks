@@ -6,7 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 
 
 import org.kermeta.sintaks.sts.Rule;
@@ -19,7 +18,7 @@ public class PrinterAbstract implements IPrinter {
         this.subject = subject;
     }
 
-    public void print(PrintWriter output) throws PrinterSemanticException {
+    public void print(ISmartPrinter output) throws PrinterSemanticException {
         IPrinter printer = new PrinterRule (rule, subject);
         printer.print(output);
 	}

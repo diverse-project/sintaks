@@ -93,11 +93,13 @@ public class ModelParser {
      */
     private IParser getParser(URI ruleURI) {
         Rule startSymbol = mmParser.getStartSymbol(ruleURI);
+/*
         if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess()) {
         	SintaksPlugin.getDefault().debug ("startSymbol=");
         	SintaksPlugin.getDefault().debug (startSymbol.toString());
         	SintaksPlugin.getDefault().debugln ("");
         }
+*/
         return new ParserAbstract (startSymbol, subject);
     }
     
@@ -138,20 +140,15 @@ public class ModelParser {
             lexer.begin();
             try {
                 r1 = parser.parse(lexer);
+                SintaksPlugin.getDefault().getTracer().add("Parser " + (r1 ? "is at end" : "has failed"));
             }
             catch (ParserSemanticException e) {
                 e.printStackTrace();
+                SintaksPlugin.getDefault().getTracer().add("Parser " + "has failed with an exception");
             }
             r2 = lexer.atEnd();
-            StringBuffer tmp = new StringBuffer ();
-            tmp.append("State\tParser=");
-            tmp.append(r1 ? "atend" : "failed");
-            tmp.append("\tLexer=");
-            tmp.append(r2 ? "atend" : "pending character(s)");
-            tmp.append("\r\n");
-            tmp.append("Acceptable : ");
-            tmp.append((r1 & r2) ? "true" : "false");
-            SintaksPlugin.getDefault().debugln (tmp.toString());
+            SintaksPlugin.getDefault().getTracer().add("Lexer " + (r2 ? "is at end" : "has pending character(s)"));
+            SintaksPlugin.getDefault().getTracer().add("Transformation seems " + ((r1 & r2) ? "acceptable" : "wrong"));
         }
         lexer.close();
         

@@ -6,7 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 
 
 import org.kermeta.sintaks.sts.Constant;
@@ -24,10 +23,12 @@ public class PrinterConstant implements IPrinter {
 
 	// it is a do nothing method
 	// a constant do not leave information in the output stream
-	public void print (PrintWriter output) throws PrinterSemanticException {
+	public void print (ISmartPrinter output) throws PrinterSemanticException {
+    	PrinterRule.pushTrace (value, null, null);
+    	PrinterRule.setStateValidOrFailed (true);
+    	PrinterRule.popTrace();
     }
 	
-	@SuppressWarnings("unused")
 	private Constant value;
 	@SuppressWarnings("unused")
     private ModelSubject subject;

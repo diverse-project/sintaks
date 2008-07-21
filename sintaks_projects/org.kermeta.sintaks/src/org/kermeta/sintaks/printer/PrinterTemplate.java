@@ -6,7 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-import java.io.PrintWriter;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -22,14 +21,17 @@ public class PrinterTemplate implements IPrinter {
         this.subject = subject;
 	}
 
-    public void print (PrintWriter output) throws PrinterSemanticException  {
+    public void print (ISmartPrinter output) throws PrinterSemanticException  {
         EClass metaClass = template.getMetaclass();
+    	PrinterRule.pushTrace (template, null, null);
         if (metaClass == null)
             throw new PrinterSemanticException ("Template : metaClass (null) unacceptable");
         if (template.getRule() != null) {
         	IPrinter printer = PrinterRule.findPrinter (template.getRule(), subject);
         	printer.print(output);
         }
+    	PrinterRule.setStateValidOrCanceled(true);
+        PrinterRule.popTrace();
     }
     
 	private Template template;

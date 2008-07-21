@@ -22,7 +22,7 @@ public class OptionManager {
 	private static final boolean DebugParser  = false;
 	private static final boolean DebugPrinter = false;
 	private static final boolean DebugModel   = false;
-	private static final String DebugOutputFile = "debug.txt";
+	private static final String DebugOutputFile = "debug.trace";
 	private static final String SyntacticModel = "";
 
 	private static final String PREFIX = SintaksPlugin.PLUGIN_ID + ".";

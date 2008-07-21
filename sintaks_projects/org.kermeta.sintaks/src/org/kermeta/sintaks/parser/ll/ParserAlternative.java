@@ -9,8 +9,6 @@ package org.kermeta.sintaks.parser.ll;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
-
-
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -33,21 +31,13 @@ public class ParserAlternative implements IParser {
 		if (list == null)
 			throw new ParserSemanticException ("Alternative : conditions empty");
 
+    	ParserRule.pushTrace (alternative, null, null);
 		Iterator<Condition> i = list.iterator();
 		boolean ok = false;
 		long position = input.getPosition();
 		boolean loop = true;
 		while (loop) {
 			if (i.hasNext()) {
-				/*
-				Object o = i.next();
-				if (!(o instanceof Condition))
-					throw new ParserSemanticException ("Alternative : condition "+o+" unacceptable");
-				IParser parser = new ParserCondition ((Condition) o, subject);
-				input.back(position);
-				ok = parser.parse(input);
-				if (ok) loop=false;
-				*/
 				IParser parser = new ParserCondition (i.next(), subject);
 				input.back(position);
 				ok = parser.parse(input);
@@ -56,6 +46,8 @@ public class ParserAlternative implements IParser {
 				loop = false;
 			}
 		}
+        ParserRule.setStateValidOrCanceled(ok);
+		ParserRule.popTrace();
 		return ok;
 	}
 

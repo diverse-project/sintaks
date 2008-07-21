@@ -29,16 +29,18 @@ public class FindTargetOperation extends R0W1Operation {
 			try {
 				EObject target = (EObject) crt;
 				target.eGet(feature);
+/*
 				if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
 					SintaksPlugin.getDefault().debugln("Target usable : "+target);
 				}
+*/
 				return target;
 			}
 			catch (Exception e) {
-				if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+/*				if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
 					SintaksPlugin.getDefault().debugln("Target unusable : "+crt);
 				}
-			}
+*/			}
 		}
 		return null;
 	}

@@ -10,8 +10,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -19,7 +17,6 @@ import org.kermeta.sintaks.sts.ObjectReference;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
-import org.kermeta.sintaks.subject.operation.OperationBuilder;
 
 
 public class ParserReferenceValue implements IParser {
@@ -38,6 +35,7 @@ public class ParserReferenceValue implements IParser {
 		if (input.atEnd()) return false;
         String textRead = input.get();
 
+    	ParserRule.pushTrace (value, textRead, null);
 // HM slowly remove OperationBuilder
 //        OperationBuilder builder1 = new OperationBuilder();
 //    	builder1.buildFindInstance(id, textRead);
@@ -58,19 +56,17 @@ public class ParserReferenceValue implements IParser {
         	}
 //        	subject.process (builder2.getOperation());
         	ok = true;
-        	if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-	        	SintaksPlugin.getDefault().debugln ("Accepted Reference to : "+id);
         } else {
 //        	OperationBuilder builder2 = new OperationBuilder();
 //        	builder2.buildCreateGhosts(features, id, textRead);
 //        	subject.process (builder2.getOperation());
         	OperationExecutor.createGhosts(subject, features, id, textRead);
-        	if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-	        	SintaksPlugin.getDefault().debugln ("Created Ghost to : "+id);
         	ok = true;
         }
 		input.next();
-        return ok;
+        ParserRule.setStateValidOrFailed (ok);
+		ParserRule.popTrace();
+		return ok;
 	}
 	
 	private ObjectReference value;

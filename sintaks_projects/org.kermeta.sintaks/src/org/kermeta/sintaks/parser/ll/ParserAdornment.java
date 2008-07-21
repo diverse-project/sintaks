@@ -23,7 +23,11 @@ public class ParserAdornment implements IParser {
 	}
 
 	public boolean parse(ILexer input) throws ParserSemanticException {
-		return true;
+		boolean ok = true;
+    	ParserRule.pushTrace (adornment, "", null);
+        ParserRule.setStateValidOrFailed (ok);
+		ParserRule.popTrace();
+		return ok;
 	}
 
 	@SuppressWarnings("unused")

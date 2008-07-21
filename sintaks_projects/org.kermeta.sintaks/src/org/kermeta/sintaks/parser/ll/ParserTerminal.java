@@ -7,7 +7,6 @@
 package org.kermeta.sintaks.parser.ll;
 
 
-import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
@@ -27,26 +26,23 @@ public class ParserTerminal implements IParser {
         if (input.atEnd()) return false;
 		String textRead = input.get();
 
-		boolean success;
+    	ParserRule.pushTrace (terminal, textRead, null);
+
+		boolean ok;
 
 		if(terminal.isCaseSensitive()) {
-			success = textReference.equals(textRead);
-		}
-		else {
-			success = textReference.toUpperCase().equals(textRead.toUpperCase());
+			ok = textReference.equals(textRead);
+		} else {
+			ok = textReference.toUpperCase().equals(textRead.toUpperCase());
 		}
 		
-		if(success) {
-            if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-            	SintaksPlugin.getDefault().debugln ("Accepted Terminal : "+textRead);
+		if(ok) {
 			input.next();
 		}
-		else {
-            if (SintaksPlugin.getDefault().getOptionManager().isDebugParser())
-            	SintaksPlugin.getDefault().debugln ("Refused Terminal : "+textRead);
-		}
 		
-		return success;
+        ParserRule.setStateValidOrFailed (ok);
+		ParserRule.popTrace();
+		return ok;
 	}
 
 	private Terminal terminal;

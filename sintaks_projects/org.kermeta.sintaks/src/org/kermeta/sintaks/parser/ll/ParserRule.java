@@ -7,12 +7,16 @@
 package org.kermeta.sintaks.parser.ll;
 
 
+import org.eclipse.emf.ecore.EObject;
+import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.lexer.ILexer;
 import org.kermeta.sintaks.parser.IParser;
 import org.kermeta.sintaks.parser.ParserSemanticException;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.StsPackage;
 import org.kermeta.sintaks.subject.ModelSubject;
+import org.kermeta.sintaks.trace.State;
+import org.kermeta.sintaks.trace.Trace;
 
 public class ParserRule implements IParser {
 
@@ -56,6 +60,37 @@ public class ParserRule implements IParser {
 		return parser;
 	}
 	
+	static protected void pushTrace (EObject rule, String textRead, String comment) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugParser()) {
+			Trace trace = SintaksPlugin.getDefault().getTracer().newText2ModelTrace(rule, textRead, comment);
+        	SintaksPlugin.getDefault().getTracer().push(trace);
+    	}
+	}
+	
+	static protected void popTrace () {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugParser()) {
+	    	SintaksPlugin.getDefault().getTracer().pop();
+		}
+	}
+	
+	protected static void setStateValidOrFailed (boolean ok) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugParser()) {
+			Trace trace = SintaksPlugin.getDefault().getTracer().top();
+			if (trace != null) {
+				trace.setState(ok ? State.OK : State.FAILURE);
+			}
+		}
+	}
+
+	protected static void setStateValidOrCanceled (boolean ok) {
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugParser()) {
+			Trace trace = SintaksPlugin.getDefault().getTracer().top();
+			if (trace != null) {
+				trace.setState(ok ? State.OK : State.CANCELED);
+			}
+		}
+	}
+
 	private Rule rule;
     private ModelSubject subject;
 }
