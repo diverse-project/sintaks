@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2008-07-21 13:12:45 hassen Exp $
+-->
+
+<plugin>
+
+
+  <extension
+    point = "org.eclipse.ui.newWizards">
+    <category
+      id = "org.eclipse.emf.ecore.Wizard.category.ID"
+      name="%_UI_Wizard_category">
+    </category>
+    <wizard
+      id = "org.kermeta.sintaks.trace.presentation.traceModelWizardID"
+      name = "%_UI_traceModelWizard_label"
+      class = "org.kermeta.sintaks.trace.presentation.TraceModelWizard"
+      category = "org.eclipse.emf.ecore.Wizard.category.ID"
+      icon = "icons/full/obj16/traceModelFile.gif">
+      <description>%_UI_traceModelWizard_description</description>
+      <selection class = "org.eclipse.core.resources.IResource" />
+    </wizard>
+  </extension>
+
+  <extension point = "org.eclipse.ui.editors">
+    <editor
+        id = "org.kermeta.sintaks.trace.presentation.traceEditorID"
+        name = "%_UI_traceEditor_label"
+        icon = "icons/full/obj16/traceModelFile.gif"
+        extensions = "trace"
+        class = "org.kermeta.sintaks.trace.presentation.TraceEditor" 
+        contributorClass="org.kermeta.sintaks.trace.presentation.TraceActionBarContributor" >
+    </editor>
+  </extension>    
+</plugin>
