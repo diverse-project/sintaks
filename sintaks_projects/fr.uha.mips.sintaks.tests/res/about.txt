@@ -1,0 +1,21 @@
+Several tests used to check non regressions in sintaks (they are also used to check functionalities in sintaks)
+
+container : checks a new feature in sintaks. It is the ability to parse a file and fill two containers together
+            (one for the references and one for containment). This feature is useful as it allow to create and
+            to refer the same class in one rule.
+
+expr : historical use case used to check priorities and ruleref in a concrete syntax.
+
+fsm : a fsm is just an old standard use case. This example could be enhanced now using the new features of
+      multi-container iteration.
+      
+ghosts : such example deals with some special cases of ghosts create by objectReference and the feature to fill
+         is just unknown. Such cases arrive when we manage a collection of references or we share representation.
+         1) The collection is referenced by an iteration and the id by the objectReference.
+         2) The collection is referenced by a  ruleref   and the id by the objectReference.
+         This use case checks against a historical bug now corrected.
+         
+tinyjava : a joke to try to deal with java like syntax. Very nice tutorial, straight forward.
+
+type : historical use case used to check several standard features in a concrete syntax.
+
