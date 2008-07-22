@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sts:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sts="http://www.kermeta.org/Sts" start="//@fragments.3">
+  <fragments xsi:type="sts:Terminal" id="separator1" terminal="," lexicalSeparator="true"/>
+  <fragments xsi:type="sts:Terminal" id="separator2" terminal="," lexicalSeparator="true"/>
+  <fragments xsi:type="sts:Sequence" id="sharedSingleReference">
+    <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+    <subRules xsi:type="sts:ObjectReference">
+      <identifier xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Child/id"/>
+    </subRules>
+    <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Root">
+    <metaclass href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:Terminal" terminal="Root"/>
+      <subRules xsi:type="sts:Terminal" terminal="{" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="inc"/>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Alternative" id="Root_container">
+        <conditions xsi:type="sts:CustomCond" value="filled">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="container"/>
+            <subRules xsi:type="sts:Terminal" terminal="{" lexicalSeparator="true"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+            <subRules xsi:type="sts:Adornment" terminal="inc"/>
+            <subRules xsi:type="sts:Iteration" separator="//@fragments.5">
+              <subRule xsi:type="sts:RuleRef" ref="//@fragments.4"/>
+              <containers xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/container"/>
+            </subRules>
+            <subRules xsi:type="sts:Adornment" terminal="dec"/>
+            <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+            <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
+          </subRule>
+          <feature xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/container"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="empty">
+          <feature xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/container"/>
+        </conditions>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Alternative" id="Root_firstSingleReference">
+        <conditions xsi:type="sts:CustomCond" value="filled">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="first"/>
+            <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+            <subRules xsi:type="sts:ObjectReference">
+              <features xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/firstSingleReference"/>
+              <identifier xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Child/id"/>
+            </subRules>
+            <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+          </subRule>
+          <feature xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/firstSingleReference"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="empty">
+          <feature xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/firstSingleReference"/>
+        </conditions>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Alternative" id="Root_secondSingleReference">
+        <conditions xsi:type="sts:CustomCond" value="filled">
+          <subRule xsi:type="sts:Sequence">
+            <subRules xsi:type="sts:Terminal" terminal="second"/>
+            <subRules xsi:type="sts:RuleRef" ref="//@fragments.2">
+              <features xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/secondSingleReference"/>
+            </subRules>
+          </subRule>
+          <feature xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/secondSingleReference"/>
+        </conditions>
+        <conditions xsi:type="sts:CustomCond" value="empty">
+          <feature xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/secondSingleReference"/>
+        </conditions>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="Root_3&amp;4SingleReference">
+        <subRules xsi:type="sts:Terminal" terminal="3&amp;4"/>
+        <subRules xsi:type="sts:RuleRef" ref="//@fragments.2">
+          <features xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/thirdSingleReference"/>
+          <features xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/fourthSingleReference"/>
+        </subRules>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="Root_multiReferences">
+        <subRules xsi:type="sts:Terminal" terminal="multi"/>
+        <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+        <subRules xsi:type="sts:Iteration" separator="//@fragments.0">
+          <subRule xsi:type="sts:ObjectReference">
+            <identifier xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Child/id"/>
+          </subRule>
+          <containers xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/multiReferences"/>
+        </subRules>
+        <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Sequence" id="Root_embeddedMultiReferences">
+        <subRules xsi:type="sts:Terminal" terminal="embedded"/>
+        <subRules xsi:type="sts:Terminal" terminal="=" lexicalSeparator="true"/>
+        <subRules xsi:type="sts:Iteration" separator="//@fragments.1">
+          <subRule xsi:type="sts:RuleRef" ref="//@fragments.4"/>
+          <containers xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/embeddedMultiReferences"/>
+          <containers xsi:type="ecore:EReference" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Root/embeddedContainer"/>
+        </subRules>
+        <subRules xsi:type="sts:Terminal" terminal=";" lexicalSeparator="true"/>
+      </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Adornment" terminal="dec"/>
+      <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Template" id="Child">
+    <metaclass href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Child"/>
+    <rule xsi:type="sts:Sequence">
+      <subRules xsi:type="sts:PrimitiveValue">
+        <features xsi:type="ecore:EAttribute" href="http://www.ensisa.uha.fr/hassen/ghost.ecore#//Child/id"/>
+      </subRules>
+    </rule>
+  </fragments>
+  <fragments xsi:type="sts:Terminal" id="separator3" terminal="," lexicalSeparator="true"/>
+</sts:Root>

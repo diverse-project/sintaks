@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ghost:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ghost="http://www.ensisa.uha.fr/hassen/ghost.ecore" firstSingleReference="one" secondSingleReference="two" thirdSingleReference="three" fourthSingleReference="three" multiReferences="eleven twelve" embeddedMultiReferences="twentyone twentytwo">
+  <container id="one"/>
+  <container id="two"/>
+  <container id="three"/>
+  <container id="four"/>
+  <container id="eleven"/>
+  <container id="twelve"/>
+  <embeddedContainer id="twentyone"/>
+  <embeddedContainer id="twentytwo"/>
+</ghost:Root>

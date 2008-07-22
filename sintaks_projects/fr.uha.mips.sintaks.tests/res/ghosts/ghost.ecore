@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ghost"
+    nsURI="http://www.ensisa.uha.fr/hassen/ghost.ecore" nsPrefix="ghost">
+  <eClassifiers xsi:type="ecore:EClass" name="Root">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstSingleReference" eType="#//Child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondSingleReference"
+        eType="#//Child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thirdSingleReference" eType="#//Child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fourthSingleReference"
+        eType="#//Child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiReferences" upperBound="-1"
+        eType="#//Child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="embeddedMultiReferences"
+        upperBound="-1" eType="#//Child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" upperBound="-1"
+        eType="#//Child" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="embeddedContainer" upperBound="-1"
+        eType="#//Child" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Child">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+</ecore:EPackage>

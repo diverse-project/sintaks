@@ -1,0 +1,10 @@
+ Root {
+    first = one ;
+    second = two ;
+    3&4 = three ;
+    multi = eleven , twelve ;
+    embedded = twentyone , twentytwo ;
+    container {
+       one , two , three , four , eleven , twelve 
+   }
+}
