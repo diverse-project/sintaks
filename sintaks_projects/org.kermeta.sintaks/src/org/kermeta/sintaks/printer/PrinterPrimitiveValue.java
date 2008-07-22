@@ -6,7 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-
 import org.kermeta.sintaks.sts.PrimitiveValue;
 import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.subject.ModelSubject;
@@ -21,36 +20,14 @@ public class PrinterPrimitiveValue implements IPrinter {
 	}
 
 	public void print (ISmartPrinter output) throws PrinterSemanticException {
-// HM slowly remove OperationBuilder
-//    	OperationBuilder builder = new OperationBuilder();
     	PrinterRule.pushTrace (value, null, null);
 		Object object;
 		if(! value.getFeatures().isEmpty()) {
-//			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
-//        	builder.buildGetFeature(feature);
 			object = OperationExecutor.getFeatures(subject, value.getFeatures());
 		} else {
-//        	builder.buildDupp();
 			object = OperationExecutor.pop(subject);
         }
-//		builder.buildSetAccumulator();
-//		Object object = subject.process (builder.getOperation());
-
 		PrinterRule.printText(output, object.toString(), value.isSurroundingSpaces());
-/*
-		String text = object.toString();
-        if (text != null && text.length()!=0) {
-        	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
-        	if (text.indexOf(' ') != -1) {
-        		output.print('"');
-        		output.print(text);
-        		output.print('"');
-        	} else {
-        		output.print(text);
-        	}
-        	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
-        }
-*/
     	PrinterRule.setStateValidOrFailed (true);
     	PrinterRule.popTrace();
 	}

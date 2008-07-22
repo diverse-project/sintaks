@@ -1,4 +1,4 @@
-/* $Id: OperationExecutor.java,v 1.3 2008-07-22 12:27:34 hassen Exp $
+/* $Id: OperationExecutor.java,v 1.4 2008-07-22 13:21:35 hassen Exp $
  * Project    : Sintaks
  * File       : OperationExecutor.java
  * License    : EPL
@@ -136,7 +136,6 @@ public class OperationExecutor {
 	 * @param metaClass EClass the EClass to create 
 	 * @param model ModelSubject the model to update 
 	 *
-	 * @state look like the CreateClassOperation
 	 */
 	static public void createClass (ModelSubject model, EClass metaClass) {
 		EPackage metaClassPackage = (EPackage) metaClass.eContainer();
@@ -156,15 +155,12 @@ public class OperationExecutor {
 	 *
 	 * @param feature EStructuralFeature the feature to find 
 	 * @param model ModelSubject the model to search for 
-	 * @param depth a depth to skip some items in the stack 
-	 *
-	 * @state look like the FindTargetOperation
-	 * @state but depth is set to 0, seems now to be removed as the stack do not store trash values
+	 * @return EObject target able to used to feature
+	 * 
 	 */
-	static private EObject findTarget (ModelSubject model, EStructuralFeature feature, int depth) {
+	static private EObject findTarget (ModelSubject model, EStructuralFeature feature) {
 		List<Object> stack = model.getStack();
-		depth=0;
-		int size = stack.size()-1 - depth;
+		int size = stack.size()-1;
 		for (int i=size; i>=0; --i) {
 			Object crt = stack.get(i);
 			try {
@@ -209,10 +205,9 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to search for 
 	 * @param value String the value of the to feature 
 	 *
-	 * @state look like the CreateGhostOperation and the buildCreateGhost in the OperationBuilder
 	 */
 	static private void createGhost(ModelSubject model, EStructuralFeature from, EStructuralFeature to, String value) {
-    	EObject target = findTarget (model, from, 0);
+    	EObject target = findTarget (model, from);
     	Ghost ghost = new Ghost (from, to, value, target);
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
 			SintaksPlugin.getDefault().getTracer().add("createGhost " + ghostToString(ghost));
@@ -232,7 +227,6 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to search for 
 	 * @param value String the value of the to feature 
 	 *
-	 * @state look like the buildCreateGhosts in the OperationBuilder
 	 */
 	static public void createGhosts (ModelSubject model, EList<EStructuralFeature> from, EStructuralFeature to, String value) {
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
@@ -258,7 +252,6 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to use 
 	 * @return int the current position
 	 *
-	 * @state look like the MarkOperation
 	 */
 	static public int mark (ModelSubject model) {
 		return model.size();
@@ -270,7 +263,6 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to use 
 	 * @param position int the position to reach
 	 *
-	 * @state look like the GotoMarkOperation
 	 */
 	static public void gotoMark (ModelSubject model, int position) {
 		int crtPosition = model.size();
@@ -285,7 +277,6 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to use 
 	 * @param value Object the value to push 
 	 *
-	 * @state look like the PushOperation
 	 */
 	static public void push (ModelSubject model, Object value) {
 		model.push(value);
@@ -297,7 +288,6 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to use 
 	 * @return value the popped Object
 	 * 
-	 * @state look like the PopOperation
 	 */
 	static public Object pop (ModelSubject model) {
 		return model.pop();
@@ -322,7 +312,6 @@ public class OperationExecutor {
 	 * @param value String the value of the feature 
 	 * @return value EObject the founded object
 	 *
-	 * @state look like the FindInstanceOperation
 	 */
 	static public EObject findInstance (ModelSubject model, EStructuralFeature feature, String value) {
 		EObject o = CommonOperation.findInstance(model.getModel (), feature, value);
@@ -339,9 +328,7 @@ public class OperationExecutor {
 	 * @param value Object the value of the feature 
 	 * @param target EObject the object to set
 	 *
-	 * @state look like the SetFeatureOperation
 	 */
-	@SuppressWarnings("unchecked")
 	static private void setFeature (EStructuralFeature feature, Object value, EObject target) {
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
 	        SintaksPlugin.getDefault().getTracer().add("setFeature  : " + featureToString(feature));
@@ -349,7 +336,7 @@ public class OperationExecutor {
 	        SintaksPlugin.getDefault().getTracer().add(" with value : " + objectToString (value));
         }
     	if (feature.isMany()) {
-	   		EList<Object> list = (EList<Object>) target.eGet(feature);
+    		@SuppressWarnings("unchecked") EList<Object> list = (EList<Object>) target.eGet(feature);
 			list.add(value);
 		} else {
 			target.eSet(feature, value);
@@ -364,7 +351,6 @@ public class OperationExecutor {
 	 * @param target EObject the object to set
 	 *
 	 */
-	@SuppressWarnings("unchecked")
 	static private void replaceFeature (EStructuralFeature feature, EObject value, EObject target) {
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
 	        SintaksPlugin.getDefault().getTracer().add("replaceFeature  : " + featureToString(feature));
@@ -372,7 +358,7 @@ public class OperationExecutor {
 	        SintaksPlugin.getDefault().getTracer().add("     with value : " + objectToString (value));
         }
     	if (feature.isMany()) {
-	   		EList<Object> list = (EList<Object>) target.eGet(feature);
+    		@SuppressWarnings("unchecked") EList<Object> list = (EList<Object>) target.eGet(feature);
 			list.add(value);
 		} else {
 			target.eSet(feature, value);
@@ -404,7 +390,6 @@ public class OperationExecutor {
 	 * @param target EObject the object to set
 	 * @return value the value of the feature 
 	 *
-	 * @state look like the GetFeatureOperation
 	 */
 	static private Object getFeature (EStructuralFeature feature, EObject target) {
     	Object value = target.eGet(feature);
@@ -423,7 +408,6 @@ public class OperationExecutor {
 	 * @param value Object the value of the feature 
 	 * @return value Object the converted value
 	 *
-	 * @state look like the ConvertToFeatureOperation
 	 */
 	static protected Object convertToFeature (EStructuralFeature feature, Object value) {
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
@@ -446,7 +430,7 @@ public class OperationExecutor {
 	 */
 	static public void setFeature (ModelSubject model, EStructuralFeature feature, Object value) {
 		Object converted = convertToFeature (feature, value);
-		EObject target = findTarget (model, feature, 1);
+		EObject target = findTarget (model, feature);
 		setFeature (feature, converted, target);
 	}
 	
@@ -456,8 +440,6 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to search for 
 	 * @param feature EStructuralFeature the feature to use
 	 *
-	 * @state look like the buildSetFeature in the OperationBuilder
-
 	 */
 	static public void setFeature (ModelSubject model, EStructuralFeature feature) {
 		setFeature (model, feature, pop(model));
@@ -471,7 +453,6 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to search for 
 	 * @param feature EList<EStructuralFeature> the features to use
 	 *
-	 * @state look like the buildSetFeatures in the OperationBuilder
 	 */
 	static public void setFeatures (ModelSubject model, EList<EStructuralFeature> features) {
 		Object tos = pop(model);
@@ -490,7 +471,6 @@ public class OperationExecutor {
 	 * @param feature EList<EStructuralFeature> the features to use
 	 * @param value Object the value to use... after conversion
 	 *
-	 * @state look like the buildSetFeatures in the OperationBuilder
 	 */
 	static public void setFeatures (ModelSubject model, EList<EStructuralFeature> features, Object value) {
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
@@ -518,10 +498,9 @@ public class OperationExecutor {
 	 * @param model ModelSubject the model to search for 
 	 * @param feature EStructuralFeature the features to use
 	 *
-	 * @state look like the buildGetFeature in the OperationBuilder
 	 */
 	static public Object getFeature (ModelSubject model, EStructuralFeature feature) {
-		EObject target = findTarget (model, feature, 0);
+		EObject target = findTarget (model, feature);
 		Object value = getFeature (feature, target);
 		return value;
 	}

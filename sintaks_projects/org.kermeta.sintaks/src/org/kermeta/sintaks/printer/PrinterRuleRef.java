@@ -26,21 +26,10 @@ public class PrinterRuleRef implements IPrinter {
 		
     	PrinterRule.pushTrace (rule, null, null);
 		if(! rule.getFeatures().isEmpty()) {
-// HM slowly remove OperationBuilder
-//			EStructuralFeature feature = (EStructuralFeature) rule.getFeatures().get(0);
-//	    	OperationBuilder builder1 = new OperationBuilder();
-//        	builder1.buildGetFeature(feature);
-//    		subject.process (builder1.getOperation());
-			
 			Object object = OperationExecutor.getFeatures (subject, rule.getFeatures());
 			OperationExecutor.push(subject, object);
-			
     		printer.print(output);
-    		
 			OperationExecutor.pop(subject);
-//    		OperationBuilder builder2 = new OperationBuilder();
-//           	builder2.buildPop();
-//    		subject.process (builder2.getOperation());
         } else {
     		printer.print(output);
         }

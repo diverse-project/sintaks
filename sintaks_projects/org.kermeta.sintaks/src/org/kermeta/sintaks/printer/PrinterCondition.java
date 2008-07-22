@@ -17,7 +17,6 @@ import org.kermeta.sintaks.sts.PolymorphicCond;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
 
-//TODO understand the purpose of the hack with the pop
 public class PrinterCondition implements IPrinter {
 
 	public PrinterCondition(Condition condition, ModelSubject subject) {
@@ -27,11 +26,6 @@ public class PrinterCondition implements IPrinter {
 	}
 	
 	private boolean valid (PolymorphicCond c) {
-
-//    	OperationBuilder builder = new OperationBuilder();
-//       	builder.buildDupp ();
-//       	builder.buildSetAccumulator();
-//       	Object object = subject.process (builder.getOperation());
 
 		Object object = OperationExecutor.top(subject);       	
 		EObject top = (EObject) object;
@@ -71,12 +65,6 @@ public class PrinterCondition implements IPrinter {
 	}
 
 	private boolean valid (CustomCond c) {
-//        EStructuralFeature container = c.getFeature();
-//        OperationBuilder builder = new OperationBuilder();
-//        builder.buildGetFeature(container);
-//		builder.buildSetAccumulator();
-//		Object o = subject.process (builder.getOperation());
-
 		Object o = OperationExecutor.getFeature (subject, c.getFeature());
         String value = c.getValue();
 		if (value == null || value.length()==0)
@@ -93,7 +81,7 @@ public class PrinterCondition implements IPrinter {
                 return false;
             }
 			if (o instanceof List) {
-				List<EObject> list = (List<EObject>) o;
+				@SuppressWarnings("unchecked") List<EObject> list = (List<EObject>) o;
 				if (list.size()==0) return true;
 				return false;
 			}
@@ -107,7 +95,7 @@ public class PrinterCondition implements IPrinter {
                 return true;
             }
 			if (o instanceof List) {
-				List<EObject> list = (List<EObject>) o;
+				@SuppressWarnings("unchecked") List<EObject> list = (List<EObject>) o;
 				if (list.size()==0) return false;
 				return true;
 			}

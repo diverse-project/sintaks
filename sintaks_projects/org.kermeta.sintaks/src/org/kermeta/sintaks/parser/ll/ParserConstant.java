@@ -30,16 +30,11 @@ public class ParserConstant implements IParser {
     	ParserRule.pushTrace (value, null, null);
         boolean ok;
         if (value.getValue() != null) {
-// HM slowly remove OperationBuilder
-//        	OperationBuilder builder = new OperationBuilder();
-//        	builder.buildPush(value.getValue());
         	if(! features.isEmpty()) {
     			OperationExecutor.setFeatures(subject, features, value.getValue());
-//	        	builder.buildSetFeatures(features);
 	        } else {
 	        	OperationExecutor.push(subject, value.getValue());	        	
 	        }
-//        	subject.process (builder.getOperation());
         	ok = true;
         } else {
         	ok = false;

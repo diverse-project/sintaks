@@ -28,10 +28,6 @@ public class ParserTemplate implements IParser {
 		EClass metaClass = template.getMetaclass();
 		if (metaClass == null)
 			throw new ParserSemanticException ("Template : metaClass (null) unacceptable");
-// HM slowly remove OperationBuilder
-//    	OperationBuilder builder1 = new OperationBuilder();
-//       	builder1.buildCreateClass(metaClass);
-//    	subject.process (builder1.getOperation());
     	ParserRule.pushTrace (template, null, null);
 
 		OperationExecutor.createClass (subject, metaClass);
@@ -41,9 +37,6 @@ public class ParserTemplate implements IParser {
         IParser parser = ParserRule.findParser(template.getRule(), subject);
         ok = parser.parse(input);
 		if (ok == false) {
-//	    	OperationBuilder builder2 = new OperationBuilder();
-//	       	builder2.buildPop();
-//	    	subject.process (builder2.getOperation());
 			OperationExecutor.pop (subject);
 		}
         ParserRule.setStateValidOrCanceled(ok);

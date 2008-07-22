@@ -43,12 +43,6 @@ public class ModelPrinter {
 
     public void print (URI ruleURI, String outputFilename) {
         Rule startSymbol = mmParser.getStartSymbol(ruleURI);
-/*        if (SintaksPlugin.getDefault().getOptionManager().isDebugProcess()) {
-        	SintaksPlugin.getDefault().debug ("startSymbol=");
-        	SintaksPlugin.getDefault().debug (startSymbol.toString());
-        	SintaksPlugin.getDefault().debugln ("");
-        }
-*/        
         IPrinter printer = new PrinterAbstract (startSymbol, subject);
 
         try {
@@ -58,10 +52,6 @@ public class ModelPrinter {
                 stream.flush();
                 stream.close();
                 SintaksPlugin.getDefault().getTracer().add("Transformation is " + "acceptable");
-//        	} else {
-//        		PrintWriter writer = new PrintWriter (SintaksPlugin.getDefault().getDebugStream());
-//        		printer.print(writer);
-//        		writer.flush();
         	}
         } catch (PrinterSemanticException e) {
             e.printStackTrace();

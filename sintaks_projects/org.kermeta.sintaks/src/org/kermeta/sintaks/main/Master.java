@@ -1,4 +1,4 @@
-/* $Id: Master.java,v 1.6 2008-07-21 15:14:22 hassen Exp $
+/* $Id: Master.java,v 1.7 2008-07-22 13:21:35 hassen Exp $
  * Project    : Sintaks
  * File       : Master.java
  * License    : EPL
@@ -173,7 +173,6 @@ public class Master {
             return subject.getModel();
  		}
 		catch(UserError ue){
-			//SintaksPlugin.getDefault().reportErrorToUser(ue);
 			SintaksPlugin.logErrorMessage(ue.getMessage(), ue);
 		}
 		catch (Exception e) {

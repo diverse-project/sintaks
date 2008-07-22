@@ -23,35 +23,14 @@ public class PrinterURIValue implements IPrinter {
 	public void print(ISmartPrinter output) throws PrinterSemanticException {
 
     	PrinterRule.pushTrace (value, null, null);
-// HM slowly remove OperationBuilder
-//    	OperationBuilder builder = new OperationBuilder();
 		Object object;
 		if(! value.getFeatures().isEmpty()) {
-//			EStructuralFeature feature = (EStructuralFeature) value.getFeatures().get(0);
-//        	builder.buildGetFeature(feature);
 			object = OperationExecutor.getFeatures(subject, value.getFeatures());
         } else {
-//        	builder.buildDupp();
 			object = OperationExecutor.pop(subject);
         }
-//		builder.buildSetAccumulator();
-//		Object object = subject.process (builder.getOperation());
-
         String text = getURIStringFromEObject((EObject) object);
 		PrinterRule.printText(output, text, value.isSurroundingSpaces());
-/*
-        if (text != null && text.length()!=0) {
-        	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
-        	if (text.indexOf(' ') != -1) {
-        		output.print('"');
-        		output.print(text);
-        		output.print('"');
-        	} else {
-        		output.print(text);
-        	}
-        	if (value.isSurroundingSpaces()) output.print(IPrinter.separator);
-        }
-*/
     	PrinterRule.setStateValidOrFailed(true);
         PrinterRule.popTrace();
 	}

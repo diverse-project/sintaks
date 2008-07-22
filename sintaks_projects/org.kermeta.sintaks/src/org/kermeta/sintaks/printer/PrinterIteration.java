@@ -25,32 +25,16 @@ public class PrinterIteration implements IPrinter {
 	}
 
 	private void printOne (ISmartPrinter output, IPrinter rulePrinter, Object object) throws PrinterSemanticException {
-//    	OperationBuilder builder1 = new OperationBuilder();
-//       	builder1.buildPush(object);
-//		subject.process (builder1.getOperation());
-
 		OperationExecutor.push(subject, object);
-
 		rulePrinter.print(output);
-
 		OperationExecutor.pop(subject);
-//		OperationBuilder builder2 = new OperationBuilder();
-//       	builder2.buildPop();
-//		subject.process (builder2.getOperation());
 	}
 
-	@SuppressWarnings("unchecked")
 	private Iterator<EObject> iterator () {
-//        EList<EStructuralFeature> containers = iteration.getContainers();
-//        OperationBuilder builder = new OperationBuilder();
-//        builder.buildGetFeature(containers.get(0));
-//		builder.buildSetAccumulator();
-//		Object object = subject.process (builder.getOperation());
-
 		Object object = OperationExecutor.getFeatures (subject, iteration.getContainers());
         if (object == null) return null;
         if (object instanceof EList) {
-	        EList<EObject> list = (EList<EObject>) object;
+        	@SuppressWarnings("unchecked") EList<EObject> list = (EList<EObject>) object;
 	        if (list != null)
 	            return list.iterator();
         }

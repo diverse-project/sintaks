@@ -26,8 +26,6 @@ public class PrinterSequence implements IPrinter {
 		Iterator<Rule> i = list.iterator();
     	PrinterRule.pushTrace (sequence, null, null);
 		while (i.hasNext()) {
-			//Rule rule = (Rule) i.next();
-            //IPrinter printer = PrinterRule.findPrinter (rule, subject);
             IPrinter printer = PrinterRule.findPrinter (i.next(), subject);
 			printer.print(output);
 		}

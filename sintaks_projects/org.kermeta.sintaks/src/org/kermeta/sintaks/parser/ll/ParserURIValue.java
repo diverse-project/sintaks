@@ -43,16 +43,11 @@ public class ParserURIValue implements IParser {
         EObject uri = getEObjectFromStringURI (textRead);
         boolean ok;
         if (uri != null) {
-// HM slowly remove OperationBuilder
-//        	OperationBuilder builder = new OperationBuilder();
-//        	builder.buildPush(uri);
         	if(! features.isEmpty()) {
-//	        	builder.buildSetFeatures(features);
         		OperationExecutor.setFeatures(subject, features, uri);
 	        } else {
     			OperationExecutor.push(subject, uri);
 	        }
-//        	subject.process (builder.getOperation());
         	ok = true;
 			input.next();
         } else {

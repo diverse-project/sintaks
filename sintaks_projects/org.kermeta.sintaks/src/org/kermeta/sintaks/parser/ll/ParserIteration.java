@@ -27,10 +27,6 @@ public class ParserIteration implements IParser {
 	private void accept () {
         EList<EStructuralFeature> containers = iteration.getContainers();
 		OperationExecutor.setFeatures (subject, containers);
-// HM slowly remove OperationBuilder
-//    	OperationBuilder builder = new OperationBuilder();
-//    	builder.buildSetFeatures(containers);
-//    	subject.process (builder.getOperation());
 	}
 
 	private void reject (ILexer lexer, long position) {

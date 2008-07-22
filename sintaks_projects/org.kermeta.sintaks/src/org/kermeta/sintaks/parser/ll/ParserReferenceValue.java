@@ -36,30 +36,17 @@ public class ParserReferenceValue implements IParser {
         String textRead = input.get();
 
     	ParserRule.pushTrace (value, textRead, null);
-// HM slowly remove OperationBuilder
-//        OperationBuilder builder1 = new OperationBuilder();
-//    	builder1.buildFindInstance(id, textRead);
-//    	builder1.buildSetAccumulator();
-//        Object instance = subject.process (builder1.getOperation());
 
         EObject instance = OperationExecutor.findInstance (subject, id, textRead);
-        
     	boolean ok;
     	if (instance != null) {
-//       	OperationBuilder builder2 = new OperationBuilder();
-//        	builder2.buildPush(instance);
         	if(! features.isEmpty()) {
-//        		builder2.buildSetFeatures(features);
     			OperationExecutor.setFeatures(subject, features, instance);
         	} else {
     			OperationExecutor.push(subject, instance);
         	}
-//        	subject.process (builder2.getOperation());
         	ok = true;
         } else {
-//        	OperationBuilder builder2 = new OperationBuilder();
-//        	builder2.buildCreateGhosts(features, id, textRead);
-//        	subject.process (builder2.getOperation());
        		OperationExecutor.createGhosts(subject, features, id, textRead);
         	ok = true;
         }

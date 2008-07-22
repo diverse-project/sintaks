@@ -33,13 +33,6 @@ public class ParserSequence implements IParser {
 		
 		boolean loop = true;
 		boolean ok = true;
-
-// HM slowly remove OperationBuilder
-//    	OperationBuilder builder1 = new OperationBuilder();
-//       	builder1.buildMark();
-//       	builder1.buildSetAccumulator();
-//       	Object mark = subject.process (builder1.getOperation());
-
 		int mark = OperationExecutor.mark(subject);
 
 		while (loop) {
@@ -55,10 +48,6 @@ public class ParserSequence implements IParser {
 			}
 		}
 		if (! ok) {
-//	    	OperationBuilder builder2 = new OperationBuilder();
-//        	builder2.buildPush(mark);
-//	       	builder2.buildGotoMark();
-//	    	subject.process (builder2.getOperation());
 			OperationExecutor.gotoMark(subject, mark);
 		}
         ParserRule.setStateValidOrCanceled(ok);

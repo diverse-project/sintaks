@@ -35,14 +35,9 @@ public class ParserRuleRef implements IParser {
 
 		if(ok) {
 			EList<EStructuralFeature> features = rule.getFeatures();
-// HM slowly remove OperationBuilder
-//        	OperationBuilder builder = new OperationBuilder();
         	if(! features.isEmpty()) {
-//	        	builder.buildSetFeatures(features);
         		OperationExecutor.setFeatures(subject, features);
 	        }
-//        	subject.process (builder.getOperation());
-//        	ok = true;
 		}
         ParserRule.setStateValidOrCanceled(ok);
 		ParserRule.popTrace();

@@ -35,16 +35,11 @@ public class ParserPrimitiveValue implements IParser {
     	ParserRule.pushTrace (value, textRead, null);
         boolean ok;
         if (textRead != null) {
-// HM slowly remove OperationBuilder
-//        	OperationBuilder builder = new OperationBuilder();
-//        	builder.buildPush(textRead);
         	if(! features.isEmpty()) {
-//	        	builder.buildSetFeatures(features);
     			OperationExecutor.setFeatures(subject, features, textRead);
 	        } else {
 	        	OperationExecutor.push(subject, textRead);	        	
 	        }
-//        	subject.process (builder.getOperation());
         	ok = true;
 			input.next();
         } else {
