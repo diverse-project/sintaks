@@ -1,4 +1,4 @@
-/* $Id: OperationExecutor.java,v 1.2 2008-07-21 15:14:21 hassen Exp $
+/* $Id: OperationExecutor.java,v 1.3 2008-07-22 12:27:34 hassen Exp $
  * Project    : Sintaks
  * File       : OperationExecutor.java
  * License    : EPL
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.kermeta.sintaks.SintaksPlugin;
 import org.kermeta.sintaks.errors.UserError;
 import org.kermeta.sintaks.subject.operation.CommonOperation;
@@ -187,6 +186,22 @@ public class OperationExecutor {
 	}
 
 	/**
+	 * Create a Special Ghost, from and target are not know for the moment
+	 *
+	 * @param from EStructuralFeature the feature used to find a source object
+	 * @param to EStructuralFeature the feature used as a key to find a target object
+	 * @param value String the value of the to feature 
+	 *
+	 */
+	static public void createGhost(ModelSubject model, EStructuralFeature to, String value) {
+    	Ghost ghost = new Ghost (null, to, value, null);
+		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
+			SintaksPlugin.getDefault().getTracer().add("createSpecialGhost " + ghostToString(ghost));
+		}
+		model.push (ghost);
+	}
+
+	/**
 	 * Create a Ghost and refers all information required to update the Ghost as the real object arrives
 	 *
 	 * @param from EStructuralFeature the feature used to find a source object
@@ -207,6 +222,10 @@ public class OperationExecutor {
 
 	/**
 	 * Create a list of Ghosts
+	 * if features.size == 0 we create a special kind of ghost as we cannot know all parameters,
+	 *                       such a ghost we be filled later by a ruleref or iteration using the setFeatures
+	 * if features.size == 1 we create one standard ghost 
+	 * if features.size == 1 we create a collection of standard ghost 
 	 * 
 	 * @param from EList the feature used to find a source object
 	 * @param to EStructuralFeature the feature used as a key to find a target object
@@ -220,7 +239,7 @@ public class OperationExecutor {
 			SintaksPlugin.getDefault().getTracer().add("createGhosts #" + from.size());
 		}
 		switch (from.size()) {
-		case 0 : break;
+		case 0 : createGhost (model, to, value); break;
 		case 1 : createGhost (model, (EStructuralFeature) from.get(0), to, value);
 				 break;
 		default:
@@ -352,7 +371,12 @@ public class OperationExecutor {
 	        SintaksPlugin.getDefault().getTracer().add("     on target  : " + eObjectToString (target));
 	        SintaksPlugin.getDefault().getTracer().add("     with value : " + objectToString (value));
         }
-        EcoreUtil.replace(target, feature, null, value);
+    	if (feature.isMany()) {
+	   		EList<Object> list = (EList<Object>) target.eGet(feature);
+			list.add(value);
+		} else {
+			target.eSet(feature, value);
+		}
 	}
 	
 	/**
@@ -441,6 +465,8 @@ public class OperationExecutor {
 	
 	/**
 	 * Set a collection of features with the value at the top of stack
+	 * Sometimes we can see ghost (object reference from an unknown feature
+	 * now we can fill the ghost structure correctly and use it
 	 * 
 	 * @param model ModelSubject the model to search for 
 	 * @param feature EList<EStructuralFeature> the features to use
@@ -448,7 +474,13 @@ public class OperationExecutor {
 	 * @state look like the buildSetFeatures in the OperationBuilder
 	 */
 	static public void setFeatures (ModelSubject model, EList<EStructuralFeature> features) {
-		setFeatures (model, features, pop(model));
+		Object tos = pop(model);
+		if (tos instanceof Ghost) {
+			Ghost ghost = (Ghost) tos;
+			createGhosts (model, features, ghost.getTo(), ghost.getValue());
+		} else {
+			setFeatures (model, features, tos);
+		}
 	}
 	
 	/**

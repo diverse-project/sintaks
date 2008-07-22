@@ -60,7 +60,7 @@ public class ParserReferenceValue implements IParser {
 //        	OperationBuilder builder2 = new OperationBuilder();
 //        	builder2.buildCreateGhosts(features, id, textRead);
 //        	subject.process (builder2.getOperation());
-        	OperationExecutor.createGhosts(subject, features, id, textRead);
+       		OperationExecutor.createGhosts(subject, features, id, textRead);
         	ok = true;
         }
 		input.next();
