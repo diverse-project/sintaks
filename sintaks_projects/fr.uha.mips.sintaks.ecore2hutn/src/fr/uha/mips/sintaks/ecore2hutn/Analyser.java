@@ -57,9 +57,11 @@ public class Analyser {
 	private ModelObserver observer;
 	private List<Todo> todoList;
 	private boolean allowAdjectives;
+	private boolean protectionRules [];
 	private String startClassName;
+	private String patternToProtect;
 	
-	public Analyser(String startClassName, boolean allowAdjectives) {
+	public Analyser(String startClassName, boolean allowAdjectives, boolean protectionRules []) {
 		super();
 		this.startClassName = startClassName;
 		this.allowAdjectives = allowAdjectives;
@@ -69,6 +71,11 @@ public class Analyser {
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource inputResource = resSet.getResource(URI.createPlatformPluginURI("/fr.uha.mips.sintaks.ecore2hutn/Templates.sts", false), true);
 		pattern = (Root) inputResource.getContents().get(0);
+		if (protectionRules == null || protectionRules.length != 6) {
+			this.protectionRules = new boolean [] { false, false, false, true, false, true };
+		} else {
+			this.protectionRules = protectionRules;
+		}
 	}
 
     /**
@@ -440,6 +447,10 @@ public class Analyser {
 					toRemove.add(new ToRemove(object));
 					i.prune();
 				}
+				if ("P".equals(id)) {
+					toMove.add(new ToMove(object, processPattern (this.patternToProtect, subject)));
+					toRemove.add(new ToRemove(object));
+				}
 			}
 			if (object instanceof CustomCond && subject instanceof EStructuralFeature) ((CustomCond) object).setFeature((EStructuralFeature) subject);
 			if (object instanceof PolymorphicCond && subject instanceof EClass) ((PolymorphicCond) object).setMetaclass((EClass) subject);
@@ -510,23 +521,25 @@ public class Analyser {
      */
 	private Rule adjectiveAttributeAnalyses (EAttribute attribute, EClass current) {
 		EClass container = attribute.getEContainingClass();
+		String patternName;
 		if (container == current) {
 			if (current.isAbstract()) {
 				if ("EBoolean".equals(attribute.getEType().getName()) || "EBooleanObject".equals(attribute.getEType().getName())) {
-					return processPattern ("booleanFragmentAttribute", attribute);
+					patternName = "booleanFragmentAttribute";
 				} else {
-					return processPattern ("fragmentAttribute", attribute);
+					patternName = "fragmentAttribute";
 				}
 			} else {
 				if ("EBoolean".equals(attribute.getEType().getName()) || "EBooleanObject".equals(attribute.getEType().getName())) {
-					return processPattern ("booleanFragmentAttribute", attribute);
+					patternName = "booleanFragmentAttribute";
 				} else {
-					return processPattern ("adjectiveAttribute", attribute);
+					patternName = "adjectiveAttribute";
 				}
 			}
 		} else {
-			return processPattern ("sharedFeature", attribute);
+			patternName = "sharedFeature";
 		}
+		return processPattern (patternName, attribute);
 	}
 	
     /**
@@ -549,30 +562,56 @@ public class Analyser {
      * @return Rule
      */
 	private Rule contentFeatureAnalyses (EStructuralFeature feature, EClass mother, boolean alone) {
+		String patternFullName = null;
 		EClass container = feature.getEContainingClass();
 		if (container == mother) {
 			String patternName = null;
+			boolean toProtect = false;
 			if (feature instanceof EAttribute) {
-				if (feature.isMany()) patternName = "MultipleAttribute";
-				else if (! allowAdjectives) patternName="SingleAttribute";
+				if (feature.isMany()) {
+					patternName = "MultipleAttribute";
+					toProtect = protectionRules [1];
+				} else if (! allowAdjectives) {
+					patternName = "SingleAttribute";
+					toProtect = protectionRules [0];
+				}
 			}
 			if (feature instanceof EReference) {
 				EReference reference = (EReference) feature;
 				if (reference.isContainment()) {
-					if (reference.isMany()) patternName = "MultipleContainment";
-					else patternName = "SingleContainment";
+					if (reference.isMany()) {
+						patternName = "MultipleContainment";
+						toProtect = protectionRules [5];
+					} else {
+						patternName = "SingleContainment";
+						toProtect = protectionRules [4];
+					}
 				} else {
 					if (! reference.isContainer()) {
-						if (reference.isMany()) patternName = "MultipleReference";
-						else patternName = "SingleReference";
+						if (reference.isMany()) {
+							patternName = "MultipleReference";
+							toProtect = protectionRules [3];
+						} else {
+							patternName = "SingleReference";
+							toProtect = protectionRules [2];
+						}
 					}
 				}
 			}
-			if (alone) return processPattern ("short"+patternName, feature);
-			else return processPattern ("long"+patternName, feature);
+			String patternPrefix = (alone) ? "short" : "long";
+			if (patternName != null) {
+				if (toProtect) {
+					this.patternToProtect = patternPrefix + patternName;
+					patternFullName = "protection";
+				} else {
+					patternFullName = patternPrefix + patternName;
+				}
+			}
 		} else {
-			return processPattern ("sharedFeature", feature);
+			patternFullName = "sharedFeature";
 		}
+		if (patternFullName != null) return processPattern (patternFullName, feature);
+		else return null;
 	}
 	
     /**

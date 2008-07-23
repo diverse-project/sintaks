@@ -82,39 +82,50 @@ public class SintaksDestFileWizardPage extends DestFileWizardPage {
 		validatePage();
 	}
 	
-	protected Group sMdlSelectGrp;
-	protected Label sAllowLbl, sStartLbl;
 	protected Button sMdlAllows;
 	protected Button sMdlSelectBtn;
 	protected Combo sMdlStartClass;
 	protected List<String> concreteClasses;
+	protected Button [] protectButtons;
 	
 	protected void createControls(Composite parent) {
 		Font font = parent.getFont();
 
-		sMdlSelectGrp = new Group(parent, SWT.NONE);
-		GridLayout sMdlLayout = new GridLayout(5, false);
-		sMdlSelectGrp.setLayout(sMdlLayout);
+		Group sMdlSelectGrp = new Group(parent, SWT.NONE);
+		sMdlSelectGrp.setLayout(new GridLayout(4, false));
 		sMdlSelectGrp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		sMdlSelectGrp.setFont(font);
 		sMdlSelectGrp.setText("Parameters :");
 		
-		sAllowLbl = new Label(sMdlSelectGrp, SWT.LEFT);
-		sAllowLbl.setText("Syntactic model: ");
-		
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Adjectives Allowed");
 		sMdlAllows = new Button (sMdlSelectGrp, SWT.CHECK);
-		sMdlAllows.setText("Adjectives Allowed");
-		sMdlAllows.setLayoutData( new GridData(GridData.FILL_HORIZONTAL));
 
-		sStartLbl = new Label(sMdlSelectGrp, SWT.LEFT);
-		sStartLbl.setText("Start : ");
-		
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Start with");
 		sMdlStartClass = new Combo (sMdlSelectGrp, SWT.DROP_DOWN);
 		extractConcreteClasses ();
-		
 		for (String text : concreteClasses) {
 			sMdlStartClass.add(text);
 		}
+		
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Protections");
+		new Label(sMdlSelectGrp, SWT.NONE).setText("");
+		new Label(sMdlSelectGrp, SWT.NONE).setText("");
+		new Label(sMdlSelectGrp, SWT.NONE).setText("");
+		protectButtons = new Button [6];
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Single Attribute");
+		protectButtons [0] = new Button (sMdlSelectGrp, SWT.CHECK);
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Multiple Attribute");
+		protectButtons [1] = new Button (sMdlSelectGrp, SWT.CHECK);
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Single Reference");
+		protectButtons [2] = new Button (sMdlSelectGrp, SWT.CHECK);
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Multiple Reference");
+		protectButtons [3] = new Button (sMdlSelectGrp, SWT.CHECK);
+		protectButtons [3].setSelection(true);
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Single Container");
+		protectButtons [4] = new Button (sMdlSelectGrp, SWT.CHECK);
+		new Label(sMdlSelectGrp, SWT.LEFT).setText("Multiple Container");
+		protectButtons [5] = new Button (sMdlSelectGrp, SWT.CHECK);
+		protectButtons [5].setSelection(true);
 	}
 	
 	private void extractConcreteClasses () {
@@ -146,5 +157,13 @@ public class SintaksDestFileWizardPage extends DestFileWizardPage {
 		if (sMdlStartClass.getSelectionIndex() != -1)
 			return concreteClasses.get(sMdlStartClass.getSelectionIndex());
 		else return null;
+	}
+	
+	public boolean [] getProtections () {
+		boolean protects [] = new boolean [protectButtons.length];
+		for (int i=0; i < protectButtons.length; ++i) {
+			protects[i] = protectButtons[i].getSelection();
+		}
+		return protects;
 	}
 }

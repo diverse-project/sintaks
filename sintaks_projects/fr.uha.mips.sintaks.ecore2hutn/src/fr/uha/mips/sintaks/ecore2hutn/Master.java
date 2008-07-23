@@ -56,14 +56,20 @@ public class Master {
      * @param startClassName String
      * @param allowAdjectives boolean
      */
-	public void getHUTNStsFromModel(URI input, URI output, String startClassName, boolean allowAdjectives) {
+	public void getHUTNStsFromModel(
+			URI input,
+			URI output,
+			String startClassName,
+			boolean allowAdjectives,
+			boolean protections []
+			) {
 
 		ResourceSet resSet = new ResourceSetImpl();
 
 		Resource inputResource = resSet.getResource(input, true);
 		EObject inputRoot = inputResource.getContents().get(0);
 
-		Analyser analyser = new Analyser (startClassName, allowAdjectives);
+		Analyser analyser = new Analyser (startClassName, allowAdjectives, protections);
 		Root stsModel = analyser.analyses (inputRoot);
 
 		Resource outputResource = resSet.createResource(output);

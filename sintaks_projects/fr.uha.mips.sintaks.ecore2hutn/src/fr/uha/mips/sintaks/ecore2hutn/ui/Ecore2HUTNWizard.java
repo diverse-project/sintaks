@@ -45,7 +45,8 @@ public class Ecore2HUTNWizard extends SintaksWizard {
 				URI.createFileURI(workspacePath + inputFile.getFullPath().toString()),
 				URI.createFileURI(workspacePath + targetFile.getFullPath().toString()),
 				outputPage.getStartClassName(),
-				outputPage.isAdjectivesAllowed()
+				outputPage.isAdjectivesAllowed(),
+				outputPage.getProtections()
 		);
 	}
 	
