@@ -1,5 +1,7 @@
 package org.kermeta.sintaks.tests;
 
+import junit.framework.JUnit4TestAdapter;
+
 import org.junit.Test;
 
 public class ExprPrefixed {
@@ -34,5 +36,10 @@ public class ExprPrefixed {
 
 		int code = helper.checkModel2Text();
 		helper.reportSuccess (code);
+	}
+	
+	// used when run from a junit3 suite
+	public static junit.framework.Test suite() {
+		return new JUnit4TestAdapter(ExprPrefixed.class);
 	}
 }

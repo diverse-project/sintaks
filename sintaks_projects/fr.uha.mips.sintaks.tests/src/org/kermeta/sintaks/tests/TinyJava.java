@@ -1,5 +1,7 @@
 package org.kermeta.sintaks.tests;
 
+import junit.framework.JUnit4TestAdapter;
+
 import org.junit.Test;
 
 public class TinyJava {
@@ -20,4 +22,8 @@ public class TinyJava {
 		helper.reportSuccess (code);
 	}
 
+	// used when run from a junit3 suite
+	public static junit.framework.Test suite() {
+		return new JUnit4TestAdapter(TinyJava.class);
+	}
 }

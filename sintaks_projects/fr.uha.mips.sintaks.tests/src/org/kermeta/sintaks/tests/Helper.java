@@ -109,6 +109,7 @@ public class Helper {
 			return Helper.SUCCESS;
 		}
 		catch (Exception exception) {
+			exception.printStackTrace();
 			return Helper.EXECUTION;
 		}
 		catch (Error error) {
