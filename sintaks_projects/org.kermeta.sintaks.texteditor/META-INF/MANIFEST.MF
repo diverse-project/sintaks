@@ -15,8 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.kermeta.sintaks,
  org.kermeta.sintaks.model,
  org.kermeta.sintaks.ui,
- fr.irisa.triskell.kermeta,
- fr.irisa.triskell.kermeta.io
+ org.kermeta.log4j.util
 Eclipse-LazyStart: true
 Export-Package: org.kermeta.sintaks.texteditor
 Bundle-ClassPath: .
