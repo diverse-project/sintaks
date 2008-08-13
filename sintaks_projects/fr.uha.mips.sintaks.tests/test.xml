@@ -17,6 +17,7 @@
 		    </fileset>
 		</path>
 	<property name="library-file" refid="library-file.id"/>
+	<echo message="library-file=${library-file}"/>
 	<property name="os" value="win32"/>
 	<property name="ws" value="win32"/>
 	<property name="arch" value="x86"/>
