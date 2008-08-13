@@ -55,7 +55,7 @@
 			<property name="plugin-name" value="${plugin-name}"/>
 			<property name="classname" 
                 value="org.kermeta.sintaks.tests.AllTests"/>
-			<property name="useEclipseExe" value="true"/>
+			<!--<property name="useEclipseExe" value="true"/>-->
 		</ant>
 	</target>
 	
