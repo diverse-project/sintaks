@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: fr.uha.mips.sintaks.trace.edit; singleton:=true
-Bundle-Version: 1.0.0.qualified
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.kermeta.sintaks.trace.provider.TraceEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.kermeta.sintaks.trace.provider
 Require-Bundle: org.eclipse.core.runtime,
  fr.uha.mips.sintaks.trace;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport
 Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
