@@ -1,4 +1,4 @@
-/*$Id: AllTests.java,v 1.1 2008-08-13 09:09:54 dvojtise Exp $
+/*$Id: AllTests.java,v 1.2 2008-09-01 11:46:59 hassen Exp $
 * Project : fr.uha.mips.sintaks.tests
 * File : 	AllTests.java
 * License : EPL
@@ -25,6 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	ExprPrefixed.class,
 	Fsm.class,
 	Ghosts.class,
+	Logo.class,
 	TinyJava.class,
 	TypeEmbedded.class,
 	TypeFlat.class
