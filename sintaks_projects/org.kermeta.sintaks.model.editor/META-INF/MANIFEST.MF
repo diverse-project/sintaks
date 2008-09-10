@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sintaks Editor Plug-In
 Bundle-SymbolicName: org.kermeta.sintaks.model.editor;singleton:=true
-Bundle-Version: 0.1.3.qualified
+Bundle-Version: 0.1.3.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.kermeta.sintaks.sts.presentation.STSEditorPlugin$Implementation
 Bundle-Vendor: IRISA/INRIA & MIPS
