@@ -1,4 +1,4 @@
-/* $Id: OperationExecutor.java,v 1.4 2008-07-22 13:21:35 hassen Exp $
+/* $Id: OperationExecutor.java,v 1.5 2008-09-10 07:19:26 dvojtise Exp $
  * Project    : Sintaks
  * File       : OperationExecutor.java
  * License    : EPL
@@ -167,7 +167,7 @@ public class OperationExecutor {
 				EObject target = (EObject) crt;
 				if (target.eClass().getFeatureID(feature) != -1) {
 					if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-						SintaksPlugin.getDefault().getTracer().add("findTarget founded " + eObjectToString(target));
+						SintaksPlugin.getDefault().getTracer().add("findTarget found " + eObjectToString(target));
 					}
 					return target;
 				}
@@ -176,7 +176,7 @@ public class OperationExecutor {
 			}
 		}
 		if (SintaksPlugin.getDefault().getOptionManager().isDebugModel()) {
-			SintaksPlugin.getDefault().getTracer().add("findTarget founded nothing");
+			SintaksPlugin.getDefault().getTracer().add("findTarget found nothing");
 		}
 		return null;
 	}
