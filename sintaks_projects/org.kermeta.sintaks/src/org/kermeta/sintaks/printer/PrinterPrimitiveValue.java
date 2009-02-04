@@ -27,8 +27,12 @@ public class PrinterPrimitiveValue implements IPrinter {
 		} else {
 			object = OperationExecutor.pop(subject);
         }
-		PrinterRule.printText(output, object.toString(), value.isSurroundingSpaces());
-    	PrinterRule.setStateValidOrFailed (true);
+		if (object != null) {
+			PrinterRule.printText(output, object.toString(), value.isSurroundingSpaces());
+		} else {
+			PrinterRule.printText(output, "#EMPTY#", value.isSurroundingSpaces());
+		}
+		PrinterRule.setStateValidOrFailed (true);
     	PrinterRule.popTrace();
 	}
 	
