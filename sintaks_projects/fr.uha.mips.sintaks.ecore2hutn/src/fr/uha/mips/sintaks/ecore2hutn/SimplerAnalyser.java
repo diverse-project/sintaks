@@ -1,13 +1,18 @@
 /* 
  * Project: sintaks
- * File: Analyser.java
+ * File: SimplerAnalyser.java
  * License: EPL
  * Copyright: MIPS / Universite de Haute Alsace
  * ----------------------------------------------------------------------------
  * Creation date: Dec 24, 2007
- * Major update : Feb  5, 2008
+ * Major update : Feb  5, 2008 // the class was just renamed
  * Authors: 
  * 			Michel Hassenforder
+ * Note:
+ * 
+ *  This class reads an ecore file and create the a HUTNlike sintaks file.
+ *  Some hints help to customize the generated sintaks file
+ *  
  */
 package fr.uha.mips.sintaks.ecore2hutn;
 
@@ -47,7 +52,7 @@ import org.kermeta.sintaks.sts.Template;
 import org.kermeta.sintaks.sts.Terminal;
 import org.kermeta.sintaks.sts.Value;
 
-public class Analyser {
+public class SimplerAnalyser {
 
 	private Root pattern;
 	private Root currentModel;
@@ -57,22 +62,24 @@ public class Analyser {
 	private ModelObserver observer;
 	private List<Todo> todoList;
 	private boolean allowAdjectives;
+	private boolean before;
 	private boolean protectionRules [];
 	private String startClassName;
 	private String patternToProtect;
 	
-	public Analyser(String startClassName, boolean allowAdjectives, boolean protectionRules []) {
+	public SimplerAnalyser(String startClassName, boolean allowAdjectives, boolean before, boolean protectionRules []) {
 		super();
 		this.startClassName = startClassName;
 		this.allowAdjectives = allowAdjectives;
+		this.before = before;
 		this.uniqId=0;
 		this.prefix="separator";
 
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource inputResource = resSet.getResource(URI.createPlatformPluginURI("/fr.uha.mips.sintaks.ecore2hutn/Templates.sts", false), true);
 		pattern = (Root) inputResource.getContents().get(0);
-		if (protectionRules == null || protectionRules.length != 6) {
-			this.protectionRules = new boolean [] { false, false, false, true, false, true };
+		if (protectionRules == null || protectionRules.length != 7) {
+			this.protectionRules = new boolean [] { false, false, false, true, false, true, false };
 		} else {
 			this.protectionRules = protectionRules;
 		}
@@ -282,33 +289,6 @@ public class Analyser {
 		
 	}
 
-    /**
-     * Terrific method witch patches an EObject according to some confusing homemade rules
-     * The idea is the following : given a template in a sts file, the id property of the Rules can carry semantics
-	 *
-	 * #  : means the id should be replaced by an uniq id
-	 * R  : means the id should be replace by something related to the concept processed
-	 * N  : means the Terminal value should be replace by the name of the feature or the class
-	 * F  : means the feature referenced by the value or the iteration should be associated to the current feature/class
-	 * I  : same as F but stranger
-	 * S  : special for share RuleRef referencing
-	 * T* : special entry to be processed heavily. It is an alternative with two conditions. We evaluate something and
-	 *      if true we process only the first condition, if false it is the else. Later the processed condition replace
-	 *      the current alternative. This part is here to express design time conditional part of the template
-	 * TI : the condition is about an attribute id of a class
-	 * TA : the condition is about the existence of the adjective section
-	 * TC : the condition is about the existence of the content section
-	 * A  : place holder for class adjectives
-	 * C  : place holder for class content
-	 * 
-	 * I guess it is my greatest idea to confused my template engine ;)
-	 * 
-	 * @param sequence EObject
-     * @param feature EStructuralFeature 
-     * @param aClass EClass 
-     * @return void
-     */
-	
 	private void Parameter_Sharp (Rule rule, EObject subject) {
 		rule.setId(createUniqName());
 	}
@@ -359,6 +339,42 @@ public class Analyser {
 		if (rule instanceof RuleRef) todoList.add (new Todo ((RuleRef) rule, getSubjectName(subject)));
 	}
 
+    /**
+     * Terrific method witch patches an EObject according to some confusing homemade rules
+     * The idea is the following : given a template in a sts file, the id feature of a Rule carry semantics
+	 *
+	 * #  : means the id should be replaced by an uniq id
+	 * R  : means the id should be replace by something related to the concept processed
+	 * N  : means the Terminal value should be replace by the name of the feature or the class
+	 * F  : means the feature referenced by the value or the iteration should be associated to the current feature/class
+	 * I  : same as F but stranger
+	 * S  : special for share RuleRef referencing
+	 * P  : call to insert the rule under the current protection pattern
+	 * ID : 
+	 * T* : special entry to be processed heavily. It is an alternative with two conditions. We evaluate something and
+	 *      if true we process only the first condition, if false it is the else. Later the processed condition replace
+	 *      the current alternative. This part is here to express design time conditional part of the template
+	 * TI : the condition is about an attribute id of a class
+	 * TAA: the condition is about the existence of the adjective after section
+	 * TAB: the condition is about the existence of the adjective before section
+	 * TC : the condition is about the existence of the content section
+	 * AA : place holder for class adjectives placed after the name/ID
+	 * AB : place holder for class adjectives placed before the name/ID
+	 * C  : place holder for class content
+	 * 
+	 * Some other rules do not have an ID feature, always we patch them :
+	 *    PolymorphicCondition : we attach the class under study
+	 *    CustomCondition : we attach the feature under study
+	 *    Template :  we attach the feature under study
+	 * 
+	 * I guess it is my greatest idea to confused my template engine ;)
+	 * 
+	 * @param sequence EObject
+     * @param feature EStructuralFeature 
+     * @param aClass EClass 
+     * @return void
+     */
+	
 	private void patchRules (EObject sequence, EObject subject) {
 /*
 		System.out.print(" Patch :");
@@ -398,8 +414,16 @@ public class Analyser {
 						Parameter_F (r, idFeature);
 					}
 				}
-				if ("A".equals(id)) {
-					if (subject instanceof EClass) {
+				if ("AA".equals(id)) {
+					if (subject instanceof EClass && ! before) {
+						for (EAttribute attribute : extractAdjectives ((EClass) subject)) {
+							toMove.add(new ToMove(object, adjectiveAttributeAnalyses (attribute, (EClass) subject)));
+						}
+					}
+					toRemove.add(new ToRemove(object));
+				}
+				if ("AB".equals(id)) {
+					if (subject instanceof EClass && before) {
 						for (EAttribute attribute : extractAdjectives ((EClass) subject)) {
 							toMove.add(new ToMove(object, adjectiveAttributeAnalyses (attribute, (EClass) subject)));
 						}
@@ -428,7 +452,12 @@ public class Analyser {
 					if ("TI".equals(id)) {
 						validCondition = (findIdFeature (((EClass) subject)) != null) ? 0 : 1;
 					}
-					if ("TA".equals(id)) {
+					if ("TAA".equals(id)) {
+						if (allowAdjectives && ! before) {
+							validCondition = (extractAdjectives (((EClass) subject)).isEmpty() == false) ? 0 : 1;
+						}
+					}
+					if ("TAB".equals(id) && before) {
 						if (allowAdjectives) {
 							validCondition = (extractAdjectives (((EClass) subject)).isEmpty() == false) ? 0 : 1;
 						}
@@ -522,24 +551,27 @@ public class Analyser {
 	private Rule adjectiveAttributeAnalyses (EAttribute attribute, EClass current) {
 		EClass container = attribute.getEContainingClass();
 		String patternName;
+		boolean toProtect = false;
 		if (container == current) {
-			if (current.isAbstract()) {
-				if ("EBoolean".equals(attribute.getEType().getName()) || "EBooleanObject".equals(attribute.getEType().getName())) {
-					patternName = "booleanFragmentAttribute";
-				} else {
-					patternName = "fragmentAttribute";
-				}
+			if ("EBoolean".equals(attribute.getEType().getName()) || "EBooleanObject".equals(attribute.getEType().getName())) {
+				patternName = "booleanAdjective";
 			} else {
-				if ("EBoolean".equals(attribute.getEType().getName()) || "EBooleanObject".equals(attribute.getEType().getName())) {
-					patternName = "booleanFragmentAttribute";
-				} else {
-					patternName = "adjectiveAttribute";
-				}
+				patternName = "adjective";
 			}
+			toProtect = protectionRules [6];
 		} else {
 			patternName = "sharedFeature";
 		}
-		return processPattern (patternName, attribute);
+		String patternFullName = null;
+		if (patternName != null) {
+			if (toProtect) {
+				this.patternToProtect = patternName;
+				patternFullName = "protection";
+			} else {
+				patternFullName = patternName;
+			}
+		}
+		return processPattern (patternFullName, attribute);
 	}
 	
     /**

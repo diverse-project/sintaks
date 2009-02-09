@@ -1,4 +1,4 @@
-/* $Id: DestFileWizardPage.java,v 1.1 2008-01-29 15:39:24 hassen Exp $
+/* $Id: DestFileWizardPage.java,v 1.2 2009-02-09 13:36:39 hassen Exp $
  * Project: Kermeta (First iteration)
  * File: KermetaNewFileWizardPage.java
  * License: EPL
@@ -53,7 +53,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.ContainerGenerator;
-// import org.eclipse.ui.help.WorkbenchHelp;
 import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
 import org.eclipse.ui.internal.ide.dialogs.CreateLinkedResourceGroup;
 import org.eclipse.ui.internal.ide.misc.ResourceAndContainerGroup;
@@ -79,10 +78,12 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	protected IPath linkTargetPath;
 
 	// widgets
+	@SuppressWarnings("restriction")
 	protected ResourceAndContainerGroup resourceGroup;
 
 	protected Button advancedButton;
 
+	@SuppressWarnings("restriction")
 	protected CreateLinkedResourceGroup linkedResourceGroup;
 
 	protected Composite linkedResourceParent;
@@ -136,6 +137,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @param parent
 	 *            the parent composite
 	 */
+	@SuppressWarnings("restriction")
 	protected void createAdvancedControls(Composite parent) {
 		Preferences preferences = ResourcesPlugin.getPlugin()
 				.getPluginPreferences();
@@ -175,6 +177,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	/**
 	 * (non-Javadoc) Method declared on IDialogPage.
 	 */
+	@SuppressWarnings("restriction")
 	public void createControl(Composite parent) {
 		initializeDialogUnits(parent);
 		// top level group
@@ -298,6 +301,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @return the new file resource handle
 	 * @see #createFile
 	 */
+	@SuppressWarnings("restriction")
 	protected IFile createFileHandle(IPath filePath) {
 		return IDEWorkbenchPlugin.getPluginWorkspace().getRoot().getFile(filePath);
 	}
@@ -305,6 +309,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	/**
 	 * Creates the link target path if a link target has been specified.
 	 */
+	@SuppressWarnings("restriction")
 	protected void createLinkTarget() {
 		if (linkedResourceGroup.getLinkTargetURI() != null) {
 			linkTargetPath = new Path(linkedResourceGroup.getLinkTargetURI().getPath());
@@ -335,6 +340,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @return the created file resource, or <code>null</code> if the file was
 	 *         not created
 	 */
+	@SuppressWarnings("restriction")
 	public IFile createNewFile() {
 		if (newFile != null)
 			return newFile;
@@ -402,6 +408,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @return the container's full path, anticipated initial value, or
 	 *         <code>null</code> if no path is known
 	 */
+	@SuppressWarnings("restriction")
 	public IPath getContainerFullPath() {
 		return resourceGroup.getContainerFullPath();
 	}
@@ -413,6 +420,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @return the file name, its anticipated initial value, or
 	 *         <code>null</code> if no file name is known
 	 */
+	@SuppressWarnings("restriction")
 	public String getFileName() {
 		if (resourceGroup == null)
 			return initialFileName;
@@ -448,6 +456,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	/**
 	 * Shows/hides the advanced option widgets.
 	 */
+	@SuppressWarnings("restriction")
 	protected void handleAdvancedButtonSelect() {
 		Shell shell = getShell();
 		Point shellSize = shell.getSize();
@@ -477,6 +486,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * Behavior when selecting FileExistButton. It enables and disables file
 	 * exist error
 	 */
+	@SuppressWarnings("restriction")
 	protected void handleFileExistsButtonSelect() {
 		resourceGroup.setAllowExistingResources(! forbidFileExistRadio.getSelection());
 		Event trucEvent = new Event();
@@ -499,6 +509,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * either a previously-specified initial value or the ability to determine
 	 * such a value.
 	 */
+	@SuppressWarnings({ "restriction", "unchecked" })
 	protected void initialPopulateContainerNameField() {
 		if (initialContainerFullPath != null)
 			resourceGroup.setContainerFullPath(initialContainerFullPath);
@@ -531,6 +542,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @param path
 	 *            the full path to the container
 	 */
+	@SuppressWarnings("restriction")
 	public void setContainerFullPath(IPath path) {
 		if (resourceGroup == null)
 			initialContainerFullPath = path;
@@ -549,6 +561,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @param value
 	 *            new file name
 	 */
+	@SuppressWarnings("restriction")
 	public void setOutputFileName(String value) {
 		if (resourceGroup == null)
 			initialFileName = value;
@@ -562,6 +575,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * 
 	 * @return IStatus validation result from the CreateLinkedResourceGroup
 	 */
+	@SuppressWarnings("restriction")
 	protected IStatus validateLinkedResource() {
 		IPath containerPath = resourceGroup.getContainerFullPath();
 		IPath newFilePath = containerPath.append(resourceGroup.getResource());
@@ -587,6 +601,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	 * @return <code>true</code> if all controls are valid, and
 	 *         <code>false</code> if at least one is invalid
 	 */
+	@SuppressWarnings("restriction")
 	protected boolean validatePage() {
 		boolean valid = true;
 
@@ -619,6 +634,7 @@ public class DestFileWizardPage extends WizardPage implements Listener {
 	/*
 	 * @see DialogPage.setVisible(boolean)
 	 */
+	@SuppressWarnings("restriction")
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		if (visible)

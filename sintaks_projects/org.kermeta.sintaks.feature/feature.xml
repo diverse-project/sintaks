@@ -137,4 +137,25 @@ the terms of the EPL licence.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="fr.uha.mips.sintaks.stsgen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="fr.uha.mips.sintaks.stsgen.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="fr.uha.mips.sintaks.stsgen.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

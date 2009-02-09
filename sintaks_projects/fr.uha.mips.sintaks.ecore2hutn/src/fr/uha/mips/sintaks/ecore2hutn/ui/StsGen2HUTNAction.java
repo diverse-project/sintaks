@@ -1,18 +1,15 @@
 /* 
  * Project: sintaks
- * File: Ecore2HUTNAction.java
+ * File: StsGen2HUTNAction.java
  * License: EPL
  * Copyright: MIPS / Universite de Haute Alsace
  * ----------------------------------------------------------------------------
- * Creation date: Dec 24, 2007
+ * Creation date: Feb 4, 2009
  * Authors: 
  * 			Michel Hassenforder
  */
 package fr.uha.mips.sintaks.ecore2hutn.ui;
 
-import java.util.Iterator;
-
-import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -26,15 +23,14 @@ import org.eclipse.ui.PlatformUI;
  * @author Michel Hassenforder
  *
  */
-public class Ecore2HUTNAction implements IObjectActionDelegate {
+public class StsGen2HUTNAction implements IObjectActionDelegate {
 	
 	protected StructuredSelection currentSelection;
-    protected IFile mdlFile;
 
 	/**
 	 * 
 	 */
-	public Ecore2HUTNAction() {
+	public StsGen2HUTNAction() {
 		super();
 	}
 
@@ -51,9 +47,9 @@ public class Ecore2HUTNAction implements IObjectActionDelegate {
 	 */
 	public void run(IAction action) {
 		Shell shell = new Shell();
-		Ecore2HUTNWizard wizard =  new Ecore2HUTNWizard();
+		StsGen2HUTNWizard wizard =  new StsGen2HUTNWizard();
     	wizard.init(PlatformUI.getWorkbench(), currentSelection);
-    	WizardDialog wizDialog =  new org.eclipse.jface.wizard.WizardDialog(shell, wizard);
+    	WizardDialog wizDialog =  new WizardDialog(shell, wizard);
     	wizDialog.setTitle("Create a sintaks file using a HUTN syntax");
     	wizDialog.open();
 	}
@@ -61,16 +57,9 @@ public class Ecore2HUTNAction implements IObjectActionDelegate {
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
 	 */
-	@SuppressWarnings("unchecked")
 	public void selectionChanged(IAction action, ISelection selection) {
 		if (selection instanceof StructuredSelection) {
-			// The selection should be a single  file
 			currentSelection = (StructuredSelection) selection;
-			Iterator it = currentSelection.iterator();
-
-			while(it.hasNext()) {
-				mdlFile = (IFile)it.next();
-			}
 		}
 	}
 

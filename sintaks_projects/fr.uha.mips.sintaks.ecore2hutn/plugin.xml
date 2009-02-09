@@ -24,6 +24,50 @@
       </objectContribution>
    </extension>
    <extension
+         point="org.eclipse.ui.popupMenus">
+     <objectContribution
+           adaptable="false"
+           id="fr.uha.mips.sintaks.stsgen2hutn.ui.objectContribution"
+           nameFilter="*.stsgen"
+           objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="org.kermeta.sintaks.subMenu"
+               label="Sintaks"
+               path="additions">
+            <separator name="sintaksgroup1"/>
+         </menu>
+         <action
+               class="fr.uha.mips.sintaks.ecore2hutn.ui.StsGen2HUTNAction"
+               enablesFor="1"
+               icon="icons/Sintaks.gif"
+               id="fr.uha.mips.sintaks.stsgen2hutn.action"
+               label="Ecore to sintaks in HUTN"
+               menubarPath="org.kermeta.sintaks.subMenu/sintaksgroup1"/>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+     <objectContribution
+           adaptable="false"
+           id="fr.uha.mips.sintaks.stsgen.ui.objectContribution"
+           nameFilter="*.ecore"
+           objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="org.kermeta.sintaks.subMenu"
+               label="Sintaks"
+               path="additions">
+            <separator name="sintaksgroup1"/>
+         </menu>
+         <action
+               class="fr.uha.mips.sintaks.ecore2hutn.ui.Ecore2StsGenAction"
+               enablesFor="1"
+               icon="icons/Sintaks.gif"
+               id="fr.uha.mips.sintaks.stsgen.action"
+               label="Ecore to sintaks generator"
+               menubarPath="org.kermeta.sintaks.subMenu/sintaksgroup1"/>
+      </objectContribution>
+   </extension>
+   <extension
          point="org.eclipse.help.toc">
       <toc
             file="toc.xml"
