@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.uha.mips.sintaks.stsgen/src"
+    modelPluginID="fr.uha.mips.sintaks.stsgen" modelName="Stsgen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>stsgen.ecore</foreignModel>
+  <genPackages prefix="Stsgen" basePackage="fr.uha.mips.sintaks" disposableProviderFactory="true"
+      ecorePackage="stsgen.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="stsgen.ecore#//Position">
+      <genEnumLiterals ecoreEnumLiteral="stsgen.ecore#//Position/Before"/>
+      <genEnumLiterals ecoreEnumLiteral="stsgen.ecore#//Position/After"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="stsgen.ecore#//Type">
+      <genEnumLiterals ecoreEnumLiteral="stsgen.ecore#//Type/ID"/>
+      <genEnumLiterals ecoreEnumLiteral="stsgen.ecore#//Type/ADJECTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="stsgen.ecore#//Type/ATTRIBUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="stsgen.ecore#//Type/CONTAINER"/>
+      <genEnumLiterals ecoreEnumLiteral="stsgen.ecore#//Type/REFERENCE"/>
+    </genEnums>
+    <genClasses ecoreClass="stsgen.ecore#//StsGenRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenRoot/genClasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenRoot/startClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenRoot/rootPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="stsgen.ecore#//StsGenClass">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenClass/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenClass/notUsed"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenClass/abstract"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenClass/classTarget"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenClass/genFeatures"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenClass/genSubClasses"/>
+    </genClasses>
+    <genClasses ecoreClass="stsgen.ecore#//StsGenFeature" labelFeature="#//stsgen/StsGenFeature/description">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenFeature/description"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenFeature/targetFeature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenFeature/notUsed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenFeature/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenFeature/protected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenFeature/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenFeature/shared"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute stsgen.ecore#//StsGenFeature/many"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference stsgen.ecore#//StsGenFeature/container"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
