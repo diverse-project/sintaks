@@ -185,6 +185,7 @@ public class StsgenCreator {
 	/**
      * InternalMethod used to create the sintaks genmodel associated to a EClass
      *    All usable features will be genmodeled as StsGenFeatures
+     *    we remove inherited feature if we are abstract
      *    the shared attribute model the fact that the feature belong directly or not to the class
      * 
      * @param aClass EClass
@@ -194,11 +195,11 @@ public class StsgenCreator {
 		StsGenClass genClass = StsgenFactory.eINSTANCE.createStsGenClass();
 		genClass.setClassTarget(aClass);
 		for (EStructuralFeature f : aClass.getEAllStructuralFeatures()) {
-			if (shouldBeProcessed (f)) {
-				StsGenFeature genFeature = createFeature (f);
-				genFeature.setShared(f.getEContainingClass() != aClass);
-				genClass.getGenFeatures().add(genFeature);
-			}
+			if ( ! shouldBeProcessed (f)) continue;
+			if (aClass.isAbstract() && f.eContainer() != aClass) continue;
+			StsGenFeature genFeature = createFeature (f);
+			genFeature.setShared(f.getEContainingClass() != aClass);
+			genClass.getGenFeatures().add(genFeature);
 		}
 		return genClass;
 	}

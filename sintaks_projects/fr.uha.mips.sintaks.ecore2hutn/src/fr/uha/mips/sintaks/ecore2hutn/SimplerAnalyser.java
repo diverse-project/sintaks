@@ -415,7 +415,7 @@ public class SimplerAnalyser {
 					}
 				}
 				if ("AA".equals(id)) {
-					if (subject instanceof EClass && ! before) {
+					if (subject instanceof EClass && allowAdjectives && ! before) {
 						for (EAttribute attribute : extractAdjectives ((EClass) subject)) {
 							toMove.add(new ToMove(object, adjectiveAttributeAnalyses (attribute, (EClass) subject)));
 						}
@@ -423,7 +423,7 @@ public class SimplerAnalyser {
 					toRemove.add(new ToRemove(object));
 				}
 				if ("AB".equals(id)) {
-					if (subject instanceof EClass && before) {
+					if (subject instanceof EClass && allowAdjectives && before) {
 						for (EAttribute attribute : extractAdjectives ((EClass) subject)) {
 							toMove.add(new ToMove(object, adjectiveAttributeAnalyses (attribute, (EClass) subject)));
 						}
@@ -457,8 +457,8 @@ public class SimplerAnalyser {
 							validCondition = (extractAdjectives (((EClass) subject)).isEmpty() == false) ? 0 : 1;
 						}
 					}
-					if ("TAB".equals(id) && before) {
-						if (allowAdjectives) {
+					if ("TAB".equals(id)) {
+						if (allowAdjectives && before) {
 							validCondition = (extractAdjectives (((EClass) subject)).isEmpty() == false) ? 0 : 1;
 						}
 					}
@@ -659,6 +659,7 @@ public class SimplerAnalyser {
 		for (EAttribute attribute : aClass.getEAllAttributes()) { 
 			if ( ! shouldBeProcessed(attribute)) continue;
 			if ( featureId == attribute) continue;
+			if (aClass.isAbstract() && attribute.eContainer() != aClass) continue;
 			if ( ! attribute.isMany()) adjectives.add(attribute);
 		}
 		return adjectives;
@@ -678,11 +679,13 @@ public class SimplerAnalyser {
 		List<EStructuralFeature> content = new ArrayList <EStructuralFeature> ();
 		for (EReference reference : aClass.getEAllReferences()) { 
 			if ( ! shouldBeProcessed(reference)) continue;
+			if (aClass.isAbstract() && reference.eContainer() != aClass) continue;
 			if (reference.isContainment() || ! reference.isContainer()) content.add(reference);
 		}
 		if (allowAdjectives) {
 			for (EAttribute attribute : aClass.getEAllAttributes()) { 
 				if ( ! shouldBeProcessed(attribute)) continue;
+				if (aClass.isAbstract() && attribute.eContainer() != aClass) continue;
 				if (attribute.isMany()) content.add(attribute);
 			}
 		} else {
@@ -690,6 +693,7 @@ public class SimplerAnalyser {
 			for (EAttribute attribute : aClass.getEAllAttributes()) { 
 				if ( ! shouldBeProcessed(attribute)) continue;
 				if ( featureId == attribute) continue;
+				if (aClass.isAbstract() && attribute.eContainer() != aClass) continue;
 				content.add(attribute);
 			}
 		}
