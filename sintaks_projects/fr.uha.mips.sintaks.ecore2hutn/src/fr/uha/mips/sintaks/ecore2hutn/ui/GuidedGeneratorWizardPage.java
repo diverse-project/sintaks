@@ -73,6 +73,7 @@ public class GuidedGeneratorWizardPage extends SimpleGeneratorWizardPage {
 		sMdlAllows = new Button (adjectiveGroup, SWT.CHECK);
 		new Label(adjectiveGroup, SWT.LEFT).setText("Before");
 		sMdlBefore = new Button (adjectiveGroup, SWT.RADIO);
+		sMdlBefore.setSelection(true);
 		new Label(adjectiveGroup, SWT.LEFT).setText("After");
 		new Button (adjectiveGroup, SWT.RADIO);
 
