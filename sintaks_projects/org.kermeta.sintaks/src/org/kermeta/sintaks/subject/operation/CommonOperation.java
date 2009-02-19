@@ -69,8 +69,10 @@ public class CommonOperation {
         	EObject eo = (EObject) i.next();
             EClass ec = (EClass) eo.eClass();
             //TODO a verifier si c'est dans le bon ordre ...
-            // feature.getEContainingClass().isSuperTypeOf (ec)
-            if (ec.isSuperTypeOf(feature.getEContainingClass())) {
+            //depuis 17 fevrier 2009 avec fsm hierarchique semble ok
+            // l'autre variante plantait
+            if (feature.getEContainingClass().isSuperTypeOf (ec)) {
+//            if (ec.isSuperTypeOf(feature.getEContainingClass())) {
             	EStructuralFeature sf = ec.getEStructuralFeature(feature.getName());
     			if (eo.eIsSet(sf)) {
     				Object value = eo.eGet(sf);
