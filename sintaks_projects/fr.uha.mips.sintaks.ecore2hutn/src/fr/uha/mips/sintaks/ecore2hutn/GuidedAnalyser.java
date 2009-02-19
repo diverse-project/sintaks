@@ -57,6 +57,7 @@ public class GuidedAnalyser {
 	private ModelObserver observer;
 	private List<Todo> todoList;
 	private String patternToProtect;
+	private boolean alone;
 	
 	public GuidedAnalyser() {
 		super();
@@ -84,7 +85,9 @@ public class GuidedAnalyser {
     	observer.setTarget(currentModel);
     	currentModel.eAdapters().add(observer);
 		rootAnalyses (genRoot);
-		currentModel.setStart(findRule(genRoot.getStartClass().getName()));
+		if (genRoot.getStartClass() != null) {
+			currentModel.setStart(findRule(genRoot.getStartClass().getName()));
+		}
 		return currentModel;
 	} 
 
@@ -377,16 +380,20 @@ public class GuidedAnalyser {
 				}
 				if ("AA".equals(id)) {
 					if (subject instanceof StsGenClass) {
-						for (StsGenFeature attribute : extractAfterAdjectives ((StsGenClass) subject)) {
-							toMove.add(new ToMove(object, featureAnalyses (attribute, true)));
+						List<StsGenFeature> attributes = extractAfterAdjectives ((StsGenClass) subject);
+						alone = attributes.size() > 1;
+						for (StsGenFeature attribute : attributes) {
+							toMove.add(new ToMove(object, featureAnalyses (attribute)));
 						}
 					}
 					toRemove.add(new ToRemove(object));
 				}
 				if ("AB".equals(id)) {
 					if (subject instanceof StsGenClass) {
-						for (StsGenFeature attribute : extractBeforeAdjectives ((StsGenClass) subject)) {
-							toMove.add(new ToMove(object, featureAnalyses (attribute, true)));
+						List<StsGenFeature> attributes = extractBeforeAdjectives ((StsGenClass) subject);
+						alone = attributes.size() > 1;
+						for (StsGenFeature attribute : attributes) {
+							toMove.add(new ToMove(object, featureAnalyses (attribute)));
 						}
 					}
 					toRemove.add(new ToRemove(object));
@@ -397,31 +404,42 @@ public class GuidedAnalyser {
 						switch (content.size()) {
 						case  0 : break;
 						case  1 :
-							toMove.add(new ToMove(object, featureAnalyses (content.get(0), true)));
+							alone = true;
+							toMove.add(new ToMove(object, featureAnalyses (content.get(0))));
 							break;
 						default : 
+							alone = false;
 							for (StsGenFeature localFeature : content) {
-								toMove.add(new ToMove(object, featureAnalyses (localFeature, false)));
+								toMove.add(new ToMove(object, featureAnalyses (localFeature)));
 							}
 							break;
 						}
 					}
 					toRemove.add(new ToRemove(object));
 				}
-				if (id.startsWith("T") && subject instanceof StsGenClass) {
-					StsGenClass genClass = (StsGenClass) subject;
+				if (id.startsWith("T")) {
 					int validCondition = -1;
-					if ("TI".equals(id)) {
-						validCondition = (findIdFeature (genClass) != null) ? 0 : 1;
+					if (subject instanceof StsGenClass) {
+						StsGenClass genClass = (StsGenClass) subject;
+						if ("TI".equals(id)) {
+							validCondition = (findIdFeature (genClass) != null) ? 0 : 1;
+						}
+						if ("TAA".equals(id)) {
+							validCondition = (extractAfterAdjectives (genClass).isEmpty() == false) ? 0 : 1;
+						}
+						if ("TAB".equals(id)) {
+							validCondition = (extractBeforeAdjectives (genClass).isEmpty() == false) ? 0 : 1;
+						}
+						if ("TC".equals(id)) {
+							validCondition = (extractContent (genClass).isEmpty() == false) ? 0 : 1;
+						}
 					}
-					if ("TAA".equals(id)) {
-						validCondition = (extractAfterAdjectives (genClass).isEmpty() == false) ? 0 : 1;
-					}
-					if ("TAB".equals(id)) {
-						validCondition = (extractBeforeAdjectives (genClass).isEmpty() == false) ? 0 : 1;
-					}
-					if ("TC".equals(id)) {
-						validCondition = (extractContent (genClass).isEmpty() == false) ? 0 : 1;
+					if (subject instanceof StsGenFeature) {
+						@SuppressWarnings("unused")
+						StsGenFeature genFeature = (StsGenFeature) subject;
+						if ("TM".equals(id)) {
+							validCondition = ( alone ) ? 1 : 0;
+						}
 					}
 					if (validCondition != -1) {
 						Rule targetCondition = ((Alternative) object).getConditions().get(validCondition).getSubRule();
@@ -510,9 +528,9 @@ public class GuidedAnalyser {
 	}
 
 	static private final String[] patternNames = new String [] {
-		"SingleAttribute", "MultipleAttribute", 
-		"SingleContainment", "MultipleContainment",
-		"SingleReference", "MultipleReference",
+		"singleAttribute", "multipleAttribute", 
+		"singleContainment", "multipleContainment",
+		"singleReference", "multipleReference",
 		"adjective", "booleanAdjective",
 		"sharedFeature"
 	};
@@ -526,12 +544,10 @@ public class GuidedAnalyser {
      *    protection : to protect or not
      *  
      * @param attribute EAttribute
-     * @param alone boolean
      * @return Rule
      */
-	private Rule featureAnalyses (StsGenFeature feature, boolean alone) {
+	private Rule featureAnalyses (StsGenFeature feature) {
 		if (feature.isNotUsed()) return null;
-		String patternPrefix = (alone) ? "short" : "long";
 		int patternID = -1;
 		if (! feature.isShared()) {
 			switch (feature.getType().getValue()) {
@@ -544,7 +560,6 @@ public class GuidedAnalyser {
 				} else {
 					patternID = 6;
 				}
-				patternPrefix = "";
 				break;
 			case Type.ATTRIBUTE_VALUE : patternID = (feature.isMany()) ? 1 : 0; break;
 			case Type.CONTAINER_VALUE : patternID = (feature.isMany()) ? 3 : 2; break;
@@ -553,15 +568,14 @@ public class GuidedAnalyser {
 			}
 		} else {
 			patternID = 8;
-			patternPrefix = "";
 		}
 		if (patternID == -1) return null;
 		String patternFullName = null;
 		if (feature.isProtected()) {
-			this.patternToProtect = patternPrefix + patternNames[patternID];
+			this.patternToProtect = patternNames[patternID];
 			patternFullName = "protection";
 		} else {
-			patternFullName = patternPrefix + patternNames[patternID];
+			patternFullName = patternNames[patternID];
 		}
 		return processPattern (patternFullName, feature);
 	}

@@ -66,6 +66,7 @@ public class SimplerAnalyser {
 	private boolean protectionRules [];
 	private String startClassName;
 	private String patternToProtect;
+	private boolean alone;
 	
 	public SimplerAnalyser(String startClassName, boolean allowAdjectives, boolean before, boolean protectionRules []) {
 		super();
@@ -436,34 +437,46 @@ public class SimplerAnalyser {
 						switch (content.size()) {
 						case  0 : break;
 						case  1 :
-							toMove.add(new ToMove(object, contentFeatureAnalyses (content.get(0), (EClass) subject, true)));
+							alone = true;
+							toMove.add(new ToMove(object, contentFeatureAnalyses (content.get(0), (EClass) subject)));
 							break;
 						default : 
+							alone = false;
 							for (EStructuralFeature localFeature : content) {
-								toMove.add(new ToMove(object, contentFeatureAnalyses (localFeature, (EClass) subject, false)));
+								toMove.add(new ToMove(object, contentFeatureAnalyses (localFeature, (EClass) subject)));
 							}
 							break;
 						}
 					}
 					toRemove.add(new ToRemove(object));
 				}
-				if (id.startsWith("T") && subject instanceof EClass) {
+				if (id.startsWith("T")) {
 					int validCondition = -1;
-					if ("TI".equals(id)) {
-						validCondition = (findIdFeature (((EClass) subject)) != null) ? 0 : 1;
-					}
-					if ("TAA".equals(id)) {
-						if (allowAdjectives && ! before) {
-							validCondition = (extractAdjectives (((EClass) subject)).isEmpty() == false) ? 0 : 1;
+					if (subject instanceof EClass) {
+						EClass aClass = (EClass) subject;
+						if ("TI".equals(id)) {
+							validCondition = (findIdFeature (aClass) != null) ? 0 : 1;
+						}
+						if ("TAA".equals(id)) {
+							if (allowAdjectives && ! before) {
+								validCondition = (extractAdjectives (aClass).isEmpty() == false) ? 0 : 1;
+							}
+						}
+						if ("TAB".equals(id)) {
+							if (allowAdjectives && before) {
+								validCondition = (extractAdjectives (aClass).isEmpty() == false) ? 0 : 1;
+							}
+						}
+						if ("TC".equals(id)) {
+							validCondition = (extractContent (aClass).isEmpty() == false) ? 0 : 1;
 						}
 					}
-					if ("TAB".equals(id)) {
-						if (allowAdjectives && before) {
-							validCondition = (extractAdjectives (((EClass) subject)).isEmpty() == false) ? 0 : 1;
+					if (subject instanceof EStructuralFeature) {
+						@SuppressWarnings("unused")
+						EStructuralFeature aFeature = (EStructuralFeature) subject;
+						if ("TM".equals(id)) {
+							validCondition = ( alone ) ? 1 : 0;
 						}
-					}
-					if ("TC".equals(id)) {
-						validCondition = (extractContent (((EClass) subject)).isEmpty() == false) ? 0 : 1;
 					}
 					if (validCondition != -1) {
 						Rule targetCondition = ((Alternative) object).getConditions().get(validCondition).getSubRule();
@@ -593,7 +606,7 @@ public class SimplerAnalyser {
      * @param alone boolean
      * @return Rule
      */
-	private Rule contentFeatureAnalyses (EStructuralFeature feature, EClass mother, boolean alone) {
+	private Rule contentFeatureAnalyses (EStructuralFeature feature, EClass mother) {
 		String patternFullName = null;
 		EClass container = feature.getEContainingClass();
 		if (container == mother) {
@@ -601,10 +614,10 @@ public class SimplerAnalyser {
 			boolean toProtect = false;
 			if (feature instanceof EAttribute) {
 				if (feature.isMany()) {
-					patternName = "MultipleAttribute";
+					patternName = "multipleAttribute";
 					toProtect = protectionRules [1];
 				} else if (! allowAdjectives) {
-					patternName = "SingleAttribute";
+					patternName = "singleAttribute";
 					toProtect = protectionRules [0];
 				}
 			}
@@ -612,31 +625,30 @@ public class SimplerAnalyser {
 				EReference reference = (EReference) feature;
 				if (reference.isContainment()) {
 					if (reference.isMany()) {
-						patternName = "MultipleContainment";
+						patternName = "multipleContainment";
 						toProtect = protectionRules [5];
 					} else {
-						patternName = "SingleContainment";
+						patternName = "singleContainment";
 						toProtect = protectionRules [4];
 					}
 				} else {
 					if (! reference.isContainer()) {
 						if (reference.isMany()) {
-							patternName = "MultipleReference";
+							patternName = "multipleReference";
 							toProtect = protectionRules [3];
 						} else {
-							patternName = "SingleReference";
+							patternName = "singleReference";
 							toProtect = protectionRules [2];
 						}
 					}
 				}
 			}
-			String patternPrefix = (alone) ? "short" : "long";
 			if (patternName != null) {
 				if (toProtect) {
-					this.patternToProtect = patternPrefix + patternName;
+					this.patternToProtect = patternName;
 					patternFullName = "protection";
 				} else {
-					patternFullName = patternPrefix + patternName;
+					patternFullName = patternName;
 				}
 			}
 		} else {
