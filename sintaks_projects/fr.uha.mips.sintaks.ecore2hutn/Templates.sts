@@ -117,8 +117,10 @@
           <conditions xsi:type="sts:CustomCond">
             <subRule xsi:type="sts:Sequence">
               <subRules xsi:type="sts:Terminal" terminal="{" lexicalSeparator="true"/>
+              <subRules xsi:type="sts:Adornment" terminal="inc"/>
               <subRules xsi:type="sts:Adornment" terminal="eoln"/>
               <subRules xsi:type="sts:Adornment" id="C"/>
+              <subRules xsi:type="sts:Adornment" terminal="dec"/>
               <subRules xsi:type="sts:Adornment" terminal="eoln"/>
               <subRules xsi:type="sts:Terminal" terminal="}" lexicalSeparator="true"/>
             </subRule>
@@ -194,6 +196,7 @@
     <subRules xsi:type="sts:Sequence" id="R">
       <subRules xsi:type="sts:Terminal" id="N"/>
       <subRules xsi:type="sts:Terminal" terminal="[" lexicalSeparator="true"/>
+      <subRules xsi:type="sts:Adornment" terminal="inc"/>
       <subRules xsi:type="sts:Adornment" terminal="eoln"/>
       <subRules xsi:type="sts:Iteration" id="F">
         <subRule xsi:type="sts:Sequence">
@@ -201,6 +204,8 @@
           <subRules xsi:type="sts:Adornment" terminal="eoln"/>
         </subRule>
       </subRules>
+      <subRules xsi:type="sts:Adornment" terminal="eoln"/>
+      <subRules xsi:type="sts:Adornment" terminal="dec"/>
       <subRules xsi:type="sts:Terminal" terminal="]" lexicalSeparator="true"/>
     </subRules>
   </fragments>
