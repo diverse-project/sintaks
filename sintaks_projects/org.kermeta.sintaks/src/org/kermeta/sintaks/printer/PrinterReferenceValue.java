@@ -6,8 +6,6 @@
  */
 package org.kermeta.sintaks.printer;
 
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.kermeta.sintaks.sts.ObjectReference;
 import org.kermeta.sintaks.sts.Rule;
@@ -25,7 +23,7 @@ public class PrinterReferenceValue implements IPrinter {
 	public void print (ISmartPrinter output) throws PrinterSemanticException {
         EStructuralFeature id = value.getIdentifier();
         if (id == null) 
-            throw new PrinterSemanticException ("ReferenceValue : id      "+((EClass) id.eContainer()).getName()+"."+id.getName()+" unacceptable");
+            throw new PrinterSemanticException ("ReferenceValue : id is null");
 
     	PrinterRule.pushTrace (value, null, null);
         Object target;
