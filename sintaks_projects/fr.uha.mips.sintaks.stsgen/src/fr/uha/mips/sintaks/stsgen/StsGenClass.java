@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsGenClass.java,v 1.1 2009-02-09 13:26:37 hassen Exp $
+ * $Id: StsGenClass.java,v 1.2 2009-03-12 07:57:15 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getDescription <em>Description</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.StsGenClass#isNotUsed <em>Not Used</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.StsGenClass#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getClassTarget <em>Class Target</em>}</li>
+ *   <li>{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getTargetClass <em>Target Class</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getGenFeatures <em>Gen Features</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getGenSubClasses <em>Gen Sub Classes</em>}</li>
  * </ul>
@@ -49,35 +49,8 @@ public interface StsGenClass extends EObject {
 	String getDescription();
 
 	/**
-	 * Returns the value of the '<em><b>Class Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Target</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Target</em>' reference.
-	 * @see #setClassTarget(EClass)
-	 * @see fr.uha.mips.sintaks.stsgen.StsgenPackage#getStsGenClass_ClassTarget()
-	 * @model
-	 * @generated
-	 */
-	EClass getClassTarget();
-
-	/**
-	 * Sets the value of the '{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getClassTarget <em>Class Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Target</em>' reference.
-	 * @see #getClassTarget()
-	 * @generated
-	 */
-	void setClassTarget(EClass value);
-
-	/**
 	 * Returns the value of the '<em><b>Gen Features</b></em>' containment reference list.
 	 * The list contents are of type {@link fr.uha.mips.sintaks.stsgen.StsGenFeature}.
-	 * It is bidirectional and its opposite is '{@link fr.uha.mips.sintaks.stsgen.StsGenFeature#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gen Features</em>' containment reference list isn't clear,
@@ -86,8 +59,7 @@ public interface StsGenClass extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gen Features</em>' containment reference list.
 	 * @see fr.uha.mips.sintaks.stsgen.StsgenPackage#getStsGenClass_GenFeatures()
-	 * @see fr.uha.mips.sintaks.stsgen.StsGenFeature#getContainer
-	 * @model opposite="container" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<StsGenFeature> getGenFeatures();
@@ -149,5 +121,31 @@ public interface StsGenClass extends EObject {
 	 * @generated
 	 */
 	boolean isAbstract();
+
+	/**
+	 * Returns the value of the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Class</em>' reference.
+	 * @see #setTargetClass(EClass)
+	 * @see fr.uha.mips.sintaks.stsgen.StsgenPackage#getStsGenClass_TargetClass()
+	 * @model
+	 * @generated
+	 */
+	EClass getTargetClass();
+
+	/**
+	 * Sets the value of the '{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getTargetClass <em>Target Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Class</em>' reference.
+	 * @see #getTargetClass()
+	 * @generated
+	 */
+	void setTargetClass(EClass value);
 
 } // StsGenClass

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsgenPackage.java,v 1.1 2009-02-09 13:26:37 hassen Exp $
+ * $Id: StsgenPackage.java,v 1.2 2009-03-12 07:57:15 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen;
 
@@ -144,13 +144,13 @@ public interface StsgenPackage extends EPackage {
 	int STS_GEN_CLASS__ABSTRACT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Class Target</b></em>' reference.
+	 * The feature id for the '<em><b>Target Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STS_GEN_CLASS__CLASS_TARGET = 3;
+	int STS_GEN_CLASS__TARGET_CLASS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Gen Features</b></em>' containment reference list.
@@ -253,13 +253,13 @@ public interface StsgenPackage extends EPackage {
 	int STS_GEN_FEATURE__MANY = 6;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * The feature id for the '<em><b>Key Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STS_GEN_FEATURE__CONTAINER = 7;
+	int STS_GEN_FEATURE__KEY_FEATURE = 7;
 
 	/**
 	 * The number of structural features of the '<em>Sts Gen Feature</em>' class.
@@ -346,17 +346,6 @@ public interface StsgenPackage extends EPackage {
 	EAttribute getStsGenClass_Description();
 
 	/**
-	 * Returns the meta object for the reference '{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getClassTarget <em>Class Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Class Target</em>'.
-	 * @see fr.uha.mips.sintaks.stsgen.StsGenClass#getClassTarget()
-	 * @see #getStsGenClass()
-	 * @generated
-	 */
-	EReference getStsGenClass_ClassTarget();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getGenFeatures <em>Gen Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -399,6 +388,17 @@ public interface StsgenPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStsGenClass_Abstract();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.uha.mips.sintaks.stsgen.StsGenClass#getTargetClass <em>Target Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Class</em>'.
+	 * @see fr.uha.mips.sintaks.stsgen.StsGenClass#getTargetClass()
+	 * @see #getStsGenClass()
+	 * @generated
+	 */
+	EReference getStsGenClass_TargetClass();
 
 	/**
 	 * Returns the meta object for class '{@link fr.uha.mips.sintaks.stsgen.StsGenFeature <em>Sts Gen Feature</em>}'.
@@ -488,15 +488,15 @@ public interface StsgenPackage extends EPackage {
 	EAttribute getStsGenFeature_Many();
 
 	/**
-	 * Returns the meta object for the container reference '{@link fr.uha.mips.sintaks.stsgen.StsGenFeature#getContainer <em>Container</em>}'.
+	 * Returns the meta object for the reference '{@link fr.uha.mips.sintaks.stsgen.StsGenFeature#getKeyFeature <em>Key Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Container</em>'.
-	 * @see fr.uha.mips.sintaks.stsgen.StsGenFeature#getContainer()
+	 * @return the meta object for the reference '<em>Key Feature</em>'.
+	 * @see fr.uha.mips.sintaks.stsgen.StsGenFeature#getKeyFeature()
 	 * @see #getStsGenFeature()
 	 * @generated
 	 */
-	EReference getStsGenFeature_Container();
+	EReference getStsGenFeature_KeyFeature();
 
 	/**
 	 * Returns the meta object for enum '{@link fr.uha.mips.sintaks.stsgen.Type <em>Type</em>}'.
@@ -583,14 +583,6 @@ public interface StsgenPackage extends EPackage {
 		EAttribute STS_GEN_CLASS__DESCRIPTION = eINSTANCE.getStsGenClass_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Class Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STS_GEN_CLASS__CLASS_TARGET = eINSTANCE.getStsGenClass_ClassTarget();
-
-		/**
 		 * The meta object literal for the '<em><b>Gen Features</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -621,6 +613,14 @@ public interface StsgenPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STS_GEN_CLASS__ABSTRACT = eINSTANCE.getStsGenClass_Abstract();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STS_GEN_CLASS__TARGET_CLASS = eINSTANCE.getStsGenClass_TargetClass();
 
 		/**
 		 * The meta object literal for the '{@link fr.uha.mips.sintaks.stsgen.impl.StsGenFeatureImpl <em>Sts Gen Feature</em>}' class.
@@ -689,12 +689,12 @@ public interface StsgenPackage extends EPackage {
 		EAttribute STS_GEN_FEATURE__MANY = eINSTANCE.getStsGenFeature_Many();
 
 		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Key Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STS_GEN_FEATURE__CONTAINER = eINSTANCE.getStsGenFeature_Container();
+		EReference STS_GEN_FEATURE__KEY_FEATURE = eINSTANCE.getStsGenFeature_KeyFeature();
 
 		/**
 		 * The meta object literal for the '{@link fr.uha.mips.sintaks.stsgen.Type <em>Type</em>}' enum.

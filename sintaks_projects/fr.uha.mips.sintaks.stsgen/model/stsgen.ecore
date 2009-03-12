@@ -6,7 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="StsGenRoot">
     <eStructuralFeatures xsi:type="ecore:EReference" name="genClasses" upperBound="-1"
         eType="#//StsGenClass" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="startClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startClass" eType="#//StsGenClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootPackage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StsGenClass">
@@ -17,9 +17,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         changeable="false" volatile="true" transient="true" defaultValueLiteral="false"
         derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classTarget" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genFeatures" upperBound="-1"
-        eType="#//StsGenFeature" containment="true" eOpposite="#//StsGenFeature/container"/>
+        eType="#//StsGenFeature" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="genSubClasses" upperBound="-1"
         eType="#//StsGenClass"/>
   </eClassifiers>
@@ -35,8 +35,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="many" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         changeable="false" volatile="true" transient="true" defaultValueLiteral="false"
         derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//StsGenClass"
-        eOpposite="#//StsGenClass/genFeatures"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyFeature" eType="#//StsGenFeature"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Type">
     <eLiterals name="ID" value="1"/>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsGenClassImpl.java,v 1.1 2009-02-09 13:26:37 hassen Exp $
+ * $Id: StsGenClassImpl.java,v 1.2 2009-03-12 07:57:15 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -38,7 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenClassImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenClassImpl#isNotUsed <em>Not Used</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenClassImpl#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenClassImpl#getClassTarget <em>Class Target</em>}</li>
+ *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenClassImpl#getTargetClass <em>Target Class</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenClassImpl#getGenFeatures <em>Gen Features</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenClassImpl#getGenSubClasses <em>Gen Sub Classes</em>}</li>
  * </ul>
@@ -88,14 +89,14 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 	protected static final boolean ABSTRACT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getClassTarget() <em>Class Target</em>}' reference.
+	 * The cached value of the '{@link #getTargetClass() <em>Target Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClassTarget()
+	 * @see #getTargetClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass classTarget;
+	protected EClass targetClass;
 
 	/**
 	 * The cached value of the '{@link #getGenFeatures() <em>Gen Features</em>}' containment reference list.
@@ -143,7 +144,7 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 	 */
 	public String getDescription() {
 		StringBuffer tmp = new StringBuffer ();
-		EClass c = this.getClassTarget();
+		EClass c = this.getTargetClass();
 		if (c == null) return "";
 		EPackage p = c.getEPackage();
 		while (p != null) {
@@ -163,47 +164,9 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClassTarget() {
-		if (classTarget != null && classTarget.eIsProxy()) {
-			InternalEObject oldClassTarget = (InternalEObject)classTarget;
-			classTarget = (EClass)eResolveProxy(oldClassTarget);
-			if (classTarget != oldClassTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsgenPackage.STS_GEN_CLASS__CLASS_TARGET, oldClassTarget, classTarget));
-			}
-		}
-		return classTarget;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass basicGetClassTarget() {
-		return classTarget;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setClassTarget(EClass newClassTarget) {
-		EClass oldClassTarget = classTarget;
-		classTarget = newClassTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StsgenPackage.STS_GEN_CLASS__CLASS_TARGET, oldClassTarget, classTarget));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<StsGenFeature> getGenFeatures() {
 		if (genFeatures == null) {
-			genFeatures = new EObjectContainmentWithInverseEList<StsGenFeature>(StsGenFeature.class, this, StsgenPackage.STS_GEN_CLASS__GEN_FEATURES, StsgenPackage.STS_GEN_FEATURE__CONTAINER);
+			genFeatures = new EObjectContainmentEList<StsGenFeature>(StsGenFeature.class, this, StsgenPackage.STS_GEN_CLASS__GEN_FEATURES);
 		}
 		return genFeatures;
 	}
@@ -247,7 +210,7 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 	 * @generated not
 	 */
 	public boolean isAbstract() {
-		EClass c = getClassTarget();
+		EClass c = getTargetClass();
 		if (c == null) return false;
 		return c.isAbstract();
 	}
@@ -257,14 +220,37 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StsgenPackage.STS_GEN_CLASS__GEN_FEATURES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenFeatures()).basicAdd(otherEnd, msgs);
+	public EClass getTargetClass() {
+		if (targetClass != null && targetClass.eIsProxy()) {
+			InternalEObject oldTargetClass = (InternalEObject)targetClass;
+			targetClass = (EClass)eResolveProxy(oldTargetClass);
+			if (targetClass != oldTargetClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsgenPackage.STS_GEN_CLASS__TARGET_CLASS, oldTargetClass, targetClass));
+			}
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		return targetClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass basicGetTargetClass() {
+		return targetClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetClass(EClass newTargetClass) {
+		EClass oldTargetClass = targetClass;
+		targetClass = newTargetClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsgenPackage.STS_GEN_CLASS__TARGET_CLASS, oldTargetClass, targetClass));
 	}
 
 	/**
@@ -295,9 +281,9 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 				return isNotUsed() ? Boolean.TRUE : Boolean.FALSE;
 			case StsgenPackage.STS_GEN_CLASS__ABSTRACT:
 				return isAbstract() ? Boolean.TRUE : Boolean.FALSE;
-			case StsgenPackage.STS_GEN_CLASS__CLASS_TARGET:
-				if (resolve) return getClassTarget();
-				return basicGetClassTarget();
+			case StsgenPackage.STS_GEN_CLASS__TARGET_CLASS:
+				if (resolve) return getTargetClass();
+				return basicGetTargetClass();
 			case StsgenPackage.STS_GEN_CLASS__GEN_FEATURES:
 				return getGenFeatures();
 			case StsgenPackage.STS_GEN_CLASS__GEN_SUB_CLASSES:
@@ -318,8 +304,8 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 			case StsgenPackage.STS_GEN_CLASS__NOT_USED:
 				setNotUsed(((Boolean)newValue).booleanValue());
 				return;
-			case StsgenPackage.STS_GEN_CLASS__CLASS_TARGET:
-				setClassTarget((EClass)newValue);
+			case StsgenPackage.STS_GEN_CLASS__TARGET_CLASS:
+				setTargetClass((EClass)newValue);
 				return;
 			case StsgenPackage.STS_GEN_CLASS__GEN_FEATURES:
 				getGenFeatures().clear();
@@ -344,8 +330,8 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 			case StsgenPackage.STS_GEN_CLASS__NOT_USED:
 				setNotUsed(NOT_USED_EDEFAULT);
 				return;
-			case StsgenPackage.STS_GEN_CLASS__CLASS_TARGET:
-				setClassTarget((EClass)null);
+			case StsgenPackage.STS_GEN_CLASS__TARGET_CLASS:
+				setTargetClass((EClass)null);
 				return;
 			case StsgenPackage.STS_GEN_CLASS__GEN_FEATURES:
 				getGenFeatures().clear();
@@ -371,8 +357,8 @@ public class StsGenClassImpl extends EObjectImpl implements StsGenClass {
 				return notUsed != NOT_USED_EDEFAULT;
 			case StsgenPackage.STS_GEN_CLASS__ABSTRACT:
 				return isAbstract() != ABSTRACT_EDEFAULT;
-			case StsgenPackage.STS_GEN_CLASS__CLASS_TARGET:
-				return classTarget != null;
+			case StsgenPackage.STS_GEN_CLASS__TARGET_CLASS:
+				return targetClass != null;
 			case StsgenPackage.STS_GEN_CLASS__GEN_FEATURES:
 				return genFeatures != null && !genFeatures.isEmpty();
 			case StsgenPackage.STS_GEN_CLASS__GEN_SUB_CLASSES:

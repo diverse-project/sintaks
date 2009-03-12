@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsGenFeatureImpl.java,v 1.1 2009-02-09 13:26:37 hassen Exp $
+ * $Id: StsGenFeatureImpl.java,v 1.2 2009-03-12 07:57:15 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen.impl;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenFeatureImpl#isProtected <em>Protected</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenFeatureImpl#isShared <em>Shared</em>}</li>
  *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenFeatureImpl#isMany <em>Many</em>}</li>
- *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenFeatureImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link fr.uha.mips.sintaks.stsgen.impl.StsGenFeatureImpl#getKeyFeature <em>Key Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -153,6 +153,16 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 	 * @ordered
 	 */
 	protected static final boolean MANY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #getKeyFeature() <em>Key Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKeyFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected StsGenFeature keyFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -341,40 +351,16 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StsGenClass getContainer() {
-		if (eContainerFeatureID != StsgenPackage.STS_GEN_FEATURE__CONTAINER) return null;
-		return (StsGenClass)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainer(StsGenClass newContainer, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newContainer, StsgenPackage.STS_GEN_FEATURE__CONTAINER, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContainer(StsGenClass newContainer) {
-		if (newContainer != eInternalContainer() || (eContainerFeatureID != StsgenPackage.STS_GEN_FEATURE__CONTAINER && newContainer != null)) {
-			if (EcoreUtil.isAncestor(this, newContainer))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newContainer != null)
-				msgs = ((InternalEObject)newContainer).eInverseAdd(this, StsgenPackage.STS_GEN_CLASS__GEN_FEATURES, StsGenClass.class, msgs);
-			msgs = basicSetContainer(newContainer, msgs);
-			if (msgs != null) msgs.dispatch();
+	public StsGenFeature getKeyFeature() {
+		if (keyFeature != null && keyFeature.eIsProxy()) {
+			InternalEObject oldKeyFeature = (InternalEObject)keyFeature;
+			keyFeature = (StsGenFeature)eResolveProxy(oldKeyFeature);
+			if (keyFeature != oldKeyFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsgenPackage.STS_GEN_FEATURE__KEY_FEATURE, oldKeyFeature, keyFeature));
+			}
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StsgenPackage.STS_GEN_FEATURE__CONTAINER, newContainer, newContainer));
+		return keyFeature;
 	}
 
 	/**
@@ -382,15 +368,8 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StsgenPackage.STS_GEN_FEATURE__CONTAINER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetContainer((StsGenClass)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+	public StsGenFeature basicGetKeyFeature() {
+		return keyFeature;
 	}
 
 	/**
@@ -398,27 +377,11 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StsgenPackage.STS_GEN_FEATURE__CONTAINER:
-				return basicSetContainer(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case StsgenPackage.STS_GEN_FEATURE__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, StsgenPackage.STS_GEN_CLASS__GEN_FEATURES, StsGenClass.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
+	public void setKeyFeature(StsGenFeature newKeyFeature) {
+		StsGenFeature oldKeyFeature = keyFeature;
+		keyFeature = newKeyFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StsgenPackage.STS_GEN_FEATURE__KEY_FEATURE, oldKeyFeature, keyFeature));
 	}
 
 	/**
@@ -444,8 +407,9 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 				return isShared() ? Boolean.TRUE : Boolean.FALSE;
 			case StsgenPackage.STS_GEN_FEATURE__MANY:
 				return isMany() ? Boolean.TRUE : Boolean.FALSE;
-			case StsgenPackage.STS_GEN_FEATURE__CONTAINER:
-				return getContainer();
+			case StsgenPackage.STS_GEN_FEATURE__KEY_FEATURE:
+				if (resolve) return getKeyFeature();
+				return basicGetKeyFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -473,8 +437,8 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 			case StsgenPackage.STS_GEN_FEATURE__SHARED:
 				setShared(((Boolean)newValue).booleanValue());
 				return;
-			case StsgenPackage.STS_GEN_FEATURE__CONTAINER:
-				setContainer((StsGenClass)newValue);
+			case StsgenPackage.STS_GEN_FEATURE__KEY_FEATURE:
+				setKeyFeature((StsGenFeature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -503,8 +467,8 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 			case StsgenPackage.STS_GEN_FEATURE__SHARED:
 				setShared(SHARED_EDEFAULT);
 				return;
-			case StsgenPackage.STS_GEN_FEATURE__CONTAINER:
-				setContainer((StsGenClass)null);
+			case StsgenPackage.STS_GEN_FEATURE__KEY_FEATURE:
+				setKeyFeature((StsGenFeature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -532,8 +496,8 @@ public class StsGenFeatureImpl extends EObjectImpl implements StsGenFeature {
 				return shared != SHARED_EDEFAULT;
 			case StsgenPackage.STS_GEN_FEATURE__MANY:
 				return isMany() != MANY_EDEFAULT;
-			case StsgenPackage.STS_GEN_FEATURE__CONTAINER:
-				return getContainer() != null;
+			case StsgenPackage.STS_GEN_FEATURE__KEY_FEATURE:
+				return keyFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsgenPackageImpl.java,v 1.1 2009-02-09 13:26:37 hassen Exp $
+ * $Id: StsgenPackageImpl.java,v 1.2 2009-03-12 07:57:15 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen.impl;
 
@@ -183,15 +183,6 @@ public class StsgenPackageImpl extends EPackageImpl implements StsgenPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStsGenClass_ClassTarget() {
-		return (EReference)stsGenClassEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getStsGenClass_GenFeatures() {
 		return (EReference)stsGenClassEClass.getEStructuralFeatures().get(4);
 	}
@@ -221,6 +212,15 @@ public class StsgenPackageImpl extends EPackageImpl implements StsgenPackage {
 	 */
 	public EAttribute getStsGenClass_Abstract() {
 		return (EAttribute)stsGenClassEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStsGenClass_TargetClass() {
+		return (EReference)stsGenClassEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class StsgenPackageImpl extends EPackageImpl implements StsgenPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStsGenFeature_Container() {
+	public EReference getStsGenFeature_KeyFeature() {
 		return (EReference)stsGenFeatureEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -350,7 +350,7 @@ public class StsgenPackageImpl extends EPackageImpl implements StsgenPackage {
 		createEAttribute(stsGenClassEClass, STS_GEN_CLASS__DESCRIPTION);
 		createEAttribute(stsGenClassEClass, STS_GEN_CLASS__NOT_USED);
 		createEAttribute(stsGenClassEClass, STS_GEN_CLASS__ABSTRACT);
-		createEReference(stsGenClassEClass, STS_GEN_CLASS__CLASS_TARGET);
+		createEReference(stsGenClassEClass, STS_GEN_CLASS__TARGET_CLASS);
 		createEReference(stsGenClassEClass, STS_GEN_CLASS__GEN_FEATURES);
 		createEReference(stsGenClassEClass, STS_GEN_CLASS__GEN_SUB_CLASSES);
 
@@ -362,7 +362,7 @@ public class StsgenPackageImpl extends EPackageImpl implements StsgenPackage {
 		createEAttribute(stsGenFeatureEClass, STS_GEN_FEATURE__PROTECTED);
 		createEAttribute(stsGenFeatureEClass, STS_GEN_FEATURE__SHARED);
 		createEAttribute(stsGenFeatureEClass, STS_GEN_FEATURE__MANY);
-		createEReference(stsGenFeatureEClass, STS_GEN_FEATURE__CONTAINER);
+		createEReference(stsGenFeatureEClass, STS_GEN_FEATURE__KEY_FEATURE);
 
 		// Create enums
 		typeEEnum = createEEnum(TYPE);
@@ -400,15 +400,15 @@ public class StsgenPackageImpl extends EPackageImpl implements StsgenPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(stsGenRootEClass, StsGenRoot.class, "StsGenRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStsGenRoot_GenClasses(), this.getStsGenClass(), null, "genClasses", null, 0, -1, StsGenRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStsGenRoot_StartClass(), ecorePackage.getEClass(), null, "startClass", null, 0, 1, StsGenRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStsGenRoot_StartClass(), this.getStsGenClass(), null, "startClass", null, 0, 1, StsGenRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStsGenRoot_RootPackage(), ecorePackage.getEPackage(), null, "rootPackage", null, 0, 1, StsGenRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stsGenClassEClass, StsGenClass.class, "StsGenClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStsGenClass_Description(), ecorePackage.getEString(), "description", null, 1, 1, StsGenClass.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStsGenClass_NotUsed(), ecorePackage.getEBoolean(), "notUsed", null, 0, 1, StsGenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStsGenClass_Abstract(), ecorePackage.getEBoolean(), "abstract", "false", 0, 1, StsGenClass.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getStsGenClass_ClassTarget(), ecorePackage.getEClass(), null, "classTarget", null, 0, 1, StsGenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStsGenClass_GenFeatures(), this.getStsGenFeature(), this.getStsGenFeature_Container(), "genFeatures", null, 0, -1, StsGenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStsGenClass_TargetClass(), ecorePackage.getEClass(), null, "targetClass", null, 0, 1, StsGenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStsGenClass_GenFeatures(), this.getStsGenFeature(), null, "genFeatures", null, 0, -1, StsGenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStsGenClass_GenSubClasses(), this.getStsGenClass(), null, "genSubClasses", null, 0, -1, StsGenClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stsGenFeatureEClass, StsGenFeature.class, "StsGenFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -419,7 +419,7 @@ public class StsgenPackageImpl extends EPackageImpl implements StsgenPackage {
 		initEAttribute(getStsGenFeature_Protected(), ecorePackage.getEBoolean(), "protected", null, 0, 1, StsGenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStsGenFeature_Shared(), ecorePackage.getEBoolean(), "shared", null, 0, 1, StsGenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStsGenFeature_Many(), ecorePackage.getEBoolean(), "many", "false", 0, 1, StsGenFeature.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getStsGenFeature_Container(), this.getStsGenClass(), this.getStsGenClass_GenFeatures(), "container", null, 0, 1, StsGenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStsGenFeature_KeyFeature(), this.getStsGenFeature(), null, "keyFeature", null, 0, 1, StsGenFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(typeEEnum, Type.class, "Type");

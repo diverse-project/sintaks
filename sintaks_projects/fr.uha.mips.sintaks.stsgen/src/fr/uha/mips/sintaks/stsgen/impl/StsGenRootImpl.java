@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsGenRootImpl.java,v 1.1 2009-02-09 13:26:37 hassen Exp $
+ * $Id: StsGenRootImpl.java,v 1.2 2009-03-12 07:57:15 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen.impl;
 
@@ -61,7 +61,7 @@ public class StsGenRootImpl extends EObjectImpl implements StsGenRoot {
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass startClass;
+	protected StsGenClass startClass;
 
 	/**
 	 * The cached value of the '{@link #getRootPackage() <em>Root Package</em>}' reference.
@@ -109,10 +109,10 @@ public class StsGenRootImpl extends EObjectImpl implements StsGenRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStartClass() {
+	public StsGenClass getStartClass() {
 		if (startClass != null && startClass.eIsProxy()) {
 			InternalEObject oldStartClass = (InternalEObject)startClass;
-			startClass = (EClass)eResolveProxy(oldStartClass);
+			startClass = (StsGenClass)eResolveProxy(oldStartClass);
 			if (startClass != oldStartClass) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StsgenPackage.STS_GEN_ROOT__START_CLASS, oldStartClass, startClass));
@@ -126,7 +126,7 @@ public class StsGenRootImpl extends EObjectImpl implements StsGenRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass basicGetStartClass() {
+	public StsGenClass basicGetStartClass() {
 		return startClass;
 	}
 
@@ -135,8 +135,8 @@ public class StsGenRootImpl extends EObjectImpl implements StsGenRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStartClass(EClass newStartClass) {
-		EClass oldStartClass = startClass;
+	public void setStartClass(StsGenClass newStartClass) {
+		StsGenClass oldStartClass = startClass;
 		startClass = newStartClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StsgenPackage.STS_GEN_ROOT__START_CLASS, oldStartClass, startClass));
@@ -228,7 +228,7 @@ public class StsGenRootImpl extends EObjectImpl implements StsGenRoot {
 				getGenClasses().addAll((Collection<? extends StsGenClass>)newValue);
 				return;
 			case StsgenPackage.STS_GEN_ROOT__START_CLASS:
-				setStartClass((EClass)newValue);
+				setStartClass((StsGenClass)newValue);
 				return;
 			case StsgenPackage.STS_GEN_ROOT__ROOT_PACKAGE:
 				setRootPackage((EPackage)newValue);
@@ -249,7 +249,7 @@ public class StsGenRootImpl extends EObjectImpl implements StsGenRoot {
 				getGenClasses().clear();
 				return;
 			case StsgenPackage.STS_GEN_ROOT__START_CLASS:
-				setStartClass((EClass)null);
+				setStartClass((StsGenClass)null);
 				return;
 			case StsgenPackage.STS_GEN_ROOT__ROOT_PACKAGE:
 				setRootPackage((EPackage)null);

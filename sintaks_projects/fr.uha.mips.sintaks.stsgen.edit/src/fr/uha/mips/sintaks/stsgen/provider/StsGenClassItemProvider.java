@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsGenClassItemProvider.java,v 1.1 2009-02-09 13:27:18 hassen Exp $
+ * $Id: StsGenClassItemProvider.java,v 1.2 2009-03-12 07:57:13 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen.provider;
 
@@ -68,31 +68,9 @@ public class StsGenClassItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNotUsedPropertyDescriptor(object);
-			addClassTargetPropertyDescriptor(object);
+			addTargetClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Class Target feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addClassTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_StsGenClass_classTarget_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StsGenClass_classTarget_feature", "_UI_StsGenClass_type"),
-				 StsgenPackage.Literals.STS_GEN_CLASS__CLASS_TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -113,6 +91,28 @@ public class StsGenClassItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StsGenClass_targetClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StsGenClass_targetClass_feature", "_UI_StsGenClass_type"),
+				 StsgenPackage.Literals.STS_GEN_CLASS__TARGET_CLASS,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -188,7 +188,6 @@ public class StsGenClassItemProvider
 			case StsgenPackage.STS_GEN_CLASS__DESCRIPTION:
 			case StsgenPackage.STS_GEN_CLASS__NOT_USED:
 			case StsgenPackage.STS_GEN_CLASS__ABSTRACT:
-			case StsgenPackage.STS_GEN_CLASS__CLASS_TARGET:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case StsgenPackage.STS_GEN_CLASS__GEN_FEATURES:

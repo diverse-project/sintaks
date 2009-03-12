@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsGenFeatureItemProvider.java,v 1.1 2009-02-09 13:27:18 hassen Exp $
+ * $Id: StsGenFeatureItemProvider.java,v 1.2 2009-03-12 07:57:13 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen.provider;
 
@@ -69,6 +69,7 @@ public class StsGenFeatureItemProvider
 			addTypePropertyDescriptor(object);
 			addProtectedPropertyDescriptor(object);
 			addSharedPropertyDescriptor(object);
+			addKeyFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -179,6 +180,28 @@ public class StsGenFeatureItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Key Feature feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addKeyFeaturePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StsGenFeature_keyFeature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StsGenFeature_keyFeature_feature", "_UI_StsGenFeature_type"),
+				 StsgenPackage.Literals.STS_GEN_FEATURE__KEY_FEATURE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

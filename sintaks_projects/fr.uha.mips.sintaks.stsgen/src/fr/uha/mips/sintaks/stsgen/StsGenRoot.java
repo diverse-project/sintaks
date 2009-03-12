@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StsGenRoot.java,v 1.1 2009-02-09 13:26:37 hassen Exp $
+ * $Id: StsGenRoot.java,v 1.2 2009-03-12 07:57:15 hassen Exp $
  */
 package fr.uha.mips.sintaks.stsgen;
 
@@ -56,12 +56,12 @@ public interface StsGenRoot extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Class</em>' reference.
-	 * @see #setStartClass(EClass)
+	 * @see #setStartClass(StsGenClass)
 	 * @see fr.uha.mips.sintaks.stsgen.StsgenPackage#getStsGenRoot_StartClass()
 	 * @model
 	 * @generated
 	 */
-	EClass getStartClass();
+	StsGenClass getStartClass();
 
 	/**
 	 * Sets the value of the '{@link fr.uha.mips.sintaks.stsgen.StsGenRoot#getStartClass <em>Start Class</em>}' reference.
@@ -71,7 +71,7 @@ public interface StsGenRoot extends EObject {
 	 * @see #getStartClass()
 	 * @generated
 	 */
-	void setStartClass(EClass value);
+	void setStartClass(StsGenClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Root Package</b></em>' reference.
