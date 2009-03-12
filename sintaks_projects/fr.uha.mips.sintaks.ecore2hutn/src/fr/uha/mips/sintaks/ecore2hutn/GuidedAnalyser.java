@@ -58,6 +58,7 @@ public class GuidedAnalyser {
 	private List<Todo> todoList;
 	private String patternToProtect;
 	private boolean alone;
+	private List<String> warnings;
 	
 	public GuidedAnalyser() {
 		super();
@@ -86,7 +87,16 @@ public class GuidedAnalyser {
     	currentModel.eAdapters().add(observer);
 		rootAnalyses (genRoot);
 		if (genRoot.getStartClass() != null) {
-			currentModel.setStart(findRule(genRoot.getStartClass().getName()));
+			currentModel.setStart(findRule(genRoot.getStartClass().getTargetClass().getName()));
+		}
+		if (warnings != null) {
+			StringBuffer message = new StringBuffer ();
+			message.append("Warning a lot of Object References without a key feature");
+			for (String warning : getWarnings()) {
+				message.append("\n");
+				message.append(warning);
+			}
+			Ecore2HUTNPlugin.getDefault().reportErrorToUser (message.toString());
 		}
 		return currentModel;
 	} 
@@ -171,7 +181,7 @@ public class GuidedAnalyser {
 	private String getSubjectName (EObject subject) {
 		String name = "unnamed";
 		if (subject instanceof StsGenClass) {
-			name = ((StsGenClass) subject).getClassTarget().getName();
+			name = ((StsGenClass) subject).getTargetClass().getName();
 		}
 		if (subject instanceof StsGenFeature) {
 			String containerName = ((StsGenFeature) subject).getTargetFeature().getEContainingClass().getName();
@@ -188,6 +198,7 @@ public class GuidedAnalyser {
      * @return StsGenFeature
      */
 	private StsGenFeature findIdFeature (StsGenClass subject) {
+		if (subject == null) return null;
 		for (StsGenFeature feature : subject.getGenFeatures()) {
 			if (feature.isNotUsed()) continue;
 			if (feature.getType().getValue() == Type.ID_VALUE)
@@ -263,25 +274,37 @@ public class GuidedAnalyser {
 		if (subject == null) return;
 		rule.setId(null);
 		if (subject instanceof StsGenClass && rule instanceof Terminal) {
-			((Terminal) rule).setTerminal(((StsGenClass) subject).getClassTarget().getName());
+			((Terminal) rule).setTerminal(((StsGenClass) subject).getTargetClass().getName());
 		}
 		if (subject instanceof StsGenFeature && rule instanceof Terminal) {
 			((Terminal) rule).setTerminal(((StsGenFeature) subject).getTargetFeature().getName());
 		}
 	}
 
+	private List<String> getWarnings () {
+		if (warnings == null) warnings = new ArrayList <String> (16);
+		return warnings;
+	}
+
 	private void Parameter_F (Rule rule, EObject subject) {
 		if (subject == null) return;
 		rule.setId(null);
 		if (subject instanceof StsGenClass && rule instanceof RuleRef) {
-			todoList.add (new Todo ((RuleRef) rule, ((StsGenClass) subject).getClassTarget().getName()));
+			todoList.add (new Todo ((RuleRef) rule, ((StsGenClass) subject).getTargetClass().getName()));
 		}
 		if (subject instanceof StsGenFeature) {
 			StsGenFeature feature = (StsGenFeature) subject;
 			EStructuralFeature target = feature.getTargetFeature();
 			if (rule instanceof Iteration) ((Iteration) rule).setContainer(target);
 			if (rule instanceof Value) ((Value) rule).getFeatures().add(target);
-			if (rule instanceof ObjectReference) ((ObjectReference) rule).setIdentifier(findIdFeature (feature.getContainer()).getTargetFeature());
+			if (rule instanceof ObjectReference) {
+				StsGenFeature f = feature.getKeyFeature();
+				if (f != null) {
+					((ObjectReference) rule).setIdentifier(f.getTargetFeature());
+				} else {
+					getWarnings().add ("No key feature for "+feature.getDescription());
+				}
+			}
 			if (rule instanceof RuleRef) todoList.add (new Todo ((RuleRef) rule, ((EReference)target).getEReferenceType().getName()));
 		}
 	}
@@ -292,7 +315,14 @@ public class GuidedAnalyser {
 		if (subject instanceof StsGenFeature) {
 			StsGenFeature feature = (StsGenFeature) subject;
 			EStructuralFeature target = feature.getTargetFeature();
-			if (rule instanceof ObjectReference) ((ObjectReference) rule).setIdentifier(findIdFeature (feature.getContainer()).getTargetFeature());
+			if (rule instanceof ObjectReference) {
+				StsGenFeature f = feature.getKeyFeature();
+				if (f != null) {
+					((ObjectReference) rule).setIdentifier(f.getTargetFeature());
+				} else {
+					getWarnings().add ("No key feature for "+feature.getDescription());
+				}
+			}
 			if (rule instanceof RuleRef) todoList.add (new Todo ((RuleRef) rule, ((EReference)target).getEReferenceType().getName()));
 		}
 	}
@@ -465,12 +495,12 @@ public class GuidedAnalyser {
 			if (object instanceof PolymorphicCond && subject instanceof StsGenClass) {
 				PolymorphicCond pc = (PolymorphicCond) object;
 				StsGenClass genClass = (StsGenClass) subject;
-				pc.setMetaclass(genClass.getClassTarget());
+				pc.setMetaclass(genClass.getTargetClass());
 			}
 			if (object instanceof Template && subject instanceof StsGenClass) {
 				Template t = (Template) object;
 				StsGenClass genClass = (StsGenClass) subject;
-				t.setMetaclass(genClass.getClassTarget());
+				t.setMetaclass(genClass.getTargetClass());
 			}
 		}
 		for (ToMove crt : toMove) {

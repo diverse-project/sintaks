@@ -41,6 +41,7 @@ public class StsgenCreator {
 	private boolean before;
 	private boolean protectionRules [];
 	private String startClassName;
+	private List<Link> links;
 	
     /**
      * The provider gives some hints to customize the generation of the sintaks genmodel file:
@@ -66,6 +67,7 @@ public class StsgenCreator {
 		} else {
 			this.protectionRules = protectionRules;
 		}
+		links = new ArrayList<Link> (10);
 	}
 
     /**
@@ -79,9 +81,10 @@ public class StsgenCreator {
 		if ( ! (inputRoot instanceof EPackage)) return null;
 		rootPackage = (EPackage) inputRoot;
 		currentModel = StsgenFactory.eINSTANCE.createStsGenRoot();
-		currentModel.setStartClass(findClass(startClassName));
 		currentModel.setRootPackage(rootPackage);
 		packageAnalyses (rootPackage);
+		currentModel.setStartClass(findStsGenClass(findClass(startClassName)));
+		this.linkReferences();
 		return currentModel;
 	} 
 
@@ -96,7 +99,7 @@ public class StsgenCreator {
 	private StsGenClass findStsGenClass (EClass targetClass) {
 		if (targetClass == null) return null;
 		for (StsGenClass aClass : currentModel.getGenClasses()) {
-			if (aClass.getClassTarget() == targetClass)
+			if (aClass.getTargetClass() == targetClass)
 				return aClass;
 		}
 		return null;
@@ -125,6 +128,36 @@ public class StsgenCreator {
 	}
 
     /**
+     * Lookup a StsGenClass about an ID attribute
+     * 
+     * @param stsGenClass EClass
+     * @return StsGenFeature
+     */
+	private StsGenFeature findIdFeature (StsGenClass subject) {
+		if (subject == null) return null;
+		for (StsGenFeature feature : subject.getGenFeatures()) {
+			if (feature.isNotUsed()) continue;
+			if (feature.getType().getValue() == Type.ID_VALUE)
+				return feature;
+		}
+		return null;
+	}
+
+	private void linkReferences () {
+		for (Link link : links) {
+			if (link.getFrom() instanceof StsGenClass) {
+				StsGenClass from = (StsGenClass) link.getFrom();
+				from.getGenSubClasses().add(findStsGenClass(link.getTo()));
+			}
+			if (link.getFrom() instanceof StsGenFeature) {
+				StsGenFeature from = (StsGenFeature) link.getFrom();
+				StsGenClass toClass = findStsGenClass(link.getTo());
+				from.setKeyFeature(findIdFeature(toClass));
+			}
+		}
+	}
+
+	/**
      * Iterates over a package to analyse classifiers of sub packages
      * 
      * Two pass :
@@ -138,20 +171,14 @@ public class StsgenCreator {
 			if (classifier instanceof EClass) {
 				EClass aClass = ((EClass) classifier);
 				if (aClass.isInterface()) continue;
-				currentModel.getGenClasses().add(createClass (aClass));
-			}
-		}
-		for (EClassifier classifier : aPackage.getEClassifiers()) {
-			if (classifier instanceof EClass) {
-				EClass aClass = ((EClass) classifier);
-				if (aClass.isInterface()) continue;
-				if (! aClass.isAbstract()) continue;
-				StsGenClass abstractClass = findStsGenClass (aClass);
-				List<EClass> concreteClasses = getDescendantConcreteClasses (rootPackage, aClass);
-				for (EClass concreteClass : concreteClasses) {
-					abstractClass.getGenSubClasses().add(findStsGenClass(concreteClass));
+				StsGenClass genClass = createClass (aClass);
+				currentModel.getGenClasses().add(genClass);
+				if (aClass.isAbstract()) {
+					List<EClass> concreteClasses = getDescendantConcreteClasses (rootPackage, aClass);
+					for (EClass concreteClass : concreteClasses) {
+						links.add(new Link (genClass, concreteClass));
+					}
 				}
-
 			}
 		}
 		for (EPackage subPackage : aPackage.getESubpackages()) {
@@ -193,7 +220,7 @@ public class StsgenCreator {
      */
 	private StsGenClass createClass (EClass aClass) {
 		StsGenClass genClass = StsgenFactory.eINSTANCE.createStsGenClass();
-		genClass.setClassTarget(aClass);
+		genClass.setTargetClass(aClass);
 		for (EStructuralFeature f : aClass.getEAllStructuralFeatures()) {
 			if ( ! shouldBeProcessed (f)) continue;
 			if (aClass.isAbstract() && f.eContainer() != aClass) continue;
@@ -251,6 +278,7 @@ public class StsgenCreator {
 			} else {
 				if (! reference.isContainer()) {
 					genFeature.setType(Type.REFERENCE);
+					links.add(new Link (genFeature, reference.getEReferenceType()));
 					if (reference.isMany()) protectionRuleID=3;
 					else protectionRuleID=2;
 				} else {
