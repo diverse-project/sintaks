@@ -15,6 +15,9 @@ import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -28,6 +31,7 @@ public class Ecore2HUTNPlugin extends AbstractUIPlugin {
 	private static final int INTERNAL_ERROR = 10001;
 	public static final String MESSAGES_BUNDLE = PLUGIN_ID+".messages";
 	private ResourceBundle resourceBundle;
+	private OptionManager optionManager;
 
 	// The shared instance
 	private static Ecore2HUTNPlugin plugin;
@@ -91,6 +95,13 @@ public class Ecore2HUTNPlugin extends AbstractUIPlugin {
 		return resourceBundle;
 	}
 
+    public OptionManager getOptionManager () {
+        if (optionManager == null) {
+        	optionManager = new OptionManager(getPreferenceStore());
+        }
+        return optionManager;
+    }
+
 	/**
 	 * This method logs a Status
 	 * 
@@ -107,5 +118,15 @@ public class Ecore2HUTNPlugin extends AbstractUIPlugin {
 	 */
 	public static void log(Throwable e) {
 		log(new Status(IStatus.ERROR, PLUGIN_ID, INTERNAL_ERROR, "Sintaks Internal Error", e));
+	}
+
+	/**
+	 * Send a message to the user via the GUI
+	 * @param message
+	 */
+	public void reportErrorToUser(String message){
+		MessageBox mb = (new MessageBox(new Shell(), SWT.OK | SWT.ICON_WARNING));
+    	mb.setMessage(message);
+    	mb.open();
 	}
 }

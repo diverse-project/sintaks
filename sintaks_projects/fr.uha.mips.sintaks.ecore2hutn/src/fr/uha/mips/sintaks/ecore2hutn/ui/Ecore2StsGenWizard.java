@@ -14,6 +14,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 
+import fr.uha.mips.sintaks.ecore2hutn.Ecore2HUTNPlugin;
 import fr.uha.mips.sintaks.ecore2hutn.Master;
 
 /**
@@ -41,15 +42,18 @@ public class Ecore2StsGenWizard extends SintaksWizard {
 		String workspacePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 		GuidedGeneratorWizardPage outputPage = (GuidedGeneratorWizardPage) this.getPage(OUTPUTFILE_PAGENAME);
 
+		boolean adjectivesAllowed = outputPage.isAdjectivesAllowed();
+		boolean adjectivesBefore = outputPage.isBefore();
+		boolean [] protections = outputPage.getProtections();
+		Ecore2HUTNPlugin.getDefault().getOptionManager().setAdjectiveAllowed(adjectivesAllowed);
+		Ecore2HUTNPlugin.getDefault().getOptionManager().setAdjectiveBefore(adjectivesBefore);
+		Ecore2HUTNPlugin.getDefault().getOptionManager().setProtections(protections);
 		m.createSTSgenFromModel(
 				URI.createFileURI(workspacePath + inputFile.getFullPath().toString()),
 				URI.createFileURI(workspacePath + targetFile.getFullPath().toString()),
 				outputPage.getStartClassName(),
-				outputPage.isAdjectivesAllowed(),
-				outputPage.isBefore(),
-				outputPage.getProtections()
+				adjectivesAllowed, adjectivesBefore, protections
 		);
-
 	}
 	
 	/**
