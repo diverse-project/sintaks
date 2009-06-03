@@ -108,7 +108,11 @@ public class ModelSubject {
 	}
 
 	public Object top () {
-		return getStack().get(getStack().size()-1);
+		if (getStack().size() != 0) {
+			return getStack().get(getStack().size()-1);
+		} else {
+			return null;
+		}
 	}
 
 	public int size () {

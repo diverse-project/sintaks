@@ -253,22 +253,24 @@ public class OperationExecutor {
 	 * @return int the current position
 	 *
 	 */
-	static public int mark (ModelSubject model) {
-		return model.size();
+	static public Mark mark (ModelSubject model) {
+		return new Mark (model.size(), model.getGhosts());
 	}
 
 	/**
 	 * GotoMark set model stack at a given position
 	 * 
 	 * @param model ModelSubject the model to use 
-	 * @param position int the position to reach
+	 * @param position Mark the position to reach
 	 *
 	 */
-	static public void gotoMark (ModelSubject model, int position) {
+	static public void gotoMark (ModelSubject model, Mark mark) {
 		int crtPosition = model.size();
-		for (int index=crtPosition; index < position; --index) {
+		for (int index=crtPosition; index < mark.getPosition(); --index) {
 			model.pop();
 		}
+		model.getGhosts().clear();
+		model.getGhosts().addAll(mark.getGhosts());
 	}
 
 	/**
