@@ -26,8 +26,10 @@ public class PrinterAdornment implements IPrinter {
         else if ("tab".equals(text)) output.tab();
         else if ("inc".equals(text)) output.increase();
         else if ("dec".equals(text)) output.decrease();
-        else PrinterRule.printText (output, "[[<<" + text + ">>]]", true);
-    	PrinterRule.setStateValidOrFailed (true);
+        else if (text != null && text.startsWith("debug")) {
+        	System.out.println("Debug tag in adornment "+text);
+        } else PrinterRule.printText (output, "[[<<" + text + ">>]]", true);
+        PrinterRule.setStateValidOrFailed (true);
     	PrinterRule.popTrace();
     }
     
