@@ -7,7 +7,6 @@
 package org.kermeta.sintaks.parser.ll;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.kermeta.sintaks.lexer.ILexer;
@@ -31,7 +30,7 @@ public class ParserReferenceValue implements IParser {
 		EList<EStructuralFeature> features = value.getFeatures();
         EStructuralFeature id = value.getIdentifier();
         if (id == null) 
-            throw new ParserSemanticException ("ReferenceValue : id      "+((EClass) id.eContainer()).getName()+"."+id.getName()+" unacceptable");
+            throw new ParserSemanticException ("ReferenceValue : id "+value.getId()+" unacceptable");
 		if (input.atEnd()) return false;
         String textRead = input.get();
 
