@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="ASCII"?>
-<trace:TraceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:trace="http://www.kermeta.org/SintaksTrace">
-  <trace state="OK">
-    <sourceReference xsi:type="trace:FileReference" filename="file:/H:/Software/europa/sintaks2/fr.uha.mips.sintaks.tests/res/container/M2T-container-input.xmi"/>
-    <targetReference xsi:type="trace:FileReference" filename="file:/H:/Software/europa/sintaks2/fr.uha.mips.sintaks.tests/res/container/M2T-container-output.txt"/>
-    <ruleReference xsi:type="trace:FileReference" filename="file:/H:/Software/europa/sintaks2/fr.uha.mips.sintaks.tests/res/container/model.sts"/>
-    <description text="Files used"/>
-    <description text="Transformation is acceptable"/>
+<trace:TraceModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:trace="http://www.kermeta.org/SintaksTrace">
+  <trace
+      state="OK">
+    <sourceReference
+        xsi:type="trace:FileReference"
+        filename="file:/H:/Software/ganymede/sintaks/fr.uha.mips.sintaks.tests/res/container/M2T-container-input.xmi"/>
+    <targetReference
+        xsi:type="trace:FileReference"
+        filename="file:/H:/Software/ganymede/sintaks/fr.uha.mips.sintaks.tests/res/container/M2T-container-output.txt"/>
+    <ruleReference
+        xsi:type="trace:FileReference"
+        filename="file:/H:/Software/ganymede/sintaks/fr.uha.mips.sintaks.tests/res/container/model.sts"/>
+    <description
+        text="Files used"/>
+    <description
+        text="Transformation is acceptable"/>
   </trace>
 </trace:TraceModel>

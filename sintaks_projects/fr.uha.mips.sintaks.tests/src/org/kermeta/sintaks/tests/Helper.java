@@ -3,6 +3,7 @@ package org.kermeta.sintaks.tests;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 
 import org.eclipse.emf.common.util.URI;
@@ -75,6 +76,13 @@ public class Helper {
 		return trace.getState() == State.OK;
 	}
 
+	private int read (Reader reader) throws IOException {
+		while (true) {
+			int c = reader.read();
+			if (c != 10 && c != 13) return c;
+		}
+	}
+
 	private boolean checkEquality(URI outputURI, URI targetURI) {
         try {
         	File outputFile = new File(outputURI.toFileString());
@@ -82,8 +90,8 @@ public class Helper {
         	File targetFile = new File(targetURI.toFileString());
             Reader targetReader = new BufferedReader(new FileReader(targetFile), (int) targetFile.length());
             while (true) {
-            	int c1 = targetReader.read();
-            	int c2 = outputReader.read();
+            	int c1 = read(targetReader);
+            	int c2 = read(outputReader);
             	if (c1 != c2) return false;
             	if (c1 == -1 && c2 == -1) return true;
             	if (c1 == -1) return false;
