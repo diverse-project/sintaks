@@ -16,6 +16,7 @@ import org.kermeta.sintaks.sts.Rule;
 import org.kermeta.sintaks.sts.Sequence;
 import org.kermeta.sintaks.subject.ModelSubject;
 import org.kermeta.sintaks.subject.OperationExecutor;
+import org.kermeta.sintaks.subject.Mark;
 
 public class ParserSequence implements IParser {
 
@@ -33,7 +34,7 @@ public class ParserSequence implements IParser {
 		
 		boolean loop = true;
 		boolean ok = true;
-		int mark = OperationExecutor.mark(subject);
+		Mark mark = OperationExecutor.mark(subject);
 
 		while (loop) {
 			if (i.hasNext()) {
