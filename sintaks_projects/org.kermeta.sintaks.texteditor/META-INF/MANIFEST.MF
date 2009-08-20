@@ -16,6 +16,7 @@ Require-Bundle: org.eclipse.ui,
  org.kermeta.sintaks.model,
  org.kermeta.sintaks.ui,
  org.kermeta.log4j.util
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.kermeta.sintaks.texteditor
 Bundle-ClassPath: .
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

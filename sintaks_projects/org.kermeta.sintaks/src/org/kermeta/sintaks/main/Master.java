@@ -166,6 +166,8 @@ public class Master {
     public EObject getModelFromText(String text, URI ruleURI) {
       	this.subject = new ModelSubject (new MetaModel(resSet));
 		this.parser  = new ModelParser (new MetaModelParser(resSet), subject);
+		
+		SintaksPlugin.getDefault().setTracer(new Tracer (resSet));
 		try {
 			boolean ok = this.parse(ruleURI, text);
             if(! ok ) return null;

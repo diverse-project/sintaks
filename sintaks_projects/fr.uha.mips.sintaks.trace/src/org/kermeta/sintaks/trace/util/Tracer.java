@@ -50,7 +50,7 @@ public class Tracer {
 			stack = createStack();
 			model = createTraceModel();
 			model.setTrace(trace);
-		} else {
+		} else if(!stack.isEmpty()){
 			top().getSubTraces().add(trace);
 		}
 		stack.add(0, trace);

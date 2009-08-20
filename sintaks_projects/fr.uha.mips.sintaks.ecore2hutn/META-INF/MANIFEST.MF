@@ -14,4 +14,5 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.help,
  fr.uha.mips.sintaks.stsgen,
  org.kermeta.sintaks.model
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
